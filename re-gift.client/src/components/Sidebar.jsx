@@ -1,15 +1,15 @@
-import React from 'react';
+ï»¿import React from 'react';
 
 const Sidebar = () => {
     return (
-        <div className="sidebar">
+        <nav className="sidebar">
             <ul>
                 <li><a href="#">Hem</a></li>
-                <li><a href="#">Sälj Presentkort</a></li>
-                <li><a href="#">Köp Presentkort</a></li>
+                <li><a href="#">SÃ¤lj Presentkort</a></li>
+                <li><a href="#">KÃ¶p Presentkort</a></li>
                 <li><a href="#">Kontakt</a></li>
             </ul>
-        </div>
+        </nav>
     );
 };
 

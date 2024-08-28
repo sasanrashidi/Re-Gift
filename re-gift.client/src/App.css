@@ -1,28 +1,68 @@
-﻿#root {
-    max-width: 1280px;
+﻿body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+#root {
+    display: flex;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 2rem;
-    text-align: center;
 }
-
-th, td {
-    padding-left: 1rem;
-    padding-right: 1rem;
-}
-
 
 .app-container {
     display: flex;
+    width: 100%;
 }
 
 .sidebar {
-    width: 200px;
-    background-color: #f4f4f4;
-    padding: 15px;
+    width: 260px;
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 }
+
+    .sidebar ul {
+        list-style: none;
+        padding: 0;
+    }
+
+        .sidebar ul li {
+            margin: 15px 0;
+        }
+
+            .sidebar ul li a {
+                color: #ecf0f1;
+                text-decoration: none;
+                font-weight: 500;
+                transition: color 0.3s;
+            }
+
+                .sidebar ul li a:hover {
+                    color: #3498db;
+                }
 
 .content-container {
     flex-grow: 1;
     padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+.home h1 {
+    font-size: 2.5rem;
+    color: #2c3e50;
+    margin-bottom: 1rem;
+}
+
+.home p {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.6;
+}

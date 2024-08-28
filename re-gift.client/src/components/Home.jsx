@@ -1,10 +1,10 @@
-import React from 'react';
+﻿import React from 'react';
 
 function Home() {
     return (
-        <div className="Home">
-            <h2>Hem</h2>
-            <p>Detta �r min f�rsta sida.</p>
+        <div className="home">
+            <h1>Välkommen till Re:gift</h1>
+            <p>Vi erbjuder ett brett utbud av begagnade presentkort till fantastiska priser. Utforska våra kategorier och hitta det perfekta presentkortet för dig eller någon du bryr dig om.</p>
         </div>
     );
 }
