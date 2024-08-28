@@ -1,12 +1,12 @@
 import React from 'react';
 
-const Home = () => {
+function Home() {
     return (
-        <div>
-            <h1>Välkommen till Re-Gift</h1>
-            <p>Köp och sälj begagnade presentkort till rabatterade priser.</p>
+        <div className="Home">
+            <h2>Hem</h2>
+            <p>Detta är min första sida.</p>
         </div>
     );
-};
+}
 
 export default Home;
