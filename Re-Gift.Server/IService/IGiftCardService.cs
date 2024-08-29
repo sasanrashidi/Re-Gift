@@ -5,13 +5,15 @@ namespace Re_Gift.Server.IService
     public interface IGiftCardService
     {
 
-        public Giftcard GetGiftCards();
+        public ICollection<Giftcard> GetGiftCards();
 
         public Giftcard GetGiftCard(int id);
 
-        public void DeleteGiftCards(int id);
+        public bool DeleteGiftCard(Giftcard giftcard);
 
-        public Giftcard UpdateGiftcards(int id);
+        public bool UpdateGiftcard(Giftcard giftcard);
+        public bool Save();
 
     }
+
 }

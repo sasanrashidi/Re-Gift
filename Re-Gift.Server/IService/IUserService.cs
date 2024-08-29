@@ -5,24 +5,13 @@ namespace Re_Gift.Server.IService
     public interface IUserService
     {
 
-        public User GetUsers();
+        public ICollection<User> GetUsers();
 
         public User GetUser(int id);
 
-        public void DeleteUser(int id);
+        public bool DeleteUser(User user);
 
-        public User UpdateUser(int id);
-
-
-
-
-
-
-
-
-
-
-
-
+        public bool UpdateUser(User user);
+        public bool Save();
     }
 }

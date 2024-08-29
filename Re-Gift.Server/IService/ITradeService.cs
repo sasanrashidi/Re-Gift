@@ -4,13 +4,14 @@ namespace Re_Gift.Server.IService
 {
     public interface ITradeService
     {
-        public Trade GetTrades();
+        public ICollection<Trade> GetTrades();
 
         public Trade GetTrade(int id);
 
-        public void DeleteTrade(int id);
+        public bool DeleteTrade(Trade trade);
 
-        public Trade UpdateTrade(int id);
+        public bool UpdateTrade(Trade trade);
+        public bool Save();
 
     }
 }
