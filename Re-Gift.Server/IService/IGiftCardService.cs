@@ -1,19 +1,16 @@
 ﻿using Re_Gift.Server.Models;
 
-namespace Re_Gift.Server.IService
+namespace Re_Gift.Server.IService;
+
+public interface IGiftCardService
 {
-    public interface IGiftCardService
-    {
 
-        public ICollection<Giftcard> GetGiftCards();
+    public ICollection<Giftcard> GetGiftCards();
 
-        public Giftcard GetGiftCard(int id);
+    public Giftcard GetGiftCard(int id);
 
-        public bool DeleteGiftCard(Giftcard giftcard);
+    public bool DeleteGiftCard(Giftcard giftcard);
 
-        public bool UpdateGiftcard(Giftcard giftcard);
-        public bool Save();
-
-    }
-
+    public bool UpdateGiftcard(Giftcard giftcard);
+    public bool Save();
 }
