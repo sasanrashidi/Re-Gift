@@ -4,7 +4,7 @@ const SellGiftCard = () => {
     return (
         <div>
             <h1>Sälj Presentkort</h1>
-            <p>Här kan du sälja dina presentkort.</p>
+            <p>Här kan du sälja dina presentkort utifrån dina behov.</p>
         </div>
     );
 };
