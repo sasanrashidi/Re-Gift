@@ -3,7 +3,7 @@
 const Contact = () => {
     return (
         <div>
-            <h1>Marketplace</h1>
+            <h1>Kontakt</h1>
             <p>Kontakta oss via mail eller på telefon.</p>
         </div>
     );

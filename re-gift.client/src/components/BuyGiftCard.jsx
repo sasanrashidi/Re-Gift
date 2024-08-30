@@ -3,7 +3,7 @@
 const BuyGiftCard = () => {
     return (
         <div>
-            <h1>Marketplace</h1>
+            <h1>Köp presentkort</h1>
             <p>Här kan du köpa olika presentkort.</p>
         </div>
     );
