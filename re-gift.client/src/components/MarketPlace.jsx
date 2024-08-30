@@ -1,10 +1,10 @@
-import React from 'react';
+ï»¿import React from 'react';
 
 const Marketplace = () => {
     return (
         <div>
             <h1>Marketplace</h1>
-            <p>Här kan du köpa och sälja presentkort.</p>
+            <p>HÃ¤r kan du kÃ¶pa och sÃ¤lja presentkort.</p>
         </div>
     );
 };

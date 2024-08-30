@@ -1,10 +1,10 @@
-import React from 'react';
+﻿import React from 'react';
 
 const Contact = () => {
     return (
         <div>
-            <h1>Kontakt</h1>
-            <p>Kontakta oss f�r mer information p� tel xxxx.</p>
+            <h1>Marketplace</h1>
+            <p>Här kan du köpa och sälja presentkort.</p>
         </div>
     );
 };
