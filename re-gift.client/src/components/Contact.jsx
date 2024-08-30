@@ -4,7 +4,7 @@ const Contact = () => {
     return (
         <div>
             <h1>Marketplace</h1>
-            <p>Här kan du köpa och sälja presentkort.</p>
+            <p>Kontakta oss via mail eller på telefon.</p>
         </div>
     );
 };
