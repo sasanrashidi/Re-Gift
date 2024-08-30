@@ -11,6 +11,8 @@ public interface IGiftCardService
 
     public bool DeleteGiftCard(Giftcard giftcard);
 
+    public ICollection<Giftcard> GetGiftCardsFromUserId(int id);
+
     public bool UpdateGiftcard(Giftcard giftcard);
     public bool Save();
 }

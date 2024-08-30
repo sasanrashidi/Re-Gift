@@ -38,4 +38,12 @@ public class GiftCardService : IGiftCardService
         _context.Update(giftcard);
         return Save();
     }
+
+    public ICollection<Giftcard> GetGiftCardsFromUserId(int id)
+    {
+        return _context.Users
+                       .Where(g => g.Id == id)
+                       .SelectMany(gf => gf.Giftcards)
+                       .ToList();
+    }
 }

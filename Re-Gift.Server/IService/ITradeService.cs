@@ -11,5 +11,10 @@ public interface ITradeService
     public bool DeleteTrade(Trade trade);
 
     public bool UpdateTrade(Trade trade);
+
+    public bool TradeDone(List<User> users, List<Giftcard> giftCards);
+
+    public ICollection<Trade> GetTradesFromUserId(int id);
+
     public bool Save();
 }

@@ -18,6 +18,8 @@ namespace Re_Gift.Server.Services
 
         }
 
+
+
         public Trade GetTrade(int id)
         {
             return _context.Trades.Where(g => g.Id == id).FirstOrDefault();
@@ -27,6 +29,14 @@ namespace Re_Gift.Server.Services
         {
             return _context.Trades.ToList();
 
+        }
+
+        
+        public ICollection<Trade> GetTradesFromUserId(int userId)
+        {
+            return _context.Trades
+                           .Where(t => t.Users.Any(u => u.Id == userId))
+                           .ToList();
         }
 
         public bool Save()
@@ -39,8 +49,23 @@ namespace Re_Gift.Server.Services
 
         public bool UpdateTrade(Trade trade)
         {
-            _context.Update(trade);
+            _context.Update(trade); // Tvek om vi kommer använda denna
             return Save();
+
+        }
+
+        public bool TradeDone(List<User> users, List<Giftcard> giftCards)
+        {
+            Trade tradeDone = new Trade
+            {
+                Users = users,
+                Giftcards = giftCards
+            };
+
+            _context.Trades.Add(tradeDone);
+
+            return Save();
+
 
         }
     }
