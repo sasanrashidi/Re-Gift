@@ -1,4 +1,5 @@
-﻿using Re_Gift.Server.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using Re_Gift.Server.Data;
 using Re_Gift.Server.IService;
 using Re_Gift.Server.Models;
 
@@ -11,39 +12,38 @@ public class GiftCardService : IGiftCardService
     {
         _context = Context;
     }
-    public bool DeleteGiftCard(Giftcard giftcard)
+    public async Task<bool> DeleteGiftCardAsync(Giftcard giftcard)
     {
         _context.Remove(giftcard);
-        return Save();
+        return await SaveAsync();
     }
 
-    public Giftcard GetGiftCard(int id)
+    public async Task<Giftcard> GetGiftCardAsync(int id)
     {
-        return  _context.Giftcards.Where(g => g.Id==id).FirstOrDefault();   
+        return await _context.Giftcards.FirstOrDefaultAsync(g => g.Id == id);
     }
 
-    public ICollection<Giftcard> GetGiftCards()
+    public async Task<ICollection<Giftcard>> GetGiftCardsAsync()
     {
-        return _context.Giftcards.ToList();
+        return await _context.Giftcards.ToListAsync();
     }
 
-    public bool Save()
-    {
-        var save = _context.SaveChanges();
-        return save > 0 ? true : false;
-    }
-
-    public bool UpdateGiftcard(Giftcard giftcard)
+    public async Task<bool> UpdateGiftcardAsync(Giftcard giftcard)
     {
         _context.Update(giftcard);
-        return Save();
+        return await SaveAsync();
     }
 
-    public ICollection<Giftcard> GetGiftCardsFromUserId(int id)
+    public async Task<ICollection<Giftcard>> GetGiftCardsFromUserIdAsync(int userId)
     {
-        return _context.Users
-                       .Where(g => g.Id == id)
-                       .SelectMany(gf => gf.Giftcards)
-                       .ToList();
+        return await _context.Users
+                             .Where(u => u.Id == userId)
+                             .SelectMany(u => u.Giftcards)
+                             .ToListAsync();
+    }
+
+    public async Task<bool> SaveAsync()
+    {
+        return await _context.SaveChangesAsync() > 0;
     }
 }

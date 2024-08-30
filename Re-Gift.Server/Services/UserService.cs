@@ -1,4 +1,5 @@
-﻿using Re_Gift.Server.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using Re_Gift.Server.Data;
 using Re_Gift.Server.IService;
 using Re_Gift.Server.Models;
 
@@ -11,36 +12,36 @@ namespace Re_Gift.Server.Services
         {
             _context = Context;
         }
-        public bool DeleteUser(User user)
+        public async Task<bool> DeleteUser(User user)
         {
             _context.Remove(user);
-            return Save();
+            return await Save();
 
         }
 
-        public User GetUser(int id)
+        public async Task<User> GetUser(int id)
         {
-            return _context.Users.Where(g => g.Id == id).FirstOrDefault();
+            return await _context.Users.Where(g => g.Id == id).FirstOrDefaultAsync();
         }
 
-        public ICollection<User> GetUsers()
+        public async Task<ICollection<User>> GetUsers()
         {
-            return _context.Users.ToList();
+            return await _context.Users.ToListAsync();
 
         }
 
-        public bool Save()
+        public async Task<bool> Save()
         {
-            var save = _context.SaveChanges();
+            var save = await _context.SaveChangesAsync();
             return save > 0 ? true : false;
 
 
         }
 
-        public bool UpdateUser(User user)
+        public async Task<bool> UpdateUser(User user)
         {
             _context.Update(user);
-            return Save();
+            return await Save();
 
         }
     }

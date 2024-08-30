@@ -4,9 +4,9 @@ namespace Re_Gift.Server.IService;
 
 public interface IUserService
 {
-    public ICollection<User> GetUsers();
-    public User GetUser(int id);
-    public bool DeleteUser(User user);
-    public bool UpdateUser(User user);
-    public bool Save();
+    public Task<ICollection<User>> GetUsers();
+    public Task<User> GetUser(int id);
+    public Task<bool> DeleteUser(User user);
+    public Task<bool> UpdateUser(User user);
+    public Task<bool> Save();
 }

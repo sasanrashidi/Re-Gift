@@ -5,14 +5,15 @@ namespace Re_Gift.Server.IService;
 public interface IGiftCardService
 {
 
-    public ICollection<Giftcard> GetGiftCards();
+    public Task<ICollection<Giftcard>> GetGiftCardsAsync();
 
-    public Giftcard GetGiftCard(int id);
+    public Task<Giftcard> GetGiftCardAsync(int id);
 
-    public bool DeleteGiftCard(Giftcard giftcard);
+    public Task<bool> DeleteGiftCardAsync(Giftcard giftcard);
 
-    public ICollection<Giftcard> GetGiftCardsFromUserId(int id);
+    public Task<ICollection<Giftcard>> GetGiftCardsFromUserIdAsync(int id);
 
-    public bool UpdateGiftcard(Giftcard giftcard);
-    public bool Save();
+    public Task<bool> UpdateGiftcardAsync(Giftcard giftcard);
+
+    public Task<bool> SaveAsync();
 }

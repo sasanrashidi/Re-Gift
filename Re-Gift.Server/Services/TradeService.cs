@@ -1,4 +1,5 @@
-﻿using Re_Gift.Server.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using Re_Gift.Server.Data;
 using Re_Gift.Server.IService;
 using Re_Gift.Server.Models;
 
@@ -11,50 +12,47 @@ namespace Re_Gift.Server.Services
         {
             _context = Context;
         }
-        public bool DeleteTrade(Trade trade)
+        public async Task<bool> DeleteTrade(Trade trade)
         {
             _context.Remove(trade);
-            return Save();
+            return await Save();
 
         }
 
 
 
-        public Trade GetTrade(int id)
+        public async Task<Trade> GetTrade(int id)
         {
-            return _context.Trades.Where(g => g.Id == id).FirstOrDefault();
+            return await _context.Trades.Where(g => g.Id == id).FirstOrDefaultAsync();
         }
 
-        public ICollection<Trade> GetTrades()
+        public async Task<ICollection<Trade>> GetTrades()
         {
-            return _context.Trades.ToList();
+            return await _context.Trades.ToListAsync();
 
         }
 
         
-        public ICollection<Trade> GetTradesFromUserId(int userId)
+        public async Task<ICollection<Trade>> GetTradesFromUserId(int userId)
         {
-            return _context.Trades
+            return await _context.Trades
                            .Where(t => t.Users.Any(u => u.Id == userId))
-                           .ToList();
+                           .ToListAsync();
         }
 
-        public bool Save()
+        public async Task<bool> Save()
         {
-            var save = _context.SaveChanges();
-            return save > 0 ? true : false;
-
-
+            return await _context.SaveChangesAsync() > 0;
         }
 
-        public bool UpdateTrade(Trade trade)
+        public async Task<bool> UpdateTrade(Trade trade)
         {
             _context.Update(trade); // Tvek om vi kommer använda denna
-            return Save();
+            return await Save();
 
         }
 
-        public bool TradeDone(List<User> users, List<Giftcard> giftCards)
+        public async Task<bool> TradeDone(List<User> users, List<Giftcard> giftCards)
         {
             Trade tradeDone = new Trade
             {
@@ -64,7 +62,7 @@ namespace Re_Gift.Server.Services
 
             _context.Trades.Add(tradeDone);
 
-            return Save();
+            return await Save();
 
 
         }
