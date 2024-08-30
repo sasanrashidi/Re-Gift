@@ -50,7 +50,7 @@ namespace Re_Gift.Server.Migrations
                     b.Property<int?>("TradeId")
                         .HasColumnType("int");
 
-                    b.Property<int>("UserId")
+                    b.Property<int?>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -112,9 +112,7 @@ namespace Re_Gift.Server.Migrations
 
                     b.HasOne("Re_Gift.Server.Models.User", "User")
                         .WithMany("Giftcards")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
 
                     b.Navigation("User");
                 });

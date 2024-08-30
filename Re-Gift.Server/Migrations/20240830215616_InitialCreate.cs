@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Re_Gift.Server.Migrations
 {
     /// <inheritdoc />
-    public partial class Initialcommit : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -55,7 +55,7 @@ namespace Re_Gift.Server.Migrations
                     Balance = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     RegistrationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     SerialNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: true),
                     TradeId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -70,8 +70,7 @@ namespace Re_Gift.Server.Migrations
                         name: "FK_Giftcards_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
