@@ -3,17 +3,17 @@ import { Link } from 'react-router-dom';
 
 
 
-const sidebar = () => {
+const Sidebar = () => {
     return (
-        <nav classname="sidebar">
+        <nav Classname="sidebar">
             <ul>
-                <li><link to="/">hem</link></li>
-                <li><link to="/sell-giftcard">sälj presentkort</link></li>
-                <li><link to="/buy-giftcard">köp presentkort</link></li>
-                <li><link to="/contact">kontakt</link></li>
+                <li><Link to="/">Hem</Link></li>
+                <li><Link to="/sell-giftcard">Sälj Presentkort</Link></li>
+                <li><Link to="/buy-giftcard">Köp Presentkort</Link></li>
+                <li><Link to="/contact">Kontakt</Link></li>
             </ul>
         </nav>
     );
 };
 
-export default sidebar;
+export default Sidebar;
