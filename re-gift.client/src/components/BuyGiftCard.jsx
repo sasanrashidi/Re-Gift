@@ -1,10 +1,10 @@
-import React from 'react';
+ï»¿import React from 'react';
 
 const BuyGiftCard = () => {
     return (
         <div>
-            <h1>Köp Presentkort</h1>
-            <p>Här kan du köpa presentkort från privat personer, logga in för att kunna se mer av utbudet.</p>
+            <h1>Marketplace</h1>
+            <p>HÃ¤r kan du kÃ¶pa och sÃ¤lja presentkort.</p>
         </div>
     );
 };

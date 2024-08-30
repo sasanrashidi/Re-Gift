@@ -16,6 +16,8 @@ const App = () => {
                 <div className="content-container">
                     <Routes>
                         <Route path="/" element={<Home />} />
+                        <Route path="/marketplace" element={<Marketplace />} />
+
                         <Route path="/sell-giftcard" element={<SellGiftCard />} />
                         <Route path="/buy-giftcard" element={<BuyGiftCard />} />
                         <Route path="/contact" element={<Contact />} />
