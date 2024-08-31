@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Re_Gift.Server.IService;
 
 namespace Re_Gift.Server.Controllers;
 
@@ -7,11 +8,17 @@ namespace Re_Gift.Server.Controllers;
 [ApiController]
 public class UserController : ControllerBase
 {
+    private readonly IUserService _userService;
+
+    public UserController(IUserService userService)
+    {
+        _userService = userService;
+    }
+    
     [HttpGet]
     public async Task<IActionResult> Get()
     {
-        // Perform asynchronous operations here
-        await Task.Delay(1000); // Example asynchronous operation
+        _userService.GetUsers();
 
         return Ok();
     }
