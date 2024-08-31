@@ -1,6 +1,6 @@
 ﻿namespace Re_Gift.Server.Models;
 
-public class Giftcard
+public class GiftCard
 {
     public int Id { get; set; }
     public string Company { get; set; }

@@ -8,38 +8,43 @@ namespace Re_Gift.Server.Services;
 public class GiftCardService : IGiftCardService
 {
     private readonly DataContext _context;
+
     public GiftCardService(DataContext Context)
     {
         _context = Context;
     }
-    public async Task<bool> DeleteGiftCardAsync(Giftcard giftcard)
-    {
-        _context.Remove(giftcard);
-        return await SaveAsync();
-    }
-
-    public async Task<Giftcard> GetGiftCardAsync(int id)
-    {
-        return await _context.Giftcards.FirstOrDefaultAsync(g => g.Id == id);
-    }
-
-    public async Task<ICollection<Giftcard>> GetGiftCardsAsync()
+    public async Task<ICollection<GiftCard>> GetGiftCardsAsync()
     {
         return await _context.Giftcards.ToListAsync();
     }
 
-    public async Task<bool> UpdateGiftcardAsync(Giftcard giftcard)
+    public async Task<GiftCard> GetGiftCardAsync(int id)
+    {
+        return await _context.Giftcards.FirstOrDefaultAsync(g => g.Id == id);
+    }
+    public async Task<ICollection<GiftCard>> GetGiftCardsFromUserIdAsync(int userId)
+    {
+        return await _context.Users
+                             .Where(u => u.Id == userId)
+                             .SelectMany(u => u.GiftCards)
+                             .ToListAsync();
+    }
+    public async Task<bool> AddGiftCardAsync(GiftCard giftcard)
+    {
+        _context.Add(giftcard);
+        return await SaveAsync();
+    }
+
+    public async Task<bool> UpdateGiftcardAsync(GiftCard giftcard)
     {
         _context.Update(giftcard);
         return await SaveAsync();
     }
 
-    public async Task<ICollection<Giftcard>> GetGiftCardsFromUserIdAsync(int userId)
+    public async Task<bool> DeleteGiftCardAsync(GiftCard giftcard)
     {
-        return await _context.Users
-                             .Where(u => u.Id == userId)
-                             .SelectMany(u => u.Giftcards)
-                             .ToListAsync();
+        _context.Remove(giftcard);
+        return await SaveAsync();
     }
 
     public async Task<bool> SaveAsync()

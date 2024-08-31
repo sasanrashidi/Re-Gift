@@ -4,10 +4,15 @@ namespace Re_Gift.Server.IService;
 
 public interface IUserService
 {
-    public Task<ICollection<User>> GetUsers();
-    public Task<User> GetUser(int id);
-    public Task<bool> CreateUser(User user);
-    public Task<bool> DeleteUser(User user);
-    public Task<bool> UpdateUser(User user);
-    public Task<bool> Save();
+    public Task<ICollection<User>> GetUsersAsync();
+
+    public Task<User> GetUserAsync(int id);
+
+    public Task<bool> AddUserAsync(User user);
+
+    public Task<bool> UpdateUserAsync(User user);
+
+    public Task<bool> DeleteUserAsync(User user);
+
+    public Task<bool> SaveAsync();
 }

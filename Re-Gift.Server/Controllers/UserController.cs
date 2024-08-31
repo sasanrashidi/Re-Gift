@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Re_Gift.Server.IService;
 using Re_Gift.Server.Models;
 
@@ -15,11 +14,11 @@ public class UserController : ControllerBase
     {
         _userService = userService;
     }
-    
+
     [HttpGet]
     public async Task<IActionResult> Get()
     {
-        var users = await _userService.GetUsers();
+        var users = await _userService.GetUsersAsync();
 
         return Ok(users);
     }
@@ -27,7 +26,7 @@ public class UserController : ControllerBase
     [HttpGet("{id}")]
     public async Task<IActionResult> Get(int id)
     {
-        var user = await _userService.GetUser(id);
+        var user = await _userService.GetUserAsync(id);
 
         return Ok(user);
     }
@@ -35,25 +34,23 @@ public class UserController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> Post([FromBody] User user)
     {
-        var createdUser = await _userService.CreateUser(user);
+        var createdUser = await _userService.AddUserAsync(user);
 
         return Ok(user);
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> Put(int id)
+    public async Task<IActionResult> Put(User user)
     {
-        // Perform asynchronous operations here
-        await Task.Delay(1000); // Example asynchronous operation
+        var updatedUser = await _userService.UpdateUserAsync(user);
 
         return Ok();
     }
 
     [HttpDelete("{id}")]
-    public async Task<IActionResult> Delete(int id)
+    public async Task<IActionResult> Delete(User user)
     {
-        // Perform asynchronous operations here
-        await Task.Delay(1000); // Example asynchronous operation
+        var deletedUser = await _userService.DeleteUserAsync(user);
 
         return Ok();
     }

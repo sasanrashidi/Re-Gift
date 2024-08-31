@@ -12,7 +12,7 @@ using Re_Gift.Server.Data;
 namespace Re_Gift.Server.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240831124533_Initial commit")]
+    [Migration("20240831155750_Initial commit")]
     partial class Initialcommit
     {
         /// <inheritdoc />
@@ -25,7 +25,7 @@ namespace Re_Gift.Server.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Re_Gift.Server.Models.Giftcard", b =>
+            modelBuilder.Entity("Re_Gift.Server.Models.GiftCard", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -115,10 +115,10 @@ namespace Re_Gift.Server.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Re_Gift.Server.Models.Giftcard", b =>
+            modelBuilder.Entity("Re_Gift.Server.Models.GiftCard", b =>
                 {
                     b.HasOne("Re_Gift.Server.Models.User", "User")
-                        .WithMany("Giftcards")
+                        .WithMany("GiftCards")
                         .HasForeignKey("userId")
                         .OnDelete(DeleteBehavior.SetNull);
 
@@ -127,7 +127,7 @@ namespace Re_Gift.Server.Migrations
 
             modelBuilder.Entity("Re_Gift.Server.Models.User", b =>
                 {
-                    b.Navigation("Giftcards");
+                    b.Navigation("GiftCards");
                 });
 #pragma warning restore 612, 618
         }

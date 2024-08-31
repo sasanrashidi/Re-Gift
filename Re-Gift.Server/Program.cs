@@ -20,6 +20,8 @@ builder.Services.AddDbContext<DataContext>(options =>
 });
 
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IGiftCardService, GiftCardService>();
+builder.Services.AddScoped<ITradeService, TradeService>();
 
 builder.Services.AddTransient<Seed>();
 builder.Services.AddTransient<CleanUpData>();
@@ -27,7 +29,6 @@ builder.Services.AddTransient<CleanUpData>();
 var app = builder.Build();
 
 await AddHelperMethod(app.Services, args);
-
 
 
 app.UseDefaultFiles();
@@ -39,7 +40,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
 
 
 app.UseHttpsRedirection();
@@ -66,6 +66,7 @@ async Task AddHelperMethod(IServiceProvider services, string[] args)
         return; // Exit the application after seeding
     }
 
+
     // Check if "CleanUpDb" argument is passed
     if (args.Contains("CleanUpDb"))
     {
@@ -77,5 +78,3 @@ async Task AddHelperMethod(IServiceProvider services, string[] args)
         return; // Exit the application after cleaning
     }
 }
-
-

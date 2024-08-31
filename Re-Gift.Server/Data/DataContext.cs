@@ -10,19 +10,16 @@ public class DataContext : DbContext
     }
 
     public DbSet<User> Users { get; set; }
-    public DbSet<Giftcard> Giftcards { get; set; }
+    public DbSet<GiftCard> Giftcards { get; set; }
     public DbSet<Trade> Trades { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         // Configure one-to-many relationship between User and Giftcard
-        modelBuilder.Entity<Giftcard>()
+        modelBuilder.Entity<GiftCard>()
             .HasOne(g => g.User)
-            .WithMany(u => u.Giftcards)
+            .WithMany(u => u.GiftCards)
             .HasForeignKey(g => g.userId)
             .OnDelete(DeleteBehavior.SetNull);
-
-        
-            
     }
 }
