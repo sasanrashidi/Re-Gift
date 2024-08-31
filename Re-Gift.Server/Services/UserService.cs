@@ -12,11 +12,17 @@ namespace Re_Gift.Server.Services
         {
             _context = Context;
         }
+
+        public async Task<bool> CreateUser(User user)
+        {
+            _context.Add(user);
+            return await Save();
+        }
+
         public async Task<bool> DeleteUser(User user)
         {
             _context.Remove(user);
             return await Save();
-
         }
 
         public async Task<User> GetUser(int id)

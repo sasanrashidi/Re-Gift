@@ -12,7 +12,7 @@ using Re_Gift.Server.Data;
 namespace Re_Gift.Server.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240831122304_Initial commit")]
+    [Migration("20240831124533_Initial commit")]
     partial class Initialcommit
     {
         /// <inheritdoc />

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Re_Gift.Server.IService;
+using Re_Gift.Server.Models;
 
 namespace Re_Gift.Server.Controllers;
 
@@ -26,19 +27,17 @@ public class UserController : ControllerBase
     [HttpGet("{id}")]
     public async Task<IActionResult> Get(int id)
     {
-        // Perform asynchronous operations here
-        await Task.Delay(1000); // Example asynchronous operation
+        var user = await _userService.GetUser(id);
 
-        return Ok();
+        return Ok(user);
     }
 
     [HttpPost]
-    public async Task<IActionResult> Post()
+    public async Task<IActionResult> Post([FromBody] User user)
     {
-        // Perform asynchronous operations here
-        await Task.Delay(1000); // Example asynchronous operation
+        var createdUser = await _userService.CreateUser(user);
 
-        return Ok();
+        return Ok(user);
     }
 
     [HttpPut("{id}")]
