@@ -53,9 +53,9 @@ namespace Re_Gift.Server.Migrations
                     Balance = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     RegistrationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     SerialNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    userId = table.Column<int>(type: "int", nullable: true),
                     Verified = table.Column<bool>(type: "bit", nullable: false),
-                    Sold = table.Column<bool>(type: "bit", nullable: false)
+                    Sold = table.Column<bool>(type: "bit", nullable: false),
+                    userId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
