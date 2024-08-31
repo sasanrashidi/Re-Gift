@@ -12,8 +12,8 @@ using Re_Gift.Server.Data;
 namespace Re_Gift.Server.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240831120111_initial")]
-    partial class initial
+    [Migration("20240831122304_Initial commit")]
+    partial class Initialcommit
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
