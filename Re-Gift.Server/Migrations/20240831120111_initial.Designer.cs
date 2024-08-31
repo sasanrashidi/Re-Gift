@@ -12,7 +12,7 @@ using Re_Gift.Server.Data;
 namespace Re_Gift.Server.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240831101319_initial")]
+    [Migration("20240831120111_initial")]
     partial class initial
     {
         /// <inheritdoc />

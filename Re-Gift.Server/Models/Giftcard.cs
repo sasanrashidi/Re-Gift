@@ -10,5 +10,6 @@ public class Giftcard
     public string SerialNumber { get; set; }
     public bool Verified { get; set; }
     public bool Sold { get; set; }
-    public User User { get; set; }
+    public int? userId { get; set; }
+    public User? User { get; set; }
 }
