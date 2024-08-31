@@ -45,17 +45,57 @@ namespace Re_Gift.Server.SeedData
                     ExpireDate = DateTime.Now.AddYears(1),
                     Balance = 500,
                     SerialNumber = "AMZ123",
-                    User = users.FirstOrDefault() // Ensure this user exists
+                    User = users.FirstOrDefault(), // Ensure this user exists
+                    Verified = true,
+                    Sold = true,
                 },
                 new Giftcard
                 {
-                    Company = "Costco",
+                    Company = "Ica",
                     ExpireDate = DateTime.Now.AddYears(1),
                     Balance = 1000,
-                    SerialNumber = "WAL456",
-                    User = users.Skip(1).FirstOrDefault() // Ensure this user exists
+                    SerialNumber = "ICA456",
+                    User = users.Skip(1).FirstOrDefault(), // Ensure this user exists
+                    Verified = true,
+                    Sold = true,
                 },
-                // Add other giftcards with appropriate user assignments
+                 new Giftcard
+                {
+                    Company = "Ikea",
+                    ExpireDate = DateTime.Now.AddYears(1),
+                    Balance = 10000,
+                    SerialNumber = "IKE456",
+                    User = users.Skip(2).FirstOrDefault(), // Ensure this user exists
+                    Verified = true,
+                    Sold = true,
+                },
+                  new Giftcard
+                {
+                    Company = "GameStop",
+                    ExpireDate = DateTime.Now.AddYears(1),
+                    Balance = 600,
+                    SerialNumber = "GSM456",
+                    User = users.Skip(3).FirstOrDefault(), // Ensure this user exists
+                    Verified = true,
+                    Sold = true,
+                },
+                   new Giftcard
+                {
+                    Company = "Filmstaden",
+                    ExpireDate= DateTime.Now.AddYears(1),
+                    Balance = 300,
+                    SerialNumber = "FIL456",
+                    User = users.Skip(4).FirstOrDefault() // Ensure this user exists
+                },
+                    new Giftcard
+                {
+                    Company = "McDonalds",
+                    ExpireDate = DateTime.Now.AddYears(1),
+                    Balance = 500,
+                    SerialNumber = "MCD456",
+                    User = users.Skip(5).FirstOrDefault() // Ensure this user exists
+                },
+
             };
 
                 await _context.Giftcards.AddRangeAsync(giftcards);
@@ -66,28 +106,31 @@ namespace Re_Gift.Server.SeedData
             if (!_context.Trades.Any())
             {
                 var users = await _context.Users.ToListAsync(); // Ensure users are retrieved
+                var giftcards = await _context.Giftcards.ToListAsync();
+
 
                 var trades = new List<Trade>
             {
                 new Trade
                 {
                     TransactionDate = DateTime.Now,
-                    Giftcards = new List<Giftcard>
-                    {
-                        new Giftcard { Company = "Amazon", ExpireDate = DateTime.Now.AddDays(50), Balance = 500, SerialNumber = "TRADE1-AMZ", User = null },
-                        new Giftcard { Company = "Walmart", ExpireDate = DateTime.Now.AddDays(23), Balance = 400, SerialNumber = "TRADE1-WAL", User = null }
-                    },
-                    Users = new List<User> { users.FirstOrDefault(), users.Skip(1).FirstOrDefault() }
+                    User1Id = users[0].Id,
+                    User2Id = users[1].Id,
+                    GF1Id = giftcards[0].Id,
+                    GF2Id = giftcards[1].Id,
+
+                    
+
+                    
                 },
                 new Trade
                 {
-                    TransactionDate = DateTime.Now,
-                    Giftcards = new List<Giftcard>
-                    {
-                        new Giftcard { Company = "Elgiganten", ExpireDate = DateTime.Now.AddDays(30), Balance = 300, SerialNumber = "TRADE2-BBY", User = null },
-                        new Giftcard { Company = "BAUHAUS", ExpireDate = DateTime.Now.AddDays(10), Balance = 700, SerialNumber = "TRADE2-BBY", User = null }
-                    },
-                    Users = new List<User> { users.Skip(2).FirstOrDefault(), users.Skip(3).FirstOrDefault() }
+                    TransactionDate = DateTime.Now,                    
+                    User1Id = users[2].Id,
+                    User2Id = users[3].Id,
+                    GF1Id = giftcards[2].Id,
+                    GF2Id = giftcards[4].Id,
+
                 }
             };
 

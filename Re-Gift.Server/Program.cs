@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Re_Gift.Server.Data;
+using Re_Gift.Server.Helpers;
 using Re_Gift.Server.SeedData;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,14 +18,11 @@ builder.Services.AddDbContext<DataContext>(options =>
 });
 
 builder.Services.AddTransient<Seed>();
+builder.Services.AddTransient<CleanUpData>();
 
 var app = builder.Build();
 
-using (var scope = app.Services.CreateScope())
-{
-    var seeder = scope.ServiceProvider.GetRequiredService<Seed>(); // Registrearar methoden "Seeden"
-    await seeder.SeedDatabaseAsync();
-}
+await AddHelperMethod(app.Services, args);
 
 
 
@@ -49,5 +47,31 @@ app.MapControllers();
 app.MapFallbackToFile("/index.html");
 
 app.Run();
+
+
+async Task AddHelperMethod(IServiceProvider services, string[] args)
+{
+    // Check if "seed" argument is passed
+    if (args.Contains("seed"))
+    {
+        using (var scope = services.CreateScope())
+        {
+            var seeder = scope.ServiceProvider.GetRequiredService<Seed>();
+            await seeder.SeedDatabaseAsync();
+        }
+        return; // Exit the application after seeding
+    }
+
+    // Check if "CleanUpDb" argument is passed
+    if (args.Contains("CleanUpDb"))
+    {
+        using (var scope = services.CreateScope())
+        {
+            var cleaner = scope.ServiceProvider.GetRequiredService<CleanUpData>();
+            await cleaner.CleanAllDataAsync(); // Assuming CleanAllDataAsync is the method that cleans up the database
+        }
+        return; // Exit the application after cleaning
+    }
+}
 
 

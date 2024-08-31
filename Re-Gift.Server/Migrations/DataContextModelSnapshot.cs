@@ -47,19 +47,20 @@ namespace Re_Gift.Server.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("TradeId")
-                        .HasColumnType("int");
+                    b.Property<bool>("Sold")
+                        .HasColumnType("bit");
 
-                    b.Property<int?>("UserId")
+                    b.Property<bool>("Verified")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("userId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("TradeId");
+                    b.HasIndex("userId");
 
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Giftcards", (string)null);
+                    b.ToTable("Giftcards");
                 });
 
             modelBuilder.Entity("Re_Gift.Server.Models.Trade", b =>
@@ -70,12 +71,24 @@ namespace Re_Gift.Server.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("GF1Id")
+                        .HasColumnType("int");
+
+                    b.Property<int>("GF2Id")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("TransactionDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("User1Id")
+                        .HasColumnType("int");
+
+                    b.Property<int>("User2Id")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
-                    b.ToTable("Trades", (string)null);
+                    b.ToTable("Trades");
                 });
 
             modelBuilder.Entity("Re_Gift.Server.Models.User", b =>
@@ -94,41 +107,19 @@ namespace Re_Gift.Server.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("TradeId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("TradeId");
-
-                    b.ToTable("Users", (string)null);
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("Re_Gift.Server.Models.Giftcard", b =>
                 {
-                    b.HasOne("Re_Gift.Server.Models.Trade", null)
-                        .WithMany("Giftcards")
-                        .HasForeignKey("TradeId");
-
                     b.HasOne("Re_Gift.Server.Models.User", "User")
                         .WithMany("Giftcards")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("userId")
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Re_Gift.Server.Models.User", b =>
-                {
-                    b.HasOne("Re_Gift.Server.Models.Trade", null)
-                        .WithMany("Users")
-                        .HasForeignKey("TradeId");
-                });
-
-            modelBuilder.Entity("Re_Gift.Server.Models.Trade", b =>
-                {
-                    b.Navigation("Giftcards");
-
-                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("Re_Gift.Server.Models.User", b =>

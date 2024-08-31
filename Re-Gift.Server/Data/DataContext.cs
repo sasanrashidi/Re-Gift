@@ -15,10 +15,14 @@ public class DataContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<User>().ToTable("Users");
-        modelBuilder.Entity<Giftcard>().ToTable("Giftcards");
-        modelBuilder.Entity<Trade>().ToTable("Trades");
+        // Configure one-to-many relationship between User and Giftcard
+        modelBuilder.Entity<Giftcard>()
+            .HasOne(g => g.User)
+            .WithMany(u => u.Giftcards)
+            .HasForeignKey(g => g.User.Id)
+            .OnDelete(DeleteBehavior.SetNull);
 
-        base.OnModelCreating(modelBuilder);
+        
+            
     }
 }

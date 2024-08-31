@@ -11,10 +11,13 @@ public interface ITradeService
     public Task<bool> DeleteTrade(Trade trade);
 
     public Task<bool> UpdateTrade(Trade trade);
+    
 
     public Task<bool> TradeDone(List<User> users, List<Giftcard> giftCards);
-
+    
+    /*
     public Task<ICollection<Trade>> GetTradesFromUserId(int id);
+    */
 
     public Task<bool> Save();
 }

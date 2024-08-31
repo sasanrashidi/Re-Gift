@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Re_Gift.Server.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -17,6 +17,10 @@ namespace Re_Gift.Server.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    User1Id = table.Column<int>(type: "int", nullable: false),
+                    User2Id = table.Column<int>(type: "int", nullable: false),
+                    GF1Id = table.Column<int>(type: "int", nullable: false),
+                    GF2Id = table.Column<int>(type: "int", nullable: false),
                     TransactionDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
@@ -31,17 +35,11 @@ namespace Re_Gift.Server.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TradeId = table.Column<int>(type: "int", nullable: true)
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Users", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Users_Trades_TradeId",
-                        column: x => x.TradeId,
-                        principalTable: "Trades",
-                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -55,38 +53,25 @@ namespace Re_Gift.Server.Migrations
                     Balance = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     RegistrationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     SerialNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: true),
-                    TradeId = table.Column<int>(type: "int", nullable: true)
+                    userId = table.Column<int>(type: "int", nullable: true),
+                    Verified = table.Column<bool>(type: "bit", nullable: false),
+                    Sold = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Giftcards", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Giftcards_Trades_TradeId",
-                        column: x => x.TradeId,
-                        principalTable: "Trades",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Giftcards_Users_UserId",
-                        column: x => x.UserId,
+                        name: "FK_Giftcards_Users_userId",
+                        column: x => x.userId,
                         principalTable: "Users",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.SetNull);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Giftcards_TradeId",
+                name: "IX_Giftcards_userId",
                 table: "Giftcards",
-                column: "TradeId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Giftcards_UserId",
-                table: "Giftcards",
-                column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Users_TradeId",
-                table: "Users",
-                column: "TradeId");
+                column: "userId");
         }
 
         /// <inheritdoc />
@@ -96,10 +81,10 @@ namespace Re_Gift.Server.Migrations
                 name: "Giftcards");
 
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "Trades");
 
             migrationBuilder.DropTable(
-                name: "Trades");
+                name: "Users");
         }
     }
 }

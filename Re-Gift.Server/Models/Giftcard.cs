@@ -8,5 +8,7 @@ public class Giftcard
     public decimal Balance { get; set; }
     public DateTime RegistrationDate { get; set; } = DateTime.Now;
     public string SerialNumber { get; set; }
-    public User? User { get; set; }
+    public bool Verified { get; set; }
+    public bool Sold { get; set; }
+    public User User { get; set; }
 }

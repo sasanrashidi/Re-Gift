@@ -32,13 +32,14 @@ namespace Re_Gift.Server.Services
 
         }
 
-        
+        /*
         public async Task<ICollection<Trade>> GetTradesFromUserId(int userId)
         {
             return await _context.Trades
                            .Where(t => t.Users.Any(u => u.Id == userId))
                            .ToListAsync();
         }
+        */
 
         public async Task<bool> Save()
         {
@@ -51,13 +52,16 @@ namespace Re_Gift.Server.Services
             return await Save();
 
         }
-
+        
         public async Task<bool> TradeDone(List<User> users, List<Giftcard> giftCards)
         {
             Trade tradeDone = new Trade
             {
-                Users = users,
-                Giftcards = giftCards
+                User1Id = users[0].Id,
+                User2Id = users[1].Id,
+                GF1Id = giftCards[0].Id,
+                GF2Id = giftCards[1].Id,
+                
             };
 
             _context.Trades.Add(tradeDone);
@@ -66,5 +70,6 @@ namespace Re_Gift.Server.Services
 
 
         }
+        
     }
 }
