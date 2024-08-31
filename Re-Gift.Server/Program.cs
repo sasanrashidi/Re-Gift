@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Re_Gift.Server.Data;
+using Re_Gift.Server.IService;
+using Re_Gift.Server.Services;
 using Re_Gift.Server.Helpers;
 using Re_Gift.Server.SeedData;
 
@@ -16,6 +18,8 @@ builder.Services.AddDbContext<DataContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+
+builder.Services.AddScoped<IUserService, UserService>();
 
 builder.Services.AddTransient<Seed>();
 builder.Services.AddTransient<CleanUpData>();
