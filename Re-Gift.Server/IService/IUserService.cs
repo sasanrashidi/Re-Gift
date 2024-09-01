@@ -14,5 +14,7 @@ public interface IUserService
 
     public Task<bool> DeleteUserAsync(User user);
 
+    public Task<ICollection<User>> GetUsersAsyncWithGiftCards();
+
     public Task<bool> SaveAsync();
 }

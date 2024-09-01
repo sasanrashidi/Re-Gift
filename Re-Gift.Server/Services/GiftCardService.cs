@@ -15,22 +15,87 @@ public class GiftCardService : IGiftCardService
     }
     public async Task<ICollection<GiftCard>> GetGiftCardsAsync()
     {
-        return await _context.Giftcards.ToListAsync();
+        try
+        {
+            return await _context.Giftcards.ToListAsync();
+        }
+        catch (Exception)
+        {
+
+            throw;
+        }
+
+        
     }
 
     public async Task<GiftCard> GetGiftCardAsync(int id)
     {
-        return await _context.Giftcards.FirstOrDefaultAsync(g => g.Id == id);
+        try
+        {
+           var gotGift = await _context.Giftcards.FirstOrDefaultAsync(g => g.Id == id);
+
+            if (gotGift == null) 
+            {
+                throw new ArgumentException($"No Giftcard with id NR: {id} exists"); 
+            }
+            return gotGift;
+        }
+        catch (Exception)
+        {
+
+            throw;
+        }
+
+        
     }
+
     public async Task<ICollection<GiftCard>> GetGiftCardsFromUserIdAsync(int userId)
     {
-        return await _context.Users
-                             .Where(u => u.Id == userId)
-                             .SelectMany(u => u.GiftCards)
-                             .ToListAsync();
+        try
+        {
+            var userExists = await _context.Users.AnyAsync(u => u.Id == userId);
+
+            
+            if (!userExists)
+            {
+                throw new ArgumentException($"No user with ID nr: {userId} found.");
+            }
+
+            
+            var giftCards = await _context.Giftcards
+                                          .Where(gc => gc.userId == userId)
+                                          .ToListAsync();
+
+            return giftCards;
+        }
+        catch (Exception ex)
+        {
+            
+            throw;
+        }
     }
+
+
     public async Task<bool> AddGiftCardAsync(GiftCard giftcard)
     {
+        _context.Add(giftcard);
+        return await SaveAsync();
+    }
+
+    public async Task<bool> AddGiftCardAsync(GiftCard giftcard, int userId)
+    {
+        var userTied = await _context.Users.Include(u => u.GiftCards).FirstOrDefaultAsync(u => u.Id == userId);
+
+        if (userTied == null)
+        {
+            throw new ArgumentNullException(nameof(userId), $"No user with Id {userId} found");
+        }
+
+        giftcard.userId = userId;
+        giftcard.User = userTied;
+
+        userTied.GiftCards.Add(giftcard);
+
         _context.Add(giftcard);
         return await SaveAsync();
     }

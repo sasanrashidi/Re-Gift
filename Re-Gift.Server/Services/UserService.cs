@@ -18,6 +18,12 @@ public class UserService : IUserService
     {
         return await _context.Users.ToListAsync();
     }
+
+    public async Task<ICollection<User>> GetUsersAsyncWithGiftCards()
+    {
+        return await _context.Users.Include(g => g.GiftCards).ToListAsync();
+    }
+
     public async Task<User> GetUserAsync(int id)
     {
         return await _context.Users.Where(g => g.Id == id).FirstOrDefaultAsync();
