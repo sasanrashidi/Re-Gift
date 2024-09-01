@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Re_Gift.Server.Migrations
 {
     /// <inheritdoc />
-    public partial class Initialcommit : Migration
+    public partial class Initmigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -52,7 +52,7 @@ namespace Re_Gift.Server.Migrations
                     ExpireDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Balance = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     RegistrationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    SerialNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SerialNumber = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Verified = table.Column<bool>(type: "bit", nullable: false),
                     Sold = table.Column<bool>(type: "bit", nullable: false),
                     userId = table.Column<int>(type: "int", nullable: true)

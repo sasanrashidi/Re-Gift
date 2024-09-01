@@ -7,7 +7,7 @@ public class GiftCard
     public DateTime ExpireDate { get; set; }
     public decimal Balance { get; set; }
     public DateTime RegistrationDate { get; set; } = DateTime.Now;
-    public string SerialNumber { get; set; }
+    public Guid SerialNumber { get; set; } = Guid.NewGuid();
     public bool Verified { get; set; }
     public bool Sold { get; set; }
     public int? userId { get; set; }

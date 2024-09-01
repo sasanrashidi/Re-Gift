@@ -43,9 +43,8 @@ namespace Re_Gift.Server.Migrations
                     b.Property<DateTime>("RegistrationDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("SerialNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("SerialNumber")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<bool>("Sold")
                         .HasColumnType("bit");

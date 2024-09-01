@@ -12,8 +12,8 @@ using Re_Gift.Server.Data;
 namespace Re_Gift.Server.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240831155750_Initial commit")]
-    partial class Initialcommit
+    [Migration("20240901124301_Init migration")]
+    partial class Initmigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -46,9 +46,8 @@ namespace Re_Gift.Server.Migrations
                     b.Property<DateTime>("RegistrationDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("SerialNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("SerialNumber")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<bool>("Sold")
                         .HasColumnType("bit");

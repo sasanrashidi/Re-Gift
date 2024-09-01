@@ -49,9 +49,10 @@ public class GiftcardController : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    public async Task<IActionResult> Delete(GiftCard giftcard)
+    public async Task<IActionResult> Delete(int id)
     {
-        var deletedGiftcard = await _giftcardService.DeleteGiftCardAsync(giftcard);
+        var deletedGiftcard = await _giftcardService.GetGiftCardAsync(id);
+        await _giftcardService.DeleteGiftCardAsync(deletedGiftcard);
 
         return Ok();
     }

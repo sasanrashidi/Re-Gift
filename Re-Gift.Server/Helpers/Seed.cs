@@ -44,7 +44,6 @@ public class Seed
                 Company = "Amazon",
                 ExpireDate = DateTime.Now.AddYears(1),
                 Balance = 500,
-                SerialNumber = "AMZ123",
                 User = users.FirstOrDefault(), // Ensure this user exists
                 Verified = true,
                 Sold = true,
@@ -55,7 +54,6 @@ public class Seed
                 Company = "Ica",
                 ExpireDate = DateTime.Now.AddYears(1),
                 Balance = 1000,
-                SerialNumber = "ICA456",
                 User = users.Skip(1).FirstOrDefault(), // Ensure this user exists
                 Verified = true,
                 Sold = true,
@@ -66,7 +64,6 @@ public class Seed
                 Company = "Ikea",
                 ExpireDate = DateTime.Now.AddYears(1),
                 Balance = 10000,
-                SerialNumber = "IKE456",
                 User = users.Skip(2).FirstOrDefault(), // Ensure this user exists
                 Verified = true,
                 Sold = true,
@@ -77,7 +74,6 @@ public class Seed
                 Company = "GameStop",
                 ExpireDate = DateTime.Now.AddYears(1),
                 Balance = 600,
-                SerialNumber = "GSM456",
                 User = users.Skip(3).FirstOrDefault(), // Ensure this user exists
                 Verified = true,
                 Sold = true,
@@ -88,7 +84,6 @@ public class Seed
                 Company = "Filmstaden",
                 ExpireDate= DateTime.Now.AddYears(1),
                 Balance = 300,
-                SerialNumber = "FIL456",
                 User = users.Skip(4).FirstOrDefault() // Ensure this user exists
             },
 
@@ -97,7 +92,6 @@ public class Seed
                 Company = "McDonalds",
                 ExpireDate = DateTime.Now.AddYears(1),
                 Balance = 500,
-                SerialNumber = "MCD456",
                 User = users.Skip(5).FirstOrDefault() // Ensure this user exists
             },
         };
