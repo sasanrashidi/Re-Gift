@@ -1,0 +1,22 @@
+body {
+}
+
+.header {
+    background-color:transparent; /*Ingen bakgrundfärg*/
+    padding: 0; /*Ingen extra padding*/
+    border: none; /*Ingen kantlinje*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000; /*user-select till att headern ligger ovanpå allt annat*/
+}
+
+.header-logo {
+    height: 250px; /*Justera höjd efter behov*/
+    width: Auto%;
+    max-widht: 100%/*Behåll bildens proportioner*/
+}

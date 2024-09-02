@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const Sidebar = () => {
     return (
-        <nav Classname="sidebar">
+        <nav className="sidebar">
             <ul>
                 <li><Link to="/">Hem</Link></li>
                 <li><Link to="/sell-giftcard">Sälj Presentkort</Link></li>
