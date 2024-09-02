@@ -20,7 +20,7 @@ public class TradeService : ITradeService
 
     public async Task<Trade> GetTradeAsync(int id)
     {
-        return await _context.Trades.Where(g => g.Id == id).FirstOrDefaultAsync();
+        return await _context.Trades.Where(g => g.Id== id).FirstOrDefaultAsync();
     }
 
     //public async Task<ICollection<Trade>> GetTradesFromUserId(int userId)

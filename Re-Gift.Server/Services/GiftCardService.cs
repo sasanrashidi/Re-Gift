@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Re_Gift.Server.Data;
+using Re_Gift.Server.Helpers;
 using Re_Gift.Server.IService;
 using Re_Gift.Server.Models;
 
@@ -82,7 +83,7 @@ public class GiftCardService : IGiftCardService
         return await SaveAsync();
     }
 
-    public async Task<bool> AddGiftCardAsync(GiftCard giftcard, int userId)
+    public async Task<bool> AddGiftCardAsync(GiftCard giftcard, int userId, int companyEnum)
     {
         var userTied = await _context.Users.Include(u => u.GiftCards).FirstOrDefaultAsync(u => u.Id == userId);
 
@@ -93,6 +94,8 @@ public class GiftCardService : IGiftCardService
 
         giftcard.userId = userId;
         giftcard.User = userTied;
+        giftcard.Company = EnumsHelp.GetCompanyName(companyEnum);
+
 
         userTied.GiftCards.Add(giftcard);
 
