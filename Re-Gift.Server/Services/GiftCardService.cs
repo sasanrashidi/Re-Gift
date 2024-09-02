@@ -54,18 +54,15 @@ public class GiftCardService : IGiftCardService
     {
         try
         {
-            var userExists = await _context.Users.AnyAsync(u => u.Id == userId);
-
-            
-            if (!userExists)
-            {
-                throw new ArgumentException($"No user with ID nr: {userId} found.");
-            }
-
             
             var giftCards = await _context.Giftcards
                                           .Where(gc => gc.userId == userId)
                                           .ToListAsync();
+
+            if (!giftCards.Any())
+            {
+                throw new ArgumentException($"No gift cards found for user with ID {userId}");
+            }
 
             return giftCards;
         }
@@ -119,4 +116,59 @@ public class GiftCardService : IGiftCardService
     {
         return await _context.SaveChangesAsync() > 0;
     }
+
+
+
+    // -------------------------------------------------------------
+    //  Experiment ignorera!!!!!!!!
+
+
+
+    public async Task<ICollection<GiftCard>> GetFilteredGC(int choice)
+    {
+        string filter = EnumsHelp.GetFilteringName(choice);
+
+        
+        var giftCards = await _context.Giftcards.ToListAsync();
+
+        
+        switch (filter)
+        {
+            case "LowToHighPrice":
+                giftCards = giftCards.OrderBy(gc => gc.Balance).ToList();
+                break;
+
+            case "HighToLowPrice":
+                giftCards = giftCards.OrderByDescending(gc => gc.Balance).ToList();
+                break;
+
+            case "Oldest":
+                giftCards = giftCards.OrderBy(gc => gc.ExpireDate).ToList();
+                break;
+
+            case "Newest":
+                giftCards = giftCards.OrderByDescending(gc => gc.ExpireDate).ToList();
+                break;
+
+            case "ABC":
+                giftCards = giftCards.OrderBy(gc => gc.Company).ToList();
+                break;
+
+            case "ZXC":
+                giftCards = giftCards.OrderByDescending(gc => gc.Company).ToList();
+                break;
+
+            default:
+                throw new ArgumentException("Invalid filter choice");
+        }
+
+        
+        return giftCards;
+    }
+
+
+
+
+
+
 }
