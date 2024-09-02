@@ -1,8 +1,5 @@
 import React from 'react';
-
-
-
-export default function SellGiftCard () {
+export function SellGiftCard () {
     return (
         <div>
             <h1>SellGiftCard</h1>

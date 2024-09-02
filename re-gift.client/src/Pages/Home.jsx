@@ -1,5 +1,6 @@
 ﻿import React from 'react';
-export default function Home() {
+import '../css/Home.css';
+export  default function Home() {
     return (
         <div className="container py-4" id="home">
             <div className="bg-body-tertiary p-5 rounded">

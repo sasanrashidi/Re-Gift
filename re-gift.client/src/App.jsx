@@ -5,6 +5,7 @@ import Footer from './components/footer';
 import Header from './components/header';
 import { AppRouter } from './router/approuter';
 
+
 function App() {
     return (
         <BrowserRouter>
@@ -16,4 +17,3 @@ function App() {
 }
 
 export default App;
-

@@ -1,0 +1,13 @@
+:root {
+	--color1: #FBF3D5;
+	--color2: #9CAFAA;
+	--color3: #D6DAC8;
+	--color4: black;
+	--color5: #EFBC9B;
+	--color6: #cc3232;
+	--color7: #ebebeb;
+	--color8: steelblue;
+	--color9: green;
+	--font1: 'Oswald', sans-serif;
+	background-color: var(--color5);
+}

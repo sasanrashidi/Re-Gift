@@ -6,7 +6,7 @@ import { LinkContainer } from 'react-router-bootstrap';
 export function NavMenu() {
     return (
         <Navbar bg="light" expand="lg">
-            <Navbar.Brand>Re-GiftCard</Navbar.Brand>
+            <Navbar.Brand>Re-giftCard</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">

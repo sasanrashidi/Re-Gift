@@ -1,0 +1,47 @@
+.FlexWrap {
+	height: 100%;
+	width: 100%;
+	text-align: center;
+	display: flex;
+	flex-wrap: wrap; /* test with wrap nowrap */
+	flex-direction: row;
+	align-items: flex-start; /* alignment along cross axis - center flex-start flex-end */
+	justify-content: space-around;
+}
+
+.FlexItem {
+	background-color: var(--color5);
+	width: 200px; /* fixed size will demonstrate the wrap */
+	/* below is used to center text using a flexbox layout of the text in an FlexItem */
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	margin: 10px;
+	padding: 10px;
+	box-shadow: inset 0 0px 30px 10px var(--color1);
+	border-radius: 15px;
+}
+
+.FlexWrap img {
+	max-width: 100%;
+	border-radius: 10px;
+}
+
+.FlexItem:nth-child(even) {
+	border: solid var(--color2);
+}
+
+.FlexWrap > p {
+	padding: 5px;
+}
+
+@media (max-width: 600px) {
+	.FlexWrap {
+		flex-direction: column;
+	}
+
+	.FlexItem {
+		width: 500px;
+	}
+}
