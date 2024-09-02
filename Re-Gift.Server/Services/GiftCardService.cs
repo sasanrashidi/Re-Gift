@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Re_Gift.Server.Data;
 using Re_Gift.Server.Helpers;
 using Re_Gift.Server.IService;
@@ -165,6 +166,26 @@ public class GiftCardService : IGiftCardService
         
         return giftCards;
     }
+
+    // Experiment som skall vara i controller
+
+
+    /*
+    //[HttpGet("/api/filtering")] om det var en fromqeury hade urlen sett ut såhär "/api/filtering?id=5"
+    [HttpGet("filtering/{id}")]
+    public async Task<IActionResult> GetFiltered(int id)
+    {
+        var filtered = await _giftcardService.GetFilteredGC(id);
+
+        if (!ModelState.IsValid)
+        {
+            return BadRequest();
+        }
+
+        return Ok(filtered);
+    }
+
+    */
 
 
 

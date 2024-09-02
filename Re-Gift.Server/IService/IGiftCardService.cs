@@ -16,5 +16,7 @@ public interface IGiftCardService
 
     public Task<bool> DeleteGiftCardAsync(GiftCard giftcard);
 
+    public Task<ICollection<GiftCard>> GetFilteredGC(int choice);
+
     public Task<bool> SaveAsync();
 }
