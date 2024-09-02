@@ -12,10 +12,10 @@ import Header from './components/Header';
 function App() {
     return (
         <Router>
-            <Header />
             <div className="app-container">
-                <Sidebar /> {/* Lägg till Sidebar-komponenten här */}
-                <div className="content-container"> {/* Fixade stavfelet */}
+                <Sidebar />
+                <Header />
+                <div className="content-container">
                     <Routes>
                         <Route path="/" element={<Home />} />
                         <Route path="/marketplace" element={<Marketplace />} />
@@ -30,26 +30,3 @@ function App() {
 }
 
 export default App;
-
-
-//const App = () => {
-//    return (
-//        <Router>
-//            <Header> {/*Lägg till header här*/}
-//            <div className="app-container">
-//                <Sidebar />
-//                <div className="content-container">
-//                    <Routes>
-//                        <Route path="/" element={<Home />} />
-//                        <Route path="/marketplace" element={<Marketplace />} />
-
-//                        <Route path="/sell-giftcard" element={<SellGiftCard />} />
-//                        <Route path="/buy-giftcard" element={<BuyGiftCard />} />
-//                        <Route path="/contact" element={<Contact />} />
-//                    </Routes>
-//                </div>
-//            </div>
-//        </Router>
-//    );
-//};
-

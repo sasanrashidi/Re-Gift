@@ -1,59 +1,148 @@
 ﻿body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f5f5f5;
-    color: #333;
+    background-color: #1c1c1c; /* Mörk bakgrund för hela webbplatsen */
+    color: #ecf0f1;
     margin: 0;
     padding: 0;
 }
 
 #root {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Se till att root tar upp hela höjden på skärmen */
 }
 
 .app-container {
     display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100%;
+    max-width: 1200px; /* Begränsar bredden på hela innehållsområdet */
+    margin-left: 260px; /* Marginal för att ge plats åt sidomenyn */
 }
 
 .sidebar {
     width: 260px;
-    background-color: #2c3e50;
+    background-color: #232323; /* Lite ljusare än bakgrunden för att skilja den */
     color: #ecf0f1;
-    padding: 20px;
-    border-radius: 8px;
+    padding: 30px 20px;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-    position: fixed; 
-    height: 100vh; 
+    position: fixed;
+    height: 100vh; /* Full höjd på skärmen */
     top: 0;
     left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    z-index: 1000; /* Se till att sidomenyn är över innehållet */
+    border-right: 1px solid #333; /* Subtil gräns för att separera från innehållet */
 }
 
     .sidebar ul {
-        list-style: none;
+        list-style-type: none; /* Ta bort punktlistor */
         padding: 0;
+        margin: 0;
     }
 
         .sidebar ul li {
-            margin: 15px 0;
+            margin: 20px 0; /* Öka avståndet mellan länkarna */
         }
 
             .sidebar ul li a {
                 color: #ecf0f1;
                 text-decoration: none;
-                font-weight: 500;
-                transition: color 0.3s;
+                font-size: 18px; /* Större textstorlek för länkarna */
+                font-weight: 600; /* Fetare typsnitt för tydlighet */
+                display: block; /* Gör länkarna till blockelement */
+                padding: 10px 15px; /* Lägg till padding för bättre klickbarhet */
+                border-radius: 5px; /* Rundade hörn för ett mjukare utseende */
+                transition: background-color 0.3s, transform 0.3s; /* Lägg till övergång för interaktivitet */
             }
 
                 .sidebar ul li a:hover {
-                    color: #3498db;
+                    background-color: #3b3b3b; /* Ändring av bakgrundsfärg vid hover */
+                    transform: translateX(5px); /* Glidande effekt vid hover */
                 }
+
+                .sidebar ul li a:active {
+                    background-color: #444; /* Ännu mörkare färg när aktiv */
+                }
+
+    .sidebar .sidebar-header {
+        font-size: 24px; /* Större textstorlek för header */
+        font-weight: bold;
+        margin-bottom: 30px; /* Extra utrymme under headern */
+        text-align: center; /* Centrerad text för bättre balans */
+        color: #ecf0f1;
+    }
+
+    .sidebar .sidebar-footer {
+        margin-top: auto; /* Flytta footern till botten av sidomenyn */
+        font-size: 14px; /* Mindre textstorlek för footern */
+        text-align: center;
+        color: #888; /* Ljusare färg för mindre framträdande */
+    }
 
 .content-container {
     flex-grow: 1;
     padding: 20px;
-    background-color: #fff; 
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-left: 280px; /* Lägg till marginal för att separera innehållet från sidomenyn */
+    padding-left: 125px; /* Lägg till avstånd mellan sidomenyn och textinnehållet */
+    background-color: #1e1e1e; /* En något ljusare nyans för innehållsområdet */
+    margin-top: 120px; /* Skapa utrymme mellan headern och innehållet */
+    min-width: 0;
+    max-width: 900px; /* Begränsa bredden på innehållet */
+    margin: 120px auto 0 auto; /* Centrera innehållsområdet */
+    overflow-y: auto;
+}
+
+
+.header {
+    background-color: #1c1c1c; /* Matcha bakgrunden på webbplatsen */
+    color: #ecf0f1;
+    padding: 10px;
+    position: fixed; /* Gör headern fixad så att den alltid är i toppen */
+    z-index: 1100;
+    display: flex;
+    justify-content: center; /* Centrera logotypen inom headern */
+    align-items: center;
+    height: 120px;
+    width: calc(100% - 260px); /* Dra av sidomenyns bredd från 100% */
+    margin-left: 260px; /* Flytta headern till höger om sidomenyn */
+    box-sizing: border-box; /* Inkludera padding i bredd- och höjdberäkningar */
+}
+
+.header-logo {
+    max-height: 80px; /* Begränsa logotypens höjd */
+    width: auto;
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 220px; /* Smalare sidomeny på mindre skärmar */
+    }
+
+    .app-container {
+        margin-left: 220px; /* Justera marginalen för innehållsområdet */
+    }
+
+    .header {
+        width: calc(100% - 220px); /* Se till att headern täcker rätt bredd */
+        margin-left: 220px; /* Justera headerns position när sidomenyn är smalare */
+    }
+}
+
+@media (max-width: 480px) {
+    .sidebar {
+        width: 180px; /* Ännu smalare sidomeny på mycket små skärmar */
+    }
+
+    .app-container {
+        margin-left: 180px; /* Justera marginalen för innehållsområdet */
+    }
+
+    .header {
+        width: calc(100% - 180px); /* Se till att headern täcker rätt bredd */
+        margin-left: 180px; /* Justera headerns position när sidomenyn är ännu smalare */
+    }
 }
