@@ -1,11 +1,12 @@
 import React from 'react';
-import './Header.css';
-import regiftLogo from '../IMG/REGIFT.png';  // Uppdaterad sökväg till den nya bilden
+import regiftLogo from '../IMG/REGIFT.png'; // Anta att logotypen finns i denna mapp
 
-export function Header() {
+function Header() {
     return (
         <header className="header">
             <img src={regiftLogo} alt="Logo" className="header-logo" />
         </header>
     );
 }
+
+export default Header;
