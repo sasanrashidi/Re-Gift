@@ -4,6 +4,10 @@ using Re_Gift.Server.IService;
 using Re_Gift.Server.Services;
 using Re_Gift.Server.Helpers;
 using Re_Gift.Server.SeedData;
+using System.Text.Json.Serialization;
+using SolrNet.Utils;
+
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,6 +27,11 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<DataContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddControllers().AddJsonOptions(x =>
+x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
+
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IGiftCardService, GiftCardService>();
@@ -82,3 +91,5 @@ async Task AddHelperMethod(IServiceProvider services, string[] args)
         return; // Exit the application after cleaning
     }
 }
+
+

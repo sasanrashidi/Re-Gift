@@ -1,7 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Re_Gift.Server.Dto;
 using Re_Gift.Server.IService;
 using Re_Gift.Server.Models;
+
 
 namespace Re_Gift.Server.Controllers;
 
@@ -10,10 +13,12 @@ namespace Re_Gift.Server.Controllers;
 public class GiftcardController : ControllerBase
 {
     private readonly IGiftCardService _giftcardService;
+    private readonly IMapper _mapper;
 
-    public GiftcardController(IGiftCardService giftcardService)
+    public GiftcardController(IGiftCardService giftcardService, IMapper mapper)
     {
         _giftcardService = giftcardService;
+        _mapper = mapper;  
     }
 
     [HttpGet]
@@ -21,7 +26,10 @@ public class GiftcardController : ControllerBase
     {
         var giftcards = await _giftcardService.GetGiftCardsAsync();
 
-        return Ok(giftcards);
+        var mappEntity = _mapper.Map<List<GiftCardDto>>(giftcards);
+
+
+        return Ok(mappEntity);
     }
 
     [HttpGet("{id}")]
@@ -29,25 +37,30 @@ public class GiftcardController : ControllerBase
     {
         var giftcard = await _giftcardService.GetGiftCardAsync(id);
 
-        return Ok(giftcard);
+        var mappEntity = _mapper.Map<GiftCardDto>(giftcard);
+
+        return Ok(mappEntity);
     }
 
     [HttpPost]
-    public async Task<IActionResult> Post([FromBody] GiftCard giftcard)
+    public async Task<IActionResult> Post([FromBody] GiftCardDto giftcard)
     {
-        var createdGiftcard = await _giftcardService.AddGiftCardAsync(giftcard);
+        var mappEntity = _mapper.Map<GiftCard>(giftcard);
+
+        var createdGiftcard = await _giftcardService.AddGiftCardAsync(mappEntity);
 
         return Ok(giftcard);
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> Put(GiftCard giftcard)
+    public async Task<IActionResult> Put(GiftCardDto giftcard,int id)
     {
-        
 
-        var updatedGiftcard = await _giftcardService.UpdateGiftcardAsync(giftcard);
+        var mappEntity = _mapper.Map<GiftCard>(giftcard);
 
-        return Ok();
+        var updatedGiftcard = await _giftcardService.UpdateGiftcardAsync(mappEntity);
+
+        return Ok();                        
     }
 
     [HttpDelete("{id}")]
