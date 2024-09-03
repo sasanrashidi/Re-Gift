@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
+using Re_Gift.Server.Dto;
 using Re_Gift.Server.IService;
 using Re_Gift.Server.Models;
 
@@ -9,10 +11,12 @@ namespace Re_Gift.Server.Controllers;
 public class UserController : ControllerBase
 {
     private readonly IUserService _userService;
+    private readonly IMapper _mapper;
 
-    public UserController(IUserService userService)
+    public UserController(IUserService userService, IMapper mapper)
     {
         _userService = userService;
+        _mapper = mapper;
     }
 
     [HttpGet]
@@ -20,7 +24,9 @@ public class UserController : ControllerBase
     {
         var users = await _userService.GetUsersAsync();
 
-        return Ok(users);
+        var mappedUsers = _mapper.Map<List<UserDto>>(users);
+
+        return Ok(mappedUsers);
     }
 
     [HttpGet("{id}")]
@@ -28,21 +34,39 @@ public class UserController : ControllerBase
     {
         var user = await _userService.GetUserAsync(id);
 
-        return Ok(user);
+        var mappedUser = _mapper.Map<UserDto>(user);
+
+        return Ok(mappedUser);
     }
 
     [HttpPost]
-    public async Task<IActionResult> Post([FromBody] User user)
+    public async Task<IActionResult> Post([FromBody] UserDto user)
     {
-        var createdUser = await _userService.AddUserAsync(user);
+        var mappedUser = _mapper.Map<User>(user);
+
+        var createdUser = await _userService.AddUserAsync(mappedUser);
 
         return Ok(user);
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> Put(User user)
+    public async Task<IActionResult> Put(UserDto user, int id)
     {
-        var updatedUser = await _userService.UpdateUserAsync(user);
+        if (user.Id == 0 || user.Id != id)
+        {
+            return BadRequest("Id cannot be 0 or does not match the requested id");
+        }
+
+        var existingUser = await _userService.GetUserAsync(id);
+
+        if (existingUser == null)
+        {
+            return NotFound();
+        }
+
+        var mappedUser = _mapper.Map<User>(user);
+
+        var updatedUser = await _userService.UpdateUserAsync(mappedUser);
 
         return Ok();
     }

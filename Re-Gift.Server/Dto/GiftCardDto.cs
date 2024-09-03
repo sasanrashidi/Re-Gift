@@ -1,6 +1,4 @@
-﻿using Re_Gift.Server.Models;
-
-namespace Re_Gift.Server.Dto
+﻿namespace Re_Gift.Server.Dto
 {
     public class GiftCardDto
     {
@@ -8,7 +6,5 @@ namespace Re_Gift.Server.Dto
         public string Company { get; set; }
         public DateTime ExpireDate { get; set; }
         public decimal Balance { get; set; }
-        
-
     }
 }

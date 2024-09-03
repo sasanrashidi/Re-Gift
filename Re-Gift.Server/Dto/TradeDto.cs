@@ -8,8 +8,6 @@
         public int GF1Id { get; set; }
         public int GF2Id { get; set; }
         public DateTime TransactionDate { get; set; } = DateTime.Now;
-
-
     }
 }
 

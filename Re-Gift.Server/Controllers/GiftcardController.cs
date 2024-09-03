@@ -5,7 +5,6 @@ using Re_Gift.Server.Dto;
 using Re_Gift.Server.IService;
 using Re_Gift.Server.Models;
 
-
 namespace Re_Gift.Server.Controllers;
 
 [Route("api/[controller]")]
