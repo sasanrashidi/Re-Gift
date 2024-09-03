@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Re_Gift.Server.Data;
 using Re_Gift.Server.Helpers;
 using Re_Gift.Server.IService;
@@ -54,18 +55,15 @@ public class GiftCardService : IGiftCardService
     {
         try
         {
-            var userExists = await _context.Users.AnyAsync(u => u.Id == userId);
-
-            
-            if (!userExists)
-            {
-                throw new ArgumentException($"No user with ID nr: {userId} found.");
-            }
-
             
             var giftCards = await _context.Giftcards
                                           .Where(gc => gc.userId == userId)
                                           .ToListAsync();
+
+            if (!giftCards.Any())
+            {
+                throw new ArgumentException($"No gift cards found for user with ID {userId}");
+            }
 
             return giftCards;
         }
@@ -119,4 +117,80 @@ public class GiftCardService : IGiftCardService
     {
         return await _context.SaveChangesAsync() > 0;
     }
+
+
+
+    // -------------------------------------------------------------
+    //  Experiment ignorera!!!!!!!!
+
+
+
+    public async Task<ICollection<GiftCard>> GetFilteredGC(int choice)
+    {
+        string filter = EnumsHelp.GetFilteringName(choice);
+
+        
+        var giftCards = await _context.Giftcards.ToListAsync();
+
+        
+        switch (filter)
+        {
+            case "LowToHighPrice":
+                giftCards = giftCards.OrderBy(gc => gc.Balance).ToList();
+                break;
+
+            case "HighToLowPrice":
+                giftCards = giftCards.OrderByDescending(gc => gc.Balance).ToList();
+                break;
+
+            case "Oldest":
+                giftCards = giftCards.OrderBy(gc => gc.ExpireDate).ToList();
+                break;
+
+            case "Newest":
+                giftCards = giftCards.OrderByDescending(gc => gc.ExpireDate).ToList();
+                break;
+
+            case "ABC":
+                giftCards = giftCards.OrderBy(gc => gc.Company).ToList();
+                break;
+
+            case "ZXC":
+                giftCards = giftCards.OrderByDescending(gc => gc.Company).ToList();
+                break;
+
+            default:
+                throw new ArgumentException("Invalid filter choice");
+        }
+
+        asgsgsg
+        
+        return giftCards;
+    }
+
+    // Experiment som skall vara i controller
+
+
+    /*
+    //[HttpGet("/api/filtering")] om det var en fromqeury hade urlen sett ut såhär "/api/filtering?id=5"
+    [HttpGet("filtering/{id}")]
+    public async Task<IActionResult> GetFiltered(int id)
+    {
+        var filtered = await _giftcardService.GetFilteredGC(id);
+
+        if (!ModelState.IsValid)
+        {
+            return BadRequest();
+        }
+
+        return Ok(filtered);
+    }
+
+    */
+
+
+
+
+
+
 }

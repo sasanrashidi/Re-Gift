@@ -2,21 +2,21 @@ body {
 }
 
 .header {
-    background-color:transparent; /*Ingen bakgrundfärg*/
-    padding: 0; /*Ingen extra padding*/
-    border: none; /*Ingen kantlinje*/
+    background-color: #1c1c1c;
+    color: #ecf0f1;
+    padding: 10px;
+    position: relative;
+    z-index: 1100;
     display: flex;
+    justify-content: center; /* Centrerar loggan inom headern */
     align-items: center;
-    justify-content: center;
-    width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1000; /*user-select till att headern ligger ovanpå allt annat*/
+    height: 120px;
+    width: calc(100% - 260px); /* Dra av sidomenyns bredd från 100% */
+    margin-left: 260px; /* Flytta headern till höger om sidomenyn */
+    box-sizing: border-box;
 }
 
 .header-logo {
-    height: 250px; /*Justera höjd efter behov*/
-    width: Auto%;
-    max-widht: 100%/*Behåll bildens proportioner*/
+    max-height: 80px;
+    width: auto;
 }
