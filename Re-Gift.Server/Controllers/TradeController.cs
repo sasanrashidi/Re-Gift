@@ -1,71 +1,110 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Re_Gift.Server.Dto;
 using Re_Gift.Server.IService;
 using Re_Gift.Server.Models;
 
-namespace Re_Gift.Server.Controllers;
-
-[Route("api/[controller]")]
-[ApiController]
-public class TradeController : ControllerBase
+namespace Re_Gift.Server.Controllers
 {
-    private readonly ITradeService _tradeService;
-    private readonly IUserService _userService;
-    private readonly IGiftCardService _giftCardService;
-
-    public TradeController(ITradeService tradeService, IGiftCardService giftCardService, IUserService userService)
+    [Route("api/[controller]")]
+    [ApiController]
+    public class TradeController : ControllerBase
     {
-        _tradeService = tradeService;
-        _giftCardService = giftCardService;
-        _userService = userService;
-    }
+        private readonly ITradeService _tradeService;
+        private readonly IUserService _userService;
+        private readonly IGiftCardService _giftCardService;
+        private readonly IMapper _mapper;
 
-    [HttpGet]
-    public async Task<IActionResult> Get()
-    {
-        var trades = await _tradeService.GetTradesAsync();
+        // Constructor to inject services and AutoMapper
+        public TradeController(ITradeService tradeService, IGiftCardService giftCardService, IUserService userService, IMapper mapper)
+        {
+            _tradeService = tradeService;
+            _giftCardService = giftCardService;
+            _userService = userService;
+            _mapper = mapper;
+        }
 
-        return Ok(trades);
-    }
+        // GET: api/Trade
+        // Retrieves all trades and maps them to TradeDto before returning
+        [HttpGet]
+        public async Task<IActionResult> Get()
+        {
+            var trades = await _tradeService.GetTradesAsync();  // Fetch all trades from the service
+            var mappedTrades = _mapper.Map<List<TradeDto>>(trades);  // Map Trade objects to TradeDto
 
-    [HttpGet("{id}")]
-    public async Task<IActionResult> Get(int id)
-    {
-        var trade = await _tradeService.GetTradeAsync(id);
+            return Ok(mappedTrades);  // Return the mapped DTOs as the response
+        }
 
-        return Ok(trade);
-    }
+        // GET: api/Trade/{id}
+        // Retrieves a specific trade by ID and maps it to TradeDto before returning
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get(int id)
+        {
+            var trade = await _tradeService.GetTradeAsync(id);  // Fetch the trade by ID from the service
+            if (trade == null)
+            {
+                return NotFound();  // Return 404 if the trade is not found
+            }
+            var mappedTrade = _mapper.Map<TradeDto>(trade);  // Map the Trade object to TradeDto
+            return Ok(mappedTrade);  // Return the mapped DTO as the response
+        }
 
-    [HttpPost]
-    public async Task<IActionResult> Post(int User1Id, int User2Id, int GiftCard1Id, int GiftCard2Id)
-    {
-        List<User> users = new List<User>();
-        List<GiftCard> giftCards = new List<GiftCard>();
+        // POST: api/Trade
+        // Creates a new trade based on the TradeDto input
+        [HttpPost]
+        public async Task<IActionResult> Post([FromBody] TradeDto tradeDto)
+        {
+            // Fetch users involved in the trade based on User1Id and User2Id from DTO
+            var users = new List<User>
+            {
+                await _userService.GetUserAsync(tradeDto.User1Id),
+                await _userService.GetUserAsync(tradeDto.User2Id)
+            };
 
-        users.Add(await _userService.GetUserAsync(User1Id));
-        users.Add(await _userService.GetUserAsync(User2Id));
-        giftCards.Add(await _giftCardService.GetGiftCardAsync(GiftCard1Id));
-        giftCards.Add(await _giftCardService.GetGiftCardAsync(GiftCard2Id));
-        
-        await _tradeService.TradeDoneAsync(users, giftCards);
+            // Fetch gift cards involved in the trade based on GF1Id and GF2Id from DTO
+            var giftCards = new List<GiftCard>
+            {
+                await _giftCardService.GetGiftCardAsync(tradeDto.GF1Id),
+                await _giftCardService.GetGiftCardAsync(tradeDto.GF2Id)
+            };
 
-        return Ok();
-    }
+            // Perform the trade using the fetched users and gift cards
+            await _tradeService.TradeDoneAsync(users, giftCards);
+            return Ok();  // Return a 200 OK response after the trade is completed
+        }
 
-    [HttpPut("{id}")] // FIXA FELHANTERING UTANFÖR SCOPE
-    public async Task<IActionResult> Put(Trade trade)
-    {
-        var updatedTrade = await _tradeService.UpdateTradeAsync(trade);
+        // PUT: api/Trade/{id}
+        // Updates an existing trade based on the TradeDto input
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Put(int id, [FromBody] TradeDto tradeDto)
+        {
+            var existingTrade = await _tradeService.GetTradeAsync(id);  // Fetch the existing trade by ID
+            if (existingTrade == null)
+            {
+                return NotFound();  // Return 404 if the trade is not found
+            }
 
-        return Ok();
-    }
+            // Map updated values from TradeDto to the existing Trade entity
+            _mapper.Map(tradeDto, existingTrade);
+            var updatedTrade = await _tradeService.UpdateTradeAsync(existingTrade);  // Update the trade in the database
 
-    [HttpDelete("{id}")]
-    public async Task<IActionResult> Delete(int id)
-    {
-        var deletedTrade = await _tradeService.GetTradeAsync(id);
-        await _tradeService.DeleteTradeAsync(deletedTrade);
+            return Ok(updatedTrade);  // Return the updated trade as the response
+        }
 
-        return Ok();
+        // DELETE: api/Trade/{id}
+        // Deletes a specific trade by ID
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var trade = await _tradeService.GetTradeAsync(id);  // Fetch the trade by ID from the service
+            if (trade == null)
+            {
+                return NotFound();  // Return 404 if the trade is not found
+            }
+
+            await _tradeService.DeleteTradeAsync(trade);  // Delete the trade from the database
+            return Ok();  // Return a 200 OK response after the trade is deleted
+        }
     }
 }
