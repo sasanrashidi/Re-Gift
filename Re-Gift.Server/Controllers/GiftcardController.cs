@@ -43,6 +43,8 @@ public class GiftcardController : ControllerBase
     [HttpPut("{id}")]
     public async Task<IActionResult> Put(GiftCard giftcard)
     {
+        
+
         var updatedGiftcard = await _giftcardService.UpdateGiftcardAsync(giftcard);
 
         return Ok();
