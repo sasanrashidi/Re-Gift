@@ -1,11 +1,10 @@
-import React from 'react';
-import './Header.css';
-import regiftLogo from '../IMG/REGIFT.png';  // Uppdaterad sökväg till den nya bilden
-
+import React from 'react'
+import { NavMenu } from '../router/navmenu';
 export default function Header() {
     return (
-        <header className="header">
-            <img src={regiftLogo} alt="Logo" className="header-logo" />
-        </header>
+        <div className="container">
+            <NavMenu />
+        </div>
     );
 }
+
