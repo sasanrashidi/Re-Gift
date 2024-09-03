@@ -1,0 +1,115 @@
+:root {
+	color: var(--color1);
+	font-family: var(--font1);
+}
+
+.GridPage {
+	display: grid;
+	height: 100vh;
+	grid-template-columns: 100px 1fr;
+	grid-template-rows: 50px 1fr 50px;
+	grid-template-areas:
+		'header header'
+		'side1 main'
+		'footer footer';
+}
+
+.MenuWrap {
+	display: flex;
+	align-items: flex-start; /* changed to align around main axis to the left */
+	flex-direction: column; /* makes flexbox change the direction */
+	width: 100%;
+	height: 100%
+}
+
+.ListItem, .LastItem {
+	color: var(--color1);
+	display: flex;
+	text-decoration: none; /* removes the classic link underline */
+}
+
+.ListItem {
+	margin-bottom: 1rem; /* change to 1rem; to move to the last item to the bottom */
+}
+
+.LastItem {
+	margin-top: auto; /* change to margin-top; to move to the last item to the bottom */
+}
+
+a:hover {
+	color: var(--color4);
+}
+
+@media (max-width: 600px) {
+	.GridPage {
+		grid-template-columns: repeat(2, 1fr);
+		grid-template-rows: 50px 50px 1fr 50px;
+		grid-template-areas:
+			'header header'
+			'side1 side1'
+			'main main'
+			'footer footer';
+	}
+
+	.MenuWrap {
+		flex-direction: row;
+	}
+
+	.ListItem {
+		margin-bottom: unset;
+		margin-right: 1rem;
+	}
+
+	.LastItem {
+		margin-top: unset;
+		margin-left: auto;
+	}
+}
+
+[class^='GridItem'] {
+	display: grid;
+	align-items: center;
+	justify-content: center;
+	font-size: 20px;
+}
+
+.GridItemHeader {
+	grid-area: header;
+	background: linear-gradient(to right, var(--color2), var(--color3));
+}
+
+.GridItemSideOne {
+	grid-area: side1;
+	background-color: var(--color2);
+}
+
+.GridItemMain {
+	grid-area: main;
+	background-color: var(--color1);
+	overflow-y: scroll;
+}
+
+.GridItemFooter {
+	grid-area: footer;
+	background: linear-gradient(to right, var(--color2), var(--color3));
+	display: flex;
+	justify-content: flex-end;
+	padding-right: 10px;
+}
+
+/*DEBUG */
+/*
+  [class^='GridItem'] {
+    outline: 3px dashed #f90;
+  }
+
+  .GridPage {
+    gap:10px;
+    background-color: indigo;
+  }
+
+
+.MenuWrap {
+	background-color: indigo;
+}
+*/

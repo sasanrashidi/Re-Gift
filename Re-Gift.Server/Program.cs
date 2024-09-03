@@ -8,8 +8,15 @@ using Re_Gift.Server.SeedData;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 builder.Services.AddControllers();
+
+// Add CORS policy
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAllOrigins", policyBuilder =>
+        policyBuilder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+});
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -28,9 +35,11 @@ var app = builder.Build();
 
 await AddHelperMethod(app.Services, args);
 
-
 app.UseDefaultFiles();
 app.UseStaticFiles();
+
+// Enable CORS
+app.UseCors("AllowAllOrigins");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -49,7 +58,6 @@ app.MapFallbackToFile("/index.html");
 
 app.Run();
 
-
 async Task AddHelperMethod(IServiceProvider services, string[] args)
 {
     // Check if "seed" argument is passed
@@ -62,7 +70,6 @@ async Task AddHelperMethod(IServiceProvider services, string[] args)
         }
         return; // Exit the application after seeding
     }
-
 
     // Check if "CleanUpDb" argument is passed
     if (args.Contains("CleanUpDb"))
