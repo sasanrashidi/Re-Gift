@@ -162,8 +162,6 @@ public class GiftCardService : IGiftCardService
             default:
                 throw new ArgumentException("Invalid filter choice");
         }
-
-        asgsgsg
         
         return giftCards;
     }
