@@ -1,12 +1,16 @@
-﻿namespace Re_Gift.Server.Dto;
-
-public class TradeDto
+﻿namespace Re_Gift.Server.Dto
 {
-    public int User1Id { get; set; }
-    public int User2Id { get; set; }
-    public int GF1Id { get; set; }
-    public int GF2Id { get; set; }
-    public DateTime TransactionDate { get; set; } = DateTime.Now;
+    public class TradeDto
+    {
+        public int Id { get; set; }
+        public int User1Id { get; set; }
+        public int User2Id { get; set; }
+        public int GF1Id { get; set; }
+        public int GF2Id { get; set; }
+        public DateTime TransactionDate { get; set; } = DateTime.Now;
+
+
+    }
 }
 
 

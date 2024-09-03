@@ -1,17 +1,14 @@
 ﻿using Re_Gift.Server.Models;
 
-namespace Re_Gift.Server.Dto;
-
-public class GiftCardDto
+namespace Re_Gift.Server.Dto
 {
-    public string Company { get; set; }
-    public DateTime ExpireDate { get; set; }
-    public decimal Balance { get; set; }
-}
+    public class GiftCardDto
+    {
+        public int Id { get; set; }
+        public string Company { get; set; }
+        public DateTime ExpireDate { get; set; }
+        public decimal Balance { get; set; }
+        
 
-public enum CompanyChoices
-{
-    Nike = 1,
-    Adidas = 2,
-    GameStop = 3
+    }
 }
