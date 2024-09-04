@@ -1,4 +1,3 @@
-import React from 'react';
 import SimpleGiftCardComponent from '../services/GiftCardService';
 export function BuyGiftCard() {
     return (
