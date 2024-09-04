@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Re-Gift.Server", "Re-Gift.S
 EndProject
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "re-gift.client", "re-gift.client\re-gift.client.esproj", "{7902DD3F-970D-40EA-A1F1-A0AECBFF7200}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Regift_testProject", "Regift_testProject\Regift_testProject.csproj", "{928A972A-6725-43F6-924D-C66040699686}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +25,10 @@ Global
 		{7902DD3F-970D-40EA-A1F1-A0AECBFF7200}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7902DD3F-970D-40EA-A1F1-A0AECBFF7200}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7902DD3F-970D-40EA-A1F1-A0AECBFF7200}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{928A972A-6725-43F6-924D-C66040699686}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{928A972A-6725-43F6-924D-C66040699686}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{928A972A-6725-43F6-924D-C66040699686}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{928A972A-6725-43F6-924D-C66040699686}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
