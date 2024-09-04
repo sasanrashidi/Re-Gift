@@ -1,9 +1,25 @@
-
 #home {
-	background-image: url('../img/giftcard1.jpg');
-	background-size: cover; /* Ensures the image covers the entire background */
-	background-position: center; /* Centers the image */
-	background-repeat: no-repeat; /* Prevents the image from repeating */
-	min-height: 100vh; /* Ensures the background covers the full viewport height */
+    background-image: url('../img/giftcard1.jpg');
+    background-size: cover; /* Ensures the image covers the entire background /
+    background-position: center; / Centers the image /
+    background-repeat: no-repeat; / Prevents the image from repeating /
+    min-height: 100vh; / Ensures the background covers the full viewport height /
+    display: flex; / Use flexbox to center the content /
+    justify-content: center; / Center horizontally /
+    align-items: center; / Center vertically /*/
+     
+       
 }
 
+    /*/ Remove margin, padding, and border from specific elements */
+    
+    #home .container,
+    #home .bg-body-tertiary,
+    #home .col-sm-8, 
+     #home img {
+
+
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+}

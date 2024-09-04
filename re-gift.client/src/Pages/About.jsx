@@ -2,9 +2,9 @@
 import { Link } from 'react-router-dom';
 
 
-export function Sidebar (){
+export function About (){
     return (
-        <nav className="Sidebar">
+        <nav className="About">
             <ul>
                 <li><Link to="/">Home</Link></li>
                 <li><Link to="/BuyGiftcard">BuyGiftCard</Link></li>

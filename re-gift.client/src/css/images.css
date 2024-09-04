@@ -10,17 +10,17 @@
 }
 
 .FlexItem {
-	background-color: var(--color5);
+	background-color: transparent;
 	width: 200px; /* fixed size will demonstrate the wrap */
 	/* below is used to center text using a flexbox layout of the text in an FlexItem */
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	margin: 0px;
-	padding: 0px;
-	box-shadow: inset 0 0px 30px 10px var(--color1);
-	border-radius: 15px;
+	margin: 0;
+	padding: 0;
+	box-shadow: none;
+	border-radius: 0;
 }
 
 .FlexWrap img {

@@ -4,7 +4,7 @@ import  Home  from '../Pages/Home';
 import { BuyGiftCard } from '../Pages/BuyGiftCard'; // Named import
 import { SellGiftCard } from '../Pages/SellGiftCard';
 import { Contact } from '../Pages/Contact';
-import { Sidebar } from '../Pages/Sidebar';
+import { About } from '../Pages/About';
 
 export function AppRouter() {
     return (
@@ -13,7 +13,7 @@ export function AppRouter() {
             <Route path='/BuyGiftCard' element={<BuyGiftCard />} />
             <Route path='/SellGiftCard' element={<SellGiftCard />} />
             <Route path='/Contact' element={<Contact />} />
-            <Route path='/Sidebar' element={<Sidebar />} />
+            <Route path='/About' element={<About />} />
         </Routes>
     );
 }
