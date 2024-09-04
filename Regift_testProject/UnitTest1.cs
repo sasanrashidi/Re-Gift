@@ -28,6 +28,8 @@ namespace Regift_testProject
 
             Assert.Equal(s, "Adidas");
 
+            Console.WriteLine("DFHDGHFGH");
+
 
 
         }
