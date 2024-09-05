@@ -23,3 +23,18 @@
     padding: 0 !important;
     border: none !important;
 }
+
+.custom-carousel {
+    max-width: 60%; /* Set a smaller width for the carousel */
+    margin: 0 auto; /* Center the carousel horizontally */
+}
+
+.smaller-text {
+    font-size: 0.875rem; /* Adjust the font size as needed (0.875rem is smaller than the default 1rem) */
+}
+.smaller-heading {
+    font-size: 2rem; /* Adjust the font size as needed (2rem is smaller than the default for h1) */
+}
+
+
+
