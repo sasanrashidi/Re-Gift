@@ -5,9 +5,6 @@ namespace Regift_testProject
     public class UnitTest1
     {
 
-        
-
-
         [Fact]
         public void Test1()
         {
@@ -15,8 +12,6 @@ namespace Regift_testProject
           var s =  EnumsHelp.GetCompanyName(1);
 
             Assert.NotEqual(s, "Elgiganten");
-
-            
 
         }
 
@@ -30,11 +25,7 @@ namespace Regift_testProject
 
             Console.WriteLine("DFHDGHFGH");
 
-
-
         }
-
-
 
 
     }
