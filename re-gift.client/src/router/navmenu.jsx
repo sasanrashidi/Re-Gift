@@ -10,7 +10,7 @@ export function NavMenu() {
         <Navbar bg="light" expand="lg">
             <Navbar.Brand>
                 <div>
-                    <img src={regiftLogo} alt="Regift Logo" className="img-fluid" width={250} height={100} style={{ margin: 0, padding: 0, border: 'none' }}></img>
+                    <img src={regiftLogo} alt="Regift Logo" className="img-fluid" width={150} height={50} style={{ margin: 0, padding: 0, border: 'none' }}></img>
                 </div>
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />

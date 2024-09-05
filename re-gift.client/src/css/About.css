@@ -1,0 +1,26 @@
+/* About.css */
+.About {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Innehållet startar från toppen */
+    height: 100vh;
+    padding: 50px 20px 0; /* Ökar avståndet från navigationsmenyn */
+}
+
+.content-center {
+    max-width: 600px; /* Gör textblocket smalare för bättre centrering */
+    text-align: center; /* Centrera texten horisontellt */
+    line-height: 1.4; /* Mindre radavstånd för mindre text */
+}
+
+.lead {
+    font-size: 0.875rem; /* Gör endast textstorleken mindre */
+    margin-bottom: 10px; /* Lite mellanrum mellan stycken */
+    color: #333; /* Mjukare textfärg */
+}
+
+img {
+    display: block;
+    margin: 20px auto 0; /* Centrerar bilden */
+    margin-top: 20px; /* Lite avstånd mellan text och bild */
+}
