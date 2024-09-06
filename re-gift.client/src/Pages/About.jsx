@@ -26,7 +26,7 @@ import regiftLogo from '../IMG/REGIFTT.png'; // Kontrollera att du har rätt sö
 export function About() {
     return (
         <nav className="About">
-            <div className="content-center">
+            <div className="about-center">
                 <p className="lead">
                     Välkommen till vår plattform, där vi gör det enklare än någonsin att både köpa och sälja presentkort! Vårt mål är att erbjuda en smidig, säker och tillförlitlig tjänst där du kan hitta det perfekta presentkortet, eller sälja ett oanvänt kort och få ut maximalt värde för det.
                 </p>

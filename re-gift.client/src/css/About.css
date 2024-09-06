@@ -7,14 +7,14 @@
     padding: 50px 20px 0; /* Ökar avståndet från navigationsmenyn */
 }
 
-.content-center {
+.about-center {
     max-width: 600px; /* Gör textblocket smalare för bättre centrering */
     text-align: center; /* Centrera texten horisontellt */
     line-height: 1.4; /* Mindre radavstånd för mindre text */
 }
 
 .lead {
-    font-size: 0.875rem; /* Gör endast textstorleken mindre */
+    font-size: 0.900rem; /* Gör endast textstorleken mindre */
     margin-bottom: 10px; /* Lite mellanrum mellan stycken */
     color: #333; /* Mjukare textfärg */
 }
