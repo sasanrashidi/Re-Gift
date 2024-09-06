@@ -2,7 +2,7 @@
 import '../css/Home.css';
 import HM from '../img/HM.jpg'; 
 import Nike from '../img/Nike.jpg'; 
-import Amazon2 from '../img/Amazon2.jpg'; 
+import Amazon5 from '../img/Amazon5.jpg'; 
 
 export default function Home() {
     return (
@@ -44,7 +44,7 @@ export default function Home() {
                 <Carousel.Item>
                     <img
                         className="d-block w-100"
-                        src={Amazon2}
+                        src={Amazon5}
                         alt="Amazon"
                     />
                     <Carousel.Caption>
