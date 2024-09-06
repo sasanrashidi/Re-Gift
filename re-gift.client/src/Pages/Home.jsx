@@ -1,8 +1,8 @@
 ﻿import { Carousel } from 'react-bootstrap'; // Import Carousel from React-Bootstrap
 import '../css/Home.css';
 import HM from '../img/HM.jpg'; // Your first image
-import Nike1 from '../img/Nike1.jpg'; // Your second image
-import Amazon1 from '../img/Amazon1.jpg'; // Your third image
+import Nike from '../img/Nike.jpg'; // Your second image
+import Amazon2 from '../img/Amazon2.jpg'; // Your third image
 
 export default function Home() {
     return (
@@ -33,7 +33,7 @@ export default function Home() {
                 <Carousel.Item>
                     <img
                         className="d-block w-100"
-                        src={Nike1}
+                        src={Nike}
                         alt="Nike"
                     />
                     <Carousel.Caption>
@@ -44,7 +44,7 @@ export default function Home() {
                 <Carousel.Item>
                     <img
                         className="d-block w-100"
-                        src={Amazon1}
+                        src={Amazon2}
                         alt="Amazon"
                     />
                     <Carousel.Caption>
