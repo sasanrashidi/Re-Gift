@@ -1,10 +1,18 @@
 
+//import { Routes, Route } from "react-router-dom";
+//import  Home  from '../Pages/Home';
+//import { BuyGiftCard } from '../Pages/BuyGiftCard'; // Named import
+//import { SellGiftCard } from '../Pages/SellGiftCard';
+//import { Contact } from '../Pages/Contact';
+//import { About } from '../Pages/About';
+
 import { Routes, Route } from "react-router-dom";
-import  Home  from '../Pages/Home';
-import { BuyGiftCard } from '../Pages/BuyGiftCard'; // Named import
+import Home from '../Pages/Home';
+import { BuyGiftCard } from '../Pages/BuyGiftCard';
 import { SellGiftCard } from '../Pages/SellGiftCard';
 import { Contact } from '../Pages/Contact';
 import { About } from '../Pages/About';
+import { Marknad } from '../Pages/Marknad'; // Import Marknad
 
 export function AppRouter() {
     return (
@@ -14,6 +22,8 @@ export function AppRouter() {
             <Route path='/SellGiftCard' element={<SellGiftCard />} />
             <Route path='/Contact' element={<Contact />} />
             <Route path='/About' element={<About />} />
+            <Route path='/Marknad' element={<Marknad />} /> {/* Route for Marknad */}
         </Routes>
     );
 }
+

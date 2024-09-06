@@ -1,8 +1,8 @@
-﻿import { Carousel } from 'react-bootstrap'; // Import Carousel from React-Bootstrap
+﻿import { Carousel } from 'react-bootstrap'; 
 import '../css/Home.css';
-import HM from '../img/HM.jpg'; // Your first image
-import Nike from '../img/Nike.jpg'; // Your second image
-import Amazon2 from '../img/Amazon2.jpg'; // Your third image
+import HM from '../img/HM.jpg'; 
+import Nike from '../img/Nike.jpg'; 
+import Amazon2 from '../img/Amazon2.jpg'; 
 
 export default function Home() {
     return (
