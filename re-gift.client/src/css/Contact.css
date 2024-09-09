@@ -1,4 +1,44 @@
-﻿
+﻿/* contact.css */
+
+/*.Contact {
+    display: flex;
+    justify-content: center;
+    align-items: center;*/ /* Centrera innehållet vertikalt */
+    /*height: 100vh;*/ /* Full höjd av viewport */
+    /*padding: 20px;
+
+}
+
+.content-center {
+    max-width: 600px;*/ /* Gör textrutan smalare för bättre centrering */
+    /*text-align: center;*/ /* Centrera texten horisontellt */
+    /*background-color: #f8f9fa;*/ /* Lätt bakgrundsfärg för textrutan */
+    /*padding: 20px;*/ /* Padding runt texten */
+    /*border-radius: 8px;*/ /* Rundade hörn */
+    /*box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);*/ /* Lätt skugga för att lyfta textrutan */
+/*}
+
+.lead {
+    font-size: 1rem;*/ /* Normal textstorlek */
+    /*color: #333;*/ /* Mjukare textfärg */
+    /*margin-bottom: 20px;*/ /* Lite avstånd till ikonerna */
+/*}
+
+.social-icons {
+    display: flex;
+    justify-content: center;*/ /* Centrera ikonerna horisontellt */
+    /*gap: 20px;*/ /* Avstånd mellan ikonerna */
+    /*margin-top: 20px;*/ /* Lite avstånd ovanför ikonerna */
+/*}
+
+    .social-icons a {
+        color: #333;*/ /* Färg på ikonerna */
+        /*transition: color 0.3s ease;*/ /* Mjuk övergång för färgändring */
+    /*}
+
+        .social-icons a:hover {
+            color: #007bff;*/ /* Färgändring vid hovring */
+        /*}*/
 
 .content-center p {
     font-weight: bold;
@@ -21,10 +61,11 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Lätt skugga för att lyfta textrutan */
 }
 
-.lead {
-    font-size: 1rem; /* Normal textstorlek */
+.contact-lead {
+    font-size: 0.900rem; /* Normal textstorlek */
     color: #333; /* Mjukare textfärg */
     margin-bottom: 20px; /* Lite avstånd till ikonerna */
+    font-family: 'Arial', sans-serif;
 }
 
 .social-icons {
