@@ -3,33 +3,32 @@ using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Identity.Client;
 using Re_Gift.Server.Data;
 
-namespace Re_Gift.Server.Helpers
+namespace Re_Gift.Server.Helpers;
+
+public class CleanUpData
 {
-    public class CleanUpData
+    private readonly DataContext _context;
+
+    public CleanUpData(DataContext context)
     {
-        private readonly DataContext _context;
+        _context = context;
+    }
 
-        public CleanUpData(DataContext context)
+    public async Task CleanAllDataAsync()
+    {
+        // List all the tables in the correct deletion order (child tables first)
+        var tables = new[] { "Users", "Trades", "Giftcards" };
+
+        foreach (var table in tables)
         {
-            _context = context;
-        }
+            // Disable constraints on the table
+            await _context.Database.ExecuteSqlRawAsync($"ALTER TABLE {table} NOCHECK CONSTRAINT ALL");
 
-        public async Task CleanAllDataAsync()
-        {
-            // List all the tables in the correct deletion order (child tables first)
-            var tables = new[] { "Users", "Trades", "Giftcards" };
+            // Clear data from the table
+            await _context.Database.ExecuteSqlRawAsync($"DELETE FROM {table}");
 
-            foreach (var table in tables)
-            {
-                // Disable constraints on the table
-                await _context.Database.ExecuteSqlRawAsync($"ALTER TABLE {table} NOCHECK CONSTRAINT ALL");
-
-                // Clear data from the table
-                await _context.Database.ExecuteSqlRawAsync($"DELETE FROM {table}");
-
-                // Re-enable constraints on the table
-                await _context.Database.ExecuteSqlRawAsync($"ALTER TABLE {table} WITH CHECK CHECK CONSTRAINT ALL");
-            }
+            // Re-enable constraints on the table
+            await _context.Database.ExecuteSqlRawAsync($"ALTER TABLE {table} WITH CHECK CHECK CONSTRAINT ALL");
         }
     }
 }

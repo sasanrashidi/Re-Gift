@@ -39,6 +39,33 @@ public class UserController : ControllerBase
         return Ok(mappedUser);
     }
 
+    [HttpGet("login")]
+    public async Task<IActionResult> Login(string email, string password)
+    {
+        try
+        {
+            var isSuccess = await _userService.UserLoginAsync(email, password);
+
+            if (isSuccess)
+            {
+                return Ok(new { Message = "Login successful" });
+            }
+            else
+            {
+                return Unauthorized(new { Message = "Invalid email or password" });
+            }
+        }
+        catch (ArgumentException ex)
+        {
+            return NotFound(new { Message = ex.Message });
+        }
+        catch (Exception ex)
+        {
+            // Log the exception here if needed.
+            return StatusCode(500, new { Message = "An error occurred during login." });
+        }
+    }
+
     [HttpPost]
     public async Task<IActionResult> Post([FromBody] UserDto user)
     {

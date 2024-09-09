@@ -19,43 +19,35 @@ public class GiftCardService : IGiftCardService
     {
         try
         {
-            return await _context.Giftcards.ToListAsync();
+            return await _context.Giftcards.Where(g => g.Sold != true).ToListAsync();
         }
         catch (Exception)
         {
-
             throw;
         }
-
-        
     }
 
     public async Task<GiftCard> GetGiftCardAsync(int id)
     {
-        try
-        {
-           var gotGift = await _context.Giftcards.FirstOrDefaultAsync(g => g.Id == id);
+        var gotGift = await _context.Giftcards
+            .Where(g => g.Sold != true).FirstOrDefaultAsync(g => g.Id == id);
 
-            if (gotGift == null) 
-            {
-                throw new ArgumentException($"No Giftcard with id NR: {id} exists"); 
-            }
-            return gotGift;
-        }
-        catch (Exception)
-        {
+        return gotGift;
+    }
 
-            throw;
-        }
+    public async Task<ICollection<GiftCard>> GetGiftCardCompanyAsync(string company)
+    {
+        var gotGiftCompany = await _context.Giftcards.Where(g => g.Sold != true).Where(g => g.Company == company).ToListAsync();
 
         
+
+        return gotGiftCompany;
     }
 
     public async Task<ICollection<GiftCard>> GetGiftCardsFromUserIdAsync(int userId)
     {
         try
         {
-            
             var giftCards = await _context.Giftcards
                                           .Where(gc => gc.userId == userId)
                                           .ToListAsync();
@@ -69,7 +61,6 @@ public class GiftCardService : IGiftCardService
         }
         catch (Exception ex)
         {
-            
             throw;
         }
     }
@@ -93,7 +84,6 @@ public class GiftCardService : IGiftCardService
         giftcard.userId = userId;
         giftcard.User = userTied;
         giftcard.Company = EnumsHelp.GetCompanyName(companyEnum);
-
 
         userTied.GiftCards.Add(giftcard);
 
@@ -129,10 +119,8 @@ public class GiftCardService : IGiftCardService
     {
         string filter = EnumsHelp.GetFilteringName(choice);
 
-        
         var giftCards = await _context.Giftcards.ToListAsync();
 
-        
         switch (filter)
         {
             case "LowToHighPrice":
@@ -162,11 +150,10 @@ public class GiftCardService : IGiftCardService
             default:
                 throw new ArgumentException("Invalid filter choice");
         }
-
-        
-        
         return giftCards;
     }
+
+    
 
     // Experiment som skall vara i controller
 
@@ -187,10 +174,4 @@ public class GiftCardService : IGiftCardService
     }
 
     */
-
-
-
-
-
-
 }
