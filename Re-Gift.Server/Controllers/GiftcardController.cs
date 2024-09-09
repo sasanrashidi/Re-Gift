@@ -119,6 +119,12 @@ public class GiftcardController : ControllerBase
     public async Task<IActionResult> Delete(int id)
     {
         var deletedGiftcard = await _giftcardService.GetGiftCardAsync(id);
+
+        if (deletedGiftcard == null)
+        {
+            return NotFound();
+        }
+
         await _giftcardService.DeleteGiftCardAsync(deletedGiftcard);
 
         return Ok();
