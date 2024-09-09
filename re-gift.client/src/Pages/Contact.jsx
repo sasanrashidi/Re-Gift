@@ -29,7 +29,7 @@ export function Contact() {
             <div className="content-center">
 
                 <p className="contact-lead">
-                    Kontakta oss för mer information eller följ oss på sociala medier!!
+                    Kontakta oss för mer information eller följ oss på sociala medier!!!
                 </p>
 
                 <p className="contact-lead">
