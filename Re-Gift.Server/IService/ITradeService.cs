@@ -13,7 +13,10 @@ public interface ITradeService
     public Task<bool> TradeDoneAsync(List<User> users, List<GiftCard> giftCards);
 
     public Task<bool> UpdateTradeAsync(Trade trade);
-    
+
+    public Task<bool> TradeDoneAsyncReal(Trade trade);
+
+
     public Task<bool> DeleteTradeAsync(Trade trade);
     
     public Task<bool> SaveAsync();

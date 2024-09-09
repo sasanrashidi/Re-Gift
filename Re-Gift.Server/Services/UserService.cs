@@ -24,6 +24,15 @@ public class UserService : IUserService
         return await _context.Users.Include(g => g.GiftCards).ToListAsync();
     }
 
+    public async Task<bool> SellerOwnerOfGiftCardAsync(int sellerId, int giftCardId)
+    {
+        var giftCard = await _context.Giftcards
+            .Where(gc => gc.Id == giftCardId && gc.User.Id == sellerId)
+            .SingleOrDefaultAsync();
+
+        return giftCard != null;
+    }
+
     public async Task<User> GetUserAsync(int id)
     {
         return await _context.Users.Where(g => g.Id == id).FirstOrDefaultAsync();
