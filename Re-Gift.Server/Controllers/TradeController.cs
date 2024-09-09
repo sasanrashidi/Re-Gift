@@ -50,6 +50,8 @@ namespace Re_Gift.Server.Controllers
             return Ok(mappedTrade);  // Return the mapped DTO as the response
         }
 
+        
+
         // POST: api/Trade
         // Creates a new trade based on the TradeDto input
         [HttpPost]

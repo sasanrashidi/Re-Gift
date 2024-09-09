@@ -45,6 +45,14 @@ public class TradeService : ITradeService
         return await SaveAsync();
     }
 
+    public async Task<bool>TradeDoneAsyncReal(Trade trade)
+    {
+        _context.Trades.Add(trade);
+
+        return await SaveAsync();
+    }
+
+
     public async Task<bool> UpdateTradeAsync(Trade trade)
     {
         _context.Update(trade); // Tvek om vi kommer använda denna
@@ -62,3 +70,51 @@ public class TradeService : ITradeService
         return await _context.SaveChangesAsync() > 0;
     }
 }
+
+
+// FuskLapp
+
+/*
+ 
+ [HttpPost("CreateTrade")]
+        public async Task<IActionResult> CreateTrade(int BuyerId, int sellerId, int giftCardId)
+        {
+            var buyer = await _userService.GetUserAsync(BuyerId);
+            if (buyer == null) return NotFound("Buyer not found");
+
+            if (BuyerId == sellerId)
+            {
+                return BadRequest("Buyer cannot be the same as the seller");
+            }
+
+            var seller = await _userService.GetUserAsync(sellerId);
+            if (seller == null) return NotFound("Seller not found");
+
+
+
+
+            var isOwner = await _userService.SellerOwnerOfGiftCardAsync(sellerId, giftCardId);
+            if (!isOwner) return BadRequest("Seller does not own this gift card");
+
+           
+            var giftcard = await _giftCardService.GetGiftCardAsync(giftCardId);
+            if (giftcard == null || giftcard.Sold == true) return NotFound("Giftcard not found, or sold");
+
+            giftcard.Sold = true;
+            await _giftCardService.UpdateGiftcardAsync(giftcard);
+
+            var tradeToCreate = new TradeDto
+            {
+                User1Id = BuyerId,
+                User2Id = sellerId,
+                GF1Id = giftCardId
+            };
+
+            var traded = _mapper.Map<Trade>(tradeToCreate);
+            await _tradeService.TradeDoneAsyncReal(traded);
+
+            return Ok(tradeToCreate);
+        }
+ 
+ 
+ */

@@ -5,6 +5,7 @@
     align-items: flex-start; /* Innehållet startar från toppen */
     height: 100vh;
     padding: 50px 20px 0; /* Ökar avståndet från navigationsmenyn */
+    font-family: 'Arial', sans-serif; /* Använd Times New Roman som typsnitt */
 }
 
 .about-center {
@@ -13,7 +14,7 @@
     line-height: 1.4; /* Mindre radavstånd för mindre text */
 }
 
-.lead {
+.about-lead {
     font-size: 0.900rem; /* Gör endast textstorleken mindre */
     margin-bottom: 10px; /* Lite mellanrum mellan stycken */
     color: #333; /* Mjukare textfärg */

@@ -28,20 +28,20 @@ export function Contact() {
     
             <div className="content-center">
 
-                <p className="lead">
-                    Kontakta oss för mer information eller följ oss på sociala medier!!
+                <p className="contact-lead">
+                    Kontakta oss för mer information eller följ oss på sociala medier!!!
                 </p>
 
-                <p className="lead">
+                <p className="contact-lead">
                     Tel: +46 70582569
                 </p>
 
-                <p className="lead">
+                <p className="contact-lead">
 
                     Email: regift@gmail.com
                 </p>
 
-                <p className="lead">
+                <p className="contact-lead">
 
                     Malmvägen 1, 115 41, Stockholm
                 </p>
