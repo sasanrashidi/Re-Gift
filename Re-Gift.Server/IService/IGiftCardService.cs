@@ -10,6 +10,10 @@ public interface IGiftCardService
 
     public Task<GiftCard> GetGiftCardAsync(int id);
 
+    public Task<ICollection<GiftCard>> GetGiftCardCompanyAsync(string company);
+
+    public Task<bool> AddGiftCardAsync(GiftCard giftcard, int userId, int companyEnum);
+
     public Task<bool> AddGiftCardAsync(GiftCard giftcard);
 
     public Task<bool> UpdateGiftcardAsync(GiftCard giftcard);
