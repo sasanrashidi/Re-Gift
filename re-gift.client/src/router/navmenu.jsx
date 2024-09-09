@@ -26,9 +26,16 @@ export function NavMenu({ UICartService }) {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
-                    <LinkContainer to="/">
-                        <Nav.Link>Hem</Nav.Link>
-                    </LinkContainer>
+
+
+                    <NavDropdown title="Hem" id="home-nav-dropdown">
+                        <LinkContainer to="/">
+                            <NavDropdown.Item>Hem</NavDropdown.Item>
+                        </LinkContainer>
+                        <LinkContainer to="/login">
+                            <NavDropdown.Item>Logga In</NavDropdown.Item>
+                        </LinkContainer>
+                    </NavDropdown>
 
                     <NavDropdown title="Marknad" id="basic-nav-dropdown">
                         <LinkContainer to="/BuyGiftCard">
