@@ -34,6 +34,27 @@ public class UserService : IUserService
         _context.Add(user);
         return await SaveAsync();
     }
+
+    public async Task<bool> UserLoginAsync(string email, string password)
+    {
+        // Find user by email first
+        var foundUser = await _context.Users.FirstOrDefaultAsync(g => g.Email == email);
+
+        // Check if user was found
+        if (foundUser == null)
+        {
+            throw new ArgumentException("User with the provided email does not exist.");
+        }
+
+        // Validate the password (in practice, you should use hashed password comparison)
+        if (foundUser.Password != password) // Replace this with your password hash comparison
+        {
+            throw new ArgumentException("Invalid password.");
+        }
+
+        return true;
+    }
+
     public async Task<bool> UpdateUserAsync(User user)
     {
         _context.Update(user);

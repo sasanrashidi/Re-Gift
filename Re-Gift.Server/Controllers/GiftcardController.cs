@@ -41,6 +41,21 @@ public class GiftcardController : ControllerBase
         return Ok(mappEntity);
     }
 
+    [HttpGet("{company}/getCompany")]
+    public async Task<IActionResult> GetCompany(string company)
+    {
+        var giftcard = await _giftcardService.GetGiftCardCompanyAsync(company);
+
+        if (giftcard == null)
+        {
+            return NotFound();
+        }
+
+        var mappEntity = _mapper.Map<List<GiftCardDto>>(giftcard);
+
+        return Ok(mappEntity);
+    }
+
     [HttpPost]
     public async Task<IActionResult> Post([FromBody] GiftCardDto giftcard)
     {
