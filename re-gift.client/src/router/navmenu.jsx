@@ -1,12 +1,22 @@
-﻿import Navbar from 'react-bootstrap/Navbar'
-import Nav from 'react-bootstrap/Nav'
+﻿import React, { useState, useEffect } from 'react';
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
+import NavDropdown from 'react-bootstrap/NavDropdown';
 import { LinkContainer } from 'react-router-bootstrap';
 import regiftLogo from '../IMG/REGIFT.png';
 
+export function NavMenu({ UICartService }) {
+    const [cartItems, setCartItems] = useState([]);
 
-export function NavMenu() {
+    useEffect(() => {
+        async function fetchCartItems() {
+            const items = await UICartService.getCartItems();
+            setCartItems(items);
+        }
+        fetchCartItems();
+    }, [UICartService]);
+
     return (
-
         <Navbar bg="light" expand="lg">
             <Navbar.Brand>
                 <div>
@@ -20,13 +30,14 @@ export function NavMenu() {
                         <Nav.Link>Hem</Nav.Link>
                     </LinkContainer>
 
-                    <LinkContainer to="/BuyGiftCard">
-                        <Nav.Link>Köpa presentkort</Nav.Link>
-                    </LinkContainer>
-
-                    <LinkContainer to="/SellGiftCard">
-                        <Nav.Link>Sälja presentkort</Nav.Link>
-                    </LinkContainer>
+                    <NavDropdown title="Marknad" id="basic-nav-dropdown">
+                        <LinkContainer to="/BuyGiftCard">
+                            <NavDropdown.Item>Köp</NavDropdown.Item>
+                        </LinkContainer>
+                        <LinkContainer to="/SellGiftCard">
+                            <NavDropdown.Item>Sälj</NavDropdown.Item>
+                        </LinkContainer>
+                    </NavDropdown>
 
                     <LinkContainer to="/Contact">
                         <Nav.Link>Kontakt</Nav.Link>
@@ -35,14 +46,8 @@ export function NavMenu() {
                     <LinkContainer to="/About">
                         <Nav.Link>Om oss</Nav.Link>
                     </LinkContainer>
-
                 </Nav>
             </Navbar.Collapse>
         </Navbar>
     );
 }
-
-
-
-                      
-
