@@ -19,7 +19,7 @@ public class GiftCardService : IGiftCardService
     {
         try
         {
-            return await _context.Giftcards.ToListAsync();
+            return await _context.Giftcards.Where(g => g.Sold != true).ToListAsync();
         }
         catch (Exception)
         {
@@ -29,14 +29,15 @@ public class GiftCardService : IGiftCardService
 
     public async Task<GiftCard> GetGiftCardAsync(int id)
     {
-        var gotGift = await _context.Giftcards.FirstOrDefaultAsync(g => g.Id == id);
+        var gotGift = await _context.Giftcards
+            .Where(g => g.Sold != true).FirstOrDefaultAsync(g => g.Id == id);
 
         return gotGift;
     }
 
     public async Task<ICollection<GiftCard>> GetGiftCardCompanyAsync(string company)
     {
-        var gotGiftCompany = await _context.Giftcards.Where(g => g.Company == company).ToListAsync();
+        var gotGiftCompany = await _context.Giftcards.Where(g => g.Sold != true).Where(g => g.Company == company).ToListAsync();
 
         
 

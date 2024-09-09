@@ -10,7 +10,14 @@ public static class EnumsHelp
         BattleNet = 3,
         PSN = 4,
         Steam = 5,
-        Ikea = 6
+        Ikea = 6,
+        Ica = 7,
+        Logitech = 8,
+        Webhallen = 9,
+        AkademiBokhandeln = 10,
+        BurgerKing = 11,
+        
+
     }
 
     public enum Filterred
