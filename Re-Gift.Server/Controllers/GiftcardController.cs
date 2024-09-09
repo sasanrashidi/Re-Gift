@@ -46,7 +46,7 @@ public class GiftcardController : ControllerBase
     {
         var giftcard = await _giftcardService.GetGiftCardCompanyAsync(company);
 
-        if (giftcard == null)
+        if (giftcard.Count == 0)
         {
             return NotFound();
         }

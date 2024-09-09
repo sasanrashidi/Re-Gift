@@ -38,6 +38,8 @@ public class GiftCardService : IGiftCardService
     {
         var gotGiftCompany = await _context.Giftcards.Where(g => g.Company == company).ToListAsync();
 
+        
+
         return gotGiftCompany;
     }
 
