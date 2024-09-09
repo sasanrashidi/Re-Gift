@@ -13,6 +13,7 @@ import { SellGiftCard } from '../Pages/SellGiftCard';
 import { Contact } from '../Pages/Contact';
 import { About } from '../Pages/About';
 import { Marknad } from '../Pages/Marknad'; // Import Marknad
+import LoggaIn from '../Pages/LoggaIn';
 
 export function AppRouter() {
     return (
@@ -22,7 +23,8 @@ export function AppRouter() {
             <Route path='/SellGiftCard' element={<SellGiftCard />} />
             <Route path='/Contact' element={<Contact />} />
             <Route path='/About' element={<About />} />
-            <Route path='/Marknad' element={<Marknad />} /> {/* Route for Marknad */}
+            <Route path='/Marknad' element={<Marknad />} /> 
+            <Route path='/login' element={<LoggaIn />} />
         </Routes>
     );
 }
