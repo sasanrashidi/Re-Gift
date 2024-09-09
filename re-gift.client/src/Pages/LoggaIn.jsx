@@ -7,19 +7,35 @@ function LoggaIn() {
     const [password, setPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
 
-    const handleLogin = (event) => {
+    const handleLogin = async (event) => {
         event.preventDefault();
 
-        // kontrollera att både e-post och lösenord är ifyllda
+        // Kontrollera att både e-post och lösenord är ifyllda
         if (!email || !password) {
             setErrorMessage('Vänligen fyll i både e-post och lösenord');
         } else {
-            // vi skickar inloggningsuppgifter till API 
-            console.log("E-post:", email);
-            console.log("Lösenord:", password);
+            try {
+                // Skicka inloggningsuppgifter till API
+                const response = await fetch('https://localhost:7049/api/User/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email, password }),
+                });
 
-            // Återställer felmeddelande om allt går bra
-            setErrorMessage('');
+                if (response.ok) {
+                    const data = await response.json();
+                    console.log('Inloggning lyckades!', data);
+                    // Spara token i localStorage
+                    localStorage.setItem('token', data.token);
+                    setErrorMessage(''); // Återställer felmeddelande
+                } else {
+                    setErrorMessage('Inloggning misslyckades. Kontrollera dina uppgifter.');
+                }
+            } catch (error) {
+                setErrorMessage('Ett fel uppstod vid inloggningen. Försök igen senare.');
+            }
         }
     };
 
@@ -29,7 +45,7 @@ function LoggaIn() {
                 <Col xs={12} md={6} className="login-col">
                     <h2 className="login-header">Logga In</h2>
 
-                    {/* felmeddelande om inmatningsfel finns */}
+                    {/* Felmeddelande om inmatningsfel finns */}
                     {errorMessage && <p className="error-message">{errorMessage}</p>}
 
                     <Form onSubmit={handleLogin} className="login-form">
