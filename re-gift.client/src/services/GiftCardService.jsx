@@ -13,7 +13,7 @@ const SimpleGiftCardComponent = () => {
 
     return (
         <div>
-            <h1>Gift Cards</h1>
+            
             <ul>
                 {giftCards.map((giftCard, index) => (
                     <li key={index}>{giftCard.company} - ${giftCard.balance.toFixed(2)}</li>

@@ -5,15 +5,17 @@ import { BrowserRouter } from 'react-router-dom';
 import Footer from './components/footer';
 import Header from './components/header';
 import { AppRouter } from './router/approuter';
-
+import { AppProvider } from './context/AppContext';  // Import the AppProvider
 
 function App() {
     return (
-        <BrowserRouter>
-            <Header />
-            <AppRouter />
-            <Footer />
-        </BrowserRouter>
+        <AppProvider>  {/* Wrap the entire app in the AppProvider */}
+            <BrowserRouter>
+                <Header />
+                <AppRouter />
+                <Footer />
+            </BrowserRouter>
+        </AppProvider>
     );
 }
 
