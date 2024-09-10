@@ -46,7 +46,7 @@ public class Seed
                 Balance = 500,
                 User = users.FirstOrDefault(), // Ensure this user exists
                 Verified = true,
-                Sold = true,
+                Sold = false,
             },
 
             new GiftCard
@@ -56,7 +56,7 @@ public class Seed
                 Balance = 1000,
                 User = users.Skip(1).FirstOrDefault(), // Ensure this user exists
                 Verified = true,
-                Sold = true,
+                Sold = false,
             },
 
              new GiftCard
@@ -66,7 +66,7 @@ public class Seed
                 Balance = 10000,
                 User = users.Skip(2).FirstOrDefault(), // Ensure this user exists
                 Verified = true,
-                Sold = true,
+                Sold = false,
             },
 
               new GiftCard
@@ -76,7 +76,7 @@ public class Seed
                 Balance = 600,
                 User = users.Skip(3).FirstOrDefault(), // Ensure this user exists
                 Verified = true,
-                Sold = true,
+                Sold = false,
             },
 
                new GiftCard
