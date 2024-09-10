@@ -68,7 +68,7 @@ export function NavMenu() {
                     </Nav>
 
                     {/* Icons Container */}
-                    <div className="icons-container ml-auto d-flex align-items-center">
+                    <div className="icons-container">
                         <span
                             className="favorite-icon"
                             onClick={handleFavoritesModalShow}
