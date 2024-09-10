@@ -4,14 +4,13 @@ import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { LinkContainer } from 'react-router-bootstrap';
 import regiftLogo from '../IMG/REGIFT.png';
-import { FaHeart, FaShoppingCart } from 'react-icons/fa'; // Importing icons from react-icons
-import { ItemModal } from '../Pages/ModulComponent'; // Adjust path according to your file structure
-import { AppContext } from '../context/AppContext'; // Adjust path according to your file structure
+import { FaHeart, FaShoppingCart } from 'react-icons/fa';
+import { ItemModal } from '../Pages/ModulComponent';
+import { AppContext } from '../context/AppContext';
 import '../css/Home.css';
 
 export function NavMenu() {
     const { cart, setCart, favorites, setFavorites } = useContext(AppContext);
-
     const [showCartModal, setShowCartModal] = useState(false);
     const [showFavoritesModal, setShowFavoritesModal] = useState(false);
 
@@ -31,7 +30,7 @@ export function NavMenu() {
 
     return (
         <>
-            <Navbar bg="light" expand="lg" style={{ position: 'relative' }}>
+            <Navbar expand="lg" className="transparent-navbar" style={{ position: 'relative' }}>
                 <Navbar.Brand>
                     <div>
                         <img src={regiftLogo} alt="Regift Logo" className="img-fluid" width={150} height={50} style={{ margin: 0, padding: 0, border: 'none' }} />
@@ -68,7 +67,7 @@ export function NavMenu() {
                     </Nav>
 
                     {/* Icons Container */}
-                    <div className="icons-container">
+                    <div className="icons-container ml-auto d-flex align-items-center">
                         <span
                             className="favorite-icon"
                             onClick={handleFavoritesModalShow}

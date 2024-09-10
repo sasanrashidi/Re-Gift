@@ -1,13 +1,13 @@
-﻿import { Carousel } from 'react-bootstrap'; 
+﻿import { Carousel } from 'react-bootstrap';
 import '../css/Home.css';
-import HM from '../img/HM.jpg'; 
-import Nike from '../img/Nike.jpg'; 
-import Amazon5 from '../img/Amazon5.jpg'; 
+import HM from '../img/HM.jpg';
+import Nike from '../img/Nike.jpg';
+import Amazon5 from '../img/Amazon5.jpg';
 
 export default function Home() {
     return (
         <div className="container py-4" id="home">
-            <div className="bg-body-tertiary p-5 rounded">
+            <div className="custom-background p-5 rounded">
                 <div className="col-sm-8 py-5 mx-auto">
                     <h1 className="display-5 fw-normal smaller-heading">Välkommen till Regift Card hemsida</h1>
                     <p className="lead smaller-text">
@@ -25,9 +25,7 @@ export default function Home() {
                         src={HM}
                         alt="H&M"
                     />
-                    <Carousel.Caption>
-                        
-                    </Carousel.Caption>
+                    <Carousel.Caption></Carousel.Caption>
                 </Carousel.Item>
 
                 <Carousel.Item>
@@ -36,9 +34,7 @@ export default function Home() {
                         src={Nike}
                         alt="Nike"
                     />
-                    <Carousel.Caption>
-                        
-                    </Carousel.Caption>
+                    <Carousel.Caption></Carousel.Caption>
                 </Carousel.Item>
 
                 <Carousel.Item>
@@ -47,9 +43,7 @@ export default function Home() {
                         src={Amazon5}
                         alt="Amazon"
                     />
-                    <Carousel.Caption>
-                        
-                    </Carousel.Caption>
+                    <Carousel.Caption></Carousel.Caption>
                 </Carousel.Item>
             </Carousel>
         </div>

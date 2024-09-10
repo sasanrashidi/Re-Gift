@@ -47,3 +47,90 @@
         margin: 0 10px; /* Horizontal spacing between icons */
     }
 }
+/* Set background color to light gray for the entire page */
+/* Set background image for the entire page */
+body {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)),  url('../IMG/back2.jpg'); /* Path to your image */
+    background-size: cover; /* Ensures the image covers the entire background */
+    background-position: center; /* Centers the background image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    background-attachment: fixed; /* Keeps the background image fixed while scrolling */
+}
+
+.content-section {
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+    padding: 20px;
+    border-radius: 8px;
+}
+.text-container {
+    background-color: rgba(255, 255, 255, 0.6); /* Transparent white background */
+    padding: 20px;
+    border-radius: 8px; /* Optional: gives the container rounded corners */
+    max-width: 80%;
+    margin: 0 auto; /* Center the text container */
+}
+.transparent-navbar {
+    background-color: rgba(255, 255, 255, 0.5) !important; /* Semi-transparent white background */
+    border: none;
+    box-shadow: none; /* Remove any shadow for a cleaner look */
+}
+
+    .transparent-navbar .navbar-brand img {
+        filter: brightness(0) invert(1); /* Optional: Adjust logo visibility if needed */
+        filter: none; /* Reset any filters applied */
+        opacity: 1; /* Ensure the logo is fully opaque */
+        visibility: visible; /* Ensure the logo is visible */
+        width: 150px; /* Ensure logo size is appropriate */
+        height: auto; /* Maintain aspect ratio */
+    }
+
+.transparent-navbar .navbar-nav .nav-link,
+.transparent-navbar .navbar-toggler {
+    color: #000; /* Set text color for good contrast */
+}
+
+.transparent-navbar .navbar-toggler-icon {
+    background-image: none; /* Remove default icon background if needed */
+}
+/* Set a base font size for the entire site */
+body {
+    font-size: 20px; /* Adjust size as needed */
+    color: #000000; /* Darker text color */
+    line-height: 1.6; /* Adjust line height for better readability */
+}
+
+/* Ensure all headers and paragraphs are affected */
+h1, h2, h3, h4, h5, h6 {
+    font-size: inherit; /* Use base size or adjust individually */
+    color: inherit; /* Use base color */
+}
+
+/* Adjust specific elements if needed */
+p {
+    font-size: 1.2rem; /* Slightly larger paragraphs */
+}
+
+.lead, .display-5 {
+    font-size: 1.5rem; /* Adjust specific classes for larger text */
+}
+
+/* Example for larger buttons */
+.btn {
+    font-size: 1rem; /* Adjust button text size */
+}
+
+/* If you have specific classes, adjust them accordingly */
+.smaller-heading {
+    font-size: 2.5rem; /* Example for larger headings */
+}
+
+.smaller-text {
+    font-size: 1.4rem; /* Example for larger text */
+}
+
+/* Adjust links to ensure they are affected */
+a {
+    color: #000000; /* Darker color for links */
+    font-size: 1rem; /* Adjust link text size */
+}
+
