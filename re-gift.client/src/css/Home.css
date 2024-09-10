@@ -90,7 +90,8 @@ body {
 }
 
 .transparent-navbar .navbar-toggler-icon {
-    background-image: none; /* Remove default icon background if needed */
+    /*background-image: none;*/ /* Remove default icon background if needed */
+    
 }
 /* Set a base font size for the entire site */
 body {
@@ -118,7 +119,10 @@ p {
 .btn {
     font-size: 1rem; /* Adjust button text size */
 }
-
+.custom-carousel {
+    max-width: 800px; /* Justera denna bredd efter behov */
+    margin: 0 auto; /* Centrerar karusellen */
+}
 /* If you have specific classes, adjust them accordingly */
 .smaller-heading {
     font-size: 2.5rem; /* Example for larger headings */

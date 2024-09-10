@@ -15,7 +15,7 @@
 }
 
 .about-lead {
-    font-size: 1.06rem; /* Gör endast textstorleken mindre */
+    font-size: 1.2rem; /* Gör endast textstorleken mindre */
     margin-bottom: 10px; /* Lite mellanrum mellan stycken */
     color: #333; /* Mjukare textfärg */
 }
