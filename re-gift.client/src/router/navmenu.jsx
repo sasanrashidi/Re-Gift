@@ -7,6 +7,7 @@ import regiftLogo from '../IMG/REGIFT.png';
 import { FaHeart, FaShoppingCart } from 'react-icons/fa'; // Importing icons from react-icons
 import { ItemModal } from '../Pages/ModulComponent'; // Adjust path according to your file structure
 import { AppContext } from '../context/AppContext'; // Adjust path according to your file structure
+
 export function NavMenu() {
     const { cart, setCart, favorites, setFavorites } = useContext(AppContext);
 
@@ -66,24 +67,66 @@ export function NavMenu() {
                     </Nav>
 
                     {/* Right-side icons for Favorites and Cart */}
-                    <Nav className="ml-auto d-flex align-items-center" style={{ position: 'absolute', right: '10px', top: '10px' }}>
-                        <Nav.Link onClick={handleFavoritesModalShow}>
+                    <Nav
+                        className="ml-auto d-flex align-items-center"
+                        style={{
+                            position: 'relative',
+                            display: 'flex',
+                            alignItems: 'center',
+                            marginLeft: 'auto',
+                        }}
+                    >
+                        <Nav.Link
+                            onClick={handleFavoritesModalShow}
+                            style={{
+                                position: 'relative',
+                                display: 'flex',
+                                alignItems: 'center',
+                                margin: '0 10px',
+                            }}
+                        >
                             <FaHeart size={24} />
                             {favorites.length > 0 && (
                                 <span
-                                    className="badge badge-pill badge-danger position-absolute"
-                                    style={{ top: '-5px', right: '-10px' }}
+                                    className="badge badge-pill badge-danger"
+                                    style={{
+                                        position: 'absolute',
+                                        top: '-5px',
+                                        right: '-10px',
+                                        backgroundColor: '#dc3545',
+                                        color: 'white',
+                                        padding: '2px 6px',
+                                        borderRadius: '50%',
+                                        fontSize: '12px',
+                                    }}
                                 >
                                     {favorites.length}
                                 </span>
                             )}
                         </Nav.Link>
-                        <Nav.Link onClick={handleCartModalShow} className="position-relative">
+                        <Nav.Link
+                            onClick={handleCartModalShow}
+                            style={{
+                                position: 'relative',
+                                display: 'flex',
+                                alignItems: 'center',
+                                margin: '0 10px',
+                            }}
+                        >
                             <FaShoppingCart size={24} />
                             {cart.length > 0 && (
                                 <span
-                                    className="badge badge-pill badge-danger position-absolute"
-                                    style={{ top: '-5px', right: '-10px' }}
+                                    className="badge badge-pill badge-danger"
+                                    style={{
+                                        position: 'absolute',
+                                        top: '-5px',
+                                        right: '-10px',
+                                        backgroundColor: '#dc3545',
+                                        color: 'white',
+                                        padding: '2px 6px',
+                                        borderRadius: '50%',
+                                        fontSize: '12px',
+                                    }}
                                 >
                                     {cart.length}
                                 </span>
