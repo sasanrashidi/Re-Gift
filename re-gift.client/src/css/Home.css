@@ -1,51 +1,66 @@
 #home {
-   /* background-image: url('../img/giftcard1.jpg');*/
-    background-size: cover; /* Ensures the image covers the entire background /
-    background-position: center; / Centers the image /
-    background-repeat: no-repeat; / Prevents the image from repeating /
-    min-height: 100vh; / Ensures the background covers the full viewport height /
-    display: flex; / Use flexbox to center the content /
-    justify-content: center; / Center horizontally /
-    align-items: center; / Center vertically /*/
-     
-       
+    background-size: cover; /* Ensures the image covers the entire background */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    min-height: 100vh; /* Ensures the background covers the full viewport height */
+    display: flex; /* Use flexbox to layout the content */
+    flex-direction: column; /* Stack child elements vertically */
+    align-items: center; /* Center align items horizontally */
+    justify-content: center; /* Center align items vertically */
+    text-align: center; /* Center text within its container */
 }
 
-    /*/ Remove margin, padding, and border from specific elements */
-    
-    #home .container,
-    #home .bg-body-tertiary,
-    #home .col-sm-8, 
-     #home img {
-
-
-    margin: 0 !important;
-    padding: 0 !important;
-    border: none !important;
+.text-container {
+    margin-bottom: 20px; /* Space between text and carousel */
 }
 
 .custom-carousel {
     max-width: 60%; /* Set a smaller width for the carousel */
     margin: 0 auto; /* Center the carousel horizontally */
 }
+
 .lead.smaller-text {
-    font-family: 'Arial', sans-serif; /* Ändra till det typsnitt du vill använda */
-    font-size: 1rem; /* Justera textstorleken om det behövs */
-    color: #333; /* Du kan också justera textfärgen */
+    font-family: 'Arial', sans-serif; /* Change to the font you want to use */
+    font-size: 1rem; /* Adjust the font size if needed */
+    color: #333; /* Adjust text color if needed */
 }
 
-
-/*.smaller-text {
-    font-size: 0.875rem;*/ /* Adjust the font size as needed (0.875rem is smaller than the default 1rem) */
-/*}*/
 .smaller-heading {
     font-size: 2rem; /* Adjust the font size as needed (2rem is smaller than the default for h1) */
 }
 
+/* Responsive styles for smaller screens */
+@media (max-width: 991px) {
+    .custom-carousel {
+        max-width: 80%; /* Increase carousel width on smaller screens */
+    }
 
+    .text-container {
+        margin-bottom: 15px; /* Reduce space between text and carousel */
+    }
+}
 
+/* Styles for icons */
+.icons-container {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}
 
+.favorite-icon, .cart-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin: 0 10px;
+    cursor: pointer;
+}
 
-
-
-
+.badge {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    background-color: #dc3545;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 50%;
+    font-size:
