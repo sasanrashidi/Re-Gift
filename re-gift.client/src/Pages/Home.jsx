@@ -26,7 +26,7 @@ export default function Home() {
                         alt="H&M"
                     />
                     <Carousel.Caption>
-                        <h3>HM</h3>
+                        
                     </Carousel.Caption>
                 </Carousel.Item>
 
@@ -37,7 +37,7 @@ export default function Home() {
                         alt="Nike"
                     />
                     <Carousel.Caption>
-                        <h3>Nike</h3>
+                        
                     </Carousel.Caption>
                 </Carousel.Item>
 
@@ -48,7 +48,7 @@ export default function Home() {
                         alt="Amazon"
                     />
                     <Carousel.Caption>
-                        <h3>Amazon</h3>
+                        
                     </Carousel.Caption>
                 </Carousel.Item>
             </Carousel>
