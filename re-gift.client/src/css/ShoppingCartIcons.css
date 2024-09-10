@@ -1,0 +1,7 @@
+.ShoppingCartIcons {
+    flex-direction:column ;
+    top: 44px;
+    right: -90px;
+    display: flex;
+    align-items: center;
+}

@@ -41,12 +41,12 @@ public class UserController : ControllerBase
 
 
 
-    [HttpGet("login")]
-    public async Task<IActionResult> Login(string email, string password)
+    [HttpPost("login")]
+    public async Task<IActionResult> Login(UserDto userLogin)
     {
         try
         {
-            var isSuccess = await _userService.UserLoginAsync(email, password);
+            var isSuccess = await _userService.UserLoginAsync(userLogin.Email, userLogin.Password);
 
             if (isSuccess)
             {
