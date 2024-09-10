@@ -10,7 +10,7 @@ import { AppContext } from '../context/AppContext';
 import '../css/Home.css';
 
 export function NavMenu() {
-    const { cart, setCart, favorites, setFavorites } = useContext(AppContext);
+    const { cart, setCart, favorites, setFavorites, user } = useContext(AppContext);
     const [showCartModal, setShowCartModal] = useState(false);
     const [showFavoritesModal, setShowFavoritesModal] = useState(false);
 
@@ -65,6 +65,12 @@ export function NavMenu() {
                             <Nav.Link>Om oss</Nav.Link>
                         </LinkContainer>
                     </Nav>
+
+                    {user ? (
+                        <span className="ml-auto">Logged in as: {user.email}</span>
+                    ) : (
+                        <span className="ml-auto">Not logged in</span>
+                    )}
 
                     {/* Icons Container */}
                     <div className="icons-container ml-auto d-flex align-items-center">

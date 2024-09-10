@@ -1,11 +1,13 @@
-﻿import React, { useState } from 'react';
+﻿import React, { useState, useContext } from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import '../css/LoggaIn.css';
+import { AppContext } from '../context/AppContext'; 
 
 function LoggaIn() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
+    const { setUser } = useContext(AppContext);
 
     const handleLogin = async (event) => {
         event.preventDefault();
@@ -27,8 +29,9 @@ function LoggaIn() {
                 if (response.ok) {
                     const data = await response.json();
                     console.log('Inloggning lyckades!', data);
-                    // Spara token i localStorage
-                    localStorage.setItem('token', data.token);
+
+                    // Uppdatera user i context
+                    setUser({ email });
                     setErrorMessage(''); // Återställer felmeddelande
                 } else {
                     setErrorMessage('Inloggning misslyckades. Kontrollera dina uppgifter.');
