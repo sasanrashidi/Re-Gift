@@ -12,7 +12,26 @@ export function BuyGiftCard() {
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedImage, setSelectedImage] = useState(null);
 
-    const { cart, setCart, favorites, setFavorites } = useContext(AppContext); // Access context
+    const { cart, setCart, favorites, setFavorites, giftCards } = useContext(AppContext); // Access context
+
+    const companyImageMap = {
+        'ikea': Amazon2,
+        'GameStop': Nike2,
+        'Filmstaden': HM2,
+        'McDonalds': Apple,
+        'Apple1': Apple1,
+        'Bio': Bio1
+    };
+
+    const giftCardImages = giftCards.map(giftCard => ({
+        id: giftCard.id, // Assuming you have an id property in giftCards
+        title: giftCard.company, // Dynamically use giftCard.company
+        originalPrice: '200 Kr.', // Example value, update as needed
+        imgSrc: companyImageMap[giftCard.company] || Amazon2,
+        details: giftCard.company, // Dynamically use giftCard.company
+        discountedPrice: '100 Kr.', // Example value, update as needed
+        expiryDate: '2024-12-31' // Example value, update as needed
+    }));
 
     const images = [
         { id: 1, title: 'Amazon', originalPrice: '200 Kr.', imgSrc: Amazon2, details: 'Amazon', discountedPrice: '100 Kr.', expiryDate: '2024-12-31' },
@@ -31,6 +50,7 @@ export function BuyGiftCard() {
     const addToCart = (image) => {
         setCart([...cart, image]);
         closeModal(); // Close modal after adding to cart
+        
     };
 
     // Add selected image to favorites
@@ -47,7 +67,7 @@ export function BuyGiftCard() {
 
     return (
         <div style={{ textAlign: 'center', paddingTop: '50px' }}>
-            <SimpleGiftCardComponent />
+            
             <p style={{ padding: '20px' }}>Här kan du köpa presentkort från privatpersoner. Logga in för att se mer av sortimentet.</p>
             
 
@@ -66,7 +86,7 @@ export function BuyGiftCard() {
             </div>
 
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', justifyContent: 'center' }}>
-                {filteredImages.map(image => (
+                {giftCardImages.map(image => (
                     <div key={image.id} style={{ cursor: 'pointer', textAlign: 'center' }} onClick={() => handleImageClick(image)}>
                         <img src={image.imgSrc} alt={image.title} style={{ width: '150px', height: '150px', borderRadius: '15px', transition: 'transform 0.3s ease', }}
                             onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.1)'} // Förstora vid hover
@@ -80,6 +100,8 @@ export function BuyGiftCard() {
                     </div>
                 ))}
             </div>
+
+           
 
             {selectedImage && (
                 <div style={{

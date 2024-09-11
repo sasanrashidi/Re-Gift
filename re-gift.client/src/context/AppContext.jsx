@@ -16,6 +16,17 @@ export const AppProvider = ({ children }) => {
         return savedFavorites ? JSON.parse(savedFavorites) : [];
     });
 
+    const [giftCards, setGiftCards] = useState([]);
+
+    useEffect(() => {
+        // Fetch data from the API
+        fetch("https://localhost:7049/api/Giftcard")
+            .then((response) => response.json()) // Parse the JSON from the response
+            .then((data) => setGiftCards(data)) // Store the data in state
+            .catch((error) => console.error("Error fetching data:", error)); // Log any errors
+
+    }, []); // Empty dependency array to run only once when the component mounts
+
     const [user, setUser] = useState(null);
 
     // Save cart to localStorage whenever it changes
@@ -29,7 +40,7 @@ export const AppProvider = ({ children }) => {
     }, [favorites]);
 
     return (
-        <AppContext.Provider value={{ cart, setCart, favorites, setFavorites,user, setUser }}>
+        <AppContext.Provider value={{ cart, setCart, favorites, setFavorites,user, setUser, giftCards }}>
             {children}
         </AppContext.Provider>
     );
