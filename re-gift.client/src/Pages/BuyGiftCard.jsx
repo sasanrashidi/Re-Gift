@@ -68,7 +68,10 @@ export function BuyGiftCard() {
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', justifyContent: 'center' }}>
                 {filteredImages.map(image => (
                     <div key={image.id} style={{ cursor: 'pointer', textAlign: 'center' }} onClick={() => handleImageClick(image)}>
-                        <img src={image.imgSrc} alt={image.title} style={{ width: '150px', height: '150px' }} />
+                        <img src={image.imgSrc} alt={image.title} style={{ width: '150px', height: '150px', borderRadius: '15px', transition: 'transform 0.3s ease', }}
+                            onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.1)'} // Förstora vid hover
+                            onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+                        />
                         <p>
                             <span>{image.title.split(' - ')[0]}</span><br />
                             <span style={{ textDecoration: 'line-through', color: 'red' }}>{image.originalPrice}</span><br />
@@ -87,7 +90,7 @@ export function BuyGiftCard() {
                         backgroundColor: 'white', padding: '20px', borderRadius: '10px',
                         maxWidth: '500px', textAlign: 'center'
                     }}>
-                        <img src={selectedImage.imgSrc} alt={selectedImage.title} style={{ width: '200px', height: '200px' }} />
+                        <img src={selectedImage.imgSrc} alt={selectedImage.title} style={{ width: '200px', height: '200px', borderRadius: '15px',}} />
                         <p>{selectedImage.details}</p>
                         <p>
                             <span style={{ textDecoration: 'line-through', color: 'red' }}>{selectedImage.originalPrice}</span><br />
