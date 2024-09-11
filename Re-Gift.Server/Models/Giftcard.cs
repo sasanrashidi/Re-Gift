@@ -4,7 +4,7 @@ public class GiftCard
 {
     public int Id { get; set; }
     public string Company { get; set; }
-    public DateTime ExpireDate { get; set; }
+    public DateTime ExpireDate { get; set; } = DateTime.Now.AddDays(7); // NEW !!!
     public decimal Balance { get; set; }
     public DateTime RegistrationDate { get; set; } = DateTime.Now;
     public Guid SerialNumber { get; set; } = Guid.NewGuid();
