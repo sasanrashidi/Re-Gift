@@ -60,7 +60,7 @@ namespace Re_Gift.Server.Controllers
 
             trade.User1Id = sellerId;
             trade.User2Id = buyerId;
-            trade.GF1Id = giftcardId;
+            trade.SoldGFId = giftcardId;
 
             var soldGiftcard = await _giftcardService.GetGiftCardAsync(giftcardId);
             soldGiftcard.Sold = true;

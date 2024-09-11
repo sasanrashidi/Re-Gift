@@ -13,6 +13,7 @@ public class TradeService : ITradeService
     {
         _context = Context;
     }
+
     public async Task<ICollection<Trade>> GetTradesAsync()
     {
         return await _context.Trades.ToListAsync();
@@ -20,7 +21,7 @@ public class TradeService : ITradeService
 
     public async Task<Trade> GetTradeAsync(int id)
     {
-        return await _context.Trades.Where(g => g.Id== id).FirstOrDefaultAsync();
+        return await _context.Trades.Where(g => g.Id == id).FirstOrDefaultAsync();
     }
 
     //public async Task<ICollection<Trade>> GetTradesFromUserId(int userId)
@@ -36,8 +37,7 @@ public class TradeService : ITradeService
         {
             User1Id = users[0].Id,
             User2Id = users[1].Id,
-            GF1Id = giftCards[0].Id,
-            GF2Id = giftCards[1].Id,
+            SoldGFId = giftCards[0].Id,
         };
 
         _context.Trades.Add(tradeDone);
@@ -45,13 +45,12 @@ public class TradeService : ITradeService
         return await SaveAsync();
     }
 
-    public async Task<bool>TradeDoneAsyncReal(Trade trade)
+    public async Task<bool> TradeDoneAsyncReal(Trade trade)
     {
         _context.Trades.Add(trade);
 
         return await SaveAsync();
     }
-
 
     public async Task<bool> UpdateTradeAsync(Trade trade)
     {
@@ -71,11 +70,10 @@ public class TradeService : ITradeService
     }
 }
 
-
 // FuskLapp
 
 /*
- 
+
  [HttpPost("CreateTrade")]
         public async Task<IActionResult> CreateTrade(int BuyerId, int sellerId, int giftCardId)
         {
@@ -90,13 +88,9 @@ public class TradeService : ITradeService
             var seller = await _userService.GetUserAsync(sellerId);
             if (seller == null) return NotFound("Seller not found");
 
-
-
-
             var isOwner = await _userService.SellerOwnerOfGiftCardAsync(sellerId, giftCardId);
             if (!isOwner) return BadRequest("Seller does not own this gift card");
 
-           
             var giftcard = await _giftCardService.GetGiftCardAsync(giftCardId);
             if (giftcard == null || giftcard.Sold == true) return NotFound("Giftcard not found, or sold");
 
@@ -115,6 +109,5 @@ public class TradeService : ITradeService
 
             return Ok(tradeToCreate);
         }
- 
- 
+
  */

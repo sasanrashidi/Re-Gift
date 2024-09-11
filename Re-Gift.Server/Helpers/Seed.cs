@@ -46,7 +46,7 @@ public class Seed
                 Balance = 500,
                 User = users.FirstOrDefault(), // Ensure this user exists
                 Verified = true,
-                Sold = false,
+                Sold = true,
             },
 
             new GiftCard
@@ -56,7 +56,7 @@ public class Seed
                 Balance = 1000,
                 User = users.Skip(1).FirstOrDefault(), // Ensure this user exists
                 Verified = true,
-                Sold = false,
+                Sold = true,
             },
 
              new GiftCard
@@ -113,16 +113,14 @@ public class Seed
                 TransactionDate = DateTime.Now,
                 User1Id = users[0].Id,
                 User2Id = users[1].Id,
-                GF1Id = giftcards[0].Id,
-                GF2Id = giftcards[1].Id,
+                SoldGFId = giftcards[0].Id,
             },
             new Trade
             {
-                TransactionDate = DateTime.Now,                    
+                TransactionDate = DateTime.Now,
                 User1Id = users[2].Id,
                 User2Id = users[3].Id,
-                GF1Id = giftcards[2].Id,
-                GF2Id = giftcards[4].Id,
+                SoldGFId = giftcards[1].Id,
             }
         };
 
