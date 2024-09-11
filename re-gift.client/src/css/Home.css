@@ -137,4 +137,16 @@ a {
     color: #000000; /* Darker color for links */
     font-size: 1rem; /* Adjust link text size */
 }
+/* Remove padding from navbar */
+.navbar {
+    
+    background: none !important;
+}
 
+/* Remove padding from navbar brand and items */
+/*.navbar-brand, .navbar-nav .nav-link, .navbar-collapse {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+*/
