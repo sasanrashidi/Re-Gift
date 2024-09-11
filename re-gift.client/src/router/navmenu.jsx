@@ -3,6 +3,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { LinkContainer } from 'react-router-bootstrap';
+import { useNavigate } from 'react-router-dom';  // För att navigera programmatisk
 import regiftLogo from '../IMG/REGIFT.png';
 import { FaHeart, FaShoppingCart } from 'react-icons/fa';
 import { ItemModal } from '../Pages/ModulComponent';
@@ -10,9 +11,10 @@ import { AppContext } from '../context/AppContext';
 import '../css/Home.css';
 
 export function NavMenu() {
-    const { cart, setCart, favorites, setFavorites } = useContext(AppContext);
+    const { cart, setCart, favorites, setFavorites, user, setUser } = useContext(AppContext);
     const [showCartModal, setShowCartModal] = useState(false);
     const [showFavoritesModal, setShowFavoritesModal] = useState(false);
+    const navigate = useNavigate();  // Används för att navigera efter inloggning/utloggning
 
     const handleCartModalShow = () => setShowCartModal(true);
     const handleCartModalClose = () => setShowCartModal(false);
@@ -28,6 +30,12 @@ export function NavMenu() {
         setFavorites(favorites.filter(favoriteItem => favoriteItem.id !== item.id));
     };
 
+    const logoutHandler = () => {
+        // Logga ut användaren
+        setUser(null);
+        navigate("/");  // Navigera till startsidan efter utloggning
+    };
+
     return (
         <>
             <Navbar expand="lg" className="transparent-navbar" style={{ position: 'relative' }}>
@@ -39,14 +47,10 @@ export function NavMenu() {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto">
-                        <NavDropdown title="Hem" id="home-nav-dropdown">
-                            <LinkContainer to="/">
-                                <NavDropdown.Item>Hem</NavDropdown.Item>
-                            </LinkContainer>
-                            <LinkContainer to="/login">
-                                <NavDropdown.Item>Logga In</NavDropdown.Item>
-                            </LinkContainer>
-                        </NavDropdown>
+
+                        <LinkContainer to="/">
+                            <Nav.Link>Hem</Nav.Link>
+                        </LinkContainer>
 
                         <NavDropdown title="Marknad" id="basic-nav-dropdown">
                             <LinkContainer to="/BuyGiftCard">
@@ -91,6 +95,19 @@ export function NavMenu() {
                             )}
                         </span>
                     </div>
+
+                    {user ? (
+                        <NavDropdown title={user.email} id="user-nav-dropdown">
+                            <NavDropdown.Item onClick={logoutHandler}>
+                                <span>Logga ut</span>
+                            </NavDropdown.Item>
+                        </NavDropdown>
+                    ) : (
+                        <LinkContainer to="/login">
+                            <span className="ml-auto">Logga in</span>
+                        </LinkContainer>
+                    )}
+
                 </Navbar.Collapse>
             </Navbar>
 

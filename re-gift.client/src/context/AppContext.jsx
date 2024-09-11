@@ -16,6 +16,8 @@ export const AppProvider = ({ children }) => {
         return savedFavorites ? JSON.parse(savedFavorites) : [];
     });
 
+    const [user, setUser] = useState(null);
+
     // Save cart to localStorage whenever it changes
     useEffect(() => {
         localStorage.setItem('cart', JSON.stringify(cart));
@@ -27,7 +29,7 @@ export const AppProvider = ({ children }) => {
     }, [favorites]);
 
     return (
-        <AppContext.Provider value={{ cart, setCart, favorites, setFavorites }}>
+        <AppContext.Provider value={{ cart, setCart, favorites, setFavorites,user, setUser }}>
             {children}
         </AppContext.Provider>
     );
