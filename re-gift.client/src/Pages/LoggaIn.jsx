@@ -1,13 +1,15 @@
 ﻿import React, { useState, useContext } from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom'; // Importera useNavigate
 import '../css/LoggaIn.css';
-import { AppContext } from '../context/AppContext'; 
+import { AppContext } from '../context/AppContext';
 
 function LoggaIn() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
     const { setUser } = useContext(AppContext);
+    const navigate = useNavigate(); // Använd useNavigate för omdirigering
 
     const handleLogin = async (event) => {
         event.preventDefault();
@@ -33,6 +35,9 @@ function LoggaIn() {
                     // Uppdatera user i context
                     setUser({ email });
                     setErrorMessage(''); // Återställer felmeddelande
+
+                    // Omdirigera till hemsidan efter inloggning
+                    navigate('/');  // Omdirigera till startsidan
                 } else {
                     setErrorMessage('Inloggning misslyckades. Kontrollera dina uppgifter.');
                 }
