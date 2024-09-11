@@ -12,8 +12,8 @@ using Re_Gift.Server.Data;
 namespace Re_Gift.Server.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240903111305_Mimi")]
-    partial class Mimi
+    [Migration("20240911142910_Init migration")]
+    partial class Initmigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -73,10 +73,7 @@ namespace Re_Gift.Server.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("GF1Id")
-                        .HasColumnType("int");
-
-                    b.Property<int>("GF2Id")
+                    b.Property<int>("SoldGFId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("TransactionDate")
@@ -102,6 +99,14 @@ namespace Re_Gift.Server.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

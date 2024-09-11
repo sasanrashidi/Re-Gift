@@ -19,8 +19,7 @@ namespace Re_Gift.Server.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     User1Id = table.Column<int>(type: "int", nullable: false),
                     User2Id = table.Column<int>(type: "int", nullable: false),
-                    GF1Id = table.Column<int>(type: "int", nullable: false),
-                    GF2Id = table.Column<int>(type: "int", nullable: false),
+                    SoldGFId = table.Column<int>(type: "int", nullable: false),
                     TransactionDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
@@ -34,6 +33,8 @@ namespace Re_Gift.Server.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },

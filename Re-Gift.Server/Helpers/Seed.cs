@@ -20,12 +20,12 @@ public class Seed
         {
             var users = new List<User>
         {
-            new User { Email = "user1@example.com", Password = "password123" },
-            new User { Email = "user2@example.com", Password = "password456" },
-            new User { Email = "user3@example.com", Password = "password78912" },
-            new User { Email = "user4@example.com", Password = "password7893223" },
-            new User { Email = "user5@example.com", Password = "password7895435" },
-            new User { Email = "user6@example.com", Password = "password789423543" }
+            new User { Email = "user1@example.com", Password = "password123", FirstName = "John", LastName = "Doe" },
+            new User { Email = "user2@example.com", Password = "password456", FirstName = "Jane", LastName = "Doe" },
+            new User { Email = "user3@example.com", Password = "password78912", FirstName = "Bob", LastName = "Smith" },
+            new User { Email = "user4@example.com", Password = "password7893223", FirstName = "Alice", LastName = "Smith" },
+            new User { Email = "user5@example.com", Password = "password7895435", FirstName = "Mike", LastName = "Johnson" },
+            new User { Email = "user6@example.com", Password = "password789423543", FirstName = "Sarah", LastName = "Johnson" },
         };
 
             await _context.Users.AddRangeAsync(users);

@@ -70,10 +70,7 @@ namespace Re_Gift.Server.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("GF1Id")
-                        .HasColumnType("int");
-
-                    b.Property<int>("GF2Id")
+                    b.Property<int>("SoldGFId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("TransactionDate")
@@ -99,6 +96,14 @@ namespace Re_Gift.Server.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

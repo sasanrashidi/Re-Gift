@@ -39,8 +39,6 @@ public class UserController : ControllerBase
         return Ok(mappedUser);
     }
 
-
-
     [HttpPost("login")]
     public async Task<IActionResult> Login(UserDto userLogin)
     {
