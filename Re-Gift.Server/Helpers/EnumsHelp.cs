@@ -15,9 +15,7 @@ public static class EnumsHelp
         Logitech = 8,
         Webhallen = 9,
         AkademiBokhandeln = 10,
-        BurgerKing = 11,
-        
-
+        BurgerKing = 11
     }
 
     public enum Filterred
@@ -30,16 +28,16 @@ public static class EnumsHelp
         ZXC = 5
     }
 
-    public static float GetPercentage(int choice)
+    public static decimal GetPercentage(int choice)
     {
         switch (choice)
         {
             case 0:
-                return 0.75f;
+                return 0.75M;
             case 1:
-                return 0.5f;
+                return 0.5M;
             case 2:
-                return 0.25f;
+                return 0.25M;
             default:
                 throw new ArgumentException("Invalid choice");
         }

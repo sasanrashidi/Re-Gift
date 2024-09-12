@@ -12,8 +12,8 @@ using Re_Gift.Server.Data;
 namespace Re_Gift.Server.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240911142910_Init migration")]
-    partial class Initmigration
+    [Migration("20240912142535_Init mig")]
+    partial class Initmig
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -40,27 +40,35 @@ namespace Re_Gift.Server.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<decimal>("DiscountPercentage")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("DiscountedBalance")
+                        .HasColumnType("decimal(18,2)")
+                        .HasColumnName("DiscountedBalance");
+
                     b.Property<DateTime>("ExpireDate")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("RegistrationDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("SerialNumber")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("SerialNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("Sold")
                         .HasColumnType("bit");
 
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
                     b.Property<bool>("Verified")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("userId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("userId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Giftcards");
                 });
@@ -123,7 +131,7 @@ namespace Re_Gift.Server.Migrations
                 {
                     b.HasOne("Re_Gift.Server.Models.User", "User")
                         .WithMany("GiftCards")
-                        .HasForeignKey("userId")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.SetNull);
 
                     b.Navigation("User");

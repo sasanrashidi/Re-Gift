@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Re_Gift.Server.Data;
+using Re_Gift.Server.Helpers;
 using Re_Gift.Server.Models;
 
 namespace Re_Gift.Server.SeedData;
@@ -41,9 +42,11 @@ public class Seed
         {
             new GiftCard
             {
-                Company = "Amazon",
+                Company = EnumsHelp.GetCompanyName(2),
                 ExpireDate = DateTime.Now.AddYears(1),
                 Balance = 500,
+                DiscountPercentage = EnumsHelp.GetPercentage(0),
+                SerialNumber = new Guid().ToString(),
                 User = users.FirstOrDefault(), // Ensure this user exists
                 Verified = true,
                 Sold = true,
@@ -51,9 +54,11 @@ public class Seed
 
             new GiftCard
             {
-                Company = "Ica",
+                Company = EnumsHelp.GetCompanyName(1),
                 ExpireDate = DateTime.Now.AddYears(1),
                 Balance = 1000,
+                DiscountPercentage = EnumsHelp.GetPercentage(2),
+                SerialNumber = new Guid().ToString(),
                 User = users.Skip(1).FirstOrDefault(), // Ensure this user exists
                 Verified = true,
                 Sold = true,
@@ -61,9 +66,11 @@ public class Seed
 
              new GiftCard
             {
-                Company = "Ikea",
+                Company = EnumsHelp.GetCompanyName(11),
                 ExpireDate = DateTime.Now.AddYears(1),
                 Balance = 10000,
+                DiscountPercentage = EnumsHelp.GetPercentage(1),
+                SerialNumber = new Guid().ToString(),
                 User = users.Skip(2).FirstOrDefault(), // Ensure this user exists
                 Verified = true,
                 Sold = false,
@@ -71,9 +78,11 @@ public class Seed
 
               new GiftCard
             {
-                Company = "GameStop",
+                Company = EnumsHelp.GetCompanyName(2),
                 ExpireDate = DateTime.Now.AddYears(1),
                 Balance = 600,
+                DiscountPercentage = EnumsHelp.GetPercentage(1),
+                SerialNumber = new Guid().ToString(),
                 User = users.Skip(3).FirstOrDefault(), // Ensure this user exists
                 Verified = true,
                 Sold = false,
@@ -81,18 +90,97 @@ public class Seed
 
                new GiftCard
             {
-                Company = "Filmstaden",
+                Company = EnumsHelp.GetCompanyName(8),
                 ExpireDate= DateTime.Now.AddYears(1),
                 Balance = 300,
-                User = users.Skip(4).FirstOrDefault() // Ensure this user exists
+                DiscountPercentage = EnumsHelp.GetPercentage(0),
+                SerialNumber = new Guid().ToString(),
+                User = users.Skip(4).FirstOrDefault(), // Ensure this user exists
+                Verified = true,
+                Sold = false,
             },
 
                 new GiftCard
             {
-                Company = "McDonalds",
+                Company = EnumsHelp.GetCompanyName(10),
                 ExpireDate = DateTime.Now.AddYears(1),
                 Balance = 500,
-                User = users.Skip(5).FirstOrDefault() // Ensure this user exists
+                DiscountPercentage = EnumsHelp.GetPercentage(2),
+                SerialNumber = new Guid().ToString(),
+                User = users.Skip(5).FirstOrDefault(), // Ensure this user exists
+                Verified = true,
+                Sold = false,
+            },
+                new GiftCard
+            {
+                Company = EnumsHelp.GetCompanyName(2),
+                ExpireDate = DateTime.Now.AddYears(1),
+                Balance = 500,
+                DiscountPercentage = EnumsHelp.GetPercentage(0),
+                SerialNumber = new Guid().ToString(),
+                User = users.FirstOrDefault(), // Ensure this user exists
+                Verified = true,
+                Sold = true,
+            },
+
+            new GiftCard
+            {
+                Company = EnumsHelp.GetCompanyName(1),
+                ExpireDate = DateTime.Now.AddYears(1),
+                Balance = 1000,
+                DiscountPercentage = EnumsHelp.GetPercentage(2),
+                SerialNumber = new Guid().ToString(),
+                User = users.Skip(1).FirstOrDefault(), // Ensure this user exists
+                Verified = true,
+                Sold = true,
+            },
+
+             new GiftCard
+            {
+                Company = EnumsHelp.GetCompanyName(11),
+                ExpireDate = DateTime.Now.AddYears(1),
+                Balance = 10000,
+                DiscountPercentage = EnumsHelp.GetPercentage(1),
+                SerialNumber = new Guid().ToString(),
+                User = users.Skip(2).FirstOrDefault(), // Ensure this user exists
+                Verified = true,
+                Sold = false,
+            },
+
+              new GiftCard
+            {
+                Company = EnumsHelp.GetCompanyName(2),
+                ExpireDate = DateTime.Now.AddYears(1),
+                Balance = 600,
+                DiscountPercentage = EnumsHelp.GetPercentage(1),
+                SerialNumber = new Guid().ToString(),
+                User = users.Skip(3).FirstOrDefault(), // Ensure this user exists
+                Verified = true,
+                Sold = false,
+            },
+
+               new GiftCard
+            {
+                Company = EnumsHelp.GetCompanyName(8),
+                ExpireDate= DateTime.Now.AddYears(1),
+                Balance = 300,
+                DiscountPercentage = EnumsHelp.GetPercentage(0),
+                SerialNumber = new Guid().ToString(),
+                User = users.Skip(4).FirstOrDefault(), // Ensure this user exists
+                Verified = true,
+                Sold = false,
+            },
+
+                new GiftCard
+            {
+                Company = EnumsHelp.GetCompanyName(10),
+                ExpireDate = DateTime.Now.AddYears(1),
+                Balance = 500,
+                DiscountPercentage = EnumsHelp.GetPercentage(2),
+                SerialNumber = new Guid().ToString(),
+                User = users.Skip(5).FirstOrDefault(), // Ensure this user exists
+                Verified = true,
+                Sold = false,
             },
         };
 

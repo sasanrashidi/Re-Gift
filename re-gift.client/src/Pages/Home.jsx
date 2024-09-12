@@ -9,7 +9,7 @@ export default function Home() {
         <div className="container py-4" id="home">
             <div className="custom-background p-5 rounded">
                 <div className="col-sm-8 py-5 mx-auto">
-                    <h1 className="display-5 fw-normal smaller-heading">Välkommen till Regift Card hemsida</h1>
+                    <h1 className="display-5 fw-normal smaller-heading">Välkommen till Regift</h1>
                     <p className="lead smaller-text">
                         Här kan du köpa och sälja presentkort på ett enkelt och säkert sätt.
                         Oavsett om du vill bli av med ett oanvänt presentkort eller letar efter ett bra erbjudande på ett presentkort du vill ha, är vi här för att hjälpa dig!

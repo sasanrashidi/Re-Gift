@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Re_Gift.Server.Migrations
 {
     /// <inheritdoc />
-    public partial class Initmigration : Migration
+    public partial class Initmig : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -52,27 +52,29 @@ namespace Re_Gift.Server.Migrations
                     Company = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ExpireDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Balance = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    DiscountedBalance = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     RegistrationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    SerialNumber = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    SerialNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DiscountPercentage = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Verified = table.Column<bool>(type: "bit", nullable: false),
                     Sold = table.Column<bool>(type: "bit", nullable: false),
-                    userId = table.Column<int>(type: "int", nullable: true)
+                    UserId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Giftcards", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Giftcards_Users_userId",
-                        column: x => x.userId,
+                        name: "FK_Giftcards_Users_UserId",
+                        column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.SetNull);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Giftcards_userId",
+                name: "IX_Giftcards_UserId",
                 table: "Giftcards",
-                column: "userId");
+                column: "UserId");
         }
 
         /// <inheritdoc />
