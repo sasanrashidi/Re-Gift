@@ -1,4 +1,5 @@
 ﻿import React, { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import SimpleGiftCardComponent from '../services/GiftCardService';
 import Amazon2 from '../img/Amazon2.jpg';
 import Nike2 from '../img/Nike2.jpg';
@@ -12,7 +13,8 @@ export function BuyGiftCard() {
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedImage, setSelectedImage] = useState(null);
 
-    const { cart, setCart, favorites, setFavorites } = useContext(AppContext); // Access context
+    const { cart, setCart, favorites, setFavorites, user } = useContext(AppContext); // Access context
+    const navigate = useNavigate();
 
     const images = [
         { id: 1, title: 'Amazon', originalPrice: '200 Kr.', imgSrc: Amazon2, details: 'Amazon', discountedPrice: '100 Kr.', expiryDate: '2024-12-31' },
@@ -45,9 +47,28 @@ export function BuyGiftCard() {
 
     const closeModal = () => setSelectedImage(null);
 
+    const handleSellClick = () => {
+        if (user) {
+            navigate('/SellGiftCard');  // Navigate to SellGiftCard if user is logged in
+        } else {
+            navigate('/login');  // Navigate to LoggaIn if user is not logged in
+        }
+    };
+
     return (
         <div style={{ textAlign: 'center', paddingTop: '50px' }}>
             <SimpleGiftCardComponent />
+
+            {/* Text och knapp för att navigera till SellGiftCard eller LoggaIn-sidan beroende på användarstatus */}
+            <div style={{ marginBottom: '20px', fontSize: '18px' }}>
+                Är du intresserad av att sälja dina presentkort?
+                <button
+                    onClick={handleSellClick}
+                    style={{ color: '#007bff', textDecoration: 'none', marginLeft: '5px', border: 'none', background: 'transparent', cursor: 'pointer' }}>
+                    Klicka här!
+                </button>
+            </div>
+
             <p style={{ padding: '20px' }}>Här kan du köpa presentkort från privatpersoner. Logga in för att se mer av sortimentet.</p>
             
 
