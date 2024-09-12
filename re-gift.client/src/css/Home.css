@@ -1,9 +1,9 @@
 /* Default styles for large screens */
-.icons-container {
+/*.icons-container {
     display: flex;
     align-items: center;
-    margin-left: auto; /* Align to the right on large screens */
-}
+    margin-left: auto;*/ /* Align to the right on large screens */
+/*}
 
 .favorite-icon, .cart-icon {
     position: relative;
@@ -22,31 +22,73 @@
     padding: 2px 6px;
     border-radius: 50%;
     font-size: 12px;
-}
+}*/
 
 /* For smaller screens */
-@media (max-width: 767px) {
+/*@media (max-width: 767px) {
     .navbar-collapse {
         display: flex;
         flex-direction: column;
-        align-items: flex-start; /* Align everything to the left */
-    }
+        align-items: flex-start;*/ /* Align everything to the left */
+    /*}*/
+/* Default styles for large screens */
 
-    /* Icons move under 'Om oss' */
+
+.icons-container {
+    position: fixed; /* Fixerar positionen så att den inte påverkas av scrollning */
+    top: 10px; /* Avstånd från toppen */
+    right: 10px; /* Avstånd från högerkanten */
+    display: flex; /* Flexbox för att ordna ikonerna horisontellt */
+    align-items: center; /* Vertikal centrering av ikoner */
+    gap: 10px; /* Mellanrum mellan ikonerna */
+    z-index: 1050; /* Högt z-index för att ligga ovanpå andra element */
+}
+/* For smaller screens */
+@media (max-width: 767px) {
     .icons-container {
-        display: flex;
-        flex-direction: row; /* Keep them in a row, but align them properly */
-        justify-content: flex-start; /* Align icons to the left */
-        width: 100%; /* Make sure it takes full width */
-        margin-left: 0; /* Reset the margin */
-        padding-left: 15px; /* Add padding to align with other menu items */
-        margin-top: 10px; /* Space between 'Om oss' and icons */
+        position: absolute; /* Placera ikonerna på en specifik plats på sidan */
+        top: 10px; /* Behåll avståndet från toppen */
+        right: 10px; /* Behåll avståndet från högerkanten */
+        flex-direction: row; /* Behåll ikonerna i en rad */
+        gap: 10px; /* Mellanrum mellan ikonerna */
     }
+}
+/* Ikonerna */
+.favorite-icon, .cart-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+/* Badge-styling */
+.badge {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    background-color: #dc3545;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 50%;
+    font-size: 12px;
+}
+
+
+    /* Icons move under 'Om oss'*/ 
+/*.icons-container {
+    position: fixed;  Fixerar positionen så att den inte påverkas av scrollning 
+    top: 10px;  Avstånd från toppen 
+    right: 10px;  Avstånd från högerkanten 
+    display: flex-start;  Flexbox för att ordna ikonerna horisontellt 
+    align-items: center;  Vertikal centrering av ikoner 
+    gap: 10px;  Mellanrum mellan ikonerna 
+    z-index: 1050;  Högt z-index för att ligga ovanpå andra element 
+}*/
 
     .favorite-icon, .cart-icon {
         margin: 0 10px; /* Horizontal spacing between icons */
     }
-}
+
 /* Set background color to light gray for the entire page */
 /* Set background image for the entire page */
 body {
