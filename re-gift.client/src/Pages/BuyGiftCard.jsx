@@ -1,4 +1,5 @@
 ﻿import React, { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Nikeimg from '../img/Nike2.jpg';
 import Adidasimg from '../img/Adidas.jpg';
 import Elgigantenimg from '../img/Elgiganten.jpg';
@@ -17,7 +18,9 @@ export function BuyGiftCard() {
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedImage, setSelectedImage] = useState(null);
 
-    const { cart, setCart, favorites, setFavorites, giftCards } = useContext(AppContext); // Access context
+    const { cart, setCart, favorites, setFavorites, giftCards, user } = useContext(AppContext); // Access context
+    const navigate = useNavigate();
+
 
     const companyImageMap = {
         'Nike': Nikeimg,
@@ -83,8 +86,29 @@ export function BuyGiftCard() {
 
     const closeModal = () => setSelectedImage(null);
 
+
+
+    const handleSellClick = () => {
+        if (user) {
+            navigate('/SellGiftCard');  // Navigate to SellGiftCard if user is logged in
+        } else {
+            navigate('/login');  // Navigate to LoggaIn if user is not logged in
+        }
+    };
+
+
     return (
         <div style={{ textAlign: 'center', paddingTop: '50px' }}>
+
+            <div style={{ marginBottom: '20px', fontSize: '18px' }}>
+                Är du intresserad av att sälja dina presentkort?
+                <button
+                    onClick={handleSellClick}
+                    style={{ color: '#007bff', textDecoration: 'none', marginLeft: '5px', border: 'none', background: 'transparent', cursor: 'pointer' }}>
+                    Klicka här!
+                </button>
+            </div>
+
             <p style={{ padding: '20px' }}>Här kan du köpa presentkort från privatpersoner. Logga in för att se mer av sortimentet.</p>
 
             <div className="d-flex justify-content-center mb-4">

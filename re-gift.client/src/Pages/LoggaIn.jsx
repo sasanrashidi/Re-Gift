@@ -25,7 +25,12 @@ function LoggaIn() {
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ email, password }),
+                    body: JSON.stringify({
+                        email,
+                        password,
+                        firstName: "dummyFirstName",
+                        lastName: "dummyLastName"
+                    }),
                 });
 
                 if (response.ok) {
