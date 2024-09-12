@@ -316,14 +316,9 @@ export function NavMenu() {
                             <Nav.Link>Hem</Nav.Link>
                         </LinkContainer>
 
-                        <NavDropdown title="Marknad" id="basic-nav-dropdown">
-                            <LinkContainer to="/BuyGiftCard">
-                                <NavDropdown.Item>Köp</NavDropdown.Item>
-                            </LinkContainer>
-                            <LinkContainer to="/SellGiftCard">
-                                <NavDropdown.Item>Sälj</NavDropdown.Item>
-                            </LinkContainer>
-                        </NavDropdown>
+                        <LinkContainer to="/BuyGiftCard">
+                            <Nav.Link>Marknad</Nav.Link>
+                        </LinkContainer>
 
                         <LinkContainer to="/Contact">
                             <Nav.Link>Kontakt</Nav.Link>
