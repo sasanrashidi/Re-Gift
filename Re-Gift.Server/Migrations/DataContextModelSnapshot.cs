@@ -40,10 +40,6 @@ namespace Re_Gift.Server.Migrations
                     b.Property<decimal>("DiscountPercentage")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<decimal>("DiscountedBalance")
-                        .HasColumnType("decimal(18,2)")
-                        .HasColumnName("DiscountedBalance");
-
                     b.Property<DateTime>("ExpireDate")
                         .HasColumnType("datetime2");
 

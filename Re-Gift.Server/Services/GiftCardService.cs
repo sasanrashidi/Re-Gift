@@ -72,7 +72,7 @@ public class GiftCardService : IGiftCardService
         return await SaveAsync();
     }
 
-    public async Task<bool> AddGiftCardAsync(GiftCard giftcard, int userId, int companyEnum)
+    public async Task<bool> AddGiftCardAsync(GiftCard giftcard, int userId, int companyEnum, int discountEnum)
     {
         var userTied = await _context.Users.Include(u => u.GiftCards).FirstOrDefaultAsync(u => u.Id == userId);
 
@@ -84,6 +84,7 @@ public class GiftCardService : IGiftCardService
         giftcard.UserId = userId;
         giftcard.User = userTied;
         giftcard.Company = EnumsHelp.GetCompanyName(companyEnum);
+        giftcard.DiscountPercentage = EnumsHelp.GetPercentage(discountEnum);
 
         userTied.GiftCards.Add(giftcard);
 

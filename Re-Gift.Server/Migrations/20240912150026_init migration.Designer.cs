@@ -12,8 +12,8 @@ using Re_Gift.Server.Data;
 namespace Re_Gift.Server.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240912142535_Init mig")]
-    partial class Initmig
+    [Migration("20240912150026_init migration")]
+    partial class initmigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -42,10 +42,6 @@ namespace Re_Gift.Server.Migrations
 
                     b.Property<decimal>("DiscountPercentage")
                         .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("DiscountedBalance")
-                        .HasColumnType("decimal(18,2)")
-                        .HasColumnName("DiscountedBalance");
 
                     b.Property<DateTime>("ExpireDate")
                         .HasColumnType("datetime2");
