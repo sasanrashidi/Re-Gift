@@ -19,7 +19,7 @@ public class DataContext : DbContext
         modelBuilder.Entity<GiftCard>()
             .HasOne(g => g.User)
             .WithMany(u => u.GiftCards)
-            .HasForeignKey(g => g.userId)
+            .HasForeignKey(g => g.UserId)
             .OnDelete(DeleteBehavior.SetNull);
     }
 }

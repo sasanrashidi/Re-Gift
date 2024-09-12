@@ -49,7 +49,7 @@ public class GiftCardService : IGiftCardService
         try
         {
             var giftCards = await _context.Giftcards
-                                          .Where(gc => gc.userId == userId)
+                                          .Where(gc => gc.UserId == userId)
                                           .ToListAsync();
 
             if (!giftCards.Any())
@@ -81,7 +81,7 @@ public class GiftCardService : IGiftCardService
             throw new ArgumentNullException(nameof(userId), $"No user with Id {userId} found");
         }
 
-        giftcard.userId = userId;
+        giftcard.UserId = userId;
         giftcard.User = userTied;
         giftcard.Company = EnumsHelp.GetCompanyName(companyEnum);
 

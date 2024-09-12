@@ -30,6 +30,21 @@ public static class EnumsHelp
         ZXC = 5
     }
 
+    public static float GetPercentage(int choice)
+    {
+        switch (choice)
+        {
+            case 0:
+                return 0.75f;
+            case 1:
+                return 0.5f;
+            case 2:
+                return 0.25f;
+            default:
+                throw new ArgumentException("Invalid choice");
+        }
+    }
+
     public static string GetCompanyName(int choice)
     {
         
