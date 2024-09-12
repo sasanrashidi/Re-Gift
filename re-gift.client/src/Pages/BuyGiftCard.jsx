@@ -6,7 +6,6 @@ import Elgigantenimg from '../img/Elgiganten.jpg';
 import BattleNetimg from '../img/BattleNet.jpg';
 import PSNimg from '../img/PSN.jpg';
 import Steamimg from '../img/Steam.jpg';
-
 import Ikeaimg from '../img/Ikea.jpg';
 import Icaimg from '../img/Ica.jpg';
 import Logitechimg from '../img/Logitech.jpg';
@@ -34,9 +33,9 @@ export function BuyGiftCard() {
         'Webhallen': Webhallenimg,
         'AkademiBokhandeln': Akademibokimg,
         'BurgerKing': BurgerKingimg
-
     };
 
+    // Map the gift cards to create a list of card images with properties.
     const giftCardImages = (giftCards || []).map(giftCard => ({
         id: giftCard.id,
         title: giftCard.company,
@@ -47,44 +46,31 @@ export function BuyGiftCard() {
         expiryDate: giftCard.expireDate
     }));
 
-
-    //const images = [
-    //    { id: 1, title: 'Amazon', originalPrice: '200 Kr.', imgSrc: Amazon2, details: 'Amazon', discountedPrice: '100 Kr.', expiryDate: '2024-12-31' },
-    //    { id: 2, title: 'Nike', originalPrice: '150 Kr.', imgSrc: Nike2, details: 'Nike', discountedPrice: '50 Kr.', expiryDate: '2024-06-30' },
-    //    { id: 3, title: 'H&M', originalPrice: '60 Kr.', imgSrc: HM2, details: 'H&M', discountedPrice: '30 Kr.', expiryDate: '2025-01-15' },
-    //    { id: 4, title: 'Apple', originalPrice: '250 Kr.', imgSrc: Apple, details: 'Apple', discountedPrice: '100 Kr.', expiryDate: '2024-09-10' },
-    //    { id: 5, title: 'Apple', originalPrice: '75 Kr.', imgSrc: Apple1, details: 'Apple', discountedPrice: '50 Kr.', expiryDate: '2024-11-22' },
-    //    { id: 6, title: 'Bio', originalPrice: '85 Kr.', imgSrc: Bio1, details: 'Bio', discountedPrice: '60 Kr.', expiryDate: '2025-02-01' },
-    //];
-
+    // Handle search input change.
     const handleSearchChange = (e) => setSearchQuery(e.target.value);
+
+    // Filter the giftCardImages based on the search query.
+    const filteredGiftCardImages = giftCardImages.filter(image =>
+        image.title.toLowerCase().includes(searchQuery.toLowerCase())
+    );
 
     const handleImageClick = (image) => setSelectedImage(image);
 
-    // Add selected image to cart
     const addToCart = (image) => {
         setCart([...cart, image]);
         closeModal(); // Close modal after adding to cart
-        
     };
 
-    // Add selected image to favorites
     const addToFavorites = (image) => {
         setFavorites([...favorites, image]);
         closeModal(); // Close modal after adding to favorites
     };
 
-    //const filteredImages = images.filter(image =>
-    //    image.title.toLowerCase().includes(searchQuery.toLowerCase())
-    //);
-
     const closeModal = () => setSelectedImage(null);
 
     return (
         <div style={{ textAlign: 'center', paddingTop: '50px' }}>
-            
             <p style={{ padding: '20px' }}>Här kan du köpa presentkort från privatpersoner. Logga in för att se mer av sortimentet.</p>
-            
 
             <div className="d-flex justify-content-center mb-4">
                 <div className="input-group" style={{ width: '300px' }}>
@@ -99,13 +85,13 @@ export function BuyGiftCard() {
                     />
                 </div>
             </div>
-             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', justifyContent: 'center' }}>
-                {giftCardImages.map(image => (
+
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', justifyContent: 'center' }}>
+                {filteredGiftCardImages.map(image => (
                     <div key={image.id} style={{ cursor: 'pointer', textAlign: 'center' }} onClick={() => handleImageClick(image)}>
                         <img src={image.imgSrc} alt={image.title} style={{ width: '150px', height: '150px', borderRadius: '15px', transition: 'transform 0.3s ease', }}
-                            onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.1)'} // Förstora vid hover
-                            onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
-                        />
+                            onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.1)'} // Zoom in on hover
+                            onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'} />
                         <p>
                             <span>{image.title.split(' - ')[0]}</span><br />
                             <span style={{ textDecoration: 'line-through', color: 'red' }}>{image.originalPrice} Kr</span><br />
@@ -114,8 +100,6 @@ export function BuyGiftCard() {
                     </div>
                 ))}
             </div>
-
-           
 
             {selectedImage && (
                 <div style={{
@@ -126,7 +110,7 @@ export function BuyGiftCard() {
                         backgroundColor: 'white', padding: '20px', borderRadius: '10px',
                         maxWidth: '500px', textAlign: 'center'
                     }}>
-                        <img src={selectedImage.imgSrc} alt={selectedImage.title} style={{ width: '200px', height: '200px', borderRadius: '15px',}} />
+                        <img src={selectedImage.imgSrc} alt={selectedImage.title} style={{ width: '200px', height: '200px', borderRadius: '15px', }} />
                         <p>{selectedImage.details}</p>
                         <p>
                             <span style={{ textDecoration: 'line-through', color: 'red' }}>{selectedImage.originalPrice}</span><br />
