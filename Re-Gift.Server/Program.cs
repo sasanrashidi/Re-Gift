@@ -8,7 +8,6 @@ using System.Text.Json.Serialization;
 using SolrNet.Utils;
 
 
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -91,5 +90,3 @@ async Task AddHelperMethod(IServiceProvider services, string[] args)
         return; // Exit the application after cleaning
     }
 }
-
-
