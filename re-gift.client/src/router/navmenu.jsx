@@ -325,7 +325,7 @@ export function NavMenu() {
                         </LinkContainer>
 
                         <LinkContainer to="/About">
-                            <Nav.Link>Om oss</Nav.Link>
+                            <Nav.Link>Hur det går till</Nav.Link>
                         </LinkContainer>
                     </Nav>
 
@@ -336,9 +336,10 @@ export function NavMenu() {
                             </NavDropdown.Item>
                         </NavDropdown>
                     ) : (
-                        <LinkContainer to="/login">
-                            <span className="ml-auto">Logga in</span>
-                        </LinkContainer>
+                            <LinkContainer to="/login">
+                                <span className="ml-auto login-link">Logga in</span>
+                            </LinkContainer>
+
                     )}
 
                 </Navbar.Collapse>

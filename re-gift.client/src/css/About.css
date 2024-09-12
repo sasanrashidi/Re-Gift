@@ -1,27 +1,46 @@
-/* About.css */
+/* Styling för About-komponenten */
 .About {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start; /* Innehållet startar från toppen */
-    height: 100vh;
-    padding: 50px 20px 0; /* Ökar avståndet från navigationsmenyn */
-    font-family: 'Arial', sans-serif; /* Använd Times New Roman som typsnitt */
+    background-color: #ffffff; /* Vit bakgrund för kontrast */
+    padding: 40px; /* Ge innehållet mer utrymme */
+    margin: 40px auto; /* Centrerar komponenten och ger utrymme runt */
+    max-width: 800px; /* Begränsar bredden för bättre läsbarhet */
+    border-radius: 8px; /* Rundade hörn för ett mjukare intryck */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Lätt skugga för att skapa djup */
 }
 
-.about-center {
-    max-width: 600px; /* Gör textblocket smalare för bättre centrering */
-    text-align: center; /* Centrera texten horisontellt */
-    line-height: 1.4; /* Mindre radavstånd för mindre text */
-}
-
+/* Styling för texten */
 .about-lead {
-    font-size: 1.2rem; /* Gör endast textstorleken mindre */
-    margin-bottom: 10px; /* Lite mellanrum mellan stycken */
-    color: #333; /* Mjukare textfärg */
+    font-size: 18px; /* Anpassad textstorlek */
+    color: #333; /* Mörkare textfärg för bättre kontrast */
+    line-height: 1.6; /* Ökar radavstånd för bättre läsbarhet */
+    margin-bottom: 20px; /* Utrymme mellan styckena */
 }
 
-img {
-    display: block;
-    margin: 20px auto 0; /* Centrerar bilden */
-    margin-top: 10px; /* Lite avstånd mellan text och bild */
+/* Centrera och styla logotypen */
+.img-fluid {
+    display: block; /* Gör logotypen block-level för bättre centrering */
+    margin: 30px auto 0; /* Centrerar logotypen och lägger till utrymme ovan */
+    width: 150px;
+    height: auto;
+}
+
+/* Stylar sektionen så att allt innehåll centreras */
+.about-center {
+    text-align: center;
+}
+
+/* Anpassa layouten för mindre skärmar */
+@media (max-width: 768px) {
+    .About {
+        padding: 20px; /* Mindre padding för små skärmar */
+        margin: 20px;
+    }
+
+    .about-lead {
+        font-size: 16px; /* Minskar textstorlek för bättre läsbarhet på små skärmar */
+    }
+
+    .img-fluid {
+        width: 120px; /* Minskar logotypens storlek på mindre skärmar */
+    }
 }
