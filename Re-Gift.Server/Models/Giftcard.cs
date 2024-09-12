@@ -8,17 +8,8 @@ public class GiftCard
     public string Company { get; set; }
     public DateTime ExpireDate { get; set; }
     public decimal Balance { get; set; }
-    public decimal DiscountedBalance
-    {
-        get
-        {
-            return Balance * DiscountPercentage;
-        }
-        set
-        {
-            Balance = value / (1 - DiscountPercentage);
-        }
-    }
+    public decimal DiscountedBalance => Balance * DiscountPercentage;
+    
 
     public DateTime RegistrationDate { get; set; } = DateTime.Now;
     public string SerialNumber { get; set; }

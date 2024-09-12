@@ -67,24 +67,24 @@ public class GiftcardController : ControllerBase
         return Ok(mappEntity);
     }
 
-    [HttpPost]
-    public async Task<IActionResult> Post([FromBody] GiftCardDto giftcard)
-    {
-        var mappEntity = _mapper.Map<GiftCard>(giftcard);
+    //[HttpPost]
+    //public async Task<IActionResult> Post([FromBody] GiftCardDto giftcard)
+    //{
+    //    var mappEntity = _mapper.Map<GiftCard>(giftcard);
 
-        var createdGiftcard = await _giftcardService.AddGiftCardAsync(mappEntity);
+    //    var createdGiftcard = await _giftcardService.AddGiftCardAsync(mappEntity);
 
-        return Ok(giftcard);
-    }
+    //    return Ok(giftcard);
+    //}
 
-    [HttpPost("{userId}/{companyEnum}")]
-    public async Task<IActionResult> AddGiftCardAsync([FromBody] GiftCardDto giftcard, int userId, int companyEnum)
+    [HttpPost("{userId}/{companyEnum}/{discountedEnum}")]
+    public async Task<IActionResult> AddGiftCardAsync([FromBody] GiftCardDto giftcard, int userId, int companyEnum, int discountedEnum)
     {
         try
         {
             var addedGiftCard = _mapper.Map<GiftCard>(giftcard);
 
-            var result = await _giftcardService.AddGiftCardAsync(addedGiftCard, userId, companyEnum);
+            var result = await _giftcardService.AddGiftCardAsync(addedGiftCard, userId, companyEnum, discountedEnum);
             if (result)
             {
                 return Ok();
