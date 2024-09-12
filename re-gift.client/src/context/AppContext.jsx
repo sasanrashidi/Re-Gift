@@ -20,7 +20,7 @@ export const AppProvider = ({ children }) => {
 
     useEffect(() => {
         // Fetch data from the API
-        fetch("https://localhost:7049/api/Giftcard")
+        fetch("https://re-gift-aeesgygqhsbaf8eh.eastus-01.azurewebsites.net/api/Giftcard")
             .then((response) => response.json()) // Parse the JSON from the response
             .then((data) => setGiftCards(data)) // Store the data in state
             .catch((error) => console.error("Error fetching data:", error)); // Log any errors
