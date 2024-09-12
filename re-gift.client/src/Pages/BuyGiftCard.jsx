@@ -1,5 +1,4 @@
 ﻿import React, { useState, useContext } from 'react';
-import SimpleGiftCardComponent from '../services/GiftCardService';
 import Nikeimg from '../img/Nike2.jpg';
 import Adidasimg from '../img/Adidas.jpg';
 import Elgigantenimg from '../img/Elgiganten.jpg';
@@ -56,13 +55,29 @@ export function BuyGiftCard() {
 
     const handleImageClick = (image) => setSelectedImage(image);
 
+    // Updated addToCart method to prevent duplicates
     const addToCart = (image) => {
-        setCart([...cart, image]);
+        setCart(prevCart => {
+            if (!prevCart.some(item => item.id === image.id)) {
+                return [...prevCart, image]; // Add image to cart if it's not already there
+            } else {
+                alert('This gift card is already in your cart.');
+                return prevCart;
+            }
+        });
         closeModal(); // Close modal after adding to cart
     };
 
+    // Updated addToFavorites method to prevent duplicates
     const addToFavorites = (image) => {
-        setFavorites([...favorites, image]);
+        setFavorites(prevFavorites => {
+            if (!prevFavorites.some(item => item.id === image.id)) {
+                return [...prevFavorites, image]; // Add image to favorites if it's not already there
+            } else {
+                alert('This gift card is already in your favorites.');
+                return prevFavorites;
+            }
+        });
         closeModal(); // Close modal after adding to favorites
     };
 
