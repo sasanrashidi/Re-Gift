@@ -32,6 +32,7 @@ export const AppProvider = ({ children }) => {
     // Save cart to localStorage whenever it changes
     useEffect(() => {
         localStorage.setItem('cart', JSON.stringify(cart));
+        console.log(giftCards);
     }, [cart]);
 
     // Save favorites to localStorage whenever it changes

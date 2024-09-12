@@ -1,11 +1,18 @@
 ﻿import React, { useState, useContext } from 'react';
 import SimpleGiftCardComponent from '../services/GiftCardService';
-import Amazon2 from '../img/Amazon2.jpg';
-import Nike2 from '../img/Nike2.jpg';
-import HM2 from '../img/HM2.jpg';
-import Apple from '../img/Apple.jpg';
-import Apple1 from '../img/Apple1.jpg';
-import Bio1 from '../img/Bio1.jpg';
+import Nikeimg from '../img/Nike2.jpg';
+import Adidasimg from '../img/Adidas.jpg';
+import Elgigantenimg from '../img/Elgiganten.jpg';
+import BattleNetimg from '../img/BattleNet.jpg';
+import PSNimg from '../img/PSN.jpg';
+import Steamimg from '../img/Steam.jpg';
+
+import Ikeaimg from '../img/Ikea.jpg';
+import Icaimg from '../img/Ica.jpg';
+import Logitechimg from '../img/Logitech.jpg';
+import Webhallenimg from '../img/Webhallen.jpg';
+import Akademibokimg from '../img/Akademibok.png';
+import BurgerKingimg from '../img/BurgerKing.jpg';
 import { AppContext } from '../context/AppContext'; // Import the context
 
 export function BuyGiftCard() {
@@ -15,32 +22,40 @@ export function BuyGiftCard() {
     const { cart, setCart, favorites, setFavorites, giftCards } = useContext(AppContext); // Access context
 
     const companyImageMap = {
-        'ikea': Amazon2,
-        'GameStop': Nike2,
-        'Filmstaden': HM2,
-        'McDonalds': Apple,
-        'Apple1': Apple1,
-        'Bio': Bio1
+        'Nike': Nikeimg,
+        'Adidas': Adidasimg,
+        'Elgiganten': Elgigantenimg,
+        'BattleNet': BattleNetimg,
+        'PSN': PSNimg,
+        'Steam': Steamimg,
+        'Ikea': Ikeaimg,
+        'Ica': Icaimg,
+        'Logitech': Logitechimg,
+        'Webhallen': Webhallenimg,
+        'AkademiBokhandeln': Akademibokimg,
+        'BurgerKing': BurgerKingimg
+
     };
 
-    const giftCardImages = giftCards.map(giftCard => ({
-        id: giftCard.id, // Assuming you have an id property in giftCards
-        title: giftCard.company, // Dynamically use giftCard.company
-        originalPrice: '200 Kr.', // Example value, update as needed
-        imgSrc: companyImageMap[giftCard.company] || Amazon2,
-        details: giftCard.company, // Dynamically use giftCard.company
-        discountedPrice: '100 Kr.', // Example value, update as needed
-        expiryDate: '2024-12-31' // Example value, update as needed
+    const giftCardImages = (giftCards || []).map(giftCard => ({
+        id: giftCard.id,
+        title: giftCard.company,
+        originalPrice: giftCard.balance,
+        imgSrc: companyImageMap[giftCard.company] || 'default-image.jpg',
+        details: giftCard.company,
+        discountedPrice: giftCard.discountedBalance,
+        expiryDate: giftCard.expireDate
     }));
 
-    const images = [
-        { id: 1, title: 'Amazon', originalPrice: '200 Kr.', imgSrc: Amazon2, details: 'Amazon', discountedPrice: '100 Kr.', expiryDate: '2024-12-31' },
-        { id: 2, title: 'Nike', originalPrice: '150 Kr.', imgSrc: Nike2, details: 'Nike', discountedPrice: '50 Kr.', expiryDate: '2024-06-30' },
-        { id: 3, title: 'H&M', originalPrice: '60 Kr.', imgSrc: HM2, details: 'H&M', discountedPrice: '30 Kr.', expiryDate: '2025-01-15' },
-        { id: 4, title: 'Apple', originalPrice: '250 Kr.', imgSrc: Apple, details: 'Apple', discountedPrice: '100 Kr.', expiryDate: '2024-09-10' },
-        { id: 5, title: 'Apple', originalPrice: '75 Kr.', imgSrc: Apple1, details: 'Apple', discountedPrice: '50 Kr.', expiryDate: '2024-11-22' },
-        { id: 6, title: 'Bio', originalPrice: '85 Kr.', imgSrc: Bio1, details: 'Bio', discountedPrice: '60 Kr.', expiryDate: '2025-02-01' },
-    ];
+
+    //const images = [
+    //    { id: 1, title: 'Amazon', originalPrice: '200 Kr.', imgSrc: Amazon2, details: 'Amazon', discountedPrice: '100 Kr.', expiryDate: '2024-12-31' },
+    //    { id: 2, title: 'Nike', originalPrice: '150 Kr.', imgSrc: Nike2, details: 'Nike', discountedPrice: '50 Kr.', expiryDate: '2024-06-30' },
+    //    { id: 3, title: 'H&M', originalPrice: '60 Kr.', imgSrc: HM2, details: 'H&M', discountedPrice: '30 Kr.', expiryDate: '2025-01-15' },
+    //    { id: 4, title: 'Apple', originalPrice: '250 Kr.', imgSrc: Apple, details: 'Apple', discountedPrice: '100 Kr.', expiryDate: '2024-09-10' },
+    //    { id: 5, title: 'Apple', originalPrice: '75 Kr.', imgSrc: Apple1, details: 'Apple', discountedPrice: '50 Kr.', expiryDate: '2024-11-22' },
+    //    { id: 6, title: 'Bio', originalPrice: '85 Kr.', imgSrc: Bio1, details: 'Bio', discountedPrice: '60 Kr.', expiryDate: '2025-02-01' },
+    //];
 
     const handleSearchChange = (e) => setSearchQuery(e.target.value);
 
@@ -59,9 +74,9 @@ export function BuyGiftCard() {
         closeModal(); // Close modal after adding to favorites
     };
 
-    const filteredImages = images.filter(image =>
-        image.title.toLowerCase().includes(searchQuery.toLowerCase())
-    );
+    //const filteredImages = images.filter(image =>
+    //    image.title.toLowerCase().includes(searchQuery.toLowerCase())
+    //);
 
     const closeModal = () => setSelectedImage(null);
 
@@ -84,8 +99,7 @@ export function BuyGiftCard() {
                     />
                 </div>
             </div>
-
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', justifyContent: 'center' }}>
+             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', justifyContent: 'center' }}>
                 {giftCardImages.map(image => (
                     <div key={image.id} style={{ cursor: 'pointer', textAlign: 'center' }} onClick={() => handleImageClick(image)}>
                         <img src={image.imgSrc} alt={image.title} style={{ width: '150px', height: '150px', borderRadius: '15px', transition: 'transform 0.3s ease', }}
@@ -94,8 +108,8 @@ export function BuyGiftCard() {
                         />
                         <p>
                             <span>{image.title.split(' - ')[0]}</span><br />
-                            <span style={{ textDecoration: 'line-through', color: 'red' }}>{image.originalPrice}</span><br />
-                            <span style={{ color: 'green' }}>{image.discountedPrice}</span>
+                            <span style={{ textDecoration: 'line-through', color: 'red' }}>{image.originalPrice} Kr</span><br />
+                            <span style={{ color: 'green' }}>{image.discountedPrice} Kr</span>
                         </p>
                     </div>
                 ))}
