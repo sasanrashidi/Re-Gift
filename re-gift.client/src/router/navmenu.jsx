@@ -321,7 +321,7 @@ export function NavMenu() {
                             <Nav.Link>Hem</Nav.Link>
                         </LinkContainer>
 
-                        <LinkContainer to="/BuyGiftCard">
+                        <LinkContainer to="/BuyGiftCard" onClick={closeNavMenu}>
                             <Nav.Link>Marknad</Nav.Link>
                         </LinkContainer>
 
