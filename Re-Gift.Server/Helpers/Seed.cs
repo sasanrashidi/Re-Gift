@@ -199,16 +199,18 @@ public class Seed
             new Trade
             {
                 TransactionDate = DateTime.Now,
-                User1Id = users[0].Id,
-                User2Id = users[1].Id,
-                SoldGFId = giftcards[0].Id,
+                SellerId = users[0].Id,
+                BuyerId = users[1].Id,
+                SoldCardId = giftcards[0].Id,
+                PurchaseId = new Guid()
             },
             new Trade
             {
                 TransactionDate = DateTime.Now,
-                User1Id = users[2].Id,
-                User2Id = users[3].Id,
-                SoldGFId = giftcards[1].Id,
+                SellerId = users[2].Id,
+                BuyerId = users[3].Id,
+                SoldCardId = giftcards[1].Id,
+                PurchaseId = new Guid()
             }
         };
 

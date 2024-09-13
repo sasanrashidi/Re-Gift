@@ -35,9 +35,9 @@ public class TradeService : ITradeService
     {
         Trade tradeDone = new Trade
         {
-            User1Id = users[0].Id,
-            User2Id = users[1].Id,
-            SoldGFId = giftCards[0].Id,
+            SellerId = users[0].Id,
+            BuyerId = users[1].Id,
+            SoldCardId = giftCards[0].Id,
         };
 
         _context.Trades.Add(tradeDone);
@@ -45,9 +45,9 @@ public class TradeService : ITradeService
         return await SaveAsync();
     }
 
-    public async Task<bool> TradeDoneAsyncReal(Trade trade)
+    public async Task<bool> TradeDoneAsyncReal(List<Trade> trade)
     {
-        _context.Trades.Add(trade);
+        _context.Trades.AddRange(trade);
 
         return await SaveAsync();
     }
