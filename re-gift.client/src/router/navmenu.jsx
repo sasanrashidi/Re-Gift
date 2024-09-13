@@ -315,44 +315,38 @@ export function NavMenu() {
                 </Navbar.Brand>
 
                 <Navbar.Toggle aria-controls="basic-navbar-nav" onClick={() => setIsNavOpen(!isNavOpen)} />
+
+                {/* Keep the icons outside of Navbar.Collapse */}
+                <div className="icons-container ml-auto d-flex align-items-center">
+                    <span className="favorite-icon" onClick={handleFavoritesModalShow}>
+                        <FaHeart size={24} />
+                        {favorites.length > 0 && (
+                            <span className="badge badge-pill badge-danger">{favorites.length}</span>
+                        )}
+                    </span>
+                    <span className="cart-icon" onClick={handleCartModalShow}>
+                        <FaShoppingCart size={24} />
+                        {cart.length > 0 && (
+                            <span className="badge badge-pill badge-danger">{cart.length}</span>
+                        )}
+                    </span>
+                </div>
+
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto">
                         <LinkContainer to="/" onClick={closeNavMenu}>
                             <Nav.Link>Hem</Nav.Link>
                         </LinkContainer>
-
                         <LinkContainer to="/BuyGiftCard" onClick={closeNavMenu}>
                             <Nav.Link>Marknad</Nav.Link>
                         </LinkContainer>
-
                         <LinkContainer to="/Contact" onClick={closeNavMenu}>
                             <Nav.Link>Kontakt</Nav.Link>
                         </LinkContainer>
-
                         <LinkContainer to="/About" onClick={closeNavMenu}>
                             <Nav.Link>Om oss</Nav.Link>
                         </LinkContainer>
                     </Nav>
-
-                    {/* Icons Container */}
-                    <div className="icons-container ml-auto d-flex align-items-center">
-                        <span className="favorite-icon" onClick={handleFavoritesModalShow}>
-                            <FaHeart size={24} />
-                            {favorites.length > 0 && (
-                                <span className="badge badge-pill badge-danger">
-                                    {favorites.length}
-                                </span>
-                            )}
-                        </span>
-                        <span className="cart-icon" onClick={handleCartModalShow}>
-                            <FaShoppingCart size={24} />
-                            {cart.length > 0 && (
-                                <span className="badge badge-pill badge-danger">
-                                    {cart.length}
-                                </span>
-                            )}
-                        </span>
-                    </div>
 
                     {user ? (
                         <NavDropdown title={user.email} id="user-nav-dropdown">
@@ -365,7 +359,6 @@ export function NavMenu() {
                             <span className="ml-auto">Logga in</span>
                         </LinkContainer>
                     )}
-
                 </Navbar.Collapse>
             </Navbar>
 
