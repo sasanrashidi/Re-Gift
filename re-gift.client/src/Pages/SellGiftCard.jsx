@@ -67,7 +67,7 @@ export function SellGiftCard() {
         };
 
         try {
-            const response = await fetch(`https://localhost:7049/api/GiftCard/${user.id}/${formData.company}/${formData.percentage}`, {
+            const response = await fetch(`https://re-gift-aeesgygqhsbaf8eh.eastus-01.azurewebsites.net/api/GiftCard/${user.id}/${formData.company}/${formData.percentage}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

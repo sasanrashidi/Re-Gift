@@ -25,7 +25,7 @@ export const AppProvider = ({ children }) => {
     // Function to fetch and update gift cards
     const fetchGiftCards = async () => {
         try {
-            const response = await fetch("https://localhost:7049/api/Giftcard");
+            const response = await fetch("https://re-gift-aeesgygqhsbaf8eh.eastus-01.azurewebsites.net/api/Giftcard");
             const data = await response.json();
             const formattedData = data.map(card => ({
                 ...card,
