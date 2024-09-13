@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Re_Gift.Server.Migrations
 {
     /// <inheritdoc />
-    public partial class initmigration : Migration
+    public partial class Initmig : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -17,9 +17,10 @@ namespace Re_Gift.Server.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    User1Id = table.Column<int>(type: "int", nullable: false),
-                    User2Id = table.Column<int>(type: "int", nullable: false),
-                    SoldGFId = table.Column<int>(type: "int", nullable: false),
+                    BuyerId = table.Column<int>(type: "int", nullable: false),
+                    SellerId = table.Column<int>(type: "int", nullable: false),
+                    SoldCardId = table.Column<int>(type: "int", nullable: false),
+                    PurchaseId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     TransactionDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
