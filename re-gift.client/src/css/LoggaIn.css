@@ -1,67 +1,87 @@
-﻿.login-container {
-    margin-top: 50px;
+﻿/* Center the text and form in the middle of the page */
+.register-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Ensure full height */
+    background-color: #f8f9fa; /* Light background */
 }
 
-.login-row {
-    margin-top: 20px;
+/* Style for the intro text */
+.intro-container {
+    text-align: center;
+    margin-bottom: 40px; /* Space between text and form */
 }
 
-.login-col {
-    background-color: #f8f9fa;
-    padding: 20px;
+.intro-text {
+    font-size: 22px;
+    font-weight: bold;
+    color: #333;
+    line-height: 1.4; /* Improve readability */
+}
+
+/* Ensure the register container is centered and has a background */
+.register-form {
+    background-color: white;
+    padding: 30px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
 }
 
-.login-header {
+    /* Style for the heading in the registration form */
+    .register-form h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #333;
+    }
+
+    /* Add spacing between form fields */
+    .register-form .form-group {
+        margin-bottom: 20px;
+    }
+
+    .register-form label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+        color: #555;
+    }
+
+    .register-form input {
+        width: 100%;
+        padding: 10px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+    }
+
+    .register-form button {
+        width: 100%;
+        padding: 10px;
+        font-size: 1.1rem;
+        background-color: #007bff;
+        border: none;
+        border-radius: 4px;
+        color: white;
+        cursor: pointer;
+    }
+
+        .register-form button:hover {
+            background-color: #0056b3;
+        }
+
+/* Style success and error messages */
+.success-message {
+    color: green;
     text-align: center;
-    margin-bottom: 20px;
-    color: #333;
+    margin-top: 20px;
 }
 
 .error-message {
     color: red;
     text-align: center;
-    margin-bottom: 10px;
+    margin-top: 20px;
 }
-
-.login-form .form-group {
-    margin-bottom: 15px;
-}
-
-.form-label {
-    font-weight: bold;
-}
-
-.form-control {
-    border-radius: 4px;
-    padding: 10px;
-}
-
-.feedback {
-    font-size: 0.9rem;
-    color: #dc3545;
-}
-
-.login-button {
-    width: 100%;
-    padding: 10px;
-    font-size: 1.1rem;
-    background-color: #007bff;
-    border: none;
-    border-radius: 4px;
-}
-
-    .login-button:hover {
-        background-color: #0056b3;
-    }
-
-.signup-link {
-    cursor: pointer !important;
-    color: blue;
-}
-
-    .signup-link:hover {
-        color: darkblue;
-    }
-

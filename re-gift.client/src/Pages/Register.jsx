@@ -1,12 +1,13 @@
 ﻿import React, { useState } from 'react';
+import '../css/LoggaIn.css'; // Ensure the CSS is linked correctly
 
 export const Register = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [firstName, setfirstName] = useState('');
-    const [lastName, setlastName] = useState('');
-    const [success, setSuccess] = useState('');  // För att visa framgångsmeddelande
-    const [error, setError] = useState('');      // För att visa felmeddelande
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [success, setSuccess] = useState('');  // For success messages
+    const [error, setError] = useState('');      // For error messages
 
     const handleRegister = async (e) => {
         e.preventDefault();
@@ -22,65 +23,74 @@ export const Register = () => {
 
             if (response.ok) {
                 const result = await response.json();
-                setSuccess('Registrering lyckades!');  // Framgångsmeddelande
-                setError('');  // Nollställ felmeddelande
+                setSuccess('Registrering lyckades!');  // Success message
+                setError('');  // Clear error message
             } else {
                 const errorResult = await response.text();
-                setError(errorResult);  // Visa API-felmeddelande
-                setSuccess('');  // Nollställ framgångsmeddelande
+                setError(errorResult);  // Show API error message
+                setSuccess('');  // Clear success message
             }
         } catch (err) {
-            setError('Ett oväntat fel inträffade.');  // Fångar oväntade fel
-            setSuccess('');  // Nollställ framgångsmeddelande
+            setError('Ett oväntat fel inträffade.');  // Handle unexpected errors
+            setSuccess('');  // Clear success message
         }
     };
 
     return (
-        <div>
-            <h2>Register</h2>
-            <form onSubmit={handleRegister}>
-                <div>
-                    <label>Email:</label>
-                    <input
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                    />
-                </div>
-                <div>
-                    <label>Password:</label>
-                    <input
-                        type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                    />
-                </div>
-                <div>
-                    <label>First Name:</label>
-                    <input
-                        type="text"
-                        value={firstName}
-                        onChange={(e) => setfirstName(e.target.value)}
-                        required
-                    />
-                </div>
-                <div>
-                    <label>Last Name:</label>
-                    <input
-                        type="text"
-                        value={lastName}
-                        onChange={(e) => setlastName(e.target.value)}
-                        required
-                    />
-                </div>
-                <button type="submit">Register</button>
-            </form>
+        <div className="register-container">
+            <div className="intro-container">
+                <p className="intro-text">
+                    Här kan du enkelt registrera dig som säljare och börja sälja dina oanvända eller
+                    <br />
+                    delvis använda presentkort till köpare som letar efter bra erbjudanden.
+                </p>
+            </div>
+            <div className="register-form">
+                <form onSubmit={handleRegister}>
+                    <h2>Register</h2>
+                    <div className="form-group">
+                        <label>First Name:</label>
+                        <input
+                            type="text"
+                            value={firstName}
+                            onChange={(e) => setFirstName(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label>Last Name:</label>
+                        <input
+                            type="text"
+                            value={lastName}
+                            onChange={(e) => setLastName(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label>Email:</label>
+                        <input
+                            type="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label>Password:</label>
+                        <input
+                            type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                        />
+                    </div>
 
-            {/* Visa framgångs- eller felmeddelanden */}
-            {success && <p style={{ color: 'green' }}>{success}</p>}
-            {error && <p style={{ color: 'red' }}>{error}</p>}
+                    <button type="submit">Register</button>
+
+                    {success && <p className="success-message">{success}</p>}
+                    {error && <p className="error-message">{error}</p>}
+                </form>
+            </div>
         </div>
     );
 };
