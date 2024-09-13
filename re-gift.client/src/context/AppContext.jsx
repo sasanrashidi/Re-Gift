@@ -22,9 +22,14 @@ export const AppProvider = ({ children }) => {
         // Fetch data from the API
         fetch("https://re-gift-aeesgygqhsbaf8eh.eastus-01.azurewebsites.net/api/Giftcard")
             .then((response) => response.json()) // Parse the JSON from the response
-            .then((data) => setGiftCards(data)) // Store the data in state
+            .then((data) => {
+                const formattedData = data.map(card => ({
+                    ...card,
+                    expireDate: new Date(card.expireDate).toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' })
+                }));
+                setGiftCards(formattedData); // Store the data in state
+            })
             .catch((error) => console.error("Error fetching data:", error)); // Log any errors
-
     }, []); // Empty dependency array to run only once when the component mounts
 
     const [user, setUser] = useState(null);
@@ -41,7 +46,7 @@ export const AppProvider = ({ children }) => {
     }, [favorites]);
 
     return (
-        <AppContext.Provider value={{ cart, setCart, favorites, setFavorites,user, setUser, giftCards }}>
+        <AppContext.Provider value={{ cart, setCart, favorites, setFavorites, user, setUser, giftCards }}>
             {children}
         </AppContext.Provider>
     );
