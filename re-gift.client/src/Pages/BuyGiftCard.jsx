@@ -17,6 +17,7 @@ import { AppContext } from '../context/AppContext'; // Import the context
 export function BuyGiftCard() {
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedImage, setSelectedImage] = useState(null);
+    const [currentPage, setCurrentPage] = useState(1); // Track the current page
 
     const { cart, setCart, favorites, setFavorites, giftCards, user } = useContext(AppContext); // Access context
     const navigate = useNavigate();
@@ -36,6 +37,8 @@ export function BuyGiftCard() {
         'BurgerKing': BurgerKingimg
     };
 
+    const ITEMS_PER_PAGE = 12; // Maximum number of cards per page
+
     // Map the gift cards to create a list of card images with properties.
     const giftCardImages = (giftCards || []).map(giftCard => ({
         id: giftCard.id,
@@ -53,6 +56,15 @@ export function BuyGiftCard() {
     // Filter the giftCardImages based on the search query.
     const filteredGiftCardImages = giftCardImages.filter(image =>
         image.title.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
+    // Calculate the total number of pages
+    const totalPages = Math.ceil(filteredGiftCardImages.length / ITEMS_PER_PAGE);
+
+    // Get the gift cards to display for the current page
+    const paginatedGiftCardImages = filteredGiftCardImages.slice(
+        (currentPage - 1) * ITEMS_PER_PAGE,
+        currentPage * ITEMS_PER_PAGE
     );
 
     const handleImageClick = (image) => setSelectedImage(image);
@@ -93,6 +105,15 @@ export function BuyGiftCard() {
         }
     };
 
+    // Pagination controls
+    const handleNextPage = () => {
+        if (currentPage < totalPages) setCurrentPage(prevPage => prevPage + 1);
+    };
+
+    const handlePreviousPage = () => {
+        if (currentPage > 1) setCurrentPage(prevPage => prevPage - 1);
+    };
+
     return (
         <div style={{ textAlign: 'center', paddingTop: '50px' }}>
 
@@ -122,35 +143,57 @@ export function BuyGiftCard() {
             </div>
 
             <div style={{
-                display: 'flex',
-                flexWrap: 'wrap',
+                display: 'grid',
+                gridTemplateColumns: 'repeat(5, 200px)', // 5 cards per row
                 gap: '20px',
                 justifyContent: 'center',
                 maxWidth: '1000px',
                 margin: '0 auto'
             }}>
-                {filteredGiftCardImages.map(image => (
-                    <div key={image.id} style={{
-                        cursor: 'pointer',
-                        textAlign: 'center',
-                        width: '200px', // Increase the width
-                        height: 'auto'  // Adjust height automatically
-                    }} onClick={() => handleImageClick(image)}>
-                        <img src={image.imgSrc} alt={image.title} style={{
-                            width: '100%',
-                            height: 'auto',
-                            borderRadius: '15px',
-                            transition: 'transform 0.3s ease',
-                        }}
-                            onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.1)'} // Zoom in on hover
-                            onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'} />
-                        <p>
-                            <span>{image.title.split(' - ')[0]}</span><br />
-                            <span style={{ textDecoration: 'line-through', color: 'red' }}>{image.originalPrice} Kr</span><br />
-                            <span style={{ color: 'green' }}>{image.discountedPrice} Kr</span>
-                        </p>
-                    </div>
-                ))}
+                {paginatedGiftCardImages.length === 0 ? (
+                    <p>No gift cards found.</p>
+                ) : (
+                    paginatedGiftCardImages.map(image => (
+                        <div key={image.id} style={{
+                            cursor: 'pointer',
+                            textAlign: 'center',
+                            width: '200px',
+                            height: 'auto'
+                        }} onClick={() => handleImageClick(image)}>
+                            <img src={image.imgSrc} alt={image.title} style={{
+                                width: '100%',
+                                height: 'auto',
+                                borderRadius: '15px',
+                                transition: 'transform 0.3s ease',
+                            }}
+                                onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.1)'} // Zoom in on hover
+                                onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'} />
+                            <p>
+                                <span>{image.title.split(' - ')[0]}</span><br />
+                                <span style={{ textDecoration: 'line-through', color: 'red' }}>{image.originalPrice} Kr</span><br />
+                                <span style={{ color: 'green' }}>{image.discountedPrice} Kr</span>
+                            </p>
+                        </div>
+                    ))
+                )}
+            </div>
+
+            {/* Pagination Controls */}
+            <div style={{ marginTop: '20px' }}>
+                <button
+                    disabled={currentPage === 1}
+                    onClick={handlePreviousPage}
+                    style={{ marginRight: '10px' }}
+                >
+                    Previous
+                </button>
+                <button
+                    disabled={currentPage === totalPages}
+                    onClick={handleNextPage}
+                >
+                    Next
+                </button>
+                <p>Page {currentPage} of {totalPages}</p>
             </div>
 
             {selectedImage && (
