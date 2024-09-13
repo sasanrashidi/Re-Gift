@@ -21,7 +21,6 @@ export function BuyGiftCard() {
     const { cart, setCart, favorites, setFavorites, giftCards, user } = useContext(AppContext); // Access context
     const navigate = useNavigate();
 
-
     const companyImageMap = {
         'Nike': Nikeimg,
         'Adidas': Adidasimg,
@@ -86,8 +85,6 @@ export function BuyGiftCard() {
 
     const closeModal = () => setSelectedImage(null);
 
-
-
     const handleSellClick = () => {
         if (user) {
             navigate('/SellGiftCard');  // Navigate to SellGiftCard if user is logged in
@@ -95,7 +92,6 @@ export function BuyGiftCard() {
             navigate('/login');  // Navigate to LoggaIn if user is not logged in
         }
     };
-
 
     return (
         <div style={{ textAlign: 'center', paddingTop: '50px' }}>
@@ -125,10 +121,27 @@ export function BuyGiftCard() {
                 </div>
             </div>
 
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', justifyContent: 'center' }}>
+            <div style={{
+                display: 'flex',
+                flexWrap: 'wrap',
+                gap: '20px',
+                justifyContent: 'center',
+                maxWidth: '1000px',
+                margin: '0 auto'
+            }}>
                 {filteredGiftCardImages.map(image => (
-                    <div key={image.id} style={{ cursor: 'pointer', textAlign: 'center' }} onClick={() => handleImageClick(image)}>
-                        <img src={image.imgSrc} alt={image.title} style={{ width: '150px', height: '150px', borderRadius: '15px', transition: 'transform 0.3s ease', }}
+                    <div key={image.id} style={{
+                        cursor: 'pointer',
+                        textAlign: 'center',
+                        width: '200px', // Increase the width
+                        height: 'auto'  // Adjust height automatically
+                    }} onClick={() => handleImageClick(image)}>
+                        <img src={image.imgSrc} alt={image.title} style={{
+                            width: '100%',
+                            height: 'auto',
+                            borderRadius: '15px',
+                            transition: 'transform 0.3s ease',
+                        }}
                             onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.1)'} // Zoom in on hover
                             onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'} />
                         <p>
