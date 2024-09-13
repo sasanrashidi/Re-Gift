@@ -1,8 +1,12 @@
 ﻿import { Carousel } from 'react-bootstrap';
 import '../css/Home.css';
-import HM from '../img/HM.jpg';
-import Nike from '../img/Nike.jpg';
-import Amazon5 from '../img/Amazon5.jpg';
+import HM11 from '../img/HM11.jpg';
+import Amazon55 from '../img/Amazon55.jpg';
+import Ahlens11 from '../img/Ahlens11.jpg';
+import Battlenet11 from '../img/Battlenet11.jpg';
+import Burgerking11 from '../img/Burgerking11.jpg';
+import Ica1 from '../img/Ica1.jpg';
+import Xbox1 from '../img/Xbox1.jpg';
 
 export default function Home() {
     return (
@@ -22,7 +26,7 @@ export default function Home() {
                 <Carousel.Item>
                     <img
                         className="d-block w-100"
-                        src={HM}
+                        src={HM11}
                         alt="H&M"
                     />
                     <Carousel.Caption></Carousel.Caption>
@@ -31,8 +35,8 @@ export default function Home() {
                 <Carousel.Item>
                     <img
                         className="d-block w-100"
-                        src={Nike}
-                        alt="Nike"
+                        src={Amazon55}
+                        alt="Amazon"
                     />
                     <Carousel.Caption></Carousel.Caption>
                 </Carousel.Item>
@@ -40,8 +44,44 @@ export default function Home() {
                 <Carousel.Item>
                     <img
                         className="d-block w-100"
-                        src={Amazon5}
-                        alt="Amazon"
+                        src={Ahlens11}
+                        alt="Ahlens11"
+                    />
+                    <Carousel.Caption></Carousel.Caption>
+                </Carousel.Item>
+
+                <Carousel.Item>
+                    <img
+                        className="d-block w-100"
+                        src={Battlenet11}
+                        alt="Battlenet11"
+                    />
+                    <Carousel.Caption></Carousel.Caption>
+                </Carousel.Item>
+
+                <Carousel.Item>
+                    <img
+                        className="d-block w-100"
+                        src={Burgerking11}
+                        alt="Burgerking11"
+                    />
+                    <Carousel.Caption></Carousel.Caption>
+                </Carousel.Item>
+
+                <Carousel.Item>
+                    <img
+                        className="d-block w-100"
+                        src={Ica1}
+                        alt="Ica1"
+                    />
+                    <Carousel.Caption></Carousel.Caption>
+                </Carousel.Item>
+
+                <Carousel.Item>
+                    <img
+                        className="d-block w-100"
+                        src={Xbox1}
+                        alt="Xbox1"
                     />
                     <Carousel.Caption></Carousel.Caption>
                 </Carousel.Item>
