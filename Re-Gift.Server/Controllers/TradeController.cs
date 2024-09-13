@@ -35,6 +35,8 @@ namespace Re_Gift.Server.Controllers
             return Ok(await _tradeService.GetTradeAsync(id));
         }
 
+        /*
+
         [HttpPost]
         public async Task<IActionResult> PostTradeAsync(List<int> sellerId, int buyerId, List<int> giftcardId)
         {
@@ -79,5 +81,7 @@ namespace Re_Gift.Server.Controllers
             await _tradeService.TradeDoneAsyncReal(trades);
             return Ok(trades);
         }
+
+        */
     }
 }
