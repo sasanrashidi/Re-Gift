@@ -10,7 +10,7 @@ public interface IUserService
 
     public Task<bool> AddUserAsync(User user);
 
-    public Task<bool> UserLoginAsync(string email, string password);
+    public Task<User> UserLoginAsync(string email, string password);
 
     public Task<bool> UpdateUserAsync(User user);
 

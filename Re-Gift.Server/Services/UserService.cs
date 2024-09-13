@@ -44,7 +44,7 @@ public class UserService : IUserService
         return await SaveAsync();
     }
 
-    public async Task<bool> UserLoginAsync(string email, string password)
+    public async Task<User> UserLoginAsync(string email, string password)
     {
         // Find user by email first
         var foundUser = await _context.Users.FirstOrDefaultAsync(g => g.Email == email);
@@ -61,7 +61,7 @@ public class UserService : IUserService
             throw new ArgumentException("Invalid password.");
         }
 
-        return true;
+        return foundUser;
     }
 
     public async Task<bool> UpdateUserAsync(User user)

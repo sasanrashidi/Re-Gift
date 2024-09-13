@@ -21,7 +21,7 @@ function LoggaIn() {
         } else {
             try {
                 // Skicka inloggningsuppgifter till API
-                const response = await fetch('https://re-gift-aeesgygqhsbaf8eh.eastus-01.azurewebsites.net/api/User/login', {
+                const response = await fetch('https://localhost:7049/api/User/login', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -39,7 +39,10 @@ function LoggaIn() {
                     console.log('Inloggning lyckades!', data);
 
                     // Uppdatera user i context
-                    setUser({ email });
+                    setUser({
+                        email: data.user.email,
+                        id: data.user.id 
+                    });
                     setErrorMessage(''); // Återställer felmeddelande
 
                     // Omdirigera till hemsidan efter inloggning

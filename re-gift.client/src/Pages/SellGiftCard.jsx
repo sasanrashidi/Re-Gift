@@ -1,22 +1,39 @@
-﻿import React, { useState } from 'react';
+﻿import React, { useState, useContext } from 'react';
+import { AppContext } from '../context/AppContext';
 
 export function SellGiftCard() {
-    // State för formulärdata
+    const companies = [
+        "Nike", "Adidas", "Elgiganten", "BattleNet", "PSN",
+        "Steam", "Ikea", "Ica", "Logitech", "Webhallen", "AkademiBokhandeln", "BurgerKing"
+    ];
+
+    const percentages = [
+        { value: 0, label: "25%" },
+        { value: 1, label: "50%" },
+        { value: 2, label: "75%" }
+    ];
+
     const [formData, setFormData] = useState({
         company: '',
         expireDate: '',
         balance: '',
-        serialNumber: '', 
-        salePrice: '', 
+        serialNumber: '',
+        percentage: '',
     });
 
-    // Hantera ändringar i formulärfälten
+    const { user, fetchGiftCards } = useContext(AppContext);
+    const [error, setError] = useState('');
+    const [success, setSuccess] = useState('');
+
+    const today = new Date();
+    today.setDate(today.getDate() + 7);
+    const minDate = today.toISOString().split('T')[0];
+
     const handleChange = (e) => {
         const { name, value } = e.target;
 
-        // Kontrollera om serienumret innehåller endast bokstäver och siffror
         if (name === 'serialNumber' && !/^[a-zA-Z0-9]*$/.test(value)) {
-            return; 
+            return;
         }
 
         setFormData({
@@ -25,10 +42,50 @@ export function SellGiftCard() {
         });
     };
 
-    // Hantera formulärets inskick
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('Formulärdata:', formData);
+        setError('');
+        setSuccess('');
+
+        const today = new Date();
+        const expireDate = new Date(formData.expireDate);
+        const diffInTime = expireDate.getTime() - today.getTime();
+        const diffInDays = diffInTime / (1000 * 3600 * 24);
+
+        if (diffInDays < 7) {
+            setError('Utgångsdatum måste vara minst 7 dagar framåt.');
+            return;
+        }
+
+        const giftCardData = {
+            id: 0,
+            company: companies[formData.company],
+            expireDate: formData.expireDate,
+            balance: formData.balance,
+            discountPercentage: formData.percentage,
+            serialNumber: formData.serialNumber,
+        };
+
+        try {
+            const response = await fetch(`https://localhost:7049/api/GiftCard/${user.id}/${formData.company}/${formData.percentage}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(giftCardData),
+            });
+
+            if (response.ok) {
+                setSuccess('Presentkortet har lagts till framgångsrikt!');
+                setError('');
+                fetchGiftCards(); // Refresh the gift cards list
+            } else {
+                const errorText = await response.text();
+                setError(`Fel vid tillägg av presentkort: ${errorText}`);
+            }
+        } catch (err) {
+            setError('Ett oväntat fel inträffade. Försök igen senare.');
+        }
     };
 
     return (
@@ -37,21 +94,44 @@ export function SellGiftCard() {
             <p className="text-center text-muted">Fyll i informationen nedan för att sälja ditt presentkort.</p>
 
             <form onSubmit={handleSubmit} className="mx-auto" style={{ maxWidth: '600px' }}>
-                {/* Företag */}
                 <div className="mb-3">
                     <label htmlFor="company" className="form-label">Företag:</label>
-                    <input
-                        type="text"
+                    <select
                         id="company"
                         name="company"
                         value={formData.company}
                         onChange={handleChange}
                         required
                         className="form-control"
-                    />
+                    >
+                        <option value="">Välj ett företag</option>
+                        {companies.map((company, index) => (
+                            <option key={index} value={index}>
+                                {company}
+                            </option>
+                        ))}
+                    </select>
                 </div>
 
-                {/* Utgångsdatum */}
+                <div className="mb-3">
+                    <label htmlFor="percentage" className="form-label">Rabattprocent:</label>
+                    <select
+                        id="percentage"
+                        name="percentage"
+                        value={formData.percentage}
+                        onChange={handleChange}
+                        required
+                        className="form-control"
+                    >
+                        <option value="">Välj rabattprocent</option>
+                        {percentages.map((option) => (
+                            <option key={option.value} value={option.value}>
+                                {option.label}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+
                 <div className="mb-3">
                     <label htmlFor="expireDate" className="form-label">Utgångsdatum:</label>
                     <input
@@ -60,12 +140,12 @@ export function SellGiftCard() {
                         name="expireDate"
                         value={formData.expireDate}
                         onChange={handleChange}
+                        min={minDate}
                         required
                         className="form-control"
                     />
                 </div>
 
-                {/* Saldo */}
                 <div className="mb-3">
                     <label htmlFor="balance" className="form-label">Saldo (kr):</label>
                     <input
@@ -79,22 +159,6 @@ export function SellGiftCard() {
                     />
                 </div>
 
-                {/* Försäljningsbelopp */}
-                <div className="mb-3">
-                    <label htmlFor="salePrice" className="form-label">Försäljningsbelopp (kr):</label>
-                    <input
-                        type="number"
-                        id="salePrice"
-                        name="salePrice"
-                        value={formData.salePrice}
-                        onChange={handleChange}
-                        required
-                        className="form-control"
-                        placeholder="Ange beloppet du vill sälja presentkortet för"
-                    />
-                </div>
-
-                {/* Serienummer */}
                 <div className="mb-3">
                     <label htmlFor="serialNumber" className="form-label">Serienummer:</label>
                     <input
@@ -104,15 +168,19 @@ export function SellGiftCard() {
                         value={formData.serialNumber}
                         onChange={handleChange}
                         required
-                        maxLength="16" 
+                        maxLength="16"
                         className="form-control"
                         placeholder="Ange presentkortets serienummer"
                     />
                 </div>
 
-                {/* Submit */}
                 <button type="submit" className="btn btn-primary w-100">Skicka</button>
+
+                {success && <div className="alert alert-success mt-3">{success}</div>}
+                {error && <div className="alert alert-danger mt-3">{error}</div>}
             </form>
         </div>
     );
 }
+
+
