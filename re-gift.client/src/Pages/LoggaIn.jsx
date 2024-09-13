@@ -3,6 +3,7 @@ import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom'; // Importera useNavigate
 import '../css/LoggaIn.css';
 import { AppContext } from '../context/AppContext';
+import Register from '../Pages/Register';
 
 function LoggaIn() {
     const [email, setEmail] = useState('');
@@ -101,6 +102,18 @@ function LoggaIn() {
                             Logga In
                         </Button>
                     </Form>
+                    {/* Länk för att skapa ett nytt konto */}
+                    <div className="signup-prompt">
+                        <p>Har du inget konto?&nbsp;
+                            <span
+                                className="signup-link"
+                                onClick={() => navigate('/Register')} // Direkt navigering till registreringssidan
+                                style={{ cursor: 'pointer', color: 'blue' }}>
+                                Skapa ett här!
+                            </span>
+                        </p>
+                    </div>
+
                 </Col>
             </Row>
         </Container>
