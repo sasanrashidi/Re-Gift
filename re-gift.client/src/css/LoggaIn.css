@@ -55,3 +55,13 @@
     .login-button:hover {
         background-color: #0056b3;
     }
+
+.signup-link {
+    cursor: pointer !important;
+    color: blue;
+}
+
+    .signup-link:hover {
+        color: darkblue;
+    }
+

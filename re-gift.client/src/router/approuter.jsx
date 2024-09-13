@@ -23,6 +23,7 @@ import { Marknad } from '../Pages/Marknad'; // Import Marknad
 import LoggaIn from '../Pages/LoggaIn';
 import CartPage from '../Pages/CartPage'; // Import CartPage component
 import FavoritesPage from '../Pages/FavoritesPage'; // Import FavoritesPage component
+import Register from '../Pages/Register';
 
 export function AppRouter() {
     return (
@@ -36,6 +37,7 @@ export function AppRouter() {
             <Route path='/login' element={<LoggaIn />} />
             <Route path='/cart' element={<CartPage />} /> {/* Cart Page Route */}
             <Route path='/favorites' element={<FavoritesPage />} /> {/* Favorites Page Route */}
+            <Route path='/Register' element={<Register />} />
         </Routes>
     );
 }
