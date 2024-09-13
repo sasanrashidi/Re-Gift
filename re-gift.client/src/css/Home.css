@@ -1,39 +1,3 @@
-/* Default styles for large screens */
-/*.icons-container {
-    display: flex;
-    align-items: center;
-    margin-left: auto;*/ /* Align to the right on large screens */
-/*}
-
-.favorite-icon, .cart-icon {
-    position: relative;
-    display: flex;
-    align-items: center;
-    margin: 0 10px;
-    cursor: pointer;
-}
-
-.badge {
-    position: absolute;
-    top: -5px;
-    right: -10px;
-    background-color: #dc3545;
-    color: white;
-    padding: 2px 6px;
-    border-radius: 50%;
-    font-size: 12px;
-}*/
-
-/* For smaller screens */
-/*@media (max-width: 767px) {
-    .navbar-collapse {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;*/ /* Align everything to the left */
-    /*}*/
-/* Default styles for large screens */
-
-
 .icons-container {
     position: fixed; /* Fixerar positionen så att den inte påverkas av scrollning */
     top: 10px; /* Avstånd från toppen */
@@ -74,17 +38,7 @@
 }
 
 
-    /* Icons move under 'Om oss'*/ 
-/*.icons-container {
-    position: fixed;  Fixerar positionen så att den inte påverkas av scrollning 
-    top: 10px;  Avstånd från toppen 
-    right: 10px;  Avstånd från högerkanten 
-    display: flex-start;  Flexbox för att ordna ikonerna horisontellt 
-    align-items: center;  Vertikal centrering av ikoner 
-    gap: 10px;  Mellanrum mellan ikonerna 
-    z-index: 1050;  Högt z-index för att ligga ovanpå andra element 
-}*/
-
+ 
     .favorite-icon, .cart-icon {
         margin: 0 10px; /* Horizontal spacing between icons */
     }
