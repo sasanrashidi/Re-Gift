@@ -46,11 +46,12 @@
 /* For smaller screens */
 @media (max-width: 767px) {
     .icons-container {
-        position: absolute; /* Placera ikonerna på en specifik plats på sidan */
+        position: fixed; /* Placera ikonerna på en specifik plats på sidan */
         top: 10px; /* Behåll avståndet från toppen */
         right: 10px; /* Behåll avståndet från högerkanten */
         flex-direction: row; /* Behåll ikonerna i en rad */
         gap: 10px; /* Mellanrum mellan ikonerna */
+        
     }
 }
 /* Ikonerna */
