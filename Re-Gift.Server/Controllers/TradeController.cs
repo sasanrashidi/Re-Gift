@@ -43,7 +43,7 @@ namespace Re_Gift.Server.Controllers
         {
             var trades = new List<Trade>();
 
-            var purchaseId = new Guid();
+            var purchaseId = Guid.NewGuid();
 
             if (tradeRequest.SellerId.Count != tradeRequest.GiftcardId.Count)
                 return NotFound("Something went wrong");
