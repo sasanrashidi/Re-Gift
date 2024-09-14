@@ -208,8 +208,8 @@ export function BuyGiftCard() {
                         <img src={selectedImage.imgSrc} alt={selectedImage.title} style={{ width: '200px', height: '200px', borderRadius: '15px', }} />
                         <p>{selectedImage.details}</p>
                         <p>
-                            <span style={{ textDecoration: 'line-through', color: 'red' }}>{selectedImage.originalPrice}</span><br />
-                            <span style={{ color: 'green' }}>{selectedImage.discountedPrice}</span>
+                            <span style={{ textDecoration: 'line-through', color: 'red' }}>{selectedImage.originalPrice} kr</span><br />
+                            <span style={{ color: 'green' }}>{selectedImage.discountedPrice} kr</span>
                         </p>
                         <p>Utgångsdatum: {selectedImage.expiryDate}</p>
 
