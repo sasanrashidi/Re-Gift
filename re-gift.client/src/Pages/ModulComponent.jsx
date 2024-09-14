@@ -1,7 +1,10 @@
-﻿import React, { useState } from 'react';
+﻿import React, { useState, useContext } from 'react';
 import { Modal, Button, Form, Spinner, Alert } from 'react-bootstrap';
+import { AppContext } from '../context/AppContext'; 
+import { ReceiptPage } from './Receipt';
+import { useNavigate } from 'react-router-dom';
 
-export function ItemModal({ title, items, show, handleClose, onRemove, setCart }) {
+export function ItemModal({ title, items, show, handleClose, onRemove }) {
     const [isPaying, setIsPaying] = useState(false);
     const [paymentSuccess, setPaymentSuccess] = useState(false);
     const [paymentDetails, setPaymentDetails] = useState({
@@ -16,6 +19,10 @@ export function ItemModal({ title, items, show, handleClose, onRemove, setCart }
     });
     const [isProcessing, setIsProcessing] = useState(false);
     const [formErrors, setFormErrors] = useState({});
+    const { setCart } = useContext(AppContext);
+    const [purchase, setPurchase] = useState(null);
+    const navigate = useNavigate();
+
 
     const parsePrice = (priceStr) => {
         if (typeof priceStr === 'string') {
@@ -93,9 +100,11 @@ export function ItemModal({ title, items, show, handleClose, onRemove, setCart }
                     items: [...items],
                     totalPrice
                 };
-                console.log(items);
+                console.log(newPurchase);
+                setPurchase(newPurchase);
                 setCart([]); // Tömmer kundvagnen
                 localStorage.removeItem('cart'); // Rensar localStorage
+                navigate('/receipt', { state: { purchase: newPurchase } });
 
             } else {
                 setIsProcessing(false);

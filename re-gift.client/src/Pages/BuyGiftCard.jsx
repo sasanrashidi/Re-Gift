@@ -47,7 +47,8 @@ export function BuyGiftCard() {
         imgSrc: companyImageMap[giftCard.company] || 'default-image.jpg',
         details: giftCard.company,
         discountedPrice: giftCard.discountedBalance,
-        expiryDate: giftCard.expireDate
+        expiryDate: giftCard.expireDate,
+        userId: giftCard.userId
     }));
 
     // Handle search input change.
@@ -66,6 +67,8 @@ export function BuyGiftCard() {
         (currentPage - 1) * ITEMS_PER_PAGE,
         currentPage * ITEMS_PER_PAGE
     );
+
+    console.log('Paginated Gift Card Images:', paginatedGiftCardImages);
 
     const handleImageClick = (image) => setSelectedImage(image);
 
