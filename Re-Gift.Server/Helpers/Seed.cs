@@ -46,7 +46,7 @@ public class Seed
                 ExpireDate = DateTime.Now.AddYears(1),
                 Balance = 500,
                 DiscountPercentage = EnumsHelp.GetPercentage(0),
-                SerialNumber = new Guid().ToString(),
+                SerialNumber = Guid.NewGuid().ToString(),
                 User = users.FirstOrDefault(), // Ensure this user exists
                 Verified = true,
                 Sold = true,
@@ -58,7 +58,7 @@ public class Seed
                 ExpireDate = DateTime.Now.AddYears(1),
                 Balance = 1000,
                 DiscountPercentage = EnumsHelp.GetPercentage(2),
-                SerialNumber = new Guid().ToString(),
+                SerialNumber = Guid.NewGuid().ToString(),
                 User = users.Skip(1).FirstOrDefault(), // Ensure this user exists
                 Verified = true,
                 Sold = true,
@@ -70,7 +70,7 @@ public class Seed
                 ExpireDate = DateTime.Now.AddYears(1),
                 Balance = 10000,
                 DiscountPercentage = EnumsHelp.GetPercentage(1),
-                SerialNumber = new Guid().ToString(),
+                SerialNumber = Guid.NewGuid().ToString(),
                 User = users.Skip(2).FirstOrDefault(), // Ensure this user exists
                 Verified = true,
                 Sold = false,
@@ -82,7 +82,7 @@ public class Seed
                 ExpireDate = DateTime.Now.AddYears(1),
                 Balance = 600,
                 DiscountPercentage = EnumsHelp.GetPercentage(1),
-                SerialNumber = new Guid().ToString(),
+                SerialNumber = Guid.NewGuid().ToString(),
                 User = users.Skip(3).FirstOrDefault(), // Ensure this user exists
                 Verified = true,
                 Sold = false,
@@ -94,7 +94,7 @@ public class Seed
                 ExpireDate= DateTime.Now.AddYears(1),
                 Balance = 300,
                 DiscountPercentage = EnumsHelp.GetPercentage(0),
-                SerialNumber = new Guid().ToString(),
+                SerialNumber = Guid.NewGuid().ToString(),
                 User = users.Skip(4).FirstOrDefault(), // Ensure this user exists
                 Verified = true,
                 Sold = false,
@@ -106,7 +106,7 @@ public class Seed
                 ExpireDate = DateTime.Now.AddYears(1),
                 Balance = 500,
                 DiscountPercentage = EnumsHelp.GetPercentage(2),
-                SerialNumber = new Guid().ToString(),
+                SerialNumber = Guid.NewGuid().ToString(),
                 User = users.Skip(5).FirstOrDefault(), // Ensure this user exists
                 Verified = true,
                 Sold = false,
@@ -117,7 +117,7 @@ public class Seed
                 ExpireDate = DateTime.Now.AddYears(1),
                 Balance = 500,
                 DiscountPercentage = EnumsHelp.GetPercentage(0),
-                SerialNumber = new Guid().ToString(),
+                SerialNumber = Guid.NewGuid().ToString(),
                 User = users.FirstOrDefault(), // Ensure this user exists
                 Verified = true,
                 Sold = true,
@@ -129,7 +129,7 @@ public class Seed
                 ExpireDate = DateTime.Now.AddYears(1),
                 Balance = 1000,
                 DiscountPercentage = EnumsHelp.GetPercentage(2),
-                SerialNumber = new Guid().ToString(),
+                SerialNumber = Guid.NewGuid().ToString(),
                 User = users.Skip(1).FirstOrDefault(), // Ensure this user exists
                 Verified = true,
                 Sold = true,
@@ -141,7 +141,7 @@ public class Seed
                 ExpireDate = DateTime.Now.AddYears(1),
                 Balance = 10000,
                 DiscountPercentage = EnumsHelp.GetPercentage(1),
-                SerialNumber = new Guid().ToString(),
+                SerialNumber = Guid.NewGuid().ToString(),
                 User = users.Skip(2).FirstOrDefault(), // Ensure this user exists
                 Verified = true,
                 Sold = false,
@@ -153,7 +153,7 @@ public class Seed
                 ExpireDate = DateTime.Now.AddYears(1),
                 Balance = 600,
                 DiscountPercentage = EnumsHelp.GetPercentage(1),
-                SerialNumber = new Guid().ToString(),
+                SerialNumber = Guid.NewGuid().ToString(),
                 User = users.Skip(3).FirstOrDefault(), // Ensure this user exists
                 Verified = true,
                 Sold = false,
@@ -165,7 +165,7 @@ public class Seed
                 ExpireDate= DateTime.Now.AddYears(1),
                 Balance = 300,
                 DiscountPercentage = EnumsHelp.GetPercentage(0),
-                SerialNumber = new Guid().ToString(),
+                SerialNumber = Guid.NewGuid().ToString(),
                 User = users.Skip(4).FirstOrDefault(), // Ensure this user exists
                 Verified = true,
                 Sold = false,
@@ -177,7 +177,7 @@ public class Seed
                 ExpireDate = DateTime.Now.AddYears(1),
                 Balance = 500,
                 DiscountPercentage = EnumsHelp.GetPercentage(2),
-                SerialNumber = new Guid().ToString(),
+                SerialNumber = Guid.NewGuid().ToString(),
                 User = users.Skip(5).FirstOrDefault(), // Ensure this user exists
                 Verified = true,
                 Sold = false,
@@ -202,7 +202,7 @@ public class Seed
                 SellerId = users[0].Id,
                 BuyerId = users[1].Id,
                 SoldCardId = giftcards[0].Id,
-                PurchaseId = new Guid()
+                PurchaseId = Guid.NewGuid()
             },
             new Trade
             {
@@ -210,7 +210,7 @@ public class Seed
                 SellerId = users[2].Id,
                 BuyerId = users[3].Id,
                 SoldCardId = giftcards[1].Id,
-                PurchaseId = new Guid()
+                PurchaseId = Guid.NewGuid()
             }
         };
 

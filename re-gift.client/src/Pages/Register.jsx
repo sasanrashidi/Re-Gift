@@ -13,7 +13,7 @@ export const Register = () => {
         e.preventDefault();
 
         try {
-            const response = await fetch('https://localhost:7049/api/User', {
+            const response = await fetch('https://re-gift-aeesgygqhsbaf8eh.eastus-01.azurewebsites.net/api/User', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
