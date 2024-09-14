@@ -47,7 +47,7 @@
 /* Set background color to light gray for the entire page */
 /* Set background image for the entire page */
 body {
-    background-image: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)),  url('../IMG/back2.jpg'); /* Path to your image */
+    background-image: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)),  url('../IMG/back12.jpg'); /* Path to your image */
     background-size: cover; /* Ensures the image covers the entire background */
     background-position: center; /* Centers the background image */
     background-repeat: no-repeat; /* Prevents the image from repeating */

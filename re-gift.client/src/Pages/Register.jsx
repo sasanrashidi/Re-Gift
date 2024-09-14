@@ -13,7 +13,7 @@ export const Register = () => {
         e.preventDefault();
 
         try {
-            const response = await fetch('https://re-gift-aeesgygqhsbaf8eh.eastus-01.azurewebsites.net/api/User', {
+            const response = await fetch('https://localhost:7049/api/User', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -37,59 +37,61 @@ export const Register = () => {
     };
 
     return (
-        <div className="register-container">
-            <div className="intro-container">
-                <p className="intro-text">
-                    Här kan du enkelt registrera dig som säljare och börja sälja dina oanvända eller
-                    <br />
-                    delvis använda presentkort till köpare som letar efter bra erbjudanden.
-                </p>
-            </div>
-            <div className="register-form">
-                <form onSubmit={handleRegister}>
-                    <h2>Register</h2>
-                    <div className="form-group">
-                        <label>First Name:</label>
-                        <input
-                            type="text"
-                            value={firstName}
-                            onChange={(e) => setFirstName(e.target.value)}
-                            required
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label>Last Name:</label>
-                        <input
-                            type="text"
-                            value={lastName}
-                            onChange={(e) => setLastName(e.target.value)}
-                            required
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label>Email:</label>
-                        <input
-                            type="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            required
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label>Password:</label>
-                        <input
-                            type="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            required
-                        />
-                    </div>
+        <div className="register-page">
+            <div className="register-content">
+                <div className="register-form">
+                    <form onSubmit={handleRegister}>
+                        <h2>Register</h2>
+                        <div className="form-group">
+                            <label>First Name:</label>
+                            <input
+                                type="text"
+                                value={firstName}
+                                onChange={(e) => setFirstName(e.target.value)}
+                                required
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label>Last Name:</label>
+                            <input
+                                type="text"
+                                value={lastName}
+                                onChange={(e) => setLastName(e.target.value)}
+                                required
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label>Email:</label>
+                            <input
+                                type="email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                required
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label>Password:</label>
+                            <input
+                                type="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                required
+                            />
+                        </div>
 
-                    <button type="submit">Register</button>
+                        <button type="submit">Register</button>
 
-                    {success && <p className="success-message">{success}</p>}
-                    {error && <p className="error-message">{error}</p>}
-                </form>
+                        {success && <p className="success-message">{success}</p>}
+                        {error && <p className="error-message">{error}</p>}
+                    </form>
+                </div>
+                <div className="intro-container">
+                    <p className="intro-text">
+                        Här kan du enkelt registrera dig som säljare och börja sälja dina oanvända eller
+                        <br />
+                        delvis använda presentkort till köpare som letar efter bra erbjudanden.
+                    </p>
+                </div>
             </div>
         </div>
     );

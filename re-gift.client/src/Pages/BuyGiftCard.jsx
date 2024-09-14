@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Nikeimg from '../img/Nike2.jpg';
 import Adidasimg from '../img/Adidas.jpg';
 import Elgigantenimg from '../img/Elgiganten.jpg';
-import BattleNetimg from '../img/BattleNet.jpg';
+import BattleNetimg from '../img/BattleNet1.PNg';
 import PSNimg from '../img/PSN.jpg';
 import Steamimg from '../img/Steam.jpg';
 import Ikeaimg from '../img/Ikea.jpg';
@@ -12,7 +12,10 @@ import Logitechimg from '../img/Logitech.jpg';
 import Webhallenimg from '../img/Webhallen.jpg';
 import Akademibokimg from '../img/Akademibok.png';
 import BurgerKingimg from '../img/BurgerKing.jpg';
+
+
 import { AppContext } from '../context/AppContext'; // Import the context
+import '../css/Home.css';
 
 export function BuyGiftCard() {
     const [searchQuery, setSearchQuery] = useState('');
@@ -75,7 +78,7 @@ export function BuyGiftCard() {
             if (!prevCart.some(item => item.id === image.id)) {
                 return [...prevCart, image]; // Add image to cart if it's not already there
             } else {
-                alert('This gift card is already in your cart.');
+                alert('Detta presentkort finns redan i din kundkorg.');
                 return prevCart;
             }
         });
@@ -88,7 +91,7 @@ export function BuyGiftCard() {
             if (!prevFavorites.some(item => item.id === image.id)) {
                 return [...prevFavorites, image]; // Add image to favorites if it's not already there
             } else {
-                alert('This gift card is already in your favorites.');
+                alert('Detta presentkort finns redan i dina favoriter.');
                 return prevFavorites;
             }
         });
@@ -116,14 +119,13 @@ export function BuyGiftCard() {
 
     return (
         <div style={{ textAlign: 'center', paddingTop: '50px' }}>
-
-            <div style={{ marginBottom: '20px', fontSize: '18px' }}>
-                Är du intresserad av att sälja dina presentkort?
-                <button
-                    onClick={handleSellClick}
-                    style={{ color: '#007bff', textDecoration: 'none', marginLeft: '5px', border: 'none', background: 'transparent', cursor: 'pointer' }}>
-                    Klicka här!
-                </button>
+           <div style={{ marginBottom: '20px', fontSize: '18px' }}>
+                {/*Är du intresserad av att sälja dina presentkort?*/}
+               {/*<button*/}
+               {/*    onClick={handleSellClick}*/}
+               {/*    style={{ color: '#007bff', textDecoration: 'none', marginLeft: '5px', border: 'none', background: 'transparent', cursor: 'pointer' }}>*/}
+              {/*    Klicka här!*/}
+                {/*</button>*/}
             </div>
 
             <p style={{ padding: '20px' }}>Här kan du köpa presentkort från privatpersoner. Logga in för att se mer av sortimentet.</p>
@@ -144,10 +146,10 @@ export function BuyGiftCard() {
 
             <div style={{
                 display: 'grid',
-                gridTemplateColumns: 'repeat(5, 200px)', // 5 cards per row
+                gridTemplateColumns: 'repeat(4, 400px)', // 5 cards per row, larger width
                 gap: '20px',
                 justifyContent: 'center',
-                maxWidth: '1000px',
+                maxWidth: '1250px', // Adjusted to accommodate wider cards
                 margin: '0 auto'
             }}>
                 {paginatedGiftCardImages.length === 0 ? (
@@ -157,12 +159,12 @@ export function BuyGiftCard() {
                         <div key={image.id} style={{
                             cursor: 'pointer',
                             textAlign: 'center',
-                            width: '200px',
+                            width: '250px', // Increased width
                             height: 'auto'
                         }} onClick={() => handleImageClick(image)}>
                             <img src={image.imgSrc} alt={image.title} style={{
-                                width: '100%',
-                                height: 'auto',
+                                width: '150%',
+                                height: 'auto', // Maintain aspect ratio
                                 borderRadius: '15px',
                                 transition: 'transform 0.3s ease',
                             }}
@@ -205,7 +207,7 @@ export function BuyGiftCard() {
                         backgroundColor: 'white', padding: '20px', borderRadius: '10px',
                         maxWidth: '500px', textAlign: 'center'
                     }}>
-                        <img src={selectedImage.imgSrc} alt={selectedImage.title} style={{ width: '200px', height: '200px', borderRadius: '15px', }} />
+                        <img src={selectedImage.imgSrc} alt={selectedImage.title} style={{ width: '250px', height: '250px', borderRadius: '15px', }} />
                         <p>{selectedImage.details}</p>
                         <p>
                             <span style={{ textDecoration: 'line-through', color: 'red' }}>{selectedImage.originalPrice} kr</span><br />
@@ -213,20 +215,12 @@ export function BuyGiftCard() {
                         </p>
                         <p>Utgångsdatum: {selectedImage.expiryDate}</p>
 
-                        <button onClick={() => addToCart(selectedImage)} style={{ marginTop: '20px', padding: '10px' }}>
-                            Lägg i Korg
-                        </button>
-                        <button onClick={() => addToFavorites(selectedImage)} style={{ marginTop: '20px', padding: '10px' }}>
-                            Lägg till Favoriter
-                        </button>
-                        <button onClick={closeModal} style={{ marginTop: '20px', padding: '10px' }}>
-                            Stäng
-                        </button>
+                        <button onClick={() => addToCart(selectedImage)} style={{ marginTop: '20px', padding: '10px' }}>Lägg i kundvagnen</button>
+                        <button onClick={() => addToFavorites(selectedImage)} style={{ marginTop: '10px', padding: '10px' }}>Lägg till i favoriter</button>
+                        <button onClick={closeModal} style={{ marginTop: '10px', padding: '10px' }}>Stäng</button>
                     </div>
                 </div>
             )}
         </div>
     );
 }
-
-export default BuyGiftCard;
