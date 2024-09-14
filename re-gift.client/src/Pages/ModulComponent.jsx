@@ -93,7 +93,7 @@ export function ItemModal({ title, items, show, handleClose, onRemove, setCart }
                     items: [...items],
                     totalPrice
                 };
-
+                console.log(items);
                 setCart([]); // Tömmer kundvagnen
                 localStorage.removeItem('cart'); // Rensar localStorage
 

@@ -32,6 +32,7 @@ export const AppProvider = ({ children }) => {
                 expireDate: new Date(card.expireDate).toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' })
             }));
             setGiftCards(formattedData);
+            console.log(formattedData);
         } catch (error) {
             console.error("Error fetching data:", error);
         }

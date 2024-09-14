@@ -7,7 +7,7 @@ public class GiftCardDto
     public DateTime ExpireDate { get; set; }
     public decimal Balance { get; set; }
     public decimal DiscountedBalance => Balance * DiscountPercentage;
-    
+    public int? UserId { get; set; }
 
     public decimal DiscountPercentage { get; set; }
     public string SerialNumber { get; set; }
