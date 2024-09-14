@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Re_Gift.Server.Dto;
 using Re_Gift.Server.IService;
 using Re_Gift.Server.Models;
 
@@ -35,43 +36,46 @@ namespace Re_Gift.Server.Controllers
             return Ok(await _tradeService.GetTradeAsync(id));
         }
 
-        /*
+        
 
         [HttpPost]
-        public async Task<IActionResult> PostTradeAsync(List<int> sellerId, int buyerId, List<int> giftcardId)
+        public async Task<IActionResult> PostTradeAsync(TradeRequest tradeRequest)
         {
             var trades = new List<Trade>();
 
             var purchaseId = new Guid();
 
-            foreach (var id in giftcardId)
+            if (tradeRequest.SellerId.Count != tradeRequest.GiftcardId.Count)
+                return NotFound("Something went wrong");
+
+            for (int index = 0; index < tradeRequest.SellerId.Count; index++)
             {
                 var trade = new Trade();
 
-                if (await _userService.GetUserAsync(buyerId) == null)
+                if (await _userService.GetUserAsync(tradeRequest.BuyerId) == null)
                 {
                     return NotFound("Buyer not found");
                 }
 
-                var seller = await _userService.GetUserAsync(sellerId[id]);
-                var ownsGiftcard = await _userService.SellerOwnerOfGiftCardAsync(sellerId[id], giftcardId[id]);
+                var seller = await _userService.GetUserAsync(tradeRequest.SellerId[index]);
+                var ownsGiftcard = await _userService.SellerOwnerOfGiftCardAsync(tradeRequest.SellerId[index], tradeRequest.GiftcardId[index]);
                 if (seller == null || !ownsGiftcard)
                 {
                     return NotFound("Seller not found / doesn't own giftcard");
                 }
 
-                var giftcard = await _giftcardService.GetGiftCardAsync(giftcardId[id]);
+                var giftcard = await _giftcardService.GetGiftCardAsync(tradeRequest.GiftcardId[index]);
                 if (giftcard == null || giftcard.Sold)
                 {
                     return NotFound("Giftcard not found / already sold");
                 }
 
-                trade.SellerId = sellerId[id];
-                trade.BuyerId = buyerId;
-                trade.SoldCardId = giftcardId[id];
+                trade.SellerId = tradeRequest.SellerId[index];
+                trade.BuyerId = tradeRequest.BuyerId;
+                trade.SoldCardId = tradeRequest.GiftcardId[index];
                 trade.PurchaseId = purchaseId;
 
-                var soldGiftcard = await _giftcardService.GetGiftCardAsync(giftcardId[id]);
+                var soldGiftcard = await _giftcardService.GetGiftCardAsync(tradeRequest.GiftcardId[index]);
                 soldGiftcard.Sold = true;
                 await _giftcardService.UpdateGiftcardAsync(soldGiftcard);
 
@@ -82,6 +86,6 @@ namespace Re_Gift.Server.Controllers
             return Ok(trades);
         }
 
-        */
+        
     }
 }
