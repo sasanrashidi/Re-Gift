@@ -19,7 +19,7 @@ export function ItemModal({ title, items, show, handleClose, onRemove }) {
     });
     const [isProcessing, setIsProcessing] = useState(false);
     const [formErrors, setFormErrors] = useState({});
-    const { setCart } = useContext(AppContext);
+    const { setCart, user } = useContext(AppContext);
     const [purchase, setPurchase] = useState(null);
     const navigate = useNavigate();
 
@@ -113,9 +113,19 @@ export function ItemModal({ title, items, show, handleClose, onRemove }) {
     };
 
     const handlePayment = () => {
-        const isValid = validateCardDetails();
-        if (isValid) {
-            simulatePayment();
+        if (!user) {
+            // Stäng popup-fönstret först och vänta tills det har stängts
+            handleClose();
+
+            // Fördröjning för att säkerställa att modalen stängs innan omdirigering
+            setTimeout(() => {
+                navigate('/login', { state: { from: '/payment' } });
+            }, 300);  // Anpassa fördröjningen om det behövs
+        } else {
+            const isValid = validateCardDetails();
+            if (isValid) {
+                simulatePayment();
+            }
         }
     };
 
@@ -138,7 +148,9 @@ export function ItemModal({ title, items, show, handleClose, onRemove }) {
 
     const handleCloseWithReset = () => {
         resetStateAfterPayment();
-        handleClose();
+        setTimeout(() => {
+            handleClose();
+        }, 200);  // Liten fördröjning för att se till att återställningen körs först
     };
 
     return (
@@ -168,7 +180,21 @@ export function ItemModal({ title, items, show, handleClose, onRemove }) {
                                 <div className="mt-3">
                                     <strong>Total: {totalPrice} Kr.</strong>
                                 </div>
-                                <Button className="mt-3" variant="primary" onClick={() => setIsPaying(true)}>
+
+                                {/* Modifierad knapp som kontrollerar om användaren är inloggad */}
+                                <Button
+                                    className="mt-3"
+                                    variant="primary"
+                                    onClick={() => {
+                                        if (!user) {
+                                            // Om användaren inte är inloggad, omdirigera till inloggningssidan
+                                            navigate('/login', { state: { from: '/payment' } });
+                                        } else {
+                                            // Om användaren är inloggad, sätt isPaying till true
+                                            setIsPaying(true);
+                                        }
+                                    }}
+                                >
                                     Till Betalning
                                 </Button>
                             </>
