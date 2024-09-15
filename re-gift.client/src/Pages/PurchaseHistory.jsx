@@ -10,7 +10,7 @@ export function PurchaseHistory() {
     useEffect(() => {
         if (user) {
             // Fetch the purchase history for the user
-            fetch(`https://localhost:7049/api/Trade/Userhistory/${user.id}`)
+            fetch(`https://re-gift-aeesgygqhsbaf8eh.eastus-01.azurewebsites.net/${user.id}`)
                 .then(response => response.json())
                 .then(data => {
                     setPurchaseHistory(data);
