@@ -349,7 +349,7 @@ export function NavMenu() {
                     </Nav>
 
                     {user ? (
-                        <NavDropdown title={user.email} id="user-nav-dropdown">
+                        <NavDropdown title={`Välkommen ${user.firstname}`} id="user-nav-dropdown">
                             <NavDropdown.Item onClick={logoutHandler}>
                                 <span>Logga ut</span>
                             </NavDropdown.Item>
