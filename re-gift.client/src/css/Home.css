@@ -169,16 +169,7 @@ a {
 
 */
 
-/* Container for the right-aligned elements */
-.navbar-right-alignment {
-    margin-left: auto; /* Pushes the item to the right */
-}
 
-/* Add this class to your specific elements */
-.navbar-right-alignment {
-    display: flex;
-    align-items: center; /* Aligns items vertically if needed */
-    margin-left: auto; /* Pushes the item to the right */
-}
+
 
 
