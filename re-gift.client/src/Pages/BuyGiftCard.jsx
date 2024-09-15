@@ -12,8 +12,6 @@ import Logitechimg from '../img/Logitech.jpg';
 import Webhallenimg from '../img/Webhallen.jpg';
 import Akademibokimg from '../img/Akademibok.png';
 import BurgerKingimg from '../img/BurgerKing.jpg';
-
-
 import { AppContext } from '../context/AppContext'; // Import the context
 import '../css/Home.css';
 
@@ -135,7 +133,7 @@ export function BuyGiftCard() {
             <p style={{ padding: '20px', fontSize: '25px', fontStyle: 'italic' }}>
                 Här kan du köpa presentkort från privatpersoner.
                 <br />
-                Om du vill sälja, tryck här ->
+                Om du vill sälja, tryck här:
             <button className="btn btn-secondary mx-2"
                 style={{ backgroundColor: 'lightgreen', color: 'black', border: "none" }} // Ljusgrön färg för säljknappen
                 onClick={handleSellClick}>
