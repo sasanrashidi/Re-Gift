@@ -38,6 +38,11 @@
     font-size: 12px;
 }
 
+.loggainKnapp {
+
+    cursor:pointer;
+}
+
 .mt-4{
     display: flex;
     justify-content: center;

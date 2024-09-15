@@ -356,7 +356,7 @@ export function NavMenu() {
                         </NavDropdown>
                     ) : (
                         <LinkContainer to="/login" onClick={closeNavMenu}>
-                            <span className="ml-auto">Logga in</span>
+                            <span className="ml-auto loggainKnapp">Logga in</span>
                         </LinkContainer>
                     )}
                 </Navbar.Collapse>
