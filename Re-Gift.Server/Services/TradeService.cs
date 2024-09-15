@@ -19,9 +19,20 @@ public class TradeService : ITradeService
         return await _context.Trades.ToListAsync();
     }
 
-    public async Task<Trade> GetTradeAsync(int id)
+    public async Task<List<GiftCard>> GetTradeAsync(int id)
     {
-        return await _context.Trades.Where(g => g.Id == id).FirstOrDefaultAsync();
+       
+        var trades = await _context.Trades
+            .Where(t => t.BuyerId == id)
+            .ToListAsync();
+
+        var soldCardIds = trades.Select(t => t.SoldCardId).ToList();
+
+        var giftCards = await _context.Giftcards
+            .Where(gc => soldCardIds.Contains(gc.Id))
+            .ToListAsync();
+
+        return giftCards;
     }
 
     //public async Task<ICollection<Trade>> GetTradesFromUserId(int userId)
