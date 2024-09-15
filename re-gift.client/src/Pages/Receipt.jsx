@@ -1,10 +1,12 @@
 import React, { useContext, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import emailjs from 'emailjs-com'; // Import EmailJS
+import '../css/receipt.css'
 import { AppContext } from '../context/AppContext';
 
 export function ReceiptPage() {
     const location = useLocation();
+    const navigate = useNavigate();
     const { purchase } = location.state || {};
     const { user, fetchGiftCards } = useContext(AppContext);
 
@@ -73,23 +75,27 @@ export function ReceiptPage() {
     const { date, items, totalPrice } = purchase;
 
     return (
-        <div>
-            <h1>Kvitto</h1>
-            <p><strong>Datum:</strong> {date}</p>
-            <ul>
-                {items.map(item => (
-                    <li key={item.id} className="list-group-item d-flex justify-content-between align-items-center">
-                        <div>
-                            <img src={item.imgSrc} alt={item.title} style={{ width: '50px', height: 'auto' }} />
-                            <strong>{item.title}</strong><br />
-                            <span style={{ textDecoration: 'line-through', color: 'red' }}>{item.originalPrice} Kr</span><br />
-                            <span style={{ color: 'green' }}>{item.discountedPrice} Kr</span>
-                        </div>
-                    </li>
-                ))}
-            </ul>
-            <div className="mt-3">
-                <strong>Total: {totalPrice} Kr</strong>
+        <div className="receipt-container">
+            <p className="thank-you-message">Tack för ditt köp!</p> {/* Correct Swedish characters */}
+            <div className="receipt-content">
+                <h1>Kvitto</h1> {/* "Kvitto" in Swedish */}
+                <p><strong>Datum:</strong> {date}</p>
+                <ul className="receipt-list">
+                    {items.map(item => (
+                        <li key={item.id} className="list-group-item d-flex justify-content-between align-items-center">
+                            <div>
+                                <img src={item.imgSrc} alt={item.title} style={{ width: '50px', height: 'auto' }} />
+                                <strong>{item.title}</strong><br />
+                                <span style={{ textDecoration: 'line-through', color: 'red' }}>{item.originalPrice} Kr</span><br />
+                                <span style={{ color: 'green' }}>{item.discountedPrice} Kr</span>
+                            </div>
+                        </li>
+                    ))}
+                </ul>
+                <div className="mt-3">
+                    <strong>Total: {totalPrice} Kr</strong>
+                </div>
+                <button className="home-button" onClick={() => navigate('/')}>Gå hem</button>
             </div>
         </div>
     );

@@ -1,0 +1,66 @@
+.receipt-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; 
+    padding: 20px;
+    background-color: #808080; 
+}
+
+.receipt-content {
+    background-color: #e0e0e0; 
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+}
+
+.receipt-list {
+    list-style: none;
+    padding: 0;
+}
+
+.thank-you-message {
+    font-size: 1.5rem; 
+    margin-bottom: 20px;
+}
+
+.receipt-content h1 {
+    font-size: 1.8rem; 
+}
+
+.receipt-content strong, .thank-you-message {
+    font-weight: bold;
+}
+
+.receipt-content p {
+    font-size: 1rem;
+}
+
+.receipt-content ul {
+    padding-left: 0;
+    margin: 0;
+}
+
+.receipt-content li {
+    margin-bottom: 10px;
+}
+
+.home-button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #007bff; 
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+
+    .home-button:hover {
+        background-color: #0056b3; 
+    }
