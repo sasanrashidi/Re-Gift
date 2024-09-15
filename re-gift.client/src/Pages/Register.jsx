@@ -43,7 +43,7 @@ export const Register = () => {
                     <form onSubmit={handleRegister}>
                         <h2>Register</h2>
                         <div className="form-group">
-                            <label>First Name:</label>
+                            <label>Förnamn:</label>
                             <input
                                 type="text"
                                 value={firstName}
@@ -52,7 +52,7 @@ export const Register = () => {
                             />
                         </div>
                         <div className="form-group">
-                            <label>Last Name:</label>
+                            <label>Efternamn:</label>
                             <input
                                 type="text"
                                 value={lastName}
@@ -70,7 +70,7 @@ export const Register = () => {
                             />
                         </div>
                         <div className="form-group">
-                            <label>Password:</label>
+                            <label>Lösenord:</label>
                             <input
                                 type="password"
                                 value={password}
