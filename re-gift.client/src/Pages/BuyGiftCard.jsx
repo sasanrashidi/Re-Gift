@@ -131,9 +131,18 @@ export function BuyGiftCard() {
                 {/*</button>*/}
             </div>
 
+
             <p style={{ padding: '20px', fontSize: '25px', fontStyle: 'italic' }}>
-                Här kan du köpa presentkort från privatpersoner. Logga in för att se mer av sortimentet.
+                Här kan du köpa presentkort från privatpersoner.
+                <br />
+                Om du vill sälja, tryck här ->
+            <button className="btn btn-secondary mx-2"
+                style={{ backgroundColor: 'lightgreen', color: 'black', border: "none" }} // Ljusgrön färg för säljknappen
+                onClick={handleSellClick}>
+                Sälj Presentkort
+            </button>
             </p>
+            <br />
 
 
             <div className="d-flex justify-content-center mb-4">
@@ -154,6 +163,8 @@ export function BuyGiftCard() {
                     />
                 </div>
             </div>
+            <br />
+            <br />
 
 
             <div style={{
