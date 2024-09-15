@@ -323,9 +323,7 @@ export function ItemModal({ title, items, show, handleClose, onRemove }) {
                     <div>
                         <h4>Tack för ditt köp!</h4>
                         <p>Din betalning har genomförts framgångsrikt.</p>
-                        <Button variant="primary" onClick={handleCloseWithReset}>
-                            Stäng
-                        </Button>
+                        
                     </div>
                 )}
             </Modal.Body>
