@@ -29,16 +29,19 @@ export default function Home() {
     return (
         <div className="container py-4" id="home">
             <div className="custom-background p-5 rounded">
-                <div className="col-sm-8 py-5 mx-auto">
+                <div className="col-sm-8 pt-5 mx-auto">
                     <h1 className="display-5 fw-normal smaller-heading">Välkommen till Regift</h1>
                     <p className="lead smaller-text" style={{ fontWeight: 300, fontFamily: 'Arial, sans-serif' }}>
                         Här kan du köpa och sälja presentkort på ett enkelt och säkert sätt.
                         Oavsett om du vill bli av med ett oanvänt presentkort eller letar efter ett bra erbjudande på ett presentkort du vill ha, är vi här för att hjälpa dig!
                     </p>
                     {/* Knappsektion */}
-                    <div className="mt-4">
+                </div>
+            </div>
+
+                    <div className="mt-4" style={{ marginTop: '20px', marginBottom: '80px' }} >
                         <button className="btn btn-primary mx-2"
-                            style={{ backgroundColor: 'lightblue', color: 'black', border: "none" }}
+                            style={{ backgroundColor: 'lightblue', color: 'black', border: "none"}} // Ljusbla färg för åkta knappen
                             onClick={handleBuyClick}>
                             Köp Presentkort
                         </button>
@@ -48,12 +51,9 @@ export default function Home() {
                             Sälj Presentkort
                         </button>
                     </div>
-                </div>
-            </div>
-
 
             {/* Carousel */}
-            <Carousel className="custom-carousel my-5">
+            <Carousel className="custom-carousel mt-5">
                 <Carousel.Item>
                     <img
                         className="d-block w-100"

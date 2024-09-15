@@ -38,7 +38,10 @@
     font-size: 12px;
 }
 
-
+.mt-4{
+    display: flex;
+    justify-content: center;
+}
  
     .favorite-icon, .cart-icon {
         margin: 0 10px; /* Horizontal spacing between icons */
