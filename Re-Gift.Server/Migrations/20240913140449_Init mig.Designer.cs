@@ -12,8 +12,8 @@ using Re_Gift.Server.Data;
 namespace Re_Gift.Server.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240912150026_init migration")]
-    partial class initmigration
+    [Migration("20240913140449_Init mig")]
+    partial class Initmig
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -77,17 +77,20 @@ namespace Re_Gift.Server.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("SoldGFId")
+                    b.Property<int>("BuyerId")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("PurchaseId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("SellerId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SoldCardId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("TransactionDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<int>("User1Id")
-                        .HasColumnType("int");
-
-                    b.Property<int>("User2Id")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

@@ -1,57 +1,128 @@
-﻿.login-container {
-    margin-top: 50px;
+﻿/* Apply background image only for the register page */
+.register-page {
+    background-image: url('../img/back55.jpeg'), linear-gradient(rgba(255, 255, 224, 0.5), rgba(255, 255, 224, 0.5)); /* Light yellow color blend */
+    background-size: cover; /* Cover the whole container */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent repeating */
+    background-blend-mode: multiply; /* Blend color with the image */
+    min-height: 100vh; /* Ensure full height */
+    /* No flexbox properties here */
 }
 
-.login-row {
-    margin-top: 20px;
+/* Wrapper for centering the form and text container */
+.register-content {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center items horizontally */
+    justify-content: center; /* Center items vertically */
+    gap: 30px; /* Space between form and text container */
+    min-height: 100vh; /* Ensure full height */
 }
 
-.login-col {
-    background-color: #f8f9fa;
-    padding: 20px;
+/* Container for the introductory text */
+.intro-container {
+    text-align: center; /* Center the text */
+    max-width: 800px; /* Increase the max-width for a larger text container */
+}
+
+/* Style for the introductory text */
+.intro-text {
+    font-size: 1.7rem; /* Larger text */
+    line-height: 1.7;
+    color: #000; /* Text color */
+    font-weight: 400;
+    margin: 0; /* Remove default margins */
+    font-family: 'Lora', serif; /* Elegant serif font */
+    font-style: italic; /* Italic style */
+    background-color: rgba(255, 255, 255, 0.9); /* Light white background */
+    padding: 30px; /* Increase padding */
+    border-radius: 20px; /* Rounded corners for text background */
+}
+
+/* Styling for the register form */
+.register-form {
+    background-color: white;
+    padding: 40px; /* Increase padding for a bigger form */
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px; /* Form width */
+    z-index: 1; /* Ensure the form stays visible */
 }
 
-.login-header {
+/* Set navmenu and footer backgrounds to transparent only on register page */
+.register-page .navmenu, .register-page .footer {
+    background-color: transparent;
+}
+
+/* Media query for small screens */
+@media (max-width: 768px) {
+    .register-content {
+        padding: 20px; /* Add padding around the container */
+        gap: 20px; /* Reduce space between form and text container on small screens */
+    }
+
+    .register-form {
+        padding: 20px; /* Reduce padding for smaller screens */
+        max-width: 100%; /* Allow form to take full width on mobile */
+    }
+
+    .intro-container {
+        margin-top: 16px; /* Space between text and form on smaller screens */
+    }
+}
+
+/* Form title */
+.register-form h2 {
     text-align: center;
     margin-bottom: 20px;
     color: #333;
 }
 
-.error-message {
-    color: red;
-    text-align: center;
-    margin-bottom: 10px;
+/* Form fields */
+.register-form .form-group {
+    margin-bottom: 20px;
 }
 
-.login-form .form-group {
-    margin-bottom: 15px;
-}
-
-.form-label {
+.register-form label {
+    display: block;
     font-weight: bold;
+    margin-bottom: 5px;
+    color: #555;
 }
 
-.form-control {
-    border-radius: 4px;
+.register-form input {
+    width: 100%;
     padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
 }
 
-.feedback {
-    font-size: 0.9rem;
-    color: #dc3545;
-}
-
-.login-button {
+.register-form button {
     width: 100%;
     padding: 10px;
     font-size: 1.1rem;
     background-color: #007bff;
     border: none;
     border-radius: 4px;
+    color: white;
+    cursor: pointer;
 }
 
-    .login-button:hover {
+    .register-form button:hover {
         background-color: #0056b3;
     }
+
+/* Success and error messages */
+.success-message {
+    color: green;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.error-message {
+    color: red;
+    text-align: center;
+    margin-top: 20px;
+}

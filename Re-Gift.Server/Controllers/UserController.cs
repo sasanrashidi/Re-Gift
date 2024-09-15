@@ -46,9 +46,15 @@ public class UserController : ControllerBase
         {
             var isSuccess = await _userService.UserLoginAsync(userLogin.Email, userLogin.Password);
 
-            if (isSuccess)
+            if (isSuccess != null)
             {
-                return Ok(new { Message = "Login successful" });
+                var mappedUser = _mapper.Map<UserDto>(isSuccess);
+
+                return Ok(new
+                {
+                    Message = "Login successful",
+                    User = isSuccess  
+                });
             }
             else
             {

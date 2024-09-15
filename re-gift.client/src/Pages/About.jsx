@@ -19,30 +19,30 @@
 //};
 
 import React from 'react';
-import '../css/About.css'; // Importera endast About.css
-import regiftLogo from '../IMG/REGIFTT.png'; // Kontrollera att du har rätt sökväg
-
+import '../css/About.css'; 
+import regiftLogo from '../IMG/REGIFTT.png'; 
 
 export function About() {
     return (
         <nav className="About">
             <div className="about-center">
                 <p className="about-lead">
-                    Välkommen till vår plattform, där vi gör det enklare än någonsin att både köpa och sälja presentkort! Vårt mål är att erbjuda en smidig, säker och tillförlitlig tjänst där du kan hitta det perfekta presentkortet, eller sälja ett oanvänt kort och få ut maximalt värde för det.
+                    Välkommen till Re:gift, en marknadsplats för att enkelt och tryggt handla billigare presentkort. Här får du möjligheten att sälja dina oanvända presentkort eller köpa dem till rabatterade priser.
                 </p>
                 <p className="about-lead">
-                    Vi vet hur det känns att få ett presentkort som kanske inte riktigt passar, och därför skapade vi denna marknadsplats. Här kan du snabbt och enkelt omvandla dina oanvända presentkort till pengar, eller hitta fantastiska erbjudanden på presentkort till dina favoritbutiker.
+                    Oavsett om du vill sälja ett presentkort som du inte har behov av, eller om du letar efter ett fynd till en favoritbutik, erbjuder vi en smidig och säker lösning. Vi vill göra det enkelt för säljare att få pengar för sina presentkort och för köpare att hitta rabatterade alternativ.
                 </p>
                 <p className="about-lead">
-                    Med ett stort urval av presentkort och en säker transaktionsprocess ser vi till att både köpare och säljare känner sig trygga. Oavsett om du vill ge bort en gåva eller använda dina presentkort på ett mer flexibelt sätt, är vi här för att hjälpa dig på bästa sätt.
+                    Vi ser till att varje presentkort kontrolleras för giltighet innan det läggs upp för försäljning, så att du som köpare kan känna dig trygg i att du får ett fungerande presentkort. Som säljare kan du också känna dig säker på att affären går smidigt efter validering.
                 </p>
                 <p className="about-lead">
-                    Vårt team arbetar kontinuerligt för att göra din upplevelse så smidig och säker som möjligt. Vi strävar efter att skapa en transparent och rättvis marknadsplats där alla kan delta med förtroende.
+                    Vår tjänst är lätt att använda och vi har gjort allt för att du snabbt ska kunna köpa eller sälja presentkort utan krångel. Oavsett om du vill göra en bra affär som köpare eller omvandla ett oanvänt kort till pengar, så finns Re:gift här för att hjälpa dig.
                 </p>
                 <p className="about-lead">
-                    Har du några frågor? Tveka inte att kontakta oss – vi är här för att hjälpa dig!
+                    Vi arbetar hela tiden med att förbättra tjänsten och är alltid tillgängliga om du har några frågor eller behöver hjälp. Tveka inte att höra av dig!
                 </p>
-                <img src={regiftLogo} alt="Regift Logo" className="img-fluid" width={150} height={50} style={{ marginTop: '20px', border: 'none' }} />
+
+                <img src={regiftLogo} alt="Re:gift Logo" className="img-fluid" width={150} height={50} style={{ marginTop: '20px', border: 'none' }} />
             </div>
         </nav>
     );

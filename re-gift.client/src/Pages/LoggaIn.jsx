@@ -3,6 +3,7 @@ import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom'; // Importera useNavigate
 import '../css/LoggaIn.css';
 import { AppContext } from '../context/AppContext';
+import Register from '../Pages/Register';
 
 function LoggaIn() {
     const [email, setEmail] = useState('');
@@ -20,12 +21,17 @@ function LoggaIn() {
         } else {
             try {
                 // Skicka inloggningsuppgifter till API
-                const response = await fetch('https://localhost:7049/api/User/login', {
+                const response = await fetch('https://re-gift-aeesgygqhsbaf8eh.eastus-01.azurewebsites.net/api/User/login', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ email, password }),
+                    body: JSON.stringify({
+                        email,
+                        password,
+                        firstName: "dummyFirstName",
+                        lastName: "dummyLastName"
+                    }),
                 });
 
                 if (response.ok) {
@@ -33,7 +39,10 @@ function LoggaIn() {
                     console.log('Inloggning lyckades!', data);
 
                     // Uppdatera user i context
-                    setUser({ email });
+                    setUser({
+                        email: data.user.email,
+                        id: data.user.id 
+                    });
                     setErrorMessage(''); // Återställer felmeddelande
 
                     // Omdirigera till hemsidan efter inloggning
@@ -96,6 +105,18 @@ function LoggaIn() {
                             Logga In
                         </Button>
                     </Form>
+                    {/* Länk för att skapa ett nytt konto */}
+                    <div className="signup-prompt">
+                        <p>Har du inget konto?&nbsp;
+                            <span
+                                className="signup-link"
+                                onClick={() => navigate('/Register')} // Direkt navigering till registreringssidan
+                                style={{ cursor: 'pointer', color: 'blue' }}>
+                                Skapa ett här!
+                            </span>
+                        </p>
+                    </div>
+
                 </Col>
             </Row>
         </Container>

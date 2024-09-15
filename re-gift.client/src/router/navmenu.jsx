@@ -278,7 +278,8 @@ export function NavMenu() {
     const { cart, setCart, favorites, setFavorites, user, setUser } = useContext(AppContext);
     const [showCartModal, setShowCartModal] = useState(false);
     const [showFavoritesModal, setShowFavoritesModal] = useState(false);
-    const navigate = useNavigate();
+    const [isNavOpen, setIsNavOpen] = useState(false);  // Ny state för att hantera om menyn är öppen eller stängd
+    const navigate = useNavigate();  // Används för att navigera efter inloggning/utloggning
 
     const handleCartModalShow = () => setShowCartModal(true);
     const handleCartModalClose = () => setShowCartModal(false);
@@ -297,39 +298,52 @@ export function NavMenu() {
     const logoutHandler = () => {
         setUser(null);
         navigate("/");  // Navigera till startsidan efter utloggning
+        setIsNavOpen(false);  // Stäng menyn efter utloggning
+    };
+
+    const closeNavMenu = () => {
+        setIsNavOpen(false);  // Stänger menyn efter val
     };
 
     return (
         <>
-            <Navbar expand="lg" className="transparent-navbar" style={{ position: 'relative' }}>
+            <Navbar expand="lg" className="transparent-navbar" expanded={isNavOpen} style={{ position: 'relative' }}>
                 <Navbar.Brand>
                     <div>
                         <img src={regiftLogo} alt="Regift Logo" className="img-fluid" width={150} height={50} style={{ margin: 0, padding: 0, border: 'none' }} />
                     </div>
                 </Navbar.Brand>
 
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Toggle aria-controls="basic-navbar-nav" onClick={() => setIsNavOpen(!isNavOpen)} />
+
+                {/* Keep the icons outside of Navbar.Collapse */}
+                <div className="icons-container ml-auto d-flex align-items-center">
+                    <span className="favorite-icon" onClick={handleFavoritesModalShow}>
+                        <FaHeart size={24} />
+                        {favorites.length > 0 && (
+                            <span className="badge badge-pill badge-danger">{favorites.length}</span>
+                        )}
+                    </span>
+                    <span className="cart-icon" onClick={handleCartModalShow}>
+                        <FaShoppingCart size={24} />
+                        {cart.length > 0 && (
+                            <span className="badge badge-pill badge-danger">{cart.length}</span>
+                        )}
+                    </span>
+                </div>
 
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto">
-                        <LinkContainer to="/">
+                        <LinkContainer to="/" onClick={closeNavMenu}>
                             <Nav.Link>Hem</Nav.Link>
                         </LinkContainer>
-
-                        <NavDropdown title="Marknad" id="basic-nav-dropdown">
-                            <LinkContainer to="/BuyGiftCard">
-                                <NavDropdown.Item>Köp</NavDropdown.Item>
-                            </LinkContainer>
-                            <LinkContainer to="/SellGiftCard">
-                                <NavDropdown.Item>Sälj</NavDropdown.Item>
-                            </LinkContainer>
-                        </NavDropdown>
-
-                        <LinkContainer to="/Contact">
+                        <LinkContainer to="/BuyGiftCard" onClick={closeNavMenu}>
+                            <Nav.Link>Marknad</Nav.Link>
+                        </LinkContainer>
+                        <LinkContainer to="/Contact" onClick={closeNavMenu}>
                             <Nav.Link>Kontakt</Nav.Link>
                         </LinkContainer>
-
-                        <LinkContainer to="/About">
+                        <LinkContainer to="/About" onClick={closeNavMenu}>
                             <Nav.Link>Om oss</Nav.Link>
                         </LinkContainer>
                     </Nav>
@@ -341,39 +355,12 @@ export function NavMenu() {
                             </NavDropdown.Item>
                         </NavDropdown>
                     ) : (
-                        <LinkContainer to="/login">
+                        <LinkContainer to="/login" onClick={closeNavMenu}>
                             <span className="ml-auto">Logga in</span>
                         </LinkContainer>
                     )}
-
                 </Navbar.Collapse>
             </Navbar>
-
-            {/* Ikonerna är placerade här utanför Navbar */}
-            <div className="icons-container">
-                <span
-                    className="favorite-icon"
-                    onClick={handleFavoritesModalShow}
-                >
-                    <FaHeart size={24} />
-                    {favorites.length > 0 && (
-                        <span className="badge badge-pill badge-danger">
-                            {favorites.length}
-                        </span>
-                    )}
-                </span>
-                <span
-                    className="cart-icon"
-                    onClick={handleCartModalShow}
-                >
-                    <FaShoppingCart size={24} />
-                    {cart.length > 0 && (
-                        <span className="badge badge-pill badge-danger">
-                            {cart.length}
-                        </span>
-                    )}
-                </span>
-            </div>
 
             {/* Modals */}
             <ItemModal
