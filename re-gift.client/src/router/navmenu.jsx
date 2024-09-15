@@ -14,8 +14,8 @@ export function NavMenu() {
     const { cart, setCart, favorites, setFavorites, user, setUser } = useContext(AppContext);
     const [showCartModal, setShowCartModal] = useState(false);
     const [showFavoritesModal, setShowFavoritesModal] = useState(false);
-    const [isNavOpen, setIsNavOpen] = useState(false);  // Ny state för att hantera om menyn är öppen eller stängd
-    const navigate = useNavigate();  // Används för att navigera efter inloggning/utloggning
+    const [isNavOpen, setIsNavOpen] = useState(false);
+    const navigate = useNavigate();
 
     const handleCartModalShow = () => setShowCartModal(true);
     const handleCartModalClose = () => setShowCartModal(false);
@@ -33,12 +33,17 @@ export function NavMenu() {
 
     const logoutHandler = () => {
         setUser(null);
-        navigate("/");  // Navigera till startsidan efter utloggning
-        setIsNavOpen(false);  // Stäng menyn efter utloggning
+        navigate("/"); // Navigate to the homepage after logout
+        setIsNavOpen(false); // Close the menu after logout
     };
 
     const closeNavMenu = () => {
-        setIsNavOpen(false);  // Stänger menyn efter val
+        setIsNavOpen(false); // Close the menu after selecting an item
+    };
+
+    const handleMarknadClick = () => {
+        navigate('/BuyGiftCard', { state: { resetPage: true } });
+        closeNavMenu();
     };
 
     return (
@@ -52,7 +57,6 @@ export function NavMenu() {
 
                 <Navbar.Toggle aria-controls="basic-navbar-nav" onClick={() => setIsNavOpen(!isNavOpen)} />
 
-                {/* Keep the icons outside of Navbar.Collapse */}
                 <div className="icons-container ml-auto d-flex align-items-center">
                     <span className="favorite-icon" onClick={handleFavoritesModalShow}>
                         <FaHeart size={24} />
@@ -73,9 +77,7 @@ export function NavMenu() {
                         <LinkContainer to="/" onClick={closeNavMenu}>
                             <Nav.Link>Hem</Nav.Link>
                         </LinkContainer>
-                        <LinkContainer to="/BuyGiftCard" onClick={closeNavMenu}>
-                            <Nav.Link>Marknad</Nav.Link>
-                        </LinkContainer>
+                        <Nav.Link onClick={handleMarknadClick}>Marknad</Nav.Link>
                         <LinkContainer to="/Contact" onClick={closeNavMenu}>
                             <Nav.Link>Kontakt</Nav.Link>
                         </LinkContainer>
@@ -85,7 +87,7 @@ export function NavMenu() {
                     </Nav>
 
                     {user ? (
-                        <NavDropdown title={user.email} id="user-nav-dropdown">
+                        <NavDropdown title={`Välkommen ${user.firstname}`} id="user-nav-dropdown">
                             <NavDropdown.Item onClick={logoutHandler}>
                                 <span>Logga ut</span>
                             </NavDropdown.Item>

@@ -41,7 +41,8 @@ function LoggaIn() {
                     // Uppdatera user i context
                     setUser({
                         email: data.user.email,
-                        id: data.user.id 
+                        id: data.user.id, 
+                        firstname: data.user.firstName
                     });
                     setErrorMessage(''); // Återställer felmeddelande
 

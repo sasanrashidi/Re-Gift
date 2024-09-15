@@ -52,7 +52,7 @@ export function SellGiftCard() {
         const diffInTime = expireDate.getTime() - today.getTime();
         const diffInDays = diffInTime / (1000 * 3600 * 24);
 
-        if (diffInDays < 7) {
+        if (diffInDays < 6) {
             setError('Utgångsdatum måste vara minst 7 dagar framåt.');
             return;
         }
