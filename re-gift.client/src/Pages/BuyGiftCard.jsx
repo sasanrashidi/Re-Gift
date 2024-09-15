@@ -14,6 +14,7 @@ import Akademibokimg from '../img/Akademibok.png';
 import BurgerKingimg from '../img/BurgerKing.jpg';
 import { AppContext } from '../context/AppContext';
 import '../css/Home.css';
+import { Tab } from 'bootstrap';
 
 export function BuyGiftCard() {
     const [searchQuery, setSearchQuery] = useState('');
@@ -122,7 +123,7 @@ export function BuyGiftCard() {
             <p style={{ padding: '20px', fontSize: '25px', fontStyle: 'italic' }}>
                 Här kan du köpa presentkort från privatpersoner.
                 <br />
-                Om du vill sälja, tryck här ->
+                Om du vill sälja, tryck här:
                 <button className="btn btn-secondary mx-2"
                     style={{ backgroundColor: 'lightgreen', color: 'black', border: "none" }}
                     onClick={handleSellClick}>
@@ -179,9 +180,9 @@ export function BuyGiftCard() {
                                 onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.1)'}
                                 onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'} />
                             <p>
-                                <span>{image.title.split(' - ')[0]}</span><br />
-                                <span style={{ textDecoration: 'line-through', color: 'red' }}>{image.originalPrice} Kr</span><br />
-                                <span style={{ color: 'green' }}>{image.discountedPrice} Kr</span>
+                              <span>{image.title.split(' - ')[0]}</span><br />
+                              <span style={{ textDecoration: 'line-through', color: 'red' }}>{image.originalPrice} Kr</span>
+                              <span style={{ color: 'green' }}>&nbsp;&nbsp;&nbsp;{image.discountedPrice} Kr&nbsp;&nbsp;&nbsp;<span style={{ color: 'white' }}>({Math.round((1 - image.discountedPrice / image.originalPrice) * 100)}%)</span></span>
                             </p>
                         </div>
                     ))
