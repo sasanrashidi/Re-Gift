@@ -1,86 +1,96 @@
-﻿/* contact.css */
-
-/*.Contact {
+﻿.Contact {
     display: flex;
     justify-content: center;
-    align-items: center;*/ /* Centrera innehållet vertikalt */
-    /*height: 100vh;*/ /* Full höjd av viewport */
-    /*padding: 20px;
-
+    align-items: flex-start;
+    height: 100vh;
+    padding: 50px 20px;
+    background-color: #f1f1f1;
 }
 
 .content-center {
-    max-width: 600px;*/ /* Gör textrutan smalare för bättre centrering */
-    /*text-align: center;*/ /* Centrera texten horisontellt */
-    /*background-color: #f8f9fa;*/ /* Lätt bakgrundsfärg för textrutan */
-    /*padding: 20px;*/ /* Padding runt texten */
-    /*border-radius: 8px;*/ /* Rundade hörn */
-    /*box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);*/ /* Lätt skugga för att lyfta textrutan */
-/*}
+    max-width: 700px;
+    text-align: center;
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
 
-.lead {
-    font-size: 1rem;*/ /* Normal textstorlek */
-    /*color: #333;*/ /* Mjukare textfärg */
-    /*margin-bottom: 20px;*/ /* Lite avstånd till ikonerna */
-/*}
-
-.social-icons {
-    display: flex;
-    justify-content: center;*/ /* Centrera ikonerna horisontellt */
-    /*gap: 20px;*/ /* Avstånd mellan ikonerna */
-    /*margin-top: 20px;*/ /* Lite avstånd ovanför ikonerna */
-/*}
-
-    .social-icons a {
-        color: #333;*/ /* Färg på ikonerna */
-        /*transition: color 0.3s ease;*/ /* Mjuk övergång för färgändring */
-    /*}
-
-        .social-icons a:hover {
-            color: #007bff;*/ /* Färgändring vid hovring */
-        /*}*/
-
-.content-center p {
+.contact-title {
+    font-size: 2rem;
     font-weight: bold;
-}
-
-.Contact {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start; /* Flyttar innehållet närmare toppen */
-    height: 100vh; /* Full höjd av viewport */
-    padding: 150px 100px 100px; /* Minska padding-top för att flytta uppåt */
-}
-
-.content-center {
-    max-width: 600px; /* Gör textrutan smalare för bättre centrering */
-    text-align: center; /* Centrera texten horisontellt */
-    background-color: #f8f9fa; /* Lätt bakgrundsfärg för textrutan */
-    padding: 20px; /* Padding runt texten */
-    border-radius: 8px; /* Rundade hörn */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Lätt skugga för att lyfta textrutan */
-}
-
-.contact-lead {
-    font-size: 1rem; /* Normal textstorlek */
-    color: #333; /* Mjukare textfärg */
-    margin-bottom: 20px; /* Lite avstånd till ikonerna */
+    color: #333;
+    margin-bottom: 20px;
     font-family: 'Arial', sans-serif;
 }
 
-.social-icons {
-    display: flex;
-    justify-content: center; /* Centrera ikonerna horisontellt */
-    gap: 20px; /* Avstånd mellan ikonerna */
-    margin-top: 10px; /* Minska avståndet ovanför ikonerna för att flytta dem närmare texten */
+.contact-lead {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 30px;
 }
 
+.contact-form {
+    margin-bottom: 40px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 1rem;
+        color: #333;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 1rem;
+        color: #333;
+    }
+
+.submit-btn {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+    .submit-btn:hover {
+        background-color: #0056b3;
+    }
+
+.contact-info {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.map {
+    margin-bottom: 30px;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
 
     .social-icons a {
-        color: #007bff; /* Färg på ikonerna */
-        /*transition: color 0.3s ease;*/ /* Mjuk övergång för färgändring */
+        color: #007bff;
+        transition: color 0.3s ease;
     }
 
         .social-icons a:hover {
-            color: #007bff; /* Färgändring vid hovring */
+            color: #0056b3;
         }
