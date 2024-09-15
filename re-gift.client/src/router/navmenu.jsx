@@ -348,17 +348,19 @@ export function NavMenu() {
                         </LinkContainer>
                     </Nav>
 
-                    {user ? (
-                        <NavDropdown title={`Välkommen ${user.firstname}`} id="user-nav-dropdown">
-                            <NavDropdown.Item onClick={logoutHandler}>
-                                <span>Logga ut</span>
-                            </NavDropdown.Item>
-                        </NavDropdown>
-                    ) : (
-                        <LinkContainer to="/login" onClick={closeNavMenu}>
-                            <span className="ml-auto loggainKnapp">Logga in</span>
-                        </LinkContainer>
-                    )}
+                    <div className="navbar-right-alignment">
+                        {user ? (
+                            <NavDropdown title={`Välkommen ${user.firstname}`} id="user-nav-dropdown">
+                                <NavDropdown.Item onClick={logoutHandler}>
+                                    <span>Logga ut</span>
+                                </NavDropdown.Item>
+                            </NavDropdown>
+                        ) : (
+                            <LinkContainer to="/login" onClick={closeNavMenu}>
+                                <span className="ml-auto loggainKnapp">Logga in</span>
+                            </LinkContainer>
+                        )}
+                    </div>
                 </Navbar.Collapse>
             </Navbar>
 
