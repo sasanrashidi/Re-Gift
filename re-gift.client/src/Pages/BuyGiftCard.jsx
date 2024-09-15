@@ -131,10 +131,13 @@ export function BuyGiftCard() {
                 {/*</button>*/}
             </div>
 
-            <p style={{ padding: '20px' }}>Här kan du köpa presentkort från privatpersoner. Logga in för att se mer av sortimentet.</p>
+            <p style={{ padding: '20px', fontSize: '25px', fontStyle: 'italic' }}>
+                Här kan du köpa presentkort från privatpersoner. Logga in för att se mer av sortimentet.
+            </p>
+
 
             <div className="d-flex justify-content-center mb-4">
-                <div className="input-group" style={{ width: '300px' }}>
+                <div className="input-group" style={{ width: '500px' }}> {/* Increased width of the container */}
                     <input
                         type="text"
                         className="form-control"
@@ -143,9 +146,15 @@ export function BuyGiftCard() {
                         aria-describedby="basic-addon1"
                         value={searchQuery}
                         onChange={handleSearchChange}
+                        style={{
+                            fontSize: '18px',  /* Increased font size for the text inside the search box */
+                            height: '50px',    /* Increased height of the search box */
+                            padding: '10px'    /* Added padding for better spacing */
+                        }}
                     />
                 </div>
             </div>
+
 
             <div style={{
                 display: 'grid',
