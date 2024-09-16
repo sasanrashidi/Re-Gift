@@ -192,7 +192,19 @@ export function ItemModal({ title, items, show, handleClose, onRemove }) {
                                     <strong>Total: {totalPrice} Kr.</strong>
                                 </div>
                                 {title !== 'Favoriter' && ( // Conditionally render the "Till Betalning" button
-                                    <Button className="mt-3" variant="primary" onClick={() => setIsPaying(true)}>
+                                    <Button
+                                        className="mt-3"
+                                        variant="primary"
+                                        onClick={() => {
+                                            if (!user) {
+                                                // Om användaren inte är inloggad, omdirigera till inloggningssidan
+                                                navigate('/login', { state: { from: '/BuyGiftCard' } });
+                                            } else {
+                                                // Om användaren är inloggad, sätt isPaying till true
+                                                setIsPaying(true);
+                                            }
+                                        }}
+                                    >
                                         Till Betalning
                                     </Button>
                                 )}
@@ -204,21 +216,7 @@ export function ItemModal({ title, items, show, handleClose, onRemove }) {
                                
 
                                 {/* Modifierad knapp som kontrollerar om användaren är inloggad */}
-                                <Button
-                                    className="mt-3"
-                                    variant="primary"
-                                    onClick={() => {
-                                        if (!user) {
-                                            // Om användaren inte är inloggad, omdirigera till inloggningssidan
-                                            navigate('/login', { state: { from: '/BuyGiftCard' } });
-                                        } else {
-                                            // Om användaren är inloggad, sätt isPaying till true
-                                            setIsPaying(true);
-                                        }
-                                    }}
-                                >
-                                    Till Betalning
-                                </Button>
+                              
                             </>
                         ) : (
                             <p>Inga varor i {title}.</p>
