@@ -18,7 +18,7 @@ export function ItemModal({ title, items, show, handleClose, onRemove }) {
     });
     const [isProcessing, setIsProcessing] = useState(false);
     const [formErrors, setFormErrors] = useState({});
-    const { cart, setCart, favorites, setFavorites } = useContext(AppContext);
+    const { cart, setCart, favorites, setFavorites, user } = useContext(AppContext);
     const [purchase, setPurchase] = useState(null);
     const navigate = useNavigate();
 
@@ -111,9 +111,19 @@ export function ItemModal({ title, items, show, handleClose, onRemove }) {
     };
 
     const handlePayment = () => {
-        const isValid = validateCardDetails();
-        if (isValid) {
-            simulatePayment();
+        if (!user) {
+            // Stäng popup-fönstret först och vänta tills det har stängts
+            handleClose();
+
+            // Fördröjning för att säkerställa att modalen stängs innan omdirigering
+            setTimeout(() => {
+                navigate('/login', { state: { from: '/BuyGiftCard' } });
+            }, 300);  // Anpassa fördröjningen om det behövs
+        } else {
+            const isValid = validateCardDetails();
+            if (isValid) {
+                simulatePayment();
+            }
         }
     };
 
@@ -135,7 +145,9 @@ export function ItemModal({ title, items, show, handleClose, onRemove }) {
 
     const handleCloseWithReset = () => {
         resetStateAfterPayment();
-        handleClose();
+        setTimeout(() => {
+            handleClose();
+        }, 200);  // Liten fördröjning för att se till att återställningen körs först
     };
 
     const moveFavoritesToCart = () => {
@@ -179,14 +191,32 @@ export function ItemModal({ title, items, show, handleClose, onRemove }) {
                                 <div className="mt-3">
                                     <strong>Total: {totalPrice} Kr.</strong>
                                 </div>
+                                {title !== 'Favoriter' && ( // Conditionally render the "Till Betalning" button
+                                    <Button
+                                        className="mt-3"
+                                        variant="primary"
+                                        onClick={() => {
+                                            if (!user) {
+                                                // Om användaren inte är inloggad, omdirigera till inloggningssidan
+                                                navigate('/login', { state: { from: '/BuyGiftCard' } });
+                                            } else {
+                                                // Om användaren är inloggad, sätt isPaying till true
+                                                setIsPaying(true);
+                                            }
+                                        }}
+                                    >
+                                        Till Betalning
+                                    </Button>
+                                )}
                                 {title === 'Favoriter' && (
                                     <Button className="mt-3" variant="success" onClick={moveFavoritesToCart}>
                                         Flytta till varukorg
                                     </Button>
                                 )}
-                                <Button className="mt-3" variant="primary" onClick={() => setIsPaying(true)}>
-                                    Till Betalning
-                                </Button>
+                               
+
+                                {/* Modifierad knapp som kontrollerar om användaren är inloggad */}
+                              
                             </>
                         ) : (
                             <p>Inga varor i {title}.</p>
@@ -277,7 +307,7 @@ export function ItemModal({ title, items, show, handleClose, onRemove }) {
                                     {formErrors.cardNumber}
                                 </Form.Control.Feedback>
                             </Form.Group>
-                            <Form.Group controlId="formName">
+                            <Form.Group controlId="formNameOnCard">
                                 <Form.Label>Namn på kortet</Form.Label>
                                 <Form.Control
                                     type="text"
@@ -290,7 +320,7 @@ export function ItemModal({ title, items, show, handleClose, onRemove }) {
                                     {formErrors.name}
                                 </Form.Control.Feedback>
                             </Form.Group>
-                            <Form.Group controlId="formCvv">
+                            <Form.Group controlId="formCVV">
                                 <Form.Label>CVV</Form.Label>
                                 <Form.Control
                                     type="text"
@@ -303,26 +333,31 @@ export function ItemModal({ title, items, show, handleClose, onRemove }) {
                                     {formErrors.cvv}
                                 </Form.Control.Feedback>
                             </Form.Group>
-                            <Button variant="secondary" onClick={handleCloseWithReset}>
-                                Avbryt
-                            </Button>
-                            <Button className="ms-2" variant="primary" onClick={handlePayment} disabled={isProcessing}>
-                                {isProcessing ? <Spinner animation="border" size="sm" /> : 'Betala'}
-                            </Button>
                         </Form>
+                        <Button
+                            className="mt-3"
+                            variant="success"
+                            onClick={handlePayment}
+                            disabled={isProcessing}
+                        >
+                            {isProcessing ? <Spinner as="span" animation="border" size="sm" /> : 'Betala'}
+                        </Button>
                     </div>
                 )}
 
                 {paymentSuccess && (
                     <div>
-                        <h4>Betalning lyckades!</h4>
-                        <p>Du kommer nu att skickas till kvittosidan.</p>
-                        <Button variant="secondary" onClick={handleCloseWithReset}>
-                            Stäng
-                        </Button>
+                        <h4>Betalning Slutförd!</h4>
+                        <p>Din betalning har genomförts framgångsrikt.</p>
                     </div>
                 )}
             </Modal.Body>
+            <Modal.Footer>
+                <Button variant="secondary" onClick={handleCloseWithReset}>
+                    Stäng
+                </Button>
+            </Modal.Footer>
         </Modal>
     );
 }
+

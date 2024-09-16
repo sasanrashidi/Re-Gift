@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+ï»¿import React, { useContext, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import emailjs from 'emailjs-com'; // Import EmailJS
 import '../css/receipt.css'
@@ -76,7 +76,7 @@ export function ReceiptPage() {
 
     return (
         <div className="receipt-container">
-            <p className="thank-you-message">Tack för ditt köp!</p> {/* Correct Swedish characters */}
+            <p className="thank-you-message">Tack fÃ¶r ditt kÃ¶p!</p> {/* Correct Swedish characters */}
             <div className="receipt-content">
                 <h1>Kvitto</h1> {/* "Kvitto" in Swedish */}
                 <p><strong>Datum:</strong> {date}</p>
@@ -86,6 +86,8 @@ export function ReceiptPage() {
                             <div>
                                 <img src={item.imgSrc} alt={item.title} style={{ width: '50px', height: 'auto' }} />
                                 <strong>{item.title}</strong><br />
+                                <span>userId: {item.userId}</span><br />
+                                <span>userId: {item.userId}</span><br />
                                 <span style={{ textDecoration: 'line-through', color: 'red' }}>{item.originalPrice} Kr</span><br />
                                 <span style={{ color: 'green' }}>{item.discountedPrice} Kr</span>
                             </div>
@@ -95,7 +97,7 @@ export function ReceiptPage() {
                 <div className="mt-3">
                     <strong>Total: {totalPrice} Kr</strong>
                 </div>
-                <button className="home-button" onClick={() => navigate('/')}>Gå hem</button>
+                <button className="home-button" onClick={() => navigate('/')}>GÃ¥ hem</button>
             </div>
         </div>
     );
