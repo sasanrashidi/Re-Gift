@@ -50,7 +50,8 @@ export function BuyGiftCard() {
         details: giftCard.company,
         discountedPrice: giftCard.discountedBalance,
         expiryDate: giftCard.expireDate,
-        userId: giftCard.userId
+        userId: giftCard.userId,
+        
     }));
 
     const filteredGiftCardImages = giftCardImages.filter(image =>

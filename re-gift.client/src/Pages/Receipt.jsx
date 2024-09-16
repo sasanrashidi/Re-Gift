@@ -86,6 +86,8 @@ export function ReceiptPage() {
                             <div>
                                 <img src={item.imgSrc} alt={item.title} style={{ width: '50px', height: 'auto' }} />
                                 <strong>{item.title}</strong><br />
+                                <span>userId: {item.userId}</span><br />
+                                <span>userId: {item.userId}</span><br />
                                 <span style={{ textDecoration: 'line-through', color: 'red' }}>{item.originalPrice} Kr</span><br />
                                 <span style={{ color: 'green' }}>{item.discountedPrice} Kr</span>
                             </div>
