@@ -88,8 +88,11 @@ export function NavMenu() {
 
                     {user ? (
                         <NavDropdown title={`Välkommen ${user.firstname}`} id="user-nav-dropdown">
-                            <NavDropdown.Item onClick={logoutHandler}>
-                                <span>Logga ut</span>
+
+                            <NavDropdown.Item>
+                                <LinkContainer to="/SellGiftCard">
+                                    <span>Sälj presentkort</span>
+                                </LinkContainer>
                             </NavDropdown.Item>
 
                             <NavDropdown.Item>
@@ -98,11 +101,10 @@ export function NavMenu() {
                             </LinkContainer>
                             </NavDropdown.Item>
 
-                            <NavDropdown.Item>
-                                <LinkContainer to="/SellGiftCard">
-                                    <span>Sälj presentkort</span>
-                                </LinkContainer>
+                            <NavDropdown.Item onClick={logoutHandler}>
+                                <span>Logga ut</span>
                             </NavDropdown.Item>
+
                         </NavDropdown>
                     ) : (
                         <LinkContainer to="/login" onClick={closeNavMenu}>
