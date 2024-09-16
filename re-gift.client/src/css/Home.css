@@ -132,7 +132,7 @@ p {
     font-size: 1rem; /* Adjust button text size */
 }
 .custom-carousel {
-    max-width: 800px; /* Justera denna bredd efter behov */
+    max-width: 900px; /* Justera denna bredd efter behov */
     margin: 0 auto; /* Centrerar karusellen */
 }
 /* If you have specific classes, adjust them accordingly */
@@ -168,6 +168,12 @@ a {
 }
 
 */
+.custom-carousel img {
+    width: 170%; /* Ensure the image takes up the full width of the carousel item */
+    height: 700px; /* Adjust height as needed */
+    object-fit: cover; /* Ensure the image covers the container without distortion */
+}
+
 
 
 

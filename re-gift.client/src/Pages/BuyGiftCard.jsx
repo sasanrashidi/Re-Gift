@@ -7,7 +7,7 @@ import BattleNetimg from '../img/BattleNet1.PNg';
 import PSNimg from '../img/PSN.jpg';
 import Steamimg from '../img/Steam.jpg';
 import Ikeaimg from '../img/Ikea.jpg';
-import Icaimg from '../img/Ica.jpg';
+import Icaimg from '../img/Ica1.jpg';
 import Logitechimg from '../img/Logitech.jpg';
 import Webhallenimg from '../img/Webhallen.jpg';
 import Akademibokimg from '../img/Akademibok.png';
@@ -106,9 +106,11 @@ export function BuyGiftCard() {
         if (user) {
             navigate('/SellGiftCard');
         } else {
-            navigate('/login');
+            // Skicka med den aktuella sidan som vi försöker navigera till om användaren inte är inloggad
+            navigate('/login', { state: { from: '/SellGiftCard' } });
         }
     };
+
 
     const handleNextPage = () => {
         if (currentPage < totalPages) setCurrentPage(prevPage => prevPage + 1);
