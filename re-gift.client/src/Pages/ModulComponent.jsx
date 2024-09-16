@@ -1,7 +1,6 @@
 ﻿import React, { useState, useContext } from 'react';
-import { Modal, Button, Form, Spinner, Alert } from 'react-bootstrap';
-import { AppContext } from '../context/AppContext'; 
-import { ReceiptPage } from './Receipt';
+import { Modal, Button, Form, Spinner } from 'react-bootstrap';
+import { AppContext } from '../context/AppContext';
 import { useNavigate } from 'react-router-dom';
 
 export function ItemModal({ title, items, show, handleClose, onRemove }) {
@@ -19,10 +18,9 @@ export function ItemModal({ title, items, show, handleClose, onRemove }) {
     });
     const [isProcessing, setIsProcessing] = useState(false);
     const [formErrors, setFormErrors] = useState({});
-    const { setCart } = useContext(AppContext);
+    const { cart, setCart, favorites, setFavorites } = useContext(AppContext);
     const [purchase, setPurchase] = useState(null);
     const navigate = useNavigate();
-
 
     const parsePrice = (priceStr) => {
         if (typeof priceStr === 'string') {
@@ -119,7 +117,6 @@ export function ItemModal({ title, items, show, handleClose, onRemove }) {
         }
     };
 
-    // Återställ tillståndet när modal stängs
     const resetStateAfterPayment = () => {
         setIsPaying(false);
         setPaymentSuccess(false);
@@ -139,6 +136,20 @@ export function ItemModal({ title, items, show, handleClose, onRemove }) {
     const handleCloseWithReset = () => {
         resetStateAfterPayment();
         handleClose();
+    };
+
+    const moveFavoritesToCart = () => {
+        // Get the IDs of items already in the cart
+        const cartItemIds = new Set(cart.map(item => item.id));
+
+        // Filter favorites to include only those not in the cart
+        const newItemsToAdd = favorites.filter(favoriteItem => !cartItemIds.has(favoriteItem.id));
+
+        // Add only new items to the cart
+        setCart(prevCart => [...prevCart, ...newItemsToAdd]);
+
+        // Clear the favorites list after moving items
+        setFavorites([]);
     };
 
     return (
@@ -168,6 +179,11 @@ export function ItemModal({ title, items, show, handleClose, onRemove }) {
                                 <div className="mt-3">
                                     <strong>Total: {totalPrice} Kr.</strong>
                                 </div>
+                                {title === 'Favoriter' && (
+                                    <Button className="mt-3" variant="success" onClick={moveFavoritesToCart}>
+                                        Flytta till varukorg
+                                    </Button>
+                                )}
                                 <Button className="mt-3" variant="primary" onClick={() => setIsPaying(true)}>
                                     Till Betalning
                                 </Button>
@@ -187,7 +203,6 @@ export function ItemModal({ title, items, show, handleClose, onRemove }) {
                                 <Form.Label>Förnamn</Form.Label>
                                 <Form.Control
                                     type="text"
-                                    placeholder="Ange förnamn"
                                     name="firstName"
                                     value={paymentDetails.firstName}
                                     onChange={handlePaymentInputChange}
@@ -197,12 +212,10 @@ export function ItemModal({ title, items, show, handleClose, onRemove }) {
                                     {formErrors.firstName}
                                 </Form.Control.Feedback>
                             </Form.Group>
-
                             <Form.Group controlId="formLastName">
                                 <Form.Label>Efternamn</Form.Label>
                                 <Form.Control
                                     type="text"
-                                    placeholder="Ange efternamn"
                                     name="lastName"
                                     value={paymentDetails.lastName}
                                     onChange={handlePaymentInputChange}
@@ -212,12 +225,10 @@ export function ItemModal({ title, items, show, handleClose, onRemove }) {
                                     {formErrors.lastName}
                                 </Form.Control.Feedback>
                             </Form.Group>
-
                             <Form.Group controlId="formAddress">
                                 <Form.Label>Adress</Form.Label>
                                 <Form.Control
                                     type="text"
-                                    placeholder="Ange adress"
                                     name="address"
                                     value={paymentDetails.address}
                                     onChange={handlePaymentInputChange}
@@ -227,12 +238,10 @@ export function ItemModal({ title, items, show, handleClose, onRemove }) {
                                     {formErrors.address}
                                 </Form.Control.Feedback>
                             </Form.Group>
-
                             <Form.Group controlId="formCity">
                                 <Form.Label>Stad</Form.Label>
                                 <Form.Control
                                     type="text"
-                                    placeholder="Ange stad"
                                     name="city"
                                     value={paymentDetails.city}
                                     onChange={handlePaymentInputChange}
@@ -242,44 +251,36 @@ export function ItemModal({ title, items, show, handleClose, onRemove }) {
                                     {formErrors.city}
                                 </Form.Control.Feedback>
                             </Form.Group>
-
                             <Form.Group controlId="formZipCode">
                                 <Form.Label>Postnummer</Form.Label>
                                 <Form.Control
                                     type="text"
-                                    placeholder="Ange postnummer"
                                     name="zipCode"
                                     value={paymentDetails.zipCode}
                                     onChange={handlePaymentInputChange}
-                                    maxLength="5"
                                     isInvalid={!!formErrors.zipCode}
                                 />
                                 <Form.Control.Feedback type="invalid">
                                     {formErrors.zipCode}
                                 </Form.Control.Feedback>
                             </Form.Group>
-
                             <Form.Group controlId="formCardNumber">
                                 <Form.Label>Kortnummer</Form.Label>
                                 <Form.Control
                                     type="text"
-                                    placeholder="Ange kortnummer"
                                     name="cardNumber"
                                     value={paymentDetails.cardNumber}
                                     onChange={handlePaymentInputChange}
-                                    maxLength="16"
                                     isInvalid={!!formErrors.cardNumber}
                                 />
                                 <Form.Control.Feedback type="invalid">
                                     {formErrors.cardNumber}
                                 </Form.Control.Feedback>
                             </Form.Group>
-
                             <Form.Group controlId="formName">
                                 <Form.Label>Namn på kortet</Form.Label>
                                 <Form.Control
                                     type="text"
-                                    placeholder="Ange namn"
                                     name="name"
                                     value={paymentDetails.name}
                                     onChange={handlePaymentInputChange}
@@ -289,49 +290,39 @@ export function ItemModal({ title, items, show, handleClose, onRemove }) {
                                     {formErrors.name}
                                 </Form.Control.Feedback>
                             </Form.Group>
-
                             <Form.Group controlId="formCvv">
                                 <Form.Label>CVV</Form.Label>
                                 <Form.Control
                                     type="text"
-                                    placeholder="Ange CVV"
                                     name="cvv"
                                     value={paymentDetails.cvv}
                                     onChange={handlePaymentInputChange}
-                                    maxLength="3"
                                     isInvalid={!!formErrors.cvv}
                                 />
                                 <Form.Control.Feedback type="invalid">
                                     {formErrors.cvv}
                                 </Form.Control.Feedback>
                             </Form.Group>
-
-                            <Button className="mt-3" variant="success" onClick={handlePayment} disabled={isProcessing}>
-                                {isProcessing ? <Spinner animation="border" size="sm" /> : 'Bekräfta Betalning'}
+                            <Button variant="secondary" onClick={handleCloseWithReset}>
+                                Avbryt
                             </Button>
-
-                            {Object.keys(formErrors).length > 0 && (
-                                <Alert variant="danger" className="mt-3">
-                                    Kontrollera dina uppgifter noggrant innan du går vidare.
-                                </Alert>
-                            )}
+                            <Button className="ms-2" variant="primary" onClick={handlePayment} disabled={isProcessing}>
+                                {isProcessing ? <Spinner animation="border" size="sm" /> : 'Betala'}
+                            </Button>
                         </Form>
                     </div>
                 )}
 
                 {paymentSuccess && (
                     <div>
-                        <h4>Tack för ditt köp!</h4>
-                        <p>Din betalning har genomförts framgångsrikt.</p>
-                        
+                        <h4>Betalning lyckades!</h4>
+                        <p>Du kommer nu att skickas till kvittosidan.</p>
+                        <Button variant="secondary" onClick={handleCloseWithReset}>
+                            Stäng
+                        </Button>
                     </div>
                 )}
             </Modal.Body>
-            <Modal.Footer>
-                <Button variant="secondary" onClick={handleCloseWithReset}>
-                    Stäng
-                </Button>
-            </Modal.Footer>
         </Modal>
     );
 }

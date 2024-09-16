@@ -31,6 +31,8 @@ export function NavMenu() {
         setFavorites(favorites.filter(favoriteItem => favoriteItem.id !== item.id));
     };
 
+
+
     const logoutHandler = () => {
         setUser(null);
         navigate("/"); // Navigate to the homepage after logout
