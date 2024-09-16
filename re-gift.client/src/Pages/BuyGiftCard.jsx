@@ -155,47 +155,25 @@ export function BuyGiftCard() {
             <br />
             <br />
 
-            <div style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(4, 1fr)', // Make the columns equal in size
-                gap: '20px',
-                justifyContent: 'center',
-                maxWidth: '1250px',
-                margin: '0 auto'
-            }}>
+            <div className="card-container">
                 {paginatedGiftCardImages.length === 0 ? (
                     <p>No gift cards found.</p>
                 ) : (
                     paginatedGiftCardImages.map(image => (
-                        <div key={image.id} style={{
-                            cursor: 'pointer',
-                            textAlign: 'center',
-                            width: '370px', // Fixed width for each card
-                            height: '300px', // Fixed height for each card
-                            padding: '10px',  // Optional padding
-                            borderRadius: '10px', // Consistent border radius
-                            overflow: 'hidden' // Hide overflow to avoid image distortion
-                        }} onClick={() => handleImageClick(image)}>
-                            <img src={image.imgSrc} alt={image.title} style={{
-                                width: '100%',
-                                height: '70%',  // Allocate 70% of the card height for the image
-                                objectFit: 'cover', // Ensure the image covers the space without distortion
-                                borderRadius: '10px',
-                                transition: 'transform 0.3s ease',
-                            }}
-                                onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.07)'}
-                                onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'} />
-                            <p style={{ marginTop: '10px' }}>
+                        <div key={image.id} className="card" onClick={() => handleImageClick(image)}>
+                            <img src={image.imgSrc} alt={image.title} />
+                            <p>
                                 <span>{image.title.split(' - ')[0]}</span><br />
                                 <span style={{ textDecoration: 'line-through', color: 'red' }}>{image.originalPrice} Kr</span>
                                 <span style={{ color: 'green' }}>&nbsp;&nbsp;&nbsp;{image.discountedPrice} Kr&nbsp;&nbsp;&nbsp;
-                                <span style={{ color: 'black' }}>({Math.round((1 - image.discountedPrice / image.originalPrice) * 100)}%)</span>
+                                    <span style={{ color: 'black' }}>({Math.round((1 - image.discountedPrice / image.originalPrice) * 100)}%)</span>
                                 </span>
                             </p>
                         </div>
                     ))
                 )}
             </div>
+
 
 
             <div style={{ marginTop: '20px' }}>

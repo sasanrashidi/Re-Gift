@@ -1,2 +1,53 @@
-body {
+.card-container {
+    display: flex;
+    flex-wrap: wrap; /* Allow cards to wrap to the next row */
+    justify-content: center; /* Center cards horizontally */
+    gap: 20px; /* Space between cards */
+    max-width: 1250px; /* Maximum width of the container */
+    margin: 0 auto; /* Center the container */
+}
+
+/* Individual card styling */
+.card {
+    cursor: pointer;
+    text-align: center;
+    flex: 1 1 18%; /* Adjust to show 5 cards per row */
+    max-width: 300px; /* Ensure a max width for each card */
+    min-width: 200px; /* Ensure cards don't get too small */
+    padding: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease; /* Smooth hover effect */
+}
+
+    /* Card image styling */
+    .card img {
+        width: 100%;
+        height: 200px; /* Consistent height */
+        object-fit: cover; /* Ensure the image covers the space */
+        border-radius: 10px;
+        transition: transform 0.3s ease;
+    }
+
+    /* Hover effect */
+    .card:hover {
+        transform: scale(1.05); /* Slight zoom on hover */
+    }
+
+@media (max-width: 1024px) {
+    .card {
+        flex: 1 1 23%; /* Adjust for smaller screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .card {
+        flex: 1 1 48%; /* Two cards per row */
+    }
+}
+
+@media (max-width: 480px) {
+    .card {
+        flex: 1 1 100%; /* One card per row */
+    }
 }
