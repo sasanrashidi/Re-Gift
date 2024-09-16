@@ -127,8 +127,10 @@ export function SellGiftCard() {
                 </div>
 
                 <div className="mb-3">
-                    <label htmlFor="percentage" className="form-label">Rabattprocent: &nbsp;<i class="bi bi-question-circle" data-toggle="tooltip" data-placement="right" title="Välj med hur många procent presentkortet skall vara rabatterat"></i></label>
-                    <select
+                    <label htmlFor="percentage" className="form-label" style={{ cursor: 'pointer' }}>
+                      Rabattprocent: &nbsp;
+                      <i className="bi bi-question-circle" data-toggle="tooltip" data-placement="right" title="Välj med hur många procent presentkortet skall vara rabatterat"></i>
+                    </label>                    <select
                         id="percentage"
                         name="percentage"
                         value={formData.percentage}
