@@ -3,7 +3,7 @@ import { Modal, Button, Form, Spinner } from 'react-bootstrap';
 import { AppContext } from '../context/AppContext';
 import { useNavigate } from 'react-router-dom';
 
-export function ItemModal({ title, items, show, handleClose, onRemove }) {
+export function ItemModal({ title, items, show, handleClose, onRemove, selectedGiftCard, setSelectedGiftCard }) {
     const [isPaying, setIsPaying] = useState(false);
     const [paymentSuccess, setPaymentSuccess] = useState(false);
     const [paymentDetails, setPaymentDetails] = useState({
@@ -150,6 +150,14 @@ export function ItemModal({ title, items, show, handleClose, onRemove }) {
         }, 200);  // Liten fördröjning för att se till att återställningen körs först
     };
 
+    const openProductModal = (item) => {
+        // Close the current modal
+        handleClose();
+
+        // Open the product modal with the selected item
+        setSelectedGiftCard(item); // Update this with the correct function to set the selected item
+    };
+
     const moveFavoritesToCart = () => {
         // Get the IDs of items already in the cart
         const cartItemIds = new Set(cart.map(item => item.id));
@@ -185,44 +193,38 @@ export function ItemModal({ title, items, show, handleClose, onRemove }) {
                                             <Button variant="danger" onClick={() => onRemove(item)}>
                                                 Ta bort
                                             </Button>
+                                            <Button variant="primary" onClick={() => openProductModal(item)}>
+                                                Visa detaljer
+                                            </Button>
                                         </li>
                                     ))}
                                 </ul>
                                 <div className="mt-3">
                                     <strong>Total: {totalPrice} Kr.</strong>
                                 </div>
-                                {title !== 'Favoriter' && ( // Conditionally render the "Till Betalning" button
+                                {title !== 'Favoriter' && (
                                     <Button
                                         className="mt-3"
                                         variant="primary"
                                         onClick={() => {
                                             if (!user) {
-                                                // Stäng popup-fönstret
                                                 handleClose();
-
-                                                // Vänta en kort stund innan navigeringen sker
                                                 setTimeout(() => {
                                                     navigate('/login', { state: { from: '/BuyGiftCard' } });
-                                                }, 300);  // Anpassa fördröjningen om det behövs
+                                                }, 300);
                                             } else {
-                                                // Om användaren är inloggad, sätt isPaying till true
                                                 setIsPaying(true);
                                             }
                                         }}
                                     >
                                         Till Betalning
                                     </Button>
-
                                 )}
                                 {title === 'Favoriter' && (
                                     <Button className="mt-3" variant="success" onClick={moveFavoritesToCart}>
                                         Flytta till varukorg
                                     </Button>
                                 )}
-                               
-
-                                {/* Modifierad knapp som kontrollerar om användaren är inloggad */}
-                              
                             </>
                         ) : (
                             <p>Inga varor i {title}.</p>
@@ -313,7 +315,7 @@ export function ItemModal({ title, items, show, handleClose, onRemove }) {
                                     {formErrors.cardNumber}
                                 </Form.Control.Feedback>
                             </Form.Group>
-                            <Form.Group controlId="formNameOnCard">
+                            <Form.Group controlId="formCardName">
                                 <Form.Label>Namn på kortet</Form.Label>
                                 <Form.Control
                                     type="text"
@@ -342,28 +344,28 @@ export function ItemModal({ title, items, show, handleClose, onRemove }) {
                         </Form>
                         <Button
                             className="mt-3"
-                            variant="success"
+                            variant="primary"
                             onClick={handlePayment}
                             disabled={isProcessing}
                         >
-                            {isProcessing ? <Spinner as="span" animation="border" size="sm" /> : 'Betala'}
+                            {isProcessing ? <Spinner animation="border" size="sm" /> : 'Betala'}
                         </Button>
                     </div>
                 )}
 
                 {paymentSuccess && (
                     <div>
-                        <h4>Betalning Slutförd!</h4>
-                        <p>Din betalning har genomförts framgångsrikt.</p>
+                        <h4>Tack för din betalning!</h4>
+                        <p>Din betalning har genomförts och en orderbekräftelse har skickats till din e-post.</p>
+                        <Button variant="primary" onClick={handleCloseWithReset}>
+                            Stäng
+                        </Button>
                     </div>
                 )}
             </Modal.Body>
-            <Modal.Footer>
-                <Button variant="secondary" onClick={handleCloseWithReset}>
-                    Stäng
-                </Button>
-            </Modal.Footer>
         </Modal>
     );
 }
+
+
 

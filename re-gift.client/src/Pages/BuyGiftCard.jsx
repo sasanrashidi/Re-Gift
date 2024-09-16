@@ -69,6 +69,12 @@ export function BuyGiftCard() {
         }
     }, [location.state, searchQuery]);
 
+    useEffect(() => {
+        if (location.state?.selectedGiftCard) {
+            setSelectedImage(location.state.selectedGiftCard);
+        }
+    }, [location.state?.selectedGiftCard]);
+
     const handleSearchChange = (e) => setSearchQuery(e.target.value);
     const handleImageClick = (image) => setSelectedImage(image);
 
