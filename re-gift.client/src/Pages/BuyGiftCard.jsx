@@ -7,7 +7,7 @@ import BattleNetimg from '../img/BattleNet1.PNg';
 import PSNimg from '../img/PSN.jpg';
 import Steamimg from '../img/Steam.jpg';
 import Ikeaimg from '../img/Ikea.jpg';
-import Icaimg from '../img/Ica.jpg';
+import Icaimg from '../img/Ica1.jpg';
 import Logitechimg from '../img/Logitech.jpg';
 import Webhallenimg from '../img/Webhallen.jpg';
 import Akademibokimg from '../img/Akademibok.png';

@@ -8,7 +8,7 @@ import Amazon55 from '../img/Amazon55.jpg';
 import Ahlens11 from '../img/Ahlens11.jpg';
 import Battlenet11 from '../img/Battlenet11.jpg';
 import Burgerking11 from '../img/Burgerking11.jpg';
-import Ica1 from '../img/Ica1.jpg';
+import Ica1 from "../img/Ica1.jpg";
 import Xbox1 from '../img/Xbox1.jpg';
 
 export default function Home() {
