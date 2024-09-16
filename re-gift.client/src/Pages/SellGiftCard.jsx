@@ -180,7 +180,7 @@ export function SellGiftCard() {
                     />
                 </div>
 
-                <button type="submit" className="btn btn-primary w-100">Skicka</button>
+                <button type="submit" className="btn btn-primary w-100 mt-3">Skicka</button>
 
                 {success && <div className="alert alert-success mt-3">{success}</div>}
                 {error && <div className="alert alert-danger mt-3">{error}</div>}
