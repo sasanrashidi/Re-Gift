@@ -114,7 +114,20 @@ export function SellGiftCard() {
                 </div>
 
                 <div className="mb-3">
-                    <label htmlFor="percentage" className="form-label">Rabattprocent:</label>
+                    <label htmlFor="balance" className="form-label">Saldo (kr):</label>
+                    <input
+                        type="number"
+                        id="balance"
+                        name="balance"
+                        value={formData.balance}
+                        onChange={handleChange}
+                        required
+                        className="form-control"
+                    />
+                </div>
+
+                <div className="mb-3">
+                    <label htmlFor="percentage" className="form-label">Rabattprocent: &nbsp;<i class="bi bi-question-circle" data-toggle="tooltip" data-placement="right" title="Välj med hur många procent presentkortet skall vara rabatterat"></i></label>
                     <select
                         id="percentage"
                         name="percentage"
@@ -146,18 +159,6 @@ export function SellGiftCard() {
                     />
                 </div>
 
-                <div className="mb-3">
-                    <label htmlFor="balance" className="form-label">Saldo (kr):</label>
-                    <input
-                        type="number"
-                        id="balance"
-                        name="balance"
-                        value={formData.balance}
-                        onChange={handleChange}
-                        required
-                        className="form-control"
-                    />
-                </div>
 
                 <div className="mb-3">
                     <label htmlFor="serialNumber" className="form-label">Serienummer:</label>
