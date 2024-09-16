@@ -164,6 +164,12 @@ export function ItemModal({ title, items, show, handleClose, onRemove }) {
         setFavorites([]);
     };
 
+    const handleDetailView = (item) => {
+        // Navigate to BuyGiftCard component with state for detail view
+        navigate('/BuyGiftCard', { state: { selectedGiftCard: item } });
+        handleClose();
+    };
+
     return (
         <Modal show={show} onHide={handleCloseWithReset} size="lg">
             <Modal.Header closeButton>
@@ -182,9 +188,14 @@ export function ItemModal({ title, items, show, handleClose, onRemove }) {
                                                 <span style={{ textDecoration: 'line-through', color: 'red' }}>{item.originalPrice} Kr</span><br />
                                                 <span style={{ color: 'green' }}>{item.discountedPrice} Kr</span>
                                             </div>
-                                            <Button variant="danger" onClick={() => onRemove(item)}>
-                                                Ta bort
-                                            </Button>
+                                            <div>
+                                                <Button variant="danger" onClick={() => onRemove(item)}>
+                                                    Ta bort
+                                                </Button>
+                                                <Button variant="info" onClick={() => handleDetailView(item)}>
+                                                    Visa Detaljvy
+                                                </Button>
+                                            </div>
                                         </li>
                                     ))}
                                 </ul>
@@ -219,10 +230,6 @@ export function ItemModal({ title, items, show, handleClose, onRemove }) {
                                         Flytta till varukorg
                                     </Button>
                                 )}
-
-
-                                {/* Modifierad knapp som kontrollerar om användaren är inloggad */}
-
                             </>
                         ) : (
                             <p>Inga varor i {title}.</p>
