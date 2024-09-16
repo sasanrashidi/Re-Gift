@@ -42,6 +42,16 @@ export function SellGiftCard() {
         });
     };
 
+    const resetForm = () => {
+        setFormData({
+            company: '',
+            expireDate: '',
+            balance: '',
+            serialNumber: '',
+            percentage: '',
+        });
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
@@ -78,6 +88,7 @@ export function SellGiftCard() {
             if (response.ok) {
                 setSuccess('Presentkortet har lagts till framgångsrikt!');
                 setError('');
+                resetForm(); // Reset the form
                 fetchGiftCards(); // Refresh the gift cards list
             } else {
                 const errorText = await response.text();
@@ -128,9 +139,10 @@ export function SellGiftCard() {
 
                 <div className="mb-3">
                     <label htmlFor="percentage" className="form-label">
-                      Rabattprocent: &nbsp;
+                        Rabattprocent: &nbsp;
                         <i className="bi bi-question-circle" data-toggle="tooltip" style={{ cursor: 'pointer' }} data-placement="right" title="Välj med hur många procent presentkortet skall vara rabatterat"></i>
-                    </label>                    <select
+                    </label>
+                    <select
                         id="percentage"
                         name="percentage"
                         value={formData.percentage}
@@ -148,7 +160,7 @@ export function SellGiftCard() {
                 </div>
 
                 <div className="mb-3">
-                    <label htmlFor="percentage" className="form-label">
+                    <label htmlFor="expireDate" className="form-label">
                         Utgångsdatum: &nbsp;
                         <i className="bi bi-question-circle" data-toggle="tooltip" style={{ cursor: 'pointer' }} data-placement="right" title="Vi registrerar ej presentkort som utgår inom en veckas tid"></i>
                     </label>
@@ -163,7 +175,6 @@ export function SellGiftCard() {
                         className="form-control"
                     />
                 </div>
-
 
                 <div className="mb-3">
                     <label htmlFor="serialNumber" className="form-label">Serienummer:</label>
@@ -180,7 +191,7 @@ export function SellGiftCard() {
                     />
                 </div>
 
-                <button type="submit" className="btn btn-primary w-100 mt-3">Skicka</button>
+                <button type="submit" className="btn btn-primary w-100">Skicka</button>
 
                 {success && <div className="alert alert-success mt-3">{success}</div>}
                 {error && <div className="alert alert-danger mt-3">{error}</div>}
@@ -188,5 +199,3 @@ export function SellGiftCard() {
         </div>
     );
 }
-
-
