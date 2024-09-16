@@ -179,7 +179,7 @@ export function BuyGiftCard() {
                                 borderRadius: '15px',
                                 transition: 'transform 0.3s ease',
                             }}
-                                onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.1)'}
+                                onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.07)'}
                                 onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'} />
                             <p>
                               <span>{image.title.split(' - ')[0]}</span><br />
