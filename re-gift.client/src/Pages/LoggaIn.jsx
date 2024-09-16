@@ -1,6 +1,6 @@
 ﻿import React, { useState, useContext } from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom'; // Importera useNavigate
+import { useNavigate, useLocation } from 'react-router-dom'; // Importera useNavigate
 import '../css/LoggaIn.css';
 import { AppContext } from '../context/AppContext';
 import Register from '../Pages/Register';
@@ -11,6 +11,7 @@ function LoggaIn() {
     const [errorMessage, setErrorMessage] = useState('');
     const { setUser } = useContext(AppContext);
     const navigate = useNavigate(); // Använd useNavigate för omdirigering
+    const { state } = useLocation();
 
     const handleLogin = async (event) => {
         event.preventDefault();
@@ -46,8 +47,9 @@ function LoggaIn() {
                     });
                     setErrorMessage(''); // Återställer felmeddelande
 
-                    // Omdirigera till hemsidan efter inloggning
-                    navigate('/');  // Omdirigera till startsidan
+                    // Omdirigera användaren till sidan de kom ifrån eller till startsidan
+                    const redirectPath = state?.from || '/';
+                    navigate(redirectPath === '/payment' ? '/payment' : redirectPath);
                 } else {
                     setErrorMessage('Inloggning misslyckades. Kontrollera dina uppgifter.');
                 }
@@ -61,7 +63,7 @@ function LoggaIn() {
         <Container className="login-container">
             <Row className="justify-content-md-center login-row">
                 <Col xs={12} md={6} className="login-col">
-                    <h2 className="login-header">Logga In</h2>
+                        <h2 className="login-header mt-5">Logga In</h2>
 
                     {/* Felmeddelande om inmatningsfel finns */}
                     {errorMessage && <p className="error-message">{errorMessage}</p>}
@@ -102,7 +104,7 @@ function LoggaIn() {
                         </Form.Group>
 
                         {/* Logga In-knapp */}
-                        <Button variant="primary" type="submit" className="login-button">
+                        <Button variant="primary" type="submit" className="login-button mt-3 mb-2">
                             Logga In
                         </Button>
                     </Form>

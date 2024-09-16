@@ -114,8 +114,23 @@ export function SellGiftCard() {
                 </div>
 
                 <div className="mb-3">
-                    <label htmlFor="percentage" className="form-label">Rabattprocent:</label>
-                    <select
+                    <label htmlFor="balance" className="form-label">Saldo (kr):</label>
+                    <input
+                        type="number"
+                        id="balance"
+                        name="balance"
+                        value={formData.balance}
+                        onChange={handleChange}
+                        required
+                        className="form-control"
+                    />
+                </div>
+
+                <div className="mb-3">
+                    <label htmlFor="percentage" className="form-label">
+                      Rabattprocent: &nbsp;
+                        <i className="bi bi-question-circle" data-toggle="tooltip" style={{ cursor: 'pointer' }} data-placement="right" title="Välj med hur många procent presentkortet skall vara rabatterat"></i>
+                    </label>                    <select
                         id="percentage"
                         name="percentage"
                         value={formData.percentage}
@@ -133,7 +148,10 @@ export function SellGiftCard() {
                 </div>
 
                 <div className="mb-3">
-                    <label htmlFor="expireDate" className="form-label">Utgångsdatum:</label>
+                    <label htmlFor="percentage" className="form-label">
+                        Utgångsdatum: &nbsp;
+                        <i className="bi bi-question-circle" data-toggle="tooltip" style={{ cursor: 'pointer' }} data-placement="right" title="Vi registrerar ej presentkort som utgår inom en veckas tid"></i>
+                    </label>
                     <input
                         type="date"
                         id="expireDate"
@@ -146,18 +164,6 @@ export function SellGiftCard() {
                     />
                 </div>
 
-                <div className="mb-3">
-                    <label htmlFor="balance" className="form-label">Saldo (kr):</label>
-                    <input
-                        type="number"
-                        id="balance"
-                        name="balance"
-                        value={formData.balance}
-                        onChange={handleChange}
-                        required
-                        className="form-control"
-                    />
-                </div>
 
                 <div className="mb-3">
                     <label htmlFor="serialNumber" className="form-label">Serienummer:</label>
