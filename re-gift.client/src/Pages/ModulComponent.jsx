@@ -18,7 +18,7 @@ export function ItemModal({ title, items, show, handleClose, onRemove }) {
     });
     const [isProcessing, setIsProcessing] = useState(false);
     const [formErrors, setFormErrors] = useState({});
-    const { cart, setCart, favorites, setFavorites } = useContext(AppContext);
+    const { cart, setCart, favorites, setFavorites, user } = useContext(AppContext);
     const [purchase, setPurchase] = useState(null);
     const navigate = useNavigate();
 
@@ -196,7 +196,7 @@ export function ItemModal({ title, items, show, handleClose, onRemove }) {
                                         Flytta till varukorg
                                     </Button>
                                 )}
-                                <Button className="mt-3" variant="primary" onClick={() => setIsPaying(true)}>
+                               
 
                                 {/* Modifierad knapp som kontrollerar om användaren är inloggad */}
                                 <Button
