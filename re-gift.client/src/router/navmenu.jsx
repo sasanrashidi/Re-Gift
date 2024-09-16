@@ -62,9 +62,16 @@ export function NavMenu() {
     return (
         <>
             <Navbar expand="lg" className="transparent-navbar" expanded={isNavOpen} style={{ position: 'relative' }}>
-                <Navbar.Brand>
-                    <div>
+                <Navbar.Brand onClick={() => navigate('/')} style={{ cursor: 'pointer' }}>
+                    <div style={{ display: 'inline-block' }}>
                         <img src={regiftLogo} alt="Regift Logo" className="img-fluid" width={150} height={50} style={{ margin: 0, padding: 0, border: 'none' }} />
+                        <style>
+                            {`
+                            .navbar-brand:hover {
+                                cursor: pointer;
+                            }
+                            `}
+                        </style>
                     </div>
                 </Navbar.Brand>
 
