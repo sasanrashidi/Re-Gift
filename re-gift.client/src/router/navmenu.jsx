@@ -67,13 +67,36 @@ export function NavMenu() {
                         <img src={regiftLogo} alt="Regift Logo" className="img-fluid" width={150} height={50} style={{ margin: 0, padding: 0, border: 'none' }} />
                         <style>
                             {`
-                            .navbar-brand:hover {
-                                cursor: pointer;
-                            }
-                            `}
+                .navbar-brand:hover {
+                    cursor: pointer;
+                }
+                `}
                         </style>
                     </div>
                 </Navbar.Brand>
+
+                {/* Flytta hela NavDropdown med användarfunktionerna utanför Collapse */}
+                {user ? (
+                    <NavDropdown title={`Välkommen ${user.firstname}`} id="user-nav-dropdown" className="user-dropdown">
+                        <NavDropdown.Item>
+                            <LinkContainer to="/SellGiftCard">
+                                <span>Sälj presentkort</span>
+                            </LinkContainer>
+                        </NavDropdown.Item>
+                        <NavDropdown.Item>
+                            <LinkContainer to="/UserHistory">
+                                <span>Köp Historik</span>
+                            </LinkContainer>
+                        </NavDropdown.Item>
+                        <NavDropdown.Item onClick={logoutHandler}>
+                            <span>Logga ut</span>
+                        </NavDropdown.Item>
+                    </NavDropdown>
+                ) : (
+                    <LinkContainer to="/login" onClick={closeNavMenu}>
+                        <span className="ml-auto loggainKnapp">Logga in</span>
+                    </LinkContainer>
+                )}
 
                 <Navbar.Toggle aria-controls="basic-navbar-nav" onClick={() => setIsNavOpen(!isNavOpen)} />
 
@@ -105,34 +128,9 @@ export function NavMenu() {
                             <Nav.Link>Om oss</Nav.Link>
                         </LinkContainer>
                     </Nav>
-
-                    {user ? (
-                        <NavDropdown title={`Välkommen ${user.firstname}`} id="user-nav-dropdown">
-
-                            <NavDropdown.Item>
-                                <LinkContainer to="/SellGiftCard">
-                                    <span>Sälj presentkort</span>
-                                </LinkContainer>
-                            </NavDropdown.Item>
-
-                            <NavDropdown.Item>
-                            <LinkContainer to="/UserHistory">
-                                <span>Köp Historik</span>
-                            </LinkContainer>
-                            </NavDropdown.Item>
-
-                            <NavDropdown.Item onClick={logoutHandler}>
-                                <span>Logga ut</span>
-                            </NavDropdown.Item>
-
-                        </NavDropdown>
-                    ) : (
-                        <LinkContainer to="/login" onClick={closeNavMenu}>
-                            <span className="ml-auto loggainKnapp">Logga in</span>
-                        </LinkContainer>
-                    )}
                 </Navbar.Collapse>
             </Navbar>
+
 
             {/* Modals */}
             <ItemModal
