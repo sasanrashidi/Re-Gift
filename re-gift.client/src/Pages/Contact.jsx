@@ -1,33 +1,11 @@
-﻿
-//import { Link } from 'react-router-dom';
-
-
-
-//export function Contact (){
-//    return (
-
-//           <nav className="Contact">
-
-//            <div>
-//                <p className="lead">
-//                   Presentkort blblblblblbblblblblbl
-//                </p>
-//            </div>
-//        </nav>
-
-//    );
-//};
-
-import React from 'react';
-import '../css/Contact.css' // Importera den uppdaterade CSS-filen
-import { FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa'; // Importera ikoner
+﻿import React from 'react';
+import '../css/Contact.css'; // Import the updated CSS file
+import { FaFacebook, FaInstagram, FaEnvelope } from 'react-icons/fa'; // Import icons
 
 export function Contact() {
     return (
         <nav className="Contact">
-    
             <div className="content-center">
-
                 <p className="contact-lead">
                     Kontakta oss för mer information eller följ oss på sociala medier!!!
                 </p>
@@ -37,23 +15,21 @@ export function Contact() {
                 </p>
 
                 <p className="contact-lead">
-
-                    Email: regift@gmail.com
+                    Email: <a href="mailto:regiftcompany@gmail.com">regiftcompany@gmail.com</a>
                 </p>
 
                 <p className="contact-lead">
-
                     Malmvägen 1, 115 41, Stockholm
                 </p>
 
                 <div className="social-icons">
-                    <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
+                    <a href="https://www.facebook.com/profile.php?id=61565484437134" target="_blank" rel="noopener noreferrer">
                         <FaFacebook size={30} />
                     </a>
-                    <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer">
-                        <FaTwitter size={30} />
+                    <a href="mailto:regiftcompany@gmail.com" target="_blank" rel="noopener noreferrer">
+                        <FaEnvelope size={30} />
                     </a>
-                    <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
+                    <a href="https://www.instagram.com/regiftcompany/" target="_blank" rel="noopener noreferrer">
                         <FaInstagram size={30} />
                     </a>
                 </div>
@@ -61,6 +37,3 @@ export function Contact() {
         </nav>
     );
 }
-
-
-
