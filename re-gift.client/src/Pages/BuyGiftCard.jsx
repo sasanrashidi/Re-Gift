@@ -54,21 +54,22 @@ export function BuyGiftCard() {
     }));
 
     const filteredGiftCardImages = giftCardImages.filter(image =>
-        image.title.toLowerCase().includes(searchQuery.toLowerCase())
+    image.title.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
     const totalPages = Math.ceil(filteredGiftCardImages.length / ITEMS_PER_PAGE);
 
-    const paginatedGiftCardImages = filteredGiftCardImages.slice(
-        (currentPage - 1) * ITEMS_PER_PAGE,
-        currentPage * ITEMS_PER_PAGE
-    );
+    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+    const endIndex = Math.min(startIndex + ITEMS_PER_PAGE, filteredGiftCardImages.length);
+    const paginatedGiftCardImages = filteredGiftCardImages.slice(startIndex, endIndex);
 
     useEffect(() => {
-        if (location.state?.resetPage) {
-            setCurrentPage(1); // Reset to page 1 if resetPage is true
-        }
-    }, [location.state]);
+      if (location.state?.resetPage) {
+        setCurrentPage(1); // Reset to page 1 if resetPage is true
+      } else {
+        setCurrentPage(1); // Show search results on the current page
+      }
+    }, [location.state, searchQuery]);
 
     const handleSearchChange = (e) => setSearchQuery(e.target.value);
 
