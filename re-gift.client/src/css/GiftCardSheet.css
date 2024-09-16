@@ -37,21 +37,20 @@
 
 @media (max-width: 1024px) {
     .card {
-        flex: 1 1 calc(33.33% - 20px); /* Adjust for smaller screens, 3 cards per row */
-        min-width: calc((100% / 3) - 20px); /* Ensure cards fit in 3 columns */
+        flex: 1 1 23%; /* Adjust for smaller screens */
+
     }
 }
 
 @media (max-width: 768px) {
     .card {
-        flex: 1 1 calc(50% - 20px); /* Two cards per row */
-        min-width: calc((100% / 2) - 20px); /* Ensure cards fit in 2 columns */
+        flex: 1 1 48%; /* Two cards per row */
     }
 }
 
 @media (max-width: 480px) {
     .card {
-        flex: 1 1 calc(100% - 20px); /* One card per row */
-        min-width: 0; /* Remove minimum width to allow full width on very small screens */
+        flex: 1 1 100%; /* One card per row */
+        min-width: 170px;
     }
 }
