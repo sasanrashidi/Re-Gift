@@ -61,7 +61,7 @@ function LoggaIn() {
         <Container className="login-container">
             <Row className="justify-content-md-center login-row">
                 <Col xs={12} md={6} className="login-col">
-                    <h2 className="login-header">Logga In</h2>
+                        <h2 className="login-header mt-5">Logga In</h2>
 
                     {/* Felmeddelande om inmatningsfel finns */}
                     {errorMessage && <p className="error-message">{errorMessage}</p>}
@@ -102,7 +102,7 @@ function LoggaIn() {
                         </Form.Group>
 
                         {/* Logga In-knapp */}
-                        <Button variant="primary" type="submit" className="login-button">
+                        <Button variant="primary" type="submit" className="login-button mt-3 mb-2">
                             Logga In
                         </Button>
                     </Form>
