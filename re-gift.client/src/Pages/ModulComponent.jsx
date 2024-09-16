@@ -188,7 +188,7 @@ export function ItemModal({ title, items, show, handleClose, onRemove }) {
                                     onClick={() => {
                                         if (!user) {
                                             // Om användaren inte är inloggad, omdirigera till inloggningssidan
-                                            navigate('/login', { state: { from: '/payment' } });
+                                            navigate('/login', { state: { from: '/BuyGiftCard' } });
                                         } else {
                                             // Om användaren är inloggad, sätt isPaying till true
                                             setIsPaying(true);
