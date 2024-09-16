@@ -119,7 +119,7 @@ export function ItemModal({ title, items, show, handleClose, onRemove }) {
 
             // Fördröjning för att säkerställa att modalen stängs innan omdirigering
             setTimeout(() => {
-                navigate('/login', { state: { from: '/payment' } });
+                navigate('/login', { state: { from: '/BuyGiftCard' } });
             }, 300);  // Anpassa fördröjningen om det behövs
         } else {
             const isValid = validateCardDetails();
