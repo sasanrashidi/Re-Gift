@@ -1,7 +1,7 @@
 ﻿import { Carousel } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import { useContext } from 'react'; // Importera useContext
-import { AppContext } from '../context/AppContext'; // Importera AppContext
+import { useContext } from 'react';
+import { AppContext } from '../context/AppContext';
 import '../css/Home.css';
 import HM11 from '../img/HM11.jpg';
 import Amazon55 from '../img/Amazon55.jpg';
@@ -13,26 +13,24 @@ import Xbox1 from '../img/Xbox1.jpg';
 
 export default function Home() {
     const navigate = useNavigate();
-    const { user } = useContext(AppContext); // Hämta user från AppContext
+    const { user } = useContext(AppContext);
+
+    const handleNavigation = (route) => {
+        navigate(route);
+    };
 
     const handleBuyClick = () => {
-        navigate('/BuyGiftCard'); // Navigera till köpsidan
-
-
+        handleNavigation('/BuyGiftCard');
     };
 
     const handleSellClick = () => {
-        if (user) {
-            navigate('/SellGiftCard');  // Navigera till säljsidan om användaren är inloggad
-        } else {
-            navigate('/login');  // Navigera till inloggningssidan om användaren inte är inloggad
-        }
+        handleNavigation(user ? '/SellGiftCard' : '/login');
     };
-    // Funktion för att hantera klick på varje bild
+
     const handleImageClick = () => {
-        console.log('Navigerar till BuyGiftCard-sidan'); // För felsökning
-        navigate('/BuyGiftCard');
+        handleBuyClick();
     };
+
     return (
         <div className="container py-4" id="home">
             <div className="custom-background p-5 rounded">
@@ -42,102 +40,40 @@ export default function Home() {
                         Här kan du köpa och sälja presentkort på ett enkelt och säkert sätt.
                         Oavsett om du vill bli av med ett oanvänt presentkort eller letar efter ett bra erbjudande på ett presentkort du vill ha, är vi här för att hjälpa dig!
                     </p>
-                    {/* Knappsektion */}
                 </div>
             </div>
 
-                    <div className="mt-4" style={{ marginTop: '20px', marginBottom: '80px' }} >
-                        <button className="btn btn-primary mx-2"
-                            style={{ backgroundColor: 'lightblue', color: 'black', border: "none"}} // Ljusbla färg för åkta knappen
-                            onClick={handleBuyClick}>
-                            Köp Presentkort
-                        </button>
-                        <button className="btn btn-secondary mx-2"
-                            style={{ backgroundColor: 'lightgreen', color: 'black', border: "none" }} // Ljusgrön färg för säljknappen
-                            onClick={handleSellClick}>
-                            Sälj Presentkort
-                        </button>
-                    </div>
+            <div className="button-section mt-4" style={{ marginBottom: '80px' }}>
+                <button
+                    className="btn btn-primary mx-2"
+                    style={{ backgroundColor: 'lightblue', color: 'black', border: 'none' }}
+                    onClick={handleBuyClick}
+                >
+                    Köp Presentkort
+                </button>
+                <button
+                    className="btn btn-secondary mx-2"
+                    style={{ backgroundColor: 'lightgreen', color: 'black', border: 'none' }}
+                    onClick={handleSellClick}
+                >
+                    Sälj Presentkort
+                </button>
+            </div>
 
-            {/* Carousel */}
-            <Carousel className="custom-carousel mt-5">
-                <Carousel.Item>
-                    <img
-                        className="d-block w-100"
-                        src={HM11}
-                        alt="H&M"
-                        onClick={handleImageClick} // Lägg till onClick på varje bild
-                        style={{ cursor: 'pointer' }} // Ändrar muspekaren vid hover
-                    />
-                    <Carousel.Caption></Carousel.Caption>
-                </Carousel.Item>
-
-                <Carousel.Item>
-                    <img
-                        className="d-block w-100"
-                        src={Amazon55}
-                        alt="Amazon"
-                        onClick={handleImageClick} // Lägg till onClick på varje bild
-                        style={{ cursor: 'pointer' }}
-                    />
-                    <Carousel.Caption></Carousel.Caption>
-                </Carousel.Item>
-
-                <Carousel.Item>
-                    <img
-                        className="d-block w-100"
-                        src={Ahlens11}
-                        alt="Ahlens11"
-                        onClick={handleImageClick} // Lägg till onClick på varje bild
-                        style={{ cursor: 'pointer' }}
-                    />
-                    <Carousel.Caption></Carousel.Caption>
-                </Carousel.Item>
-
-                <Carousel.Item>
-                    <img
-                        className="d-block w-100"
-                        src={Battlenet11}
-                        alt="Battlenet11"
-                        onClick={handleImageClick} // Lägg till onClick på varje bild
-                        style={{ cursor: 'pointer' }}
-                    />
-                    <Carousel.Caption></Carousel.Caption>
-                </Carousel.Item>
-
-                <Carousel.Item>
-                    <img
-                        className="d-block w-100"
-                        src={Burgerking11}
-                        alt="Burgerking11"
-                        onClick={handleImageClick} // Lägg till onClick på varje bild
-                        style={{ cursor: 'pointer' }}
-                    />
-                    <Carousel.Caption></Carousel.Caption>
-                </Carousel.Item>
-
-                <Carousel.Item>
-                    <img
-                        className="d-block w-100"
-                        src={Ica1}
-                        alt="Ica1"
-                        onClick={handleImageClick} // Lägg till onClick på varje bild
-                        style={{ cursor: 'pointer' }}
-                    />
-                    <Carousel.Caption></Carousel.Caption>
-                </Carousel.Item>
-
-                <Carousel.Item>
-                    <img
-                        className="d-block w-100"
-                        src={Xbox1}
-                        alt="Xbox1"
-                        onClick={handleImageClick} // Lägg till onClick på varje bild
-                        style={{ cursor: 'pointer' }}
-                    />
-                    <Carousel.Caption></Carousel.Caption>
-                </Carousel.Item>
+            <Carousel className="custom-carousel mt-5" style={{ boxShadow: '8px 8px 8px rgba(0, 0, 0, 0.3)' }}>
+                {[HM11, Amazon55, Ahlens11, Battlenet11, Burgerking11, Ica1, Xbox1].map((imageSrc, index) => (
+                    <Carousel.Item key={index}>
+                        <img
+                            className="d-block w-100"
+                            src={imageSrc}
+                            alt={`Slide ${index + 1}`}
+                            onClick={handleImageClick}
+                            style={{ cursor: 'pointer', width: '100%', height: '500px', objectFit: 'cover' }} // Consistent size
+                        />
+                    </Carousel.Item>
+                ))}
             </Carousel>
+
         </div>
     );
 }
