@@ -1,45 +1,25 @@
-﻿//import { Link } from 'react-router-dom';
-//import regiftLogo from '../IMG/REGIFTT.png';
-
-
-//export function About (){
-//    return (
-
-//           <nav className="About">
-
-//            <div>
-//                <p className="lead">
-//                   Presentkort blblblblblbblblblblbl
-//                </p>
-//                <img src={regiftLogo} alt="Regift Logo" className="img-fluid" width={150} height={50} style={{ margin: 0, padding: 0, border: 'none' }}></img>
-//            </div>
-//        </nav>
-
-//    );
-//};
-
-import React from 'react';
-import '../css/About.css'; 
-import regiftLogo from '../IMG/REGIFTT.png'; 
+﻿import React from 'react';
+import '../css/About.css';
+import regiftLogo from '../IMG/REGIFTT.png';
 
 export function About() {
     return (
         <nav className="About">
             <div className="about-center">
                 <p className="about-lead">
-                    Välkommen till Re:gift, en marknadsplats för att enkelt och tryggt handla billigare presentkort. Här får du möjligheten att sälja dina oanvända presentkort eller köpa dem till rabatterade priser.
+                    Välkommen till Re:gift, en marknadsplats för att enkelt och tryggt köpa och sälja presentkort till rabatterade priser. Här kan du smidigt sälja dina oanvända presentkort eller hitta fantastiska erbjudanden på kort till specifika butiker.
                 </p>
                 <p className="about-lead">
-                    Oavsett om du vill sälja ett presentkort som du inte har behov av, eller om du letar efter ett fynd till en favoritbutik, erbjuder vi en smidig och säker lösning. Vi vill göra det enkelt för säljare att få pengar för sina presentkort och för köpare att hitta rabatterade alternativ.
+                    Vårt mål är att skapa en säker och effektiv plattform där säljare och köpare kan mötas för att dra nytta av det stora utbudet av presentkort. Vi strävar efter att underlätta för säljare att omvandla oanvända presentkort till pengar och för köpare att hitta värdefulla erbjudanden.
                 </p>
                 <p className="about-lead">
-                    Vi ser till att varje presentkort kontrolleras för giltighet innan det läggs upp för försäljning, så att du som köpare kan känna dig trygg i att du får ett fungerande presentkort. Som säljare kan du också känna dig säker på att affären går smidigt efter validering.
+                    För närvarande valideras inte presentkorten som läggs upp för försäljning av oss. Eftersom Re:gift är ett mindre skolprojekt har vi ännu inte implementerat en process för verifiering och validering av presentkort. Detta är något vi planerar att införa i framtiden, men i nuläget är vår plattform utformad för att låta användare sälja presentkort direkt efter att ha registrerat ett konto, utan att presentkorten först kontrolleras.
                 </p>
                 <p className="about-lead">
-                    Vår tjänst är lätt att använda och vi har gjort allt för att du snabbt ska kunna köpa eller sälja presentkort utan krångel. Oavsett om du vill göra en bra affär som köpare eller omvandla ett oanvänt kort till pengar, så finns Re:gift här för att hjälpa dig.
+                    Trots att validering ännu inte sker, fortsätter vi att utveckla och förbättra tjänsten med fokus på användarvänlighet och säkerhet. Vi uppmuntrar alla användare att agera ansvarsfullt och kontakta oss om de har frågor eller stöter på problem.
                 </p>
                 <p className="about-lead">
-                    Vi arbetar hela tiden med att förbättra tjänsten och är alltid tillgängliga om du har några frågor eller behöver hjälp. Tveka inte att höra av dig!
+                    Vi är dedikerade till att skapa en enkel och transparent tjänst som gör det möjligt för dig att snabbt och säkert köpa och sälja presentkort. Vårt team är här för att hjälpa dig, och vi ser fram emot att fortsätta utveckla Re:gift med framtida förbättringar.
                 </p>
 
                 <img src={regiftLogo} alt="Re:gift Logo" className="img-fluid" width={150} height={50} style={{ marginTop: '20px', border: 'none' }} />
@@ -47,8 +27,3 @@ export function About() {
         </nav>
     );
 }
-
-
-
-
-

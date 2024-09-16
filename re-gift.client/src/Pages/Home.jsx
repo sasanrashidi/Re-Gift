@@ -8,7 +8,7 @@ import Amazon55 from '../img/Amazon55.jpg';
 import Ahlens11 from '../img/Ahlens11.jpg';
 import Battlenet11 from '../img/Battlenet11.jpg';
 import Burgerking11 from '../img/Burgerking11.jpg';
-import Ica1 from '../img/Ica1.jpg';
+import Ica1 from "../img/Ica1.jpg";
 import Xbox1 from '../img/Xbox1.jpg';
 
 export default function Home() {
@@ -24,7 +24,12 @@ export default function Home() {
     };
 
     const handleSellClick = () => {
-        handleNavigation(user ? '/SellGiftCard' : '/login');
+        if (user) {
+            navigate('/SellGiftCard');
+        } else {
+            // Skicka med den aktuella sidan som vi försöker navigera till om användaren inte är inloggad
+            navigate('/login', { state: { from: '/SellGiftCard' } });
+        }
     };
 
     const handleImageClick = () => {

@@ -49,7 +49,7 @@ function LoggaIn() {
 
                     // Omdirigera användaren till sidan de kom ifrån eller till startsidan
                     const redirectPath = state?.from || '/';
-                    navigate(redirectPath === '/payment' ? '/payment' : redirectPath);
+                    navigate(redirectPath);
                 } else {
                     setErrorMessage('Inloggning misslyckades. Kontrollera dina uppgifter.');
                 }
@@ -113,7 +113,7 @@ function LoggaIn() {
                         <p>Har du inget konto?&nbsp;
                             <span
                                 className="signup-link"
-                                onClick={() => navigate('/Register')} // Direkt navigering till registreringssidan
+                                onClick={() => navigate('/register')} // Direkt navigering till registreringssidan
                                 style={{ cursor: 'pointer', color: 'blue' }}>
                                 Skapa ett här!
                             </span>
