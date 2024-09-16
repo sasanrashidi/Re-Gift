@@ -49,7 +49,7 @@ function LoggaIn() {
 
                     // Omdirigera användaren till sidan de kom ifrån eller till startsidan
                     const redirectPath = state?.from || '/';
-                    navigate(redirectPath === '/payment' ? '/payment' : redirectPath);
+                    navigate(redirectPath);
                 } else {
                     setErrorMessage('Inloggning misslyckades. Kontrollera dina uppgifter.');
                 }

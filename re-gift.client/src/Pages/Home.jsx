@@ -24,7 +24,12 @@ export default function Home() {
     };
 
     const handleSellClick = () => {
-        handleNavigation(user ? '/SellGiftCard' : '/login');
+        if (user) {
+            navigate('/SellGiftCard');
+        } else {
+            // Skicka med den aktuella sidan som vi försöker navigera till om användaren inte är inloggad
+            navigate('/login', { state: { from: '/SellGiftCard' } });
+        }
     };
 
     const handleImageClick = () => {
