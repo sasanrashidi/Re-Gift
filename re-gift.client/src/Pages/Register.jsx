@@ -25,6 +25,7 @@ export const Register = () => {
                 const result = await response.json();
                 setSuccess('Registrering lyckades!');  // Success message
                 setError('');  // Clear error message
+                resetForm();  // Reset the form
             } else {
                 const errorResult = await response.text();
                 setError(errorResult);  // Show API error message
@@ -34,6 +35,13 @@ export const Register = () => {
             setError('Ett oväntat fel inträffade.');  // Handle unexpected errors
             setSuccess('');  // Clear success message
         }
+    };
+
+    const resetForm = () => {
+        setEmail('');
+        setPassword('');
+        setFirstName('');
+        setLastName('');
     };
 
     return (
