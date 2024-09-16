@@ -51,6 +51,6 @@
 @media (max-width: 480px) {
     .card {
         flex: 1 1 100%; /* One card per row */
-        min-width: 170px;
+        min-width: 160px;
     }
 }
