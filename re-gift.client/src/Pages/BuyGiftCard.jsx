@@ -13,13 +13,12 @@ import Webhallenimg from '../img/Webhallen.jpg';
 import Akademibokimg from '../img/Akademibok.png';
 import BurgerKingimg from '../img/BurgerKing.jpg';
 import { AppContext } from '../context/AppContext';
-import '../css/Home.css';
-import { Tab } from 'bootstrap';
+import '../css/GiftCardSheet.css'; // Import the correct CSS file
 
 export function BuyGiftCard() {
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedImage, setSelectedImage] = useState(null);
-    const [currentPage, setCurrentPage] = useState(1); // Track the current page
+    const [currentPage, setCurrentPage] = useState(1);
 
     const { cart, setCart, favorites, setFavorites, giftCards, user } = useContext(AppContext);
     const navigate = useNavigate();
@@ -51,29 +50,26 @@ export function BuyGiftCard() {
         discountedPrice: giftCard.discountedBalance,
         expiryDate: giftCard.expireDate,
         userId: giftCard.userId,
-        
     }));
 
     const filteredGiftCardImages = giftCardImages.filter(image =>
-    image.title.toLowerCase().includes(searchQuery.toLowerCase())
+        image.title.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
     const totalPages = Math.ceil(filteredGiftCardImages.length / ITEMS_PER_PAGE);
-
     const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
     const endIndex = Math.min(startIndex + ITEMS_PER_PAGE, filteredGiftCardImages.length);
     const paginatedGiftCardImages = filteredGiftCardImages.slice(startIndex, endIndex);
 
     useEffect(() => {
-      if (location.state?.resetPage) {
-        setCurrentPage(1); // Reset to page 1 if resetPage is true
-      } else {
-        setCurrentPage(1); // Show search results on the current page
-      }
+        if (location.state?.resetPage) {
+            setCurrentPage(1);
+        } else {
+            setCurrentPage(1);
+        }
     }, [location.state, searchQuery]);
 
     const handleSearchChange = (e) => setSearchQuery(e.target.value);
-
     const handleImageClick = (image) => setSelectedImage(image);
 
     const addToCart = (image) => {
@@ -106,11 +102,9 @@ export function BuyGiftCard() {
         if (user) {
             navigate('/SellGiftCard');
         } else {
-            // Skicka med den aktuella sidan som vi försöker navigera till om användaren inte är inloggad
-            navigate('/login', { state: { from: '/SellGiftCard' } });
+            navigate('/login');
         }
     };
-
 
     const handleNextPage = () => {
         if (currentPage < totalPages) setCurrentPage(prevPage => prevPage + 1);
@@ -167,15 +161,14 @@ export function BuyGiftCard() {
                             <p>
                                 <span>{image.title.split(' - ')[0]}</span><br />
                                 <span style={{ textDecoration: 'line-through', color: 'red' }}>{image.originalPrice} Kr</span>
-                                <span style={{ color: 'green' }}>&nbsp;&nbsp;&nbsp;{Math.floor(image.discountedPrice)} Kr&nbsp;&nbsp;&nbsp;</span>
-                                <span style={{ color: 'black' }}>({Math.round((1 - image.discountedPrice / image.originalPrice) * 100)}%)</span>
+                                <span style={{ color: 'green' }}>&nbsp;&nbsp;&nbsp;{image.discountedPrice} Kr&nbsp;&nbsp;&nbsp;
+                                    <span style={{ color: 'black' }}>({Math.round((1 - image.discountedPrice / image.originalPrice) * 100)}%)</span>
+                                </span>
                             </p>
                         </div>
                     ))
                 )}
             </div>
-
-
 
             <div style={{ marginTop: '20px' }}>
                 <button
@@ -206,10 +199,10 @@ export function BuyGiftCard() {
                         <img src={selectedImage.imgSrc} alt={selectedImage.title} style={{ width: '250px', height: '250px', borderRadius: '15px' }} />
                         <p>{selectedImage.details}</p>
                         <p>
-                          <span style={{ color: 'white', textDecoration: 'none' }}>Värde: </span>
-                          <span style={{ color: 'red', textDecoration: 'line-through' }}> {selectedImage.originalPrice} kr</span><br />
-                          <span style={{ color: 'white', textDecoration: 'none' }}>Kostar: </span>
-                          <span style={{ color: 'green' }}>{selectedImage.discountedPrice} kr</span>
+                            <span style={{ color: 'white', textDecoration: 'none' }}>Värde: </span>
+                            <span style={{ color: 'red', textDecoration: 'line-through' }}> {selectedImage.originalPrice} kr</span><br />
+                            <span style={{ color: 'white', textDecoration: 'none' }}>Kostar: </span>
+                            <span style={{ color: 'green' }}>{selectedImage.discountedPrice} kr</span>
                         </p>
                         <p>Utgångsdatum: {selectedImage.expiryDate}</p>
 
@@ -222,3 +215,4 @@ export function BuyGiftCard() {
         </div>
     );
 }
+
