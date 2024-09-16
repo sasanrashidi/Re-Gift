@@ -106,9 +106,11 @@ export function BuyGiftCard() {
         if (user) {
             navigate('/SellGiftCard');
         } else {
-            navigate('/login');
+            // Skicka med den aktuella sidan som vi försöker navigera till om användaren inte är inloggad
+            navigate('/login', { state: { from: '/SellGiftCard' } });
         }
     };
+
 
     const handleNextPage = () => {
         if (currentPage < totalPages) setCurrentPage(prevPage => prevPage + 1);
