@@ -148,7 +148,10 @@ export function SellGiftCard() {
                 </div>
 
                 <div className="mb-3">
-                    <label htmlFor="expireDate" className="form-label">Utgångsdatum:</label>
+                    <label htmlFor="percentage" className="form-label">
+                        Utgångsdatum: &nbsp;
+                        <i className="bi bi-question-circle" data-toggle="tooltip" style={{ cursor: 'pointer' }} data-placement="right" title="Vi registrerar ej presentkort som utgår inom en veckas tid"></i>
+                    </label>
                     <input
                         type="date"
                         id="expireDate"
