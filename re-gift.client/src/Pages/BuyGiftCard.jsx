@@ -1,5 +1,5 @@
-﻿import React, { useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+﻿import React, { useState, useEffect, useContext } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import Nikeimg from '../img/Nike2.jpg';
 import Adidasimg from '../img/Adidas.jpg';
 import Elgigantenimg from '../img/Elgiganten.jpg';
@@ -12,18 +12,18 @@ import Logitechimg from '../img/Logitech.jpg';
 import Webhallenimg from '../img/Webhallen.jpg';
 import Akademibokimg from '../img/Akademibok.png';
 import BurgerKingimg from '../img/BurgerKing.jpg';
-
-
-import { AppContext } from '../context/AppContext'; // Import the context
+import { AppContext } from '../context/AppContext';
 import '../css/Home.css';
+import { Tab } from 'bootstrap';
 
 export function BuyGiftCard() {
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedImage, setSelectedImage] = useState(null);
     const [currentPage, setCurrentPage] = useState(1); // Track the current page
 
-    const { cart, setCart, favorites, setFavorites, giftCards, user } = useContext(AppContext); // Access context
+    const { cart, setCart, favorites, setFavorites, giftCards, user } = useContext(AppContext);
     const navigate = useNavigate();
+    const location = useLocation();
 
     const companyImageMap = {
         'Nike': Nikeimg,
@@ -40,9 +40,8 @@ export function BuyGiftCard() {
         'BurgerKing': BurgerKingimg
     };
 
-    const ITEMS_PER_PAGE = 12; // Maximum number of cards per page
+    const ITEMS_PER_PAGE = 12;
 
-    // Map the gift cards to create a list of card images with properties.
     const giftCardImages = (giftCards || []).map(giftCard => ({
         id: giftCard.id,
         title: giftCard.company,
@@ -54,64 +53,62 @@ export function BuyGiftCard() {
         userId: giftCard.userId
     }));
 
-    // Handle search input change.
-    const handleSearchChange = (e) => setSearchQuery(e.target.value);
-
-    // Filter the giftCardImages based on the search query.
     const filteredGiftCardImages = giftCardImages.filter(image =>
-        image.title.toLowerCase().includes(searchQuery.toLowerCase())
+    image.title.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
-    // Calculate the total number of pages
     const totalPages = Math.ceil(filteredGiftCardImages.length / ITEMS_PER_PAGE);
 
-    // Get the gift cards to display for the current page
-    const paginatedGiftCardImages = filteredGiftCardImages.slice(
-        (currentPage - 1) * ITEMS_PER_PAGE,
-        currentPage * ITEMS_PER_PAGE
-    );
+    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+    const endIndex = Math.min(startIndex + ITEMS_PER_PAGE, filteredGiftCardImages.length);
+    const paginatedGiftCardImages = filteredGiftCardImages.slice(startIndex, endIndex);
 
-    console.log('Paginated Gift Card Images:', paginatedGiftCardImages);
+    useEffect(() => {
+      if (location.state?.resetPage) {
+        setCurrentPage(1); // Reset to page 1 if resetPage is true
+      } else {
+        setCurrentPage(1); // Show search results on the current page
+      }
+    }, [location.state, searchQuery]);
+
+    const handleSearchChange = (e) => setSearchQuery(e.target.value);
 
     const handleImageClick = (image) => setSelectedImage(image);
 
-    // Updated addToCart method to prevent duplicates
     const addToCart = (image) => {
         setCart(prevCart => {
             if (!prevCart.some(item => item.id === image.id)) {
-                return [...prevCart, image]; // Add image to cart if it's not already there
+                return [...prevCart, image];
             } else {
                 alert('Detta presentkort finns redan i din kundkorg.');
                 return prevCart;
             }
         });
-        closeModal(); // Close modal after adding to cart
+        closeModal();
     };
 
-    // Updated addToFavorites method to prevent duplicates
     const addToFavorites = (image) => {
         setFavorites(prevFavorites => {
             if (!prevFavorites.some(item => item.id === image.id)) {
-                return [...prevFavorites, image]; // Add image to favorites if it's not already there
+                return [...prevFavorites, image];
             } else {
                 alert('Detta presentkort finns redan i dina favoriter.');
                 return prevFavorites;
             }
         });
-        closeModal(); // Close modal after adding to favorites
+        closeModal();
     };
 
     const closeModal = () => setSelectedImage(null);
 
     const handleSellClick = () => {
         if (user) {
-            navigate('/SellGiftCard');  // Navigate to SellGiftCard if user is logged in
+            navigate('/SellGiftCard');
         } else {
-            navigate('/login');  // Navigate to LoggaIn if user is not logged in
+            navigate('/login');
         }
     };
 
-    // Pagination controls
     const handleNextPage = () => {
         if (currentPage < totalPages) setCurrentPage(prevPage => prevPage + 1);
     };
@@ -122,31 +119,22 @@ export function BuyGiftCard() {
 
     return (
         <div style={{ textAlign: 'center', paddingTop: '50px' }}>
-           <div style={{ marginBottom: '20px', fontSize: '18px' }}>
-                {/*Är du intresserad av att sälja dina presentkort?*/}
-               {/*<button*/}
-               {/*    onClick={handleSellClick}*/}
-               {/*    style={{ color: '#007bff', textDecoration: 'none', marginLeft: '5px', border: 'none', background: 'transparent', cursor: 'pointer' }}>*/}
-              {/*    Klicka här!*/}
-                {/*</button>*/}
-            </div>
-
+            <div style={{ marginBottom: '20px', fontSize: '18px' }}></div>
 
             <p style={{ padding: '20px', fontSize: '25px', fontStyle: 'italic' }}>
                 Här kan du köpa presentkort från privatpersoner.
                 <br />
-                Om du vill sälja, tryck här ->
-            <button className="btn btn-secondary mx-2"
-                style={{ backgroundColor: 'lightgreen', color: 'black', border: "none" }} // Ljusgrön färg för säljknappen
-                onClick={handleSellClick}>
-                Sälj Presentkort
-            </button>
+                Om du vill sälja, tryck här:
+                <button className="btn btn-secondary mx-2"
+                    style={{ backgroundColor: 'lightgreen', color: 'black', border: "none" }}
+                    onClick={handleSellClick}>
+                    Sälj Presentkort
+                </button>
             </p>
             <br />
 
-
             <div className="d-flex justify-content-center mb-4">
-                <div className="input-group" style={{ width: '500px' }}> {/* Increased width of the container */}
+                <div className="input-group" style={{ width: '500px' }}>
                     <input
                         type="text"
                         className="form-control"
@@ -156,9 +144,9 @@ export function BuyGiftCard() {
                         value={searchQuery}
                         onChange={handleSearchChange}
                         style={{
-                            fontSize: '18px',  /* Increased font size for the text inside the search box */
-                            height: '50px',    /* Increased height of the search box */
-                            padding: '10px'    /* Added padding for better spacing */
+                            fontSize: '18px',
+                            height: '50px',
+                            padding: '10px'
                         }}
                     />
                 </div>
@@ -166,13 +154,12 @@ export function BuyGiftCard() {
             <br />
             <br />
 
-
             <div style={{
                 display: 'grid',
-                gridTemplateColumns: 'repeat(4, 400px)', // 5 cards per row, larger width
+                gridTemplateColumns: 'repeat(4, 400px)',
                 gap: '20px',
                 justifyContent: 'center',
-                maxWidth: '1250px', // Adjusted to accommodate wider cards
+                maxWidth: '1250px',
                 margin: '0 auto'
             }}>
                 {paginatedGiftCardImages.length === 0 ? (
@@ -182,28 +169,27 @@ export function BuyGiftCard() {
                         <div key={image.id} style={{
                             cursor: 'pointer',
                             textAlign: 'center',
-                            width: '250px', // Increased width
+                            width: '250px',
                             height: 'auto'
                         }} onClick={() => handleImageClick(image)}>
                             <img src={image.imgSrc} alt={image.title} style={{
                                 width: '150%',
-                                height: 'auto', // Maintain aspect ratio
+                                height: 'auto',
                                 borderRadius: '15px',
                                 transition: 'transform 0.3s ease',
                             }}
-                                onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.1)'} // Zoom in on hover
+                                onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.1)'}
                                 onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'} />
                             <p>
-                                <span>{image.title.split(' - ')[0]}</span><br />
-                                <span style={{ textDecoration: 'line-through', color: 'red' }}>{image.originalPrice} Kr</span><br />
-                                <span style={{ color: 'green' }}>{image.discountedPrice} Kr</span>
+                              <span>{image.title.split(' - ')[0]}</span><br />
+                              <span style={{ textDecoration: 'line-through', color: 'red' }}>{image.originalPrice} Kr</span>
+                              <span style={{ color: 'green' }}>&nbsp;&nbsp;&nbsp;{image.discountedPrice} Kr&nbsp;&nbsp;&nbsp;<span style={{ color: 'white' }}>({Math.round((1 - image.discountedPrice / image.originalPrice) * 100)}%)</span></span>
                             </p>
                         </div>
                     ))
                 )}
             </div>
 
-            {/* Pagination Controls */}
             <div style={{ marginTop: '20px' }}>
                 <button
                     disabled={currentPage === 1}
@@ -230,11 +216,13 @@ export function BuyGiftCard() {
                         backgroundColor: 'white', padding: '20px', borderRadius: '10px',
                         maxWidth: '500px', textAlign: 'center'
                     }}>
-                        <img src={selectedImage.imgSrc} alt={selectedImage.title} style={{ width: '250px', height: '250px', borderRadius: '15px', }} />
+                        <img src={selectedImage.imgSrc} alt={selectedImage.title} style={{ width: '250px', height: '250px', borderRadius: '15px' }} />
                         <p>{selectedImage.details}</p>
                         <p>
-                            <span style={{ textDecoration: 'line-through', color: 'red' }}>{selectedImage.originalPrice} kr</span><br />
-                            <span style={{ color: 'green' }}>{selectedImage.discountedPrice} kr</span>
+                          <span style={{ color: 'white', textDecoration: 'none' }}>Värde: </span>
+                          <span style={{ color: 'red', textDecoration: 'line-through' }}> {selectedImage.originalPrice} kr</span><br />
+                          <span style={{ color: 'white', textDecoration: 'none' }}>Kostar: </span>
+                          <span style={{ color: 'green' }}>{selectedImage.discountedPrice} kr</span>
                         </p>
                         <p>Utgångsdatum: {selectedImage.expiryDate}</p>
 

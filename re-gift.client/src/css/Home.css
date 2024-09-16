@@ -41,11 +41,18 @@
 .loggainKnapp {
 
     cursor:pointer;
+    margin-left: 24px;
 }
 
-.mt-4{
+.dropdown-toggle {
+    white-space: nowrap;
+    margin-left: 24px;
+}
+
+.mt-4 {
     display: flex;
     justify-content: center;
+
 }
  
     .favorite-icon, .cart-icon {
@@ -161,3 +168,8 @@ a {
 }
 
 */
+
+
+
+
+

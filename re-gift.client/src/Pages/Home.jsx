@@ -17,6 +17,8 @@ export default function Home() {
 
     const handleBuyClick = () => {
         navigate('/BuyGiftCard'); // Navigera till köpsidan
+
+
     };
 
     const handleSellClick = () => {
@@ -26,11 +28,16 @@ export default function Home() {
             navigate('/login');  // Navigera till inloggningssidan om användaren inte är inloggad
         }
     };
+    // Funktion för att hantera klick på varje bild
+    const handleImageClick = () => {
+        console.log('Navigerar till BuyGiftCard-sidan'); // För felsökning
+        navigate('/BuyGiftCard');
+    };
     return (
         <div className="container py-4" id="home">
             <div className="custom-background p-5 rounded">
                 <div className="col-sm-8 pt-5 mx-auto">
-                    <h1 className="display-5 fw-normal smaller-heading">Välkommen till Regift</h1>
+                    <h1 className="display-5 fw-normal smaller-heading">Välkommen till Re:Gift</h1>
                     <p className="lead smaller-text" style={{ fontWeight: 300, fontFamily: 'Arial, sans-serif' }}>
                         Här kan du köpa och sälja presentkort på ett enkelt och säkert sätt.
                         Oavsett om du vill bli av med ett oanvänt presentkort eller letar efter ett bra erbjudande på ett presentkort du vill ha, är vi här för att hjälpa dig!
@@ -59,6 +66,8 @@ export default function Home() {
                         className="d-block w-100"
                         src={HM11}
                         alt="H&M"
+                        onClick={handleImageClick} // Lägg till onClick på varje bild
+                        style={{ cursor: 'pointer' }} // Ändrar muspekaren vid hover
                     />
                     <Carousel.Caption></Carousel.Caption>
                 </Carousel.Item>
@@ -68,6 +77,8 @@ export default function Home() {
                         className="d-block w-100"
                         src={Amazon55}
                         alt="Amazon"
+                        onClick={handleImageClick} // Lägg till onClick på varje bild
+                        style={{ cursor: 'pointer' }}
                     />
                     <Carousel.Caption></Carousel.Caption>
                 </Carousel.Item>
@@ -77,6 +88,8 @@ export default function Home() {
                         className="d-block w-100"
                         src={Ahlens11}
                         alt="Ahlens11"
+                        onClick={handleImageClick} // Lägg till onClick på varje bild
+                        style={{ cursor: 'pointer' }}
                     />
                     <Carousel.Caption></Carousel.Caption>
                 </Carousel.Item>
@@ -86,6 +99,8 @@ export default function Home() {
                         className="d-block w-100"
                         src={Battlenet11}
                         alt="Battlenet11"
+                        onClick={handleImageClick} // Lägg till onClick på varje bild
+                        style={{ cursor: 'pointer' }}
                     />
                     <Carousel.Caption></Carousel.Caption>
                 </Carousel.Item>
@@ -95,6 +110,8 @@ export default function Home() {
                         className="d-block w-100"
                         src={Burgerking11}
                         alt="Burgerking11"
+                        onClick={handleImageClick} // Lägg till onClick på varje bild
+                        style={{ cursor: 'pointer' }}
                     />
                     <Carousel.Caption></Carousel.Caption>
                 </Carousel.Item>
@@ -104,6 +121,8 @@ export default function Home() {
                         className="d-block w-100"
                         src={Ica1}
                         alt="Ica1"
+                        onClick={handleImageClick} // Lägg till onClick på varje bild
+                        style={{ cursor: 'pointer' }}
                     />
                     <Carousel.Caption></Carousel.Caption>
                 </Carousel.Item>
@@ -113,6 +132,8 @@ export default function Home() {
                         className="d-block w-100"
                         src={Xbox1}
                         alt="Xbox1"
+                        onClick={handleImageClick} // Lägg till onClick på varje bild
+                        style={{ cursor: 'pointer' }}
                     />
                     <Carousel.Caption></Carousel.Caption>
                 </Carousel.Item>

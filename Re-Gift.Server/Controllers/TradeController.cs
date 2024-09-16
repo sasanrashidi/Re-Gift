@@ -36,7 +36,14 @@ namespace Re_Gift.Server.Controllers
             return Ok(await _tradeService.GetTradeAsync(id));
         }
 
-        
+        [HttpGet("Userhistory/{id}")]
+        public async Task<IActionResult> GetUserHistory(int id)
+        {
+            return Ok(await _tradeService.GetTradeAsync(id));
+        }
+
+
+
 
         [HttpPost]
         public async Task<IActionResult> PostTradeAsync(TradeRequest tradeRequest)

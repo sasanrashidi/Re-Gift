@@ -22,6 +22,7 @@ import { About } from '../Pages/About';
 import { Marknad } from '../Pages/Marknad'; // Import Marknad
 import LoggaIn from '../Pages/LoggaIn';
 import { ReceiptPage } from '../Pages/Receipt';
+import { PurchaseHistory } from '../Pages/PurchaseHistory';
 
 import FavoritesPage from '../Pages/FavoritesPage'; // Import FavoritesPage component
 import Register from '../Pages/Register';
@@ -39,6 +40,7 @@ export function AppRouter() {
             <Route path='/receipt' element={<ReceiptPage />} />
             <Route path='/favorites' element={<FavoritesPage />} /> {/* Favorites Page Route */}
             <Route path='/Register' element={<Register />} />
+            <Route path='/UserHistory' element={<PurchaseHistory />} />
         </Routes>
     );
 }
