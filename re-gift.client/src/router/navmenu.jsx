@@ -45,15 +45,9 @@ export function NavMenu() {
     // Här är funktionen för att hantera betalningen
     const handleCheckout = () => {
         if (!user) {
-            // Stäng kundkorgsmodalen först
-            setShowCartModal(false);
-
-            // Fördröjning för att säkerställa att modalen har stängts innan navigering
-            setTimeout(() => {
-                navigate('/login', { state: { from: '/payment' } });
-            }, 300);  // Anpassa tiden om det behövs
+            setShowCartModal(false);  // Stäng modalen
+            navigate('/login', { state: { from: '/payment' } });  // Omdirigera direkt
         } else {
-            // Hantera betalningsflödet om användaren är inloggad
             navigate('/payment');
         }
     };
