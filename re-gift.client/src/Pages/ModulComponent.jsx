@@ -197,8 +197,13 @@ export function ItemModal({ title, items, show, handleClose, onRemove }) {
                                         variant="primary"
                                         onClick={() => {
                                             if (!user) {
-                                                // Om användaren inte är inloggad, omdirigera till inloggningssidan
-                                                navigate('/login', { state: { from: '/BuyGiftCard' } });
+                                                // Stäng popup-fönstret
+                                                handleClose();
+
+                                                // Vänta en kort stund innan navigeringen sker
+                                                setTimeout(() => {
+                                                    navigate('/login', { state: { from: '/BuyGiftCard' } });
+                                                }, 300);  // Anpassa fördröjningen om det behövs
                                             } else {
                                                 // Om användaren är inloggad, sätt isPaying till true
                                                 setIsPaying(true);
@@ -207,6 +212,7 @@ export function ItemModal({ title, items, show, handleClose, onRemove }) {
                                     >
                                         Till Betalning
                                     </Button>
+
                                 )}
                                 {title === 'Favoriter' && (
                                     <Button className="mt-3" variant="success" onClick={moveFavoritesToCart}>
