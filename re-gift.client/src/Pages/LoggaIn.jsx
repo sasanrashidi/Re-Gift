@@ -113,7 +113,7 @@ function LoggaIn() {
                         <p>Har du inget konto?&nbsp;
                             <span
                                 className="signup-link"
-                                onClick={() => navigate('/Register')} // Direkt navigering till registreringssidan
+                                onClick={() => navigate('/register')} // Direkt navigering till registreringssidan
                                 style={{ cursor: 'pointer', color: 'blue' }}>
                                 Skapa ett här!
                             </span>

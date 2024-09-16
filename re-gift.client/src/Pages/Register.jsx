@@ -1,4 +1,5 @@
 ﻿import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../css/LoggaIn.css'; // Ensure the CSS is linked correctly
 
 export const Register = () => {
@@ -8,6 +9,7 @@ export const Register = () => {
     const [lastName, setLastName] = useState('');
     const [success, setSuccess] = useState('');  // For success messages
     const [error, setError] = useState('');      // For error messages
+    const navigate = useNavigate();
 
     const handleRegister = async (e) => {
         e.preventDefault();
@@ -26,6 +28,8 @@ export const Register = () => {
                 setSuccess('Registrering lyckades!');  // Success message
                 setError('');  // Clear error message
                 resetForm();  // Reset the form
+
+                navigate('/login');
             } else {
                 const errorResult = await response.text();
                 setError(errorResult);  // Show API error message
