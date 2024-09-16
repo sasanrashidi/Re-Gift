@@ -91,11 +91,17 @@ export function NavMenu() {
                             <NavDropdown.Item onClick={logoutHandler}>
                                 <span>Logga ut</span>
                             </NavDropdown.Item>
+
                             <NavDropdown.Item>
-                                <LinkContainer to="/UserHistory">
-                                    <span>Köp Historik</span>
+                            <LinkContainer to="/UserHistory">
+                                <span>Köp Historik</span>
                             </LinkContainer>
-                                
+                            </NavDropdown.Item>
+
+                            <NavDropdown.Item>
+                                <LinkContainer to="/SellGiftCard">
+                                    <span>Sälj presentkort</span>
+                                </LinkContainer>
                             </NavDropdown.Item>
                         </NavDropdown>
                     ) : (
