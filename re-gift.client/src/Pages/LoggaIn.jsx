@@ -63,7 +63,13 @@ function LoggaIn() {
         <Container className="login-container">
             <Row className="justify-content-md-center login-row">
                 <Col xs={12} md={6} className="login-col">
-                        <h2 className="login-header mt-5">Logga In</h2>
+                    <h2 className="login-header mt-5">Logga In</h2>
+
+
+
+                    <p className="info-text-login mt-3">
+                        För att kunna köpa och sälja presentkort på vår plattform måste du vara inloggad. Detta är av säkerhetsskäl för att skydda både dig som användare och andra kunder på vår marknadsplats. Genom att skapa ett konto säkerställer vi att alla transaktioner är spårbara och trygga för alla parter.
+                    </p>
 
                     {/* Felmeddelande om inmatningsfel finns */}
                     {errorMessage && <p className="error-message">{errorMessage}</p>}
