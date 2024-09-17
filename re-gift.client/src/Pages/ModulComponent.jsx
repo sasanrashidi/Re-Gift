@@ -169,6 +169,9 @@ export function ItemModal({ title, items, show, handleClose, onRemove }) {
         navigate('/BuyGiftCard', { state: { selectedGiftCard: item } });
         handleClose();
     };
+    const originalTotal = items.reduce((acc, item) => acc + item.originalPrice, 0); // Sum of original prices
+    const discountedTotal = items.reduce((acc, item) => acc + item.discountedPrice, 0); // Sum of discounted prices
+    const savings = originalTotal - discountedTotal; // Savings calculation
 
     return (
         <Modal show={show} onHide={handleCloseWithReset} size="lg">
@@ -218,31 +221,39 @@ export function ItemModal({ title, items, show, handleClose, onRemove }) {
                                         </li>
                                     ))}
                                 </ul>
-                                <div className="mt-3">
-                                    <strong>Total: {totalPrice} Kr.</strong>
-                                </div>
-                                {title !== 'Favoriter' && ( // Conditionally render the "Till Betalning" button
-                                    <Button
-                                        className="mt-3"
-                                        variant="primary"
-                                        onClick={() => {
-                                            if (!user) {
-                                                // Close modal
-                                                handleClose();
 
-                                                // Wait briefly before navigating
-                                                setTimeout(() => {
-                                                    navigate('/login', { state: { from: '/BuyGiftCard' } });
-                                                }, 300);  // Adjust delay if needed
-                                            } else {
-                                                // If the user is logged in, set isPaying to true
-                                                setIsPaying(true);
-                                            }
-                                        }}
-                                    >
-                                        Till Betalning
+                                <div className="mt-3" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                    <strong style={{ color: 'green' }}>Total: {discountedTotal} Kr.</strong>
+                                    {savings > 0 && (
+                                        <strong>Du har sparat {savings} Kr!</strong>
+                                    )}
+                                </div>
+
+                                {/* Flexbox container for buttons */}
+                                <div className="mt-3" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                    {title !== 'Favoriter' && (
+                                        <Button
+                                            variant="primary"
+                                            onClick={() => {
+                                                if (!user) {
+                                                    handleClose(); // Close modal
+                                                    setTimeout(() => {
+                                                        navigate('/login', { state: { from: '/BuyGiftCard' } });
+                                                    }, 300); // Adjust delay if needed
+                                                } else {
+                                                    setIsPaying(true); // If logged in, set isPaying to true
+                                                }
+                                            }}
+                                        >
+                                            Till Betalning
+                                        </Button>
+                                    )}
+
+                                    <Button variant="secondary" onClick={handleCloseWithReset}>
+                                        Stäng
                                     </Button>
-                                )}
+                                </div>
+
                                 {title === 'Favoriter' && (
                                     <Button className="mt-3" variant="success" onClick={moveFavoritesToCart}>
                                         Flytta till varukorg
@@ -260,6 +271,7 @@ export function ItemModal({ title, items, show, handleClose, onRemove }) {
                         <h4>Betalningsuppgifter <span role="img" aria-label="lock">🔒</span></h4>
                         <p className="text-muted">Dina betalningsuppgifter är säkra och krypterade.</p>
                         <Form>
+                            {/* Payment form fields */}
                             <Form.Group controlId="formFirstName">
                                 <Form.Label>Förnamn</Form.Label>
                                 <Form.Control
@@ -383,13 +395,9 @@ export function ItemModal({ title, items, show, handleClose, onRemove }) {
                     </div>
                 )}
             </Modal.Body>
-            <Modal.Footer>
-                <Button variant="secondary" onClick={handleCloseWithReset}>
-                    Stäng
-                </Button>
-            </Modal.Footer>
         </Modal>
     );
+
 
 }
 

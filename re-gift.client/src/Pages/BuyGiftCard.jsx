@@ -165,7 +165,9 @@ export function BuyGiftCard() {
                 ) : (
                     paginatedGiftCardImages.map(image => (
                         <div key={image.id} className="card" onClick={() => handleImageClick(image)}>
-                            <img src={image.imgSrc} alt={image.title} />
+                            <div className="card-image-wrapper">
+                                <img src={image.imgSrc} alt={image.title} />
+                            </div>
                             <p>
                                 <span>{image.title.split(' - ')[0]}</span><br />
                                 <span style={{ textDecoration: 'line-through', color: 'red' }}>{image.originalPrice} Kr</span>
@@ -177,6 +179,7 @@ export function BuyGiftCard() {
                     ))
                 )}
             </div>
+
 
             <div style={{ marginTop: '20px' }}>
                 <button
