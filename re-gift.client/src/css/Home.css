@@ -153,6 +153,7 @@ a {
 .navbar {
     
     background: none !important;
+
 }
 
 .login-link {
@@ -179,6 +180,32 @@ a {
     margin-right: 10px; /* Om du vill ha mellanrum till höger */
     cursor: pointer; /* Se till att ikonen visar att den är klickbar */
 }
+
+#home .col-sm-8 {
+    padding-top: 10px; /* Minska topp-paddingen */
+    margin: 0 auto; /* Se till att det centreras */
+}
+
+@media (max-width: 767px) {
+    /* Justera avståndet från navbar */
+    .navbar {
+        margin-bottom: 0 !important;
+        padding-bottom: 0 !important;
+    }
+    
+    /* Minska avståndet för första sidan (karusellen eller text) */
+    #home {
+        margin-top: -50px; /* Minska detta efter behov */
+        padding-top: 0;
+    }
+
+    /* Om du vill justera ytterligare sektioner */
+    .custom-background {
+        padding-top: 20px; /* Justera efter behov */
+        padding-bottom: 20px;
+    }
+}
+
 
 
 
