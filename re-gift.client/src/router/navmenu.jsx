@@ -75,40 +75,6 @@ export function NavMenu() {
                     </div>
                 </Navbar.Brand>
 
-                {/* Flytta hela NavDropdown med användarfunktionerna utanför Collapse */}
-                <NavDropdown
-                    title={<i className="bi bi-person-circle" style={{ fontSize: '24px', cursor: 'pointer', color: 'black' }}></i>}
-                    id="user-nav-dropdown"
-                    className="user-dropdown"
-                    align="end"
-                >
-                    {user ? (
-                        <>
-                            <NavDropdown.Item as="div">
-                                <LinkContainer to="/SellGiftCard">
-                                    <Nav.Link onClick={closeNavMenu}>Sälj presentkort</Nav.Link>
-                                </LinkContainer>
-                            </NavDropdown.Item>
-                            <NavDropdown.Item as="div">
-                                <LinkContainer to="/UserHistory">
-                                    <Nav.Link onClick={closeNavMenu}>Köp Historik</Nav.Link>
-                                </LinkContainer>
-                            </NavDropdown.Item>
-                            <NavDropdown.Item as="div" onClick={logoutHandler}>
-                                <Nav.Link>Logga ut</Nav.Link>
-                            </NavDropdown.Item>
-                        </>
-                    ) : (
-                        <NavDropdown.Item as="div">
-                            <LinkContainer to="/login">
-                                <Nav.Link onClick={closeNavMenu}>Logga in</Nav.Link>
-                            </LinkContainer>
-                        </NavDropdown.Item>
-                    )}
-                </NavDropdown>
-
-
-
 
                 <Navbar.Toggle aria-controls="basic-navbar-nav" onClick={() => setIsNavOpen(!isNavOpen)} />
 
@@ -125,6 +91,39 @@ export function NavMenu() {
                             <span className="badge badge-pill badge-danger">{cart.length}</span>
                         )}
                     </span>
+
+
+                    {/* Flyttad inloggningsikon hit för att fixa position */}
+                    <NavDropdown
+                        title={<i className="bi bi-person-circle" style={{ fontSize: '24px', cursor: 'pointer', color: 'black' }}></i>}
+                        id="user-nav-dropdown"
+                        className="user-dropdown"
+                        align="end"
+                    >
+                        {user ? (
+                            <>
+                                <NavDropdown.Item as="div">
+                                    <LinkContainer to="/SellGiftCard">
+                                        <Nav.Link onClick={closeNavMenu}>Sälj presentkort</Nav.Link>
+                                    </LinkContainer>
+                                </NavDropdown.Item>
+                                <NavDropdown.Item as="div">
+                                    <LinkContainer to="/UserHistory">
+                                        <Nav.Link onClick={closeNavMenu}>Köp Historik</Nav.Link>
+                                    </LinkContainer>
+                                </NavDropdown.Item>
+                                <NavDropdown.Item as="div" onClick={logoutHandler}>
+                                    <Nav.Link>Logga ut</Nav.Link>
+                                </NavDropdown.Item>
+                            </>
+                        ) : (
+                            <NavDropdown.Item as="div">
+                                <LinkContainer to="/login">
+                                    <Nav.Link onClick={closeNavMenu}>Logga in</Nav.Link>
+                                </LinkContainer>
+                            </NavDropdown.Item>
+                        )}
+                    </NavDropdown>
                 </div>
 
                 <Navbar.Collapse id="basic-navbar-nav">

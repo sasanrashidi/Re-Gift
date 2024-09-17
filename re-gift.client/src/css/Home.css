@@ -174,6 +174,13 @@ a {
     object-fit: cover; /* Ensure the image covers the container without distortion */
 }
 
+.user-dropdown .dropdown-toggle {
+    margin-left: 24px; /* Marginalen för ikonen */
+    margin-right: 10px; /* Om du vill ha mellanrum till höger */
+    cursor: pointer; /* Se till att ikonen visar att den är klickbar */
+}
+
+
 
 
 
