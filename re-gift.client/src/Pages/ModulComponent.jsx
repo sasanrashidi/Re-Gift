@@ -184,16 +184,35 @@ export function ItemModal({ title, items, show, handleClose, onRemove }) {
                                     {items.map(item => (
                                         <li key={item.id} className="list-group-item d-flex justify-content-between align-items-center">
                                             <div>
-                                                <strong>{item.title}</strong><br />
-                                                <span style={{ textDecoration: 'line-through', color: 'red' }}>{item.originalPrice} Kr</span><br />
-                                                <span style={{ color: 'green' }}>{item.discountedPrice} Kr</span>
+                                                <strong>
+                                                    <a
+                                                        href="#"
+                                                        style={{ textDecoration: 'none', color: 'inherit', display: 'flex', alignItems: 'center' }}
+                                                        onClick={(e) => {
+                                                            e.preventDefault(); // Prevent default link behavior
+                                                            handleDetailView(item); // Open the detailed view
+                                                        }}
+                                                    >
+                                                        <img
+                                                            src={item.imgSrc}
+                                                            alt={item.title}
+                                                            style={{ width: '50px', height: '50px', marginRight: '10px', objectFit: 'cover' }}
+                                                        />
+                                                        {item.title}
+                                                    </a>
+                                                </strong>
+                                                <div>
+                                                    <span style={{ textDecoration: 'line-through', color: 'red', marginRight: '10px' }}>
+                                                        {item.originalPrice} Kr
+                                                    </span>
+                                                    <span style={{ color: 'green' }}>
+                                                        {item.discountedPrice} Kr
+                                                    </span>
+                                                </div>
                                             </div>
                                             <div>
                                                 <Button variant="danger" onClick={() => onRemove(item)}>
                                                     Ta bort
-                                                </Button>
-                                                <Button variant="info" onClick={() => handleDetailView(item)}>
-                                                    Visa Detaljvy
                                                 </Button>
                                             </div>
                                         </li>
@@ -208,22 +227,21 @@ export function ItemModal({ title, items, show, handleClose, onRemove }) {
                                         variant="primary"
                                         onClick={() => {
                                             if (!user) {
-                                                // Stäng popup-fönstret
+                                                // Close modal
                                                 handleClose();
 
-                                                // Vänta en kort stund innan navigeringen sker
+                                                // Wait briefly before navigating
                                                 setTimeout(() => {
                                                     navigate('/login', { state: { from: '/BuyGiftCard' } });
-                                                }, 300);  // Anpassa fördröjningen om det behövs
+                                                }, 300);  // Adjust delay if needed
                                             } else {
-                                                // Om användaren är inloggad, sätt isPaying till true
+                                                // If the user is logged in, set isPaying to true
                                                 setIsPaying(true);
                                             }
                                         }}
                                     >
                                         Till Betalning
                                     </Button>
-
                                 )}
                                 {title === 'Favoriter' && (
                                     <Button className="mt-3" variant="success" onClick={moveFavoritesToCart}>
@@ -372,6 +390,7 @@ export function ItemModal({ title, items, show, handleClose, onRemove }) {
             </Modal.Footer>
         </Modal>
     );
+
 }
 
 
