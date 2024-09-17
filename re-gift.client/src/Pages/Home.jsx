@@ -3,13 +3,12 @@ import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { AppContext } from '../context/AppContext';
 import '../css/Home.css';
-import HM11 from '../img/HM11.jpg';
-import Amazon55 from '../img/Amazon55.jpg';
-import Ahlens11 from '../img/Ahlens11.jpg';
-import Battlenet11 from '../img/Battlenet11.jpg';
-import Burgerking11 from '../img/Burgerking11.jpg';
-import Ica1 from "../img/Ica1.jpg";
-import Xbox1 from '../img/Xbox1.jpg';
+import IKEAA from '../img/IKEAA.jpg';
+import BurgerKing from '../img/BurgerKing.jpg';
+import ICAA from "../img/ICAA.jpg";
+import Battlenett from '../img/Battlenett.jpg';
+import Nikee from '../img/Nikee.jpg';
+import Adidass from '../img/Adidass.jpg';
 
 export default function Home() {
     const navigate = useNavigate();
@@ -66,7 +65,7 @@ export default function Home() {
             </div>
 
             <Carousel className="custom-carousel mt-5" style={{ boxShadow: '8px 8px 8px rgba(0, 0, 0, 0.3)' }}>
-                {[HM11, Amazon55, Ahlens11, Battlenet11, Burgerking11, Ica1, Xbox1].map((imageSrc, index) => (
+                {[Adidass, Nikee, Battlenett, BurgerKing, ICAA, IKEAA].map((imageSrc, index) => (
                     <Carousel.Item key={index}>
                         <img
                             className="d-block w-100"
