@@ -129,4 +129,15 @@
 
 .login-header {
   text-align: center;
+
+}
+
+.info-text-login {
+    font-size: 16px; 
+    color: #333; 
+    margin-bottom: 20px; 
+    line-height: 1.5; 
+    text-align: justify; 
+    font-weight: inherit; 
+    font-style: italic;
 }

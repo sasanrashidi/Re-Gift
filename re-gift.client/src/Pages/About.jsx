@@ -10,7 +10,7 @@ export function About() {
                     Välkommen till Re:gift, en marknadsplats för att enkelt och tryggt köpa och sälja presentkort till rabatterade priser. Här kan du smidigt sälja dina oanvända presentkort eller hitta fantastiska erbjudanden på kort till specifika butiker.
                 </p>
                 <p className="about-lead">
-                    Vårt mål är att skapa en säker och effektiv plattform där säljare och köpare kan mötas för att dra nytta av det stora utbudet av presentkort. Vi strävar efter att underlätta för säljare att omvandla oanvända presentkort till pengar och för köpare att hitta värdefulla erbjudanden.
+                    Vårt mål är att skapa en säker och effektiv plattform där privata säljare och köpare kan mötas för att dra nytta av det stora utbudet av presentkort. Vi strävar efter att underlätta för säljare att omvandla oanvända presentkort till pengar och för köpare att hitta värdefulla erbjudanden.
                 </p>
                 <p className="about-lead">
                     För närvarande valideras inte presentkorten som läggs upp för försäljning av oss. Eftersom Re:gift är ett mindre skolprojekt har vi ännu inte implementerat en process för verifiering och validering av presentkort. Detta är något vi planerar att införa i framtiden, men i nuläget är vår plattform utformad för att låta användare sälja presentkort direkt efter att ha registrerat ett konto, utan att presentkorten först kontrolleras.
