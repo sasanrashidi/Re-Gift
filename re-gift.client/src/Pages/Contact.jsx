@@ -23,15 +23,11 @@ export function Contact() {
                 </p>
 
                 <div className="social-icons">
-                    <a href="https://www.facebook.com/profile.php?id=61565484437134" target="_blank" rel="noopener noreferrer">
-                        <FaFacebook size={30} />
-                    </a>
+                   
                     <a href="mailto:regiftcompany@gmail.com" target="_blank" rel="noopener noreferrer">
                         <FaEnvelope size={30} />
                     </a>
-                    <a href="https://www.instagram.com/regiftcompany/" target="_blank" rel="noopener noreferrer">
-                        <FaInstagram size={30} />
-                    </a>
+                   
                 </div>
             </div>
         </nav>
