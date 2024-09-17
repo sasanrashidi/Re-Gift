@@ -1,0 +1,120 @@
+/* Övergripande styling för CheckoutPage */
+.checkout-page {
+	background-color: rgba(255, 255, 255, 0.9); /* Ljusskuggad bakgrund för formuläret */
+	padding: 40px;
+	border-radius: 10px;
+	box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); /* Mjuk skugga för att ge formuläret djup */
+	max-width: 600px; /* Begränsad bredd för att hålla formuläret kompakt */
+	margin: 40px auto; /* Centrerar formuläret på sidan */
+	font-size: 18px; /* Konsistent textstorlek */
+}
+
+	.checkout-page h2 {
+		font-size: 2rem;
+		text-align: center;
+		color: var(--color2); /* Använd webbplatsens färger */
+		margin-bottom: 20px;
+		font-family: var(--font1);
+	}
+
+	.checkout-page form {
+		display: flex;
+		flex-direction: column;
+		gap: 20px; /* Ger avstånd mellan formulärelementen */
+	}
+
+	.checkout-page .form-group {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.checkout-page .form-label {
+		font-weight: bold;
+		color: var(--color3); /* Färger från din färgpalett */
+	}
+
+	.checkout-page .form-control {
+		border: 1px solid #ccc; /* Ljusgrå kantlinje */
+		padding: 10px;
+		border-radius: 5px; /* Rundade hörn för en modern look */
+		font-size: 1rem;
+		transition: all 0.3s ease; /* Liten transition för hover-effekt */
+	}
+
+		.checkout-page .form-control:focus {
+			border-color: var(--color3); /* Anpassar kantfärg vid fokus */
+			box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1); /* Ger ett litet skuggdjup vid fokus */
+		}
+
+		.checkout-page .form-control.is-invalid {
+			border-color: #dc3545; /* Felmarkering i röd färg */
+		}
+
+		.checkout-page .form-control:invalid {
+			border-color: #dc3545; /* För äldre webbläsare */
+		}
+
+		.checkout-page .form-control::placeholder {
+			font-style: italic;
+			color: #aaa;
+		}
+
+	/* Anpassning av betalningsknappen */
+	.checkout-page .btn-success {
+		background-color: #28a745; /* Grön nyans för tydlig kontrast */
+		border: none;
+		color: white; /* Vit text för bättre synlighet */
+		padding: 15px 20px; /* Mer padding för att göra knappen större och lättare att klicka */
+		font-size: 1.2rem; /* Större textstorlek */
+		font-family: var(--font1);
+		border-radius: 8px;
+		margin-top: 20px; /* Lägger till extra utrymme ovanför knappen */
+		transition: background-color 0.3s ease, transform 0.2s ease; /* Gör hover-effekten mer märkbar */
+		cursor: pointer;
+		display: block; /* Se till att knappen tar upp hela bredden tillgänglig */
+		width: 100%; /* Gör knappen lika bred som förälderelementet */
+		text-align: center; /* Centrera texten på knappen */
+	}
+
+		.checkout-page .btn-success:hover {
+			background-color: #218838; /* Ändra bakgrundsfärgen vid hover för bättre feedback */
+			transform: scale(1.05); /* Liten förstoring för hover-effekt */
+		}
+
+		.checkout-page .btn-success:disabled {
+			background-color: #ccc; /* Grått för inaktiverad knapp */
+			cursor: not-allowed;
+		}
+
+		/* Spinner-styling för att passa knappen */
+		.checkout-page .btn-success .spinner-border {
+			margin-right: 10px;
+			color: white; /* Spinnerns färg matchar textfärgen */
+		}
+
+	/* Meddelande om betalningsframgång */
+	.checkout-page .payment-success {
+		text-align: center;
+		color: var(--color2);
+		font-size: 1.5rem;
+		font-weight: bold;
+		margin-top: 20px;
+	}
+
+/* Mobilanpassning */
+@media (max-width: 768px) {
+	.checkout-page {
+		padding: 20px;
+		max-width: 80%;
+		margin: 0 auto;
+	}
+
+		.checkout-page h2 {
+			font-size: 1.8rem;
+		}
+
+		.checkout-page .btn-success {
+			font-size: 1rem;
+			padding: 10px;
+		}
+}

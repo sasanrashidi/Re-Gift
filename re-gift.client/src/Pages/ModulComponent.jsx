@@ -1,166 +1,31 @@
-﻿import React, { useState, useContext } from 'react';
-import { Modal, Button, Form, Spinner } from 'react-bootstrap';
+﻿// ModulComponent.jsx
+
+import React, { useContext } from 'react';
+import { Modal, Button } from 'react-bootstrap';
 import { AppContext } from '../context/AppContext';
 import { useNavigate } from 'react-router-dom';
 
 export function ItemModal({ title, items, show, handleClose, onRemove }) {
-    const [isPaying, setIsPaying] = useState(false);
-    const [paymentSuccess, setPaymentSuccess] = useState(false);
-    const [paymentDetails, setPaymentDetails] = useState({
-        cardNumber: '',
-        firstName: '',
-        lastName: '',
-        address: '',
-        city: '',
-        zipCode: '',
-        name: '',
-        cvv: ''
-    });
-    const [isProcessing, setIsProcessing] = useState(false);
-    const [formErrors, setFormErrors] = useState({});
     const { cart, setCart, favorites, setFavorites, user } = useContext(AppContext);
-    const [purchase, setPurchase] = useState(null);
     const navigate = useNavigate();
 
+    // Funktion för att tolka pris från sträng
     const parsePrice = (priceStr) => {
         if (typeof priceStr === 'string') {
-            const parsedPrice = priceStr
-                .replace('Kr.', '')
-                .replace(',', '.')
-                .trim();
+            const parsedPrice = priceStr.replace('Kr.', '').replace(',', '.').trim();
             return parseFloat(parsedPrice) || 0;
         }
         return typeof priceStr === 'number' ? priceStr : 0;
     };
 
+    // Totalpris för alla varor i varukorgen
     const totalPrice = items.reduce((total, item) => total + parsePrice(item.discountedPrice), 0).toFixed(2);
 
-    const handlePaymentInputChange = (e) => {
-        const { name, value } = e.target;
-        setPaymentDetails(prevDetails => ({
-            ...prevDetails,
-            [name]: value
-        }));
-    };
-
-    const validateCardDetails = () => {
-        const errors = {};
-        const { cardNumber, firstName, lastName, address, city, zipCode, name, cvv } = paymentDetails;
-
-        if (!cardNumber || cardNumber.length !== 16 || !/^\d+$/.test(cardNumber)) {
-            errors.cardNumber = 'Kortnumret måste vara exakt 16 siffror.';
-        }
-
-        if (!firstName || firstName.length < 2) {
-            errors.firstName = 'Förnamn är obligatoriskt och måste vara minst 2 tecken.';
-        }
-
-        if (!lastName || lastName.length < 2) {
-            errors.lastName = 'Efternamn är obligatoriskt och måste vara minst 2 tecken.';
-        }
-
-        if (!address || address.length < 5) {
-            errors.address = 'Adress är obligatoriskt och måste vara minst 5 tecken.';
-        }
-
-        if (!city || city.length < 2) {
-            errors.city = 'Stad är obligatoriskt och måste vara minst 2 tecken.';
-        }
-
-        if (!zipCode || zipCode.length !== 5 || !/^\d+$/.test(zipCode)) {
-            errors.zipCode = 'Postnummer måste vara exakt 5 siffror.';
-        }
-
-        if (!name || name.length < 2) {
-            errors.name = 'Namn på kortet är obligatoriskt och måste vara minst 2 tecken.';
-        }
-
-        if (!cvv || cvv.length !== 3 || !/^\d+$/.test(cvv)) {
-            errors.cvv = 'CVV måste vara exakt 3 siffror.';
-        }
-
-        setFormErrors(errors);
-        return Object.keys(errors).length === 0;
-    };
-
-    const simulatePayment = () => {
-        setIsProcessing(true);
-
-        setTimeout(() => {
-            const isValid = validateCardDetails();
-            if (isValid) {
-                setPaymentSuccess(true);
-                setIsProcessing(false);
-
-                // Simulerar att köpet är säkert och sparas
-                const newPurchase = {
-                    date: new Date().toLocaleString(),
-                    items: [...items],
-                    totalPrice
-                };
-                console.log(newPurchase);
-                setPurchase(newPurchase);
-                setCart([]); // Tömmer kundvagnen
-                localStorage.removeItem('cart'); // Rensar localStorage
-                navigate('/receipt', { state: { purchase: newPurchase } });
-
-            } else {
-                setIsProcessing(false);
-            }
-        }, 2000);
-    };
-
-    const handlePayment = () => {
-        if (!user) {
-            // Stäng popup-fönstret först och vänta tills det har stängts
-            handleClose();
-
-            // Fördröjning för att säkerställa att modalen stängs innan omdirigering
-            setTimeout(() => {
-                navigate('/login', { state: { from: '/BuyGiftCard' } });
-            }, 300);  // Anpassa fördröjningen om det behövs
-        } else {
-            const isValid = validateCardDetails();
-            if (isValid) {
-                simulatePayment();
-            }
-        }
-    };
-
-    const resetStateAfterPayment = () => {
-        setIsPaying(false);
-        setPaymentSuccess(false);
-        setPaymentDetails({
-            cardNumber: '',
-            firstName: '',
-            lastName: '',
-            address: '',
-            city: '',
-            zipCode: '',
-            name: '',
-            cvv: ''
-        });
-        setFormErrors({});
-    };
-
-    const handleCloseWithReset = () => {
-        resetStateAfterPayment();
-        setTimeout(() => {
-            handleClose();
-        }, 200);  // Liten fördröjning för att se till att återställningen körs först
-    };
-
+    // Funktion för att flytta favoriter till varukorgen
     const moveFavoritesToCart = () => {
-        // Get the IDs of items already in the cart
         const cartItemIds = new Set(cart.map(item => item.id));
-
-        // Filter favorites to include only those not in the cart
         const newItemsToAdd = favorites.filter(favoriteItem => !cartItemIds.has(favoriteItem.id));
-
-        // Add only new items to the cart
         setCart(prevCart => [...prevCart, ...newItemsToAdd]);
-
-        // Clear the favorites list after moving items
         setFavorites([]);
     };
 
@@ -174,7 +39,7 @@ export function ItemModal({ title, items, show, handleClose, onRemove }) {
     const savings = originalTotal - discountedTotal; // Savings calculation
 
     return (
-        <Modal show={show} onHide={handleCloseWithReset} size="lg">
+        <Modal show={show} onHide={handleClose} size="lg">
             <Modal.Header closeButton>
                 <Modal.Title>{title}</Modal.Title>
             </Modal.Header>
@@ -400,6 +265,3 @@ export function ItemModal({ title, items, show, handleClose, onRemove }) {
 
 
 }
-
-
-
