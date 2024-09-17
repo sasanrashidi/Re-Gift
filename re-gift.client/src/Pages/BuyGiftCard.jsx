@@ -14,6 +14,7 @@ import Akademibokimg from '../img/Akademibok.png';
 import BurgerKingimg from '../img/BurgerKing.jpg';
 import { AppContext } from '../context/AppContext';
 import '../css/GiftCardSheet.css'; // Import the correct CSS file
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export function BuyGiftCard() {
     const [searchQuery, setSearchQuery] = useState('');
@@ -216,10 +217,29 @@ export function BuyGiftCard() {
                             <span style={{ color: 'green' }}>{selectedImage.discountedPrice} kr</span>
                         </p>
                         <p>Utgångsdatum: {selectedImage.expiryDate}</p>
-
-                        <button onClick={() => addToCart(selectedImage)} style={{ marginTop: '20px', padding: '10px' }}>Lägg i kundvagnen</button>
-                        <button onClick={() => addToFavorites(selectedImage)} style={{ marginTop: '10px', padding: '10px' }}>Lägg till i favoriter</button>
-                        <button onClick={closeModal} style={{ marginTop: '10px', padding: '10px' }}>Stäng</button>
+                        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                        <button
+                            onClick={() => addToFavorites(selectedImage)}
+                            type="button"
+                            className="btn btn-dark"
+                        >
+                            Lägg i favoriter
+                        </button>
+                        <button
+                            onClick={() => addToCart(selectedImage)}
+                            type="button"
+                            className="btn btn-dark"
+                        >
+                            Lägg i kundvagn
+                        </button>
+                        <button
+                            onClick={closeModal}
+                            type="button"
+                            className="btn btn-dark"
+                        >
+                            Stäng
+                            </button>
+                        </div>
                     </div>
                 </div>
             )}
