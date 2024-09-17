@@ -19,7 +19,9 @@ export function ItemModal({ title, items, show, handleClose, onRemove }) {
     };
 
     // Totalpris för alla varor i varukorgen
-    const totalPrice = items.reduce((total, item) => total + parsePrice(item.discountedPrice), 0).toFixed(2);
+    const originalTotal = items.reduce((acc, item) => acc + parsePrice(item.originalPrice), 0); // Sum of original prices
+    const discountedTotal = items.reduce((acc, item) => acc + parsePrice(item.discountedPrice), 0); // Sum of discounted prices
+    const savings = originalTotal - discountedTotal; // Savings calculation
 
     // Funktion för att flytta favoriter till varukorgen
     const moveFavoritesToCart = () => {
@@ -34,9 +36,6 @@ export function ItemModal({ title, items, show, handleClose, onRemove }) {
         navigate('/BuyGiftCard', { state: { selectedGiftCard: item } });
         handleClose();
     };
-    const originalTotal = items.reduce((acc, item) => acc + item.originalPrice, 0); // Sum of original prices
-    const discountedTotal = items.reduce((acc, item) => acc + item.discountedPrice, 0); // Sum of discounted prices
-    const savings = originalTotal - discountedTotal; // Savings calculation
 
     return (
         <Modal show={show} onHide={handleClose} size="lg">
@@ -44,224 +43,86 @@ export function ItemModal({ title, items, show, handleClose, onRemove }) {
                 <Modal.Title>{title}</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                {!isPaying && !paymentSuccess && (
-                    <div>
-                        {items.length > 0 ? (
-                            <>
-                                <ul className="list-group">
-                                    {items.map(item => (
-                                        <li key={item.id} className="list-group-item d-flex justify-content-between align-items-center">
-                                            <div>
-                                                <strong>
-                                                    <a
-                                                        href="#"
-                                                        style={{ textDecoration: 'none', color: 'inherit', display: 'flex', alignItems: 'center' }}
-                                                        onClick={(e) => {
-                                                            e.preventDefault(); // Prevent default link behavior
-                                                            handleDetailView(item); // Open the detailed view
-                                                        }}
-                                                    >
-                                                        <img
-                                                            src={item.imgSrc}
-                                                            alt={item.title}
-                                                            style={{ width: '50px', height: '50px', marginRight: '10px', objectFit: 'cover' }}
-                                                        />
-                                                        {item.title}
-                                                    </a>
-                                                </strong>
-                                                <div>
-                                                    <span style={{ textDecoration: 'line-through', color: 'red', marginRight: '10px' }}>
-                                                        {item.originalPrice} Kr
-                                                    </span>
-                                                    <span style={{ color: 'green' }}>
-                                                        {item.discountedPrice} Kr
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <Button variant="danger" onClick={() => onRemove(item)}>
-                                                    Ta bort
-                                                </Button>
-                                            </div>
-                                        </li>
-                                    ))}
-                                </ul>
-
-                                <div className="mt-3" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                    <strong style={{ color: 'green' }}>Total: {discountedTotal} Kr.</strong>
-                                    {savings > 0 && (
-                                        <strong>Du har sparat {savings} Kr!</strong>
-                                    )}
-                                </div>
-
-                                {/* Flexbox container for buttons */}
-                                <div className="mt-3" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                    {title !== 'Favoriter' && (
-                                        <Button
-                                            variant="primary"
-                                            onClick={() => {
-                                                if (!user) {
-                                                    handleClose(); // Close modal
-                                                    setTimeout(() => {
-                                                        navigate('/login', { state: { from: '/BuyGiftCard' } });
-                                                    }, 300); // Adjust delay if needed
-                                                } else {
-                                                    setIsPaying(true); // If logged in, set isPaying to true
-                                                }
-                                            }}
-                                        >
-                                            Till Betalning
+                {items.length > 0 ? (
+                    <>
+                        <ul className="list-group">
+                            {items.map(item => (
+                                <li key={item.id} className="list-group-item d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <strong>
+                                            <a
+                                                href="#"
+                                                style={{ textDecoration: 'none', color: 'inherit', display: 'flex', alignItems: 'center' }}
+                                                onClick={(e) => {
+                                                    e.preventDefault(); // Prevent default link behavior
+                                                    handleDetailView(item); // Open the detailed view
+                                                }}
+                                            >
+                                                <img
+                                                    src={item.imgSrc}
+                                                    alt={item.title}
+                                                    style={{ width: '50px', height: '50px', marginRight: '10px', objectFit: 'cover' }}
+                                                />
+                                                {item.title}
+                                            </a>
+                                        </strong>
+                                        <div>
+                                            <span style={{ textDecoration: 'line-through', color: 'red', marginRight: '10px' }}>
+                                                {item.originalPrice} Kr
+                                            </span>
+                                            <span style={{ color: 'green' }}>
+                                                {item.discountedPrice} Kr
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <Button variant="danger" onClick={() => onRemove(item)}>
+                                            Ta bort
                                         </Button>
-                                    )}
+                                    </div>
+                                </li>
+                            ))}
+                        </ul>
 
-                                    <Button variant="secondary" onClick={handleCloseWithReset}>
-                                        Stäng
-                                    </Button>
-                                </div>
+                        <div className="mt-3" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                            <strong style={{ color: 'green' }}>Total: {discountedTotal} Kr</strong>
+                            {savings > 0 && <strong>Du har sparat {savings} Kr!</strong>}
+                        </div>
 
-                                {title === 'Favoriter' && (
-                                    <Button className="mt-3" variant="success" onClick={moveFavoritesToCart}>
-                                        Flytta till varukorg
-                                    </Button>
-                                )}
-                            </>
-                        ) : (
-                            <p>Inga varor i {title}.</p>
+                        {/* Flexbox container for buttons */}
+                        <div className="mt-3" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                            {title !== 'Favoriter' && (
+                                <Button
+                                    variant="primary"
+                                    onClick={() => {
+                                        handleClose(); // Close modal
+                                        setTimeout(() => {
+                                            if (!user) {
+                                                navigate('/login', { state: { from: '/checkout' } });
+                                            } else {
+                                                navigate('/checkout'); // Navigate to checkout page
+                                            }
+                                        }, 300); // Adjust delay if needed
+                                    }}
+                                >
+                                    Till Betalning
+                                </Button>
+                            )}
+                            <Button variant="secondary" onClick={handleClose}>
+                                Stäng
+                            </Button>
+                        </div>
+
+                        {title === 'Favoriter' && (
+                            <Button className="mt-3" variant="success" onClick={moveFavoritesToCart}>
+                                Flytta till varukorg
+                            </Button>
                         )}
-                    </div>
-                )}
-
-                {isPaying && !paymentSuccess && (
-                    <div>
-                        <h4>Betalningsuppgifter <span role="img" aria-label="lock">🔒</span></h4>
-                        <p className="text-muted">Dina betalningsuppgifter är säkra och krypterade.</p>
-                        <Form>
-                            {/* Payment form fields */}
-                            <Form.Group controlId="formFirstName">
-                                <Form.Label>Förnamn</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    name="firstName"
-                                    value={paymentDetails.firstName}
-                                    onChange={handlePaymentInputChange}
-                                    isInvalid={!!formErrors.firstName}
-                                />
-                                <Form.Control.Feedback type="invalid">
-                                    {formErrors.firstName}
-                                </Form.Control.Feedback>
-                            </Form.Group>
-                            <Form.Group controlId="formLastName">
-                                <Form.Label>Efternamn</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    name="lastName"
-                                    value={paymentDetails.lastName}
-                                    onChange={handlePaymentInputChange}
-                                    isInvalid={!!formErrors.lastName}
-                                />
-                                <Form.Control.Feedback type="invalid">
-                                    {formErrors.lastName}
-                                </Form.Control.Feedback>
-                            </Form.Group>
-                            <Form.Group controlId="formAddress">
-                                <Form.Label>Adress</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    name="address"
-                                    value={paymentDetails.address}
-                                    onChange={handlePaymentInputChange}
-                                    isInvalid={!!formErrors.address}
-                                />
-                                <Form.Control.Feedback type="invalid">
-                                    {formErrors.address}
-                                </Form.Control.Feedback>
-                            </Form.Group>
-                            <Form.Group controlId="formCity">
-                                <Form.Label>Stad</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    name="city"
-                                    value={paymentDetails.city}
-                                    onChange={handlePaymentInputChange}
-                                    isInvalid={!!formErrors.city}
-                                />
-                                <Form.Control.Feedback type="invalid">
-                                    {formErrors.city}
-                                </Form.Control.Feedback>
-                            </Form.Group>
-                            <Form.Group controlId="formZipCode">
-                                <Form.Label>Postnummer</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    name="zipCode"
-                                    value={paymentDetails.zipCode}
-                                    onChange={handlePaymentInputChange}
-                                    isInvalid={!!formErrors.zipCode}
-                                />
-                                <Form.Control.Feedback type="invalid">
-                                    {formErrors.zipCode}
-                                </Form.Control.Feedback>
-                            </Form.Group>
-                            <Form.Group controlId="formCardNumber">
-                                <Form.Label>Kortnummer</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    name="cardNumber"
-                                    value={paymentDetails.cardNumber}
-                                    onChange={handlePaymentInputChange}
-                                    isInvalid={!!formErrors.cardNumber}
-                                />
-                                <Form.Control.Feedback type="invalid">
-                                    {formErrors.cardNumber}
-                                </Form.Control.Feedback>
-                            </Form.Group>
-                            <Form.Group controlId="formNameOnCard">
-                                <Form.Label>Namn på kortet</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    name="name"
-                                    value={paymentDetails.name}
-                                    onChange={handlePaymentInputChange}
-                                    isInvalid={!!formErrors.name}
-                                />
-                                <Form.Control.Feedback type="invalid">
-                                    {formErrors.name}
-                                </Form.Control.Feedback>
-                            </Form.Group>
-                            <Form.Group controlId="formCVV">
-                                <Form.Label>CVV</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    name="cvv"
-                                    value={paymentDetails.cvv}
-                                    onChange={handlePaymentInputChange}
-                                    isInvalid={!!formErrors.cvv}
-                                />
-                                <Form.Control.Feedback type="invalid">
-                                    {formErrors.cvv}
-                                </Form.Control.Feedback>
-                            </Form.Group>
-                        </Form>
-                        <Button
-                            className="mt-3"
-                            variant="success"
-                            onClick={handlePayment}
-                            disabled={isProcessing}
-                        >
-                            {isProcessing ? <Spinner as="span" animation="border" size="sm" /> : 'Betala'}
-                        </Button>
-                    </div>
-                )}
-
-                {paymentSuccess && (
-                    <div>
-                        <h4>Betalning Slutförd!</h4>
-                        <p>Din betalning har genomförts framgångsrikt.</p>
-                    </div>
+                    </>
+                ) : (
+                    <p>Inga varor i {title}.</p>
                 )}
             </Modal.Body>
         </Modal>
     );
-
-
 }
