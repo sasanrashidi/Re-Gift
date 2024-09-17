@@ -108,9 +108,11 @@ export function BuyGiftCard() {
         if (user) {
             navigate('/SellGiftCard');
         } else {
-            navigate('/login');
+
+            navigate('/login', { state: { from: '/SellGiftCard' } });
         }
     };
+
 
     const handleNextPage = () => {
         if (currentPage < totalPages) setCurrentPage(prevPage => prevPage + 1);
