@@ -64,14 +64,12 @@
 /* Samsung Galaxy S22  */
 @media (max-width: 390px) {
     .card {
-        flex: 1 1 calc(50% - 16px); /* Two cards per row with some margin */
+        flex: 1 1 48%; /* Two cards per row */
         min-width: 160px; /* Adjust to fit smaller screen */
         padding: 8px; /* Slightly reduce padding */
-        margin: 8px; /* Add spacing between cards */
     }
 
-    .card img {
-        height: 85%; /* Slightly reduce image height */
-    }
+        .card img {
+            height: 85%; /* Slightly reduce image height */
+        }
 }
-
