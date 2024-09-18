@@ -37,7 +37,7 @@ export default function Home() {
 
     return (
         <div className="container py-4" id="home">
-            <div className="custom-background p-5 rounded">
+            <div className="custom-background p-5 rounded pb-2">
                 <div className="col-sm-8 pt-5 mx-auto">
                     <h1 className="display-5 fw-normal smaller-heading">Välkommen till Re:Gift</h1>
                     <p className="lead smaller-text" style={{ fontWeight: 300, fontFamily: 'Arial, sans-serif' }}>

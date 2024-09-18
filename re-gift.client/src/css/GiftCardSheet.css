@@ -1,45 +1,75 @@
 .card-container {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px; /* Add some spacing between cards */
+    flex-wrap: wrap; /* Allow cards to wrap to the next row */
+    justify-content: center; /* Center cards horizontally */
+    gap: 20px; /* Space between cards */
+    max-width: 1600px; /* Increase max width of the container */
+    margin: 0 auto; /* Center the container */
+    padding: 0 20px; /* Add some horizontal padding */
 }
 
 .card {
-    width: 45%; /* Each card takes 45% of the row width */
-    margin-bottom: 20px;
+    position: relative; /* Ensure relative positioning for the scaling effect */
     cursor: pointer;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
     text-align: center;
-    background-color: white;
-    padding: 15px;
+    flex: 1 1 calc(20% - 20px); /* Adjust to show 5 cards per row */
+    max-width: calc(20% - 20px); /* Ensure cards fit evenly in the row */
+    min-width: 300px; /* Ensure cards don't get too small */
+    padding: 10px;
+    border-radius: 10px;
+    overflow: hidden; /* Hide any overflow from scaling */
+    transition: transform 0.3s ease; /* Smooth hover effect */
+    background-color: transparent;
+    border: none;
 }
 
-    .card img {
-        width: 100%;
-        height: auto;
-        border-radius: 10px;
-    }
+.card-image-wrapper {
+    position: relative; /* Position relative to ensure correct scaling */
+    overflow: visible; /* Allow image to scale outside */
+    height: 200px; /* Ensure the wrapper is the same height as the image */
+}
+
+.card img {
+    width: 97%;
+    height: 93%; /* Full height of the wrapper */
+    object-fit: fill; /* Ensure the image covers the space */
+    border-radius: 10px;
+    transition: transform 0.3s ease; /* Smooth scaling effect */
+}
 
 .card:hover .card-image-wrapper img {
     transform: scale(1.1); /* Scale the image slightly on hover */
 }
 
-@media (max-width: 500px) {
+@media (max-width: 1024px) {
     .card {
-        width: 48%; /* Adjust width for smaller mobile screens */
+        flex: 1 1 23%; /* Adjust for smaller screens */
     }
 }
 
-@media (min-width: 768px) {
+@media (max-width: 768px) {
     .card {
-        width: 30%; /* Adjust width for tablets and larger screens */
+        flex: 1 1 48%; /* Two cards per row */
+        min-width: 210px;
     }
 }
 
-@media (min-width: 1024px) {
+@media (max-width: 480px) {
     .card {
-        width: 20%; /* Adjust width for larger desktop screens */
+        flex: 1 1 100%; /* One card per row */
+        min-width: 160px;
     }
+}
+
+/* Samsung Galaxy S22  */
+@media (max-width: 390px) {
+    .card {
+        flex: 1 1 48%; /* Two cards per row */
+        min-width: 160px; /* Adjust to fit smaller screen */
+        padding: 8px; /* Slightly reduce padding */
+    }
+
+        .card img {
+            height: 85%; /* Slightly reduce image height */
+        }
 }
