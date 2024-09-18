@@ -62,11 +62,12 @@
 }
 
 /* Samsung Galaxy S22  */
-@media (max-width: 390px) {
+@media (max-width: 360px) {
     .card {
         flex: 1 1 48%; /* Two cards per row */
         min-width: 160px; /* Adjust to fit smaller screen */
         padding: 8px; /* Slightly reduce padding */
+        min-width: 140px;
     }
 
         .card img {
