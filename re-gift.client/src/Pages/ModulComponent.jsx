@@ -1,6 +1,4 @@
-﻿// ModulComponent.jsx
-
-import React, { useContext } from 'react';
+﻿import React, { useContext } from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import { AppContext } from '../context/AppContext';
 import { useNavigate } from 'react-router-dom';
@@ -9,7 +7,7 @@ export function ItemModal({ title, items, show, handleClose, onRemove }) {
     const { cart, setCart, favorites, setFavorites, user } = useContext(AppContext);
     const navigate = useNavigate();
 
-    // Funktion för att tolka pris från sträng
+    // Function to parse price from a string
     const parsePrice = (priceStr) => {
         if (typeof priceStr === 'string') {
             const parsedPrice = priceStr.replace('Kr.', '').replace(',', '.').trim();
@@ -18,12 +16,21 @@ export function ItemModal({ title, items, show, handleClose, onRemove }) {
         return typeof priceStr === 'number' ? priceStr : 0;
     };
 
-    // Totalpris för alla varor i varukorgen
-    const originalTotal = items.reduce((acc, item) => acc + parsePrice(item.originalPrice), 0); // Sum of original prices
-    const discountedTotal = items.reduce((acc, item) => acc + parsePrice(item.discountedPrice), 0); // Sum of discounted prices
-    const savings = originalTotal - discountedTotal; // Savings calculation
+    // Total prices for all items in the modal
+    const originalTotal = items.reduce((acc, item) => acc + parsePrice(item.originalPrice), 0);
+    const discountedTotal = items.reduce((acc, item) => acc + parsePrice(item.discountedPrice), 0);
+    const savings = originalTotal - discountedTotal;
 
-    // Funktion för att flytta favoriter till varukorgen
+    // Move a specific favorite item to cart
+    const moveFavoriteToCart = (item) => {
+        const isItemInCart = cart.some(cartItem => cartItem.id === item.id);
+        if (!isItemInCart) {
+            setCart([...cart, item]);
+            setFavorites(favorites.filter(favItem => favItem.id !== item.id)); // Remove from favorites after moving
+        }
+    };
+
+    // Move all favorites to the cart (existing functionality)
     const moveFavoritesToCart = () => {
         const cartItemIds = new Set(cart.map(item => item.id));
         const newItemsToAdd = favorites.filter(favoriteItem => !cartItemIds.has(favoriteItem.id));
@@ -32,7 +39,6 @@ export function ItemModal({ title, items, show, handleClose, onRemove }) {
     };
 
     const handleDetailView = (item) => {
-        // Navigate to BuyGiftCard component with state for detail view
         navigate('/BuyGiftCard', { state: { selectedGiftCard: item } });
         handleClose();
     };
@@ -75,7 +81,16 @@ export function ItemModal({ title, items, show, handleClose, onRemove }) {
                                             </span>
                                         </div>
                                     </div>
-                                    <div>
+                                    <div className="d-flex">
+                                        {title === 'Favoriter' && (
+                                            <Button
+                                                variant="success"
+                                                onClick={() => moveFavoriteToCart(item)}
+                                                style={{ marginRight: '10px' }}
+                                            >
+                                                Flytta till varukorg
+                                            </Button>
+                                        )}
                                         <Button variant="danger" onClick={() => onRemove(item)}>
                                             Ta bort
                                         </Button>
@@ -111,7 +126,7 @@ export function ItemModal({ title, items, show, handleClose, onRemove }) {
                             )}
                             {title === 'Favoriter' && (
                                 <Button variant="success" onClick={moveFavoritesToCart}>
-                                    Flytta till varukorg
+                                    Flytta alla till varukorg
                                 </Button>
                             )}
                             <Button variant="secondary" onClick={handleClose}>
@@ -126,4 +141,3 @@ export function ItemModal({ title, items, show, handleClose, onRemove }) {
         </Modal>
     );
 }
-
