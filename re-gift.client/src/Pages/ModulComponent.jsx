@@ -81,14 +81,14 @@ export function ItemModal({ title, items, show, handleClose, onRemove }) {
                                             </span>
                                         </div>
                                     </div>
-                                    <div className="d-flex">
+                                    <div className="d-flex flex-column">
                                         {title === 'Favoriter' && (
                                             <Button
                                                 variant="success"
                                                 onClick={() => moveFavoriteToCart(item)}
-                                                style={{ marginRight: '10px' }}
+                                                style={{ marginBottom: '10px' }} // Add margin to place it above "Ta bort"
                                             >
-                                                Flytta till varukorg
+                                                Flytta till korg
                                             </Button>
                                         )}
                                         <Button variant="danger" onClick={() => onRemove(item)}>
@@ -126,7 +126,7 @@ export function ItemModal({ title, items, show, handleClose, onRemove }) {
                             )}
                             {title === 'Favoriter' && (
                                 <Button variant="success" onClick={moveFavoritesToCart}>
-                                    Flytta alla till varukorg
+                                    Flytta alla till korg
                                 </Button>
                             )}
                             <Button variant="secondary" onClick={handleClose}>
