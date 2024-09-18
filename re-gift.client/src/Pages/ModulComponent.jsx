@@ -74,10 +74,10 @@ export function ItemModal({ title, items, show, handleClose, onRemove }) {
                                         </strong>
                                         <div>
                                             <span style={{ textDecoration: 'line-through', color: 'red', marginRight: '10px' }}>
-                                                {item.originalPrice} Kr
+                                                {math.floor(item.originalPrice} Kr
                                             </span>
                                             <span style={{ color: 'green' }}>
-                                                {item.discountedPrice} Kr
+                                                {math.floor(item.discountedPrice)} Kr
                                             </span>
                                         </div>
                                     </div>

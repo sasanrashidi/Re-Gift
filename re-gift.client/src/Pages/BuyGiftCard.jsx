@@ -45,7 +45,7 @@ export function BuyGiftCard() {
     const giftCardImages = (giftCards || []).map(giftCard => ({
         id: giftCard.id,
         title: giftCard.company,
-        originalPrice: giftCard.balance,
+        originalPrice: math.floor(giftCard.balance),
         imgSrc: companyImageMap[giftCard.company] || 'default-image.jpg',
         details: giftCard.company,
         discountedPrice: Math.floor(giftCard.discountedBalance),
@@ -171,7 +171,7 @@ export function BuyGiftCard() {
                             </div>
                             <p>
                                 <span>{image.title.split(' - ')[0]}</span><br />
-                                <span style={{ textDecoration: 'line-through', color: 'red' }}>{image.originalPrice}Kr</span>
+                                <span style={{ textDecoration: 'line-through', color: 'red' }}>{math.floor(image.originalPrice)}Kr</span>
                                 <span style={{ color: 'green' }}>&nbsp;&nbsp;&nbsp;{Math.floor(image.discountedPrice)}Kr&nbsp;&nbsp;&nbsp;
                                     <span style={{ color: 'black' }}>({Math.floor((1 - image.discountedPrice / image.originalPrice) * 100)}%)</span>
                                 </span>
