@@ -4,7 +4,7 @@ import { AppContext } from '../context/AppContext';
 export function SellGiftCard() {
     const companies = [
         "Nike", "Adidas", "Elgiganten", "BattleNet", "PSN",
-        "Steam", "Ikea", "Ica", "Logitech", "Webhallen", "AkademiBokhandeln", "BurgerKing"
+        "Steam", "Ikea", "Ica", "Logitech", "Webhallen", "AkademiBok", "BurgerKing"
     ];
 
     const percentages = [

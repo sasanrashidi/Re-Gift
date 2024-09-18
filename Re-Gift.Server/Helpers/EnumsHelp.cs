@@ -14,7 +14,7 @@ public static class EnumsHelp
         Ica = 7,
         Logitech = 8,
         Webhallen = 9,
-        AkademiBokhandeln = 10,
+        AkademiBok = 10,
         BurgerKing = 11
     }
 

@@ -36,7 +36,7 @@ export function BuyGiftCard() {
         'Ica': Icaimg,
         'Logitech': Logitechimg,
         'Webhallen': Webhallenimg,
-        'AkademiBokhandeln': Akademibokimg,
+        'AkademiBok': Akademibokimg,
         'BurgerKing': BurgerKingimg
     };
 
