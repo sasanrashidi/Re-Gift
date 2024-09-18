@@ -56,7 +56,7 @@
     }
 
     .card-image-wrapper {
-        height: 180px; /* Adjust image wrapper height */
+        height: 190px; /* Adjust image wrapper height */
     }
 }
 
@@ -70,7 +70,7 @@
     }
 
     .card-image-wrapper {
-        height: 150px; /* Further reduce image wrapper height */
+        height: 140px; /* Further reduce image wrapper height */
     }
 }
 
@@ -83,7 +83,7 @@
     }
 
     .card-image-wrapper {
-        height: 130px; /* Reduce image height */
+        height: 110px; /* Reduce image height */
     }
 }
 
@@ -97,6 +97,6 @@
     }
 
     .card-image-wrapper {
-        height: 110px; /* Reduce image height */
+        height: 90px; /* Reduce image height */
     }
 }
