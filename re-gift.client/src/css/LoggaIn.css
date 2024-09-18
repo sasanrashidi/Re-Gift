@@ -6,7 +6,7 @@
     background-repeat: no-repeat; /* Prevent repeating */
     background-blend-mode: multiply; /* Blend color with the image */
     min-height: 100vh; /* Ensure full height */
-    /* No flexbox properties here */
+    padding-top: 40px;
 }
 
 /* Wrapper for centering the form and text container */
@@ -23,20 +23,20 @@
 .intro-container {
     text-align: center; /* Center the text */
     max-width: 800px; /* Increase the max-width for a larger text container */
+    margin-bottom: 20px; /* Add margin for space below */
 }
 
 /* Style for the introductory text */
 .intro-text {
-    font-size: 1.7rem; /* Larger text */
-    line-height: 1.7;
-    color: #000; /* Text color */
-    font-weight: 400;
-    margin: 0; /* Remove default margins */
-    font-family: 'Lora', serif; /* Elegant serif font */
-    font-style: italic; /* Italic style */
-    background-color: rgba(255, 255, 255, 0.9); /* Light white background */
-    padding: 30px; /* Increase padding */
-    border-radius: 20px; /* Rounded corners for text background */
+    font-size: 18px; /* Anpassad textstorlek från .about-lead */
+    color: #333; /* Mörkare textfärg för bättre kontrast från .about-lead */
+    line-height: 1.6; /* Ökar radavstånd för bättre läsbarhet */
+    margin-bottom: 20px; /* Utrymme mellan styckena */
+    background-color: rgba(255, 255, 255, 0.8); /* Ljusröd bakgrund */
+    padding: 20px; /* Lägger till padding runt texten */
+    text-align: center; /* Centrerar texten */
+    max-width: 800px; /* Begränsar bredden för bättre läsbarhet */
+    margin: 0 auto; /* Centrerar det horisontellt */
 }
 
 /* Styling for the register form */
@@ -46,7 +46,7 @@
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 100%;
-    max-width: 500px; /* Form width */
+    max-width: 800px; /* Form width */
     z-index: 1; /* Ensure the form stays visible */
 }
 
@@ -59,7 +59,7 @@
 @media (max-width: 768px) {
     .register-content {
         padding: 20px; /* Add padding around the container */
-        gap: 20px; /* Reduce space between form and text container on small screens */
+         /* Reduce space between form and text container on small screens */
     }
 
     .register-form {
@@ -69,6 +69,11 @@
 
     .intro-container {
         margin-top: 16px; /* Space between text and form on smaller screens */
+    }
+
+    .intro-text {
+        font-size: 1.1rem; /* Slightly smaller font size on mobile */
+        padding: 15px; /* Reduce padding for smaller screens */
     }
 }
 
@@ -128,16 +133,15 @@
 }
 
 .login-header {
-  text-align: center;
-
+    text-align: center;
 }
 
 .info-text-login {
-    font-size: 16px; 
-    color: #333; 
-    margin-bottom: 20px; 
-    line-height: 1.5; 
-    text-align: justify; 
-    font-weight: inherit; 
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 20px;
+    line-height: 1.5;
+    text-align: justify;
+    font-weight: inherit;
     font-style: italic;
 }
