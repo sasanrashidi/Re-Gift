@@ -173,6 +173,7 @@ export function BuyGiftCard() {
                                 <span>{image.title.split(' - ')[0]}</span><br />
                                 <span style={{ textDecoration: 'line-through', color: 'red' }}>{image.originalPrice}Kr</span>
                                 <span style={{ color: 'green' }}>&nbsp;&nbsp;&nbsp;{image.discountedPrice}Kr&nbsp;&nbsp;&nbsp;
+                                    <br />
                                 <span style={{ color: 'black' }}>({Math.round((1 - image.discountedPrice / image.originalPrice) * 100)}%)</span>
                                 </span>
                             </p>
