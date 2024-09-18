@@ -48,7 +48,7 @@ export function BuyGiftCard() {
         originalPrice: giftCard.balance,
         imgSrc: companyImageMap[giftCard.company] || 'default-image.jpg',
         details: giftCard.company,
-        discountedPrice: giftCard.discountedBalance,
+        discountedPrice: Math.floor(giftCard.discountedBalance),
         expiryDate: giftCard.expireDate,
         userId: giftCard.userId,
     }));
@@ -173,7 +173,7 @@ export function BuyGiftCard() {
                                 <span>{image.title.split(' - ')[0]}</span><br />
                                 <span style={{ textDecoration: 'line-through', color: 'red' }}>{image.originalPrice}Kr</span>
                                 <span style={{ color: 'green' }}>&nbsp;&nbsp;&nbsp;{Math.floor(image.discountedPrice)}Kr&nbsp;&nbsp;&nbsp;
-                                    <span style={{ color: 'black' }}>({Math.round((1 - image.discountedPrice / image.originalPrice) * 100)}%)</span>
+                                    <span style={{ color: 'black' }}>({Math.floor((1 - image.discountedPrice / image.originalPrice) * 100)}%)</span>
                                 </span>
                             </p>
                         </div>
@@ -214,7 +214,7 @@ export function BuyGiftCard() {
                             <span style={{ color: 'white', textDecoration: 'none' }}>Värde: </span>
                             <span style={{ color: 'red', textDecoration: 'line-through' }}> {selectedImage.originalPrice} kr</span><br />
                             <span style={{ color: 'white', textDecoration: 'none' }}>Kostar: </span>
-                            <span style={{ color: 'green' }}>{selectedImage.discountedPrice} kr</span>
+                            <span style={{ color: 'green' }}>{Math.floor(selectedImage.discountedPrice)} kr</span>
                         </p>
                         <p>Utgångsdatum: {selectedImage.expiryDate}</p>
                         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
