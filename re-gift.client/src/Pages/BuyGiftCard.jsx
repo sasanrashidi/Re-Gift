@@ -45,7 +45,7 @@ export function BuyGiftCard() {
     const giftCardImages = (giftCards || []).map(giftCard => ({
         id: giftCard.id,
         title: giftCard.company,
-        originalPrice: math.floor(giftCard.balance),
+        originalPrice: Math.floor(giftCard.balance),
         imgSrc: companyImageMap[giftCard.company] || 'default-image.jpg',
         details: giftCard.company,
         discountedPrice: Math.floor(giftCard.discountedBalance),
@@ -171,9 +171,9 @@ export function BuyGiftCard() {
                             </div>
                             <p>
                                 <span>{image.title.split(' - ')[0]}</span><br />
-                                <span style={{ textDecoration: 'line-through', color: 'red' }}>{math.floor(image.originalPrice)}Kr</span>
-                                <span style={{ color: 'green' }}>&nbsp;&nbsp;&nbsp;{Math.floor(image.discountedPrice)}Kr&nbsp;&nbsp;&nbsp;
-                                    <span style={{ color: 'black' }}>({Math.floor((1 - image.discountedPrice / image.originalPrice) * 100)}%)</span>
+                                <span style={{ textDecoration: 'line-through', color: 'red' }}>{image.originalPrice}Kr</span>
+                                <span style={{ color: 'green' }}>&nbsp;&nbsp;&nbsp;{image.discountedPrice}Kr&nbsp;&nbsp;&nbsp;
+                                <span style={{ color: 'black' }}>({Math.round((1 - image.discountedPrice / image.originalPrice) * 100)}%)</span>
                                 </span>
                             </p>
                         </div>
@@ -214,7 +214,7 @@ export function BuyGiftCard() {
                             <span style={{ color: 'white', textDecoration: 'none' }}>Värde: </span>
                             <span style={{ color: 'red', textDecoration: 'line-through' }}> {selectedImage.originalPrice} kr</span><br />
                             <span style={{ color: 'white', textDecoration: 'none' }}>Kostar: </span>
-                            <span style={{ color: 'green' }}>{Math.floor(selectedImage.discountedPrice)} kr</span>
+                            <span style={{ color: 'green' }}>{selectedImage.discountedPrice} kr</span>
                         </p>
                         <p>Utgångsdatum: {selectedImage.expiryDate}</p>
                         <div style={{ display: 'flex', justifyContent: 'space-between' }}>

@@ -74,10 +74,10 @@ export function ItemModal({ title, items, show, handleClose, onRemove }) {
                                         </strong>
                                         <div>
                                             <span style={{ textDecoration: 'line-through', color: 'red', marginRight: '10px' }}>
-                                                {math.floor(item.originalPrice} Kr
+                                                {item.originalPrice} Kr
                                             </span>
                                             <span style={{ color: 'green' }}>
-                                                {math.floor(item.discountedPrice)} Kr
+                                                {item.discountedPrice} Kr
                                             </span>
                                         </div>
                                     </div>
@@ -101,8 +101,8 @@ export function ItemModal({ title, items, show, handleClose, onRemove }) {
 
                         {/* Total price and savings */}
                         <div className="mt-3" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                          <strong style={{ color: 'green', fontSize: '17px' }}>Total: {Math.floor(discountedTotal)} Kr</strong>
-                          {savings > 0 && <strong style={{ fontSize: '17px' }}>Du har sparat {Math.floor(savings)} Kr!</strong>}
+                            <strong style={{ color: 'green', fontSize: '17px' }}>Total: {(discountedTotal)} Kr</strong>
+                            {savings > 0 && <strong style={{ fontSize: '17px' }}>Du har sparat {(savings)} Kr!</strong>}
                         </div>
 
                         {/* Flexbox container for buttons */}
