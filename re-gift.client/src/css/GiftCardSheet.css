@@ -50,7 +50,7 @@
 @media (max-width: 768px) {
     .card {
         flex: 1 1 48%; /* Two cards per row */
-        min-width: 270px;
+        min-width: 210px;
     }
 }
 
