@@ -1,14 +1,14 @@
 ﻿import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../css/LoggaIn.css'; // Ensure the CSS is linked correctly
+import '../css/LoggaIn.css'; 
 
 export const Register = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
-    const [success, setSuccess] = useState('');  // For success messages
-    const [error, setError] = useState('');      // For error messages
+    const [success, setSuccess] = useState('');  
+    const [error, setError] = useState('');      
     const navigate = useNavigate();
 
     const handleRegister = async (e) => {
@@ -56,12 +56,16 @@ export const Register = () => {
         <div className="register-page">
             <div className="register-content">
                 <div className="register-form">
-                    <form onSubmit={handleRegister}>
-                        {/* Show "Registrering lyckades!" instead of "Register" when registration is successful */}
-                        <h2>{success ? success : 'Registrera'}</h2>
-
-                        {!success && ( // Only show the form if registration hasn't succeeded
-                            <>
+                    {success ? ( // Show success message and hide form when registration is successful
+                        <p className="success-message">Registrering lyckades! Du kommer att omdirigeras till inloggningssidan.</p>
+                    ) : (
+                        <>
+                            <div className="intro-container">
+                                <p className="intro-text">
+                                    <strong>Här kan du enkelt registrera dig för att köpa eller sälja oanvända eller delvis använda presentkort.</strong>
+                                </p>
+                            </div>
+                            <form onSubmit={handleRegister}>
                                 <div className="form-group">
                                     <label>Förnamn:</label>
                                     <input
@@ -100,23 +104,15 @@ export const Register = () => {
                                 </div>
 
                                 <button type="submit">Skapa användare</button>
-                            </>
-                        )}
 
-                        {error && <p className="error-message">{error}</p>}
-                    </form>
-                </div>
-                <div className="intro-container">
-                    <p className="intro-text">
-                        Här kan du enkelt registrera dig som säljare och börja sälja dina oanvända eller
-                        <br />
-                        delvis använda presentkort till köpare som letar efter bra erbjudanden.
-                    </p>
+                                {error && <p className="error-message">{error}</p>}
+                            </form>
+                        </>
+                    )}
                 </div>
             </div>
         </div>
     );
-
 };
 
 export default Register;

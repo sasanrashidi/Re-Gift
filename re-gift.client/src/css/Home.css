@@ -153,6 +153,7 @@ a {
 .navbar {
     
     background: none !important;
+
 }
 
 .login-link {
@@ -173,3 +174,63 @@ a {
     height: 700px; /* Adjust height as needed */
     object-fit: cover; /* Ensure the image covers the container without distortion */
 }
+
+.user-dropdown .dropdown-toggle {
+    margin-left: 24px; /* Marginalen för ikonen */
+    margin-right: 10px; /* Om du vill ha mellanrum till höger */
+    cursor: pointer; /* Se till att ikonen visar att den är klickbar */
+}
+
+#home .col-sm-8 {
+    padding-top: 10px; /* Minska topp-paddingen */
+    margin: 0 auto; /* Se till att det centreras */
+}
+
+@media (max-width: 767px) {
+    /* Justera avståndet från navbar */
+    .navbar {
+        margin-bottom: 0 !important;
+        padding-bottom: 0 !important;
+    }
+    
+    /* Minska avståndet för första sidan (karusellen eller text) */
+    #home {
+        margin-top: -40px; /* Minska detta efter behov */
+        padding: 0px;
+    }
+
+    /* Om du vill justera ytterligare sektioner */
+    .custom-background {
+        padding-top: 20px; /* Justera efter behov */
+        padding-bottom: 20px;
+    }
+
+    /* Justera margin för navbar-toggler i mobilvy */
+    .navbar-toggler {
+        margin-top: 35px;
+    }
+
+    /* Anpassning av margin och padding för col-sm-8 i mobilvy */
+    .col-sm-8.pt-5.mx-auto {
+        margin: 10px auto; /* Justera margin för mobil, centrerad med auto */
+        padding: 20px 10px; /* Justera padding för mobil (över/under: 20px, vänster/höger: 10px) */
+    }
+
+    /* Anpassa textstorlek och utseende för rubrik och text i mobilvy */
+    .smaller-heading {
+        font-size: 1.8rem; /* Minska rubrikstorlek i mobil */
+    }
+
+    .smaller-text {
+        font-size: 1.2rem; /* Minska textstorlek i mobil */
+    }
+}
+
+
+
+
+
+
+
+
+
