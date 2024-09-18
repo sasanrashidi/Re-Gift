@@ -22,5 +22,7 @@ public interface IGiftCardService
 
     public Task<ICollection<GiftCard>> GetFilteredGC(int choice);
 
+    public Task<bool> CheckIfSold(int id);
+
     public Task<bool> SaveAsync();
 }

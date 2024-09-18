@@ -18,7 +18,7 @@ public class GiftcardController : ControllerBase
     public GiftcardController(IGiftCardService giftcardService, IMapper mapper)
     {
         _giftcardService = giftcardService;
-        _mapper = mapper;  
+        _mapper = mapper;
     }
 
     [HttpGet]
@@ -35,6 +35,18 @@ public class GiftcardController : ControllerBase
 
 
         return Ok(mappEntity);
+    }
+
+    [HttpGet("SoldCard{id}")]
+    public async Task<IActionResult> GetIfSoldGiftCard(int id)
+    {
+        var sold = await _giftcardService.CheckIfSold(id);
+
+        if (sold == true)
+        {
+            return Ok(sold);
+        }
+        return BadRequest(sold);
     }
 
     [HttpGet("{id}")]

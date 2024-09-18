@@ -109,6 +109,17 @@ public class GiftCardService : IGiftCardService
         return await _context.SaveChangesAsync() > 0;
     }
 
+    public async Task<bool> CheckIfSold(int id)
+    {
+       
+        var giftCard = await _context.Giftcards.FindAsync(id);
+        if (giftCard == null)
+        {
+            
+            throw new ArgumentException("Gift card not found.");
+        }
+        return !giftCard.Sold;
+    }
 
 
     // -------------------------------------------------------------
