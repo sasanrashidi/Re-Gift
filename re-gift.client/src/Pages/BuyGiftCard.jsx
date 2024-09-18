@@ -218,28 +218,31 @@ export function BuyGiftCard() {
                         </p>
                         <p>Utgångsdatum: {selectedImage.expiryDate}</p>
                         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                        <button
-                            onClick={() => addToFavorites(selectedImage)}
-                            type="button"
-                            className="btn btn-dark"
-                        >
-                            Lägg i favoriter
-                        </button>
-                        <button
-                            onClick={() => addToCart(selectedImage)}
-                            type="button"
-                            className="btn btn-dark"
-                        >
-                            Lägg i kundvagn
-                        </button>
-                        <button
-                            onClick={closeModal}
-                            type="button"
-                            className="btn btn-dark"
-                        >
-                            Stäng
+                            <button
+                                onClick={() => addToFavorites(selectedImage)}
+                                type="button"
+                                className="btn btn-dark"
+                                style={{ marginRight: '10px' }}
+                            >
+                                Lägg i favoriter
+                            </button>
+                            <button
+                                onClick={() => addToCart(selectedImage)}
+                                type="button"
+                                className="btn btn-dark"
+                                style={{ marginRight: '10px' }}
+                            >
+                                Lägg i kundvagn
+                            </button>
+                            <button
+                                onClick={closeModal}
+                                type="button"
+                                className="btn btn-dark"
+                            >
+                                Stäng
                             </button>
                         </div>
+
                     </div>
                 </div>
             )}
