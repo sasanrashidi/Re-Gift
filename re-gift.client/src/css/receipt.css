@@ -5,11 +5,11 @@
     align-items: center;
     min-height: 100vh; 
     padding: 20px;
-    background-color: #808080; 
+    background-color: transparent;     
 }
 
 .receipt-content {
-    background-color: #e0e0e0; 
+    background-color: transparent; 
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
