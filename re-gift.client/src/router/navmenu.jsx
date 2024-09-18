@@ -95,7 +95,16 @@ export function NavMenu() {
 
                     {/* Flyttad inloggningsikon hit för att fixa position */}
                     <NavDropdown
-                        title={<i className="bi bi-person-circle" style={{ fontSize: '24px', cursor: 'pointer', color: 'black' }}></i>}
+                        title={
+                            <i
+                                className="bi bi-person-circle"
+                                style={{
+                                    fontSize: '24px',
+                                    cursor: 'pointer',
+                                    color: user ? 'limegreen' : 'black'  // Grön om inloggad, svart om utloggad
+                                }}
+                            ></i>
+                        }
                         id="user-nav-dropdown"
                         className="user-dropdown"
                         align="end"
