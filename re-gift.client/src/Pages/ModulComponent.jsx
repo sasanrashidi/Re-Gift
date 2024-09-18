@@ -39,7 +39,7 @@ export function ItemModal({ title, items, show, handleClose, onRemove }) {
 
     return (
         <Modal show={show} onHide={handleClose} size="lg">
-            <Modal.Header closeButton>
+            <Modal.Header>
                 <Modal.Title>{title}</Modal.Title>
             </Modal.Header>
             <Modal.Body>
@@ -84,9 +84,10 @@ export function ItemModal({ title, items, show, handleClose, onRemove }) {
                             ))}
                         </ul>
 
+                        {/* Total price and savings */}
                         <div className="mt-3" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                            <strong style={{ color: 'green' }}>Total: {discountedTotal} Kr</strong>
-                            {savings > 0 && <strong>Du har sparat {savings} Kr!</strong>}
+                            <strong style={{ color: 'green', fontSize: '17px' }}>Total: {discountedTotal} Kr</strong>
+                            {savings > 0 && <strong style={{ fontSize: '17px' }}>Du har sparat {savings} Kr!</strong>}
                         </div>
 
                         {/* Flexbox container for buttons */}
@@ -108,16 +109,15 @@ export function ItemModal({ title, items, show, handleClose, onRemove }) {
                                     Till Betalning
                                 </Button>
                             )}
+                            {title === 'Favoriter' && (
+                                <Button variant="success" onClick={moveFavoritesToCart}>
+                                    Flytta till varukorg
+                                </Button>
+                            )}
                             <Button variant="secondary" onClick={handleClose}>
                                 Stäng
                             </Button>
                         </div>
-
-                        {title === 'Favoriter' && (
-                            <Button className="mt-3" variant="success" onClick={moveFavoritesToCart}>
-                                Flytta till varukorg
-                            </Button>
-                        )}
                     </>
                 ) : (
                     <p>Inga varor i {title}.</p>
@@ -126,3 +126,4 @@ export function ItemModal({ title, items, show, handleClose, onRemove }) {
         </Modal>
     );
 }
+
