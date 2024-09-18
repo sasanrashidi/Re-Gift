@@ -46,7 +46,7 @@ public class GiftcardController : ControllerBase
         {
             return Ok(sold);
         }
-        return BadRequest(sold);
+        return Ok(sold);
     }
 
     [HttpGet("{id}")]
