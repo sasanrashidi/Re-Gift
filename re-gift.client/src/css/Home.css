@@ -226,11 +226,20 @@ a {
     }
 }
 
+@media (max-width: 768px) {
+    .custom-carousel img {
+        max-height: 300px; /* Smaller height for mobile */
+    }
 
+    .smaller-heading {
+        font-size: 1.5rem; /* Adjust heading size */
+    }
 
+    .smaller-text {
+        font-size: 1rem; /* Adjust text size */
+    }
 
-
-
-
-
-
+    .button-section {
+        margin-bottom: 40px; /* Adjust bottom margin */
+    }
+}
