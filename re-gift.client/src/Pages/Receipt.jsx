@@ -1,7 +1,7 @@
-﻿import React, { useContext, useEffect } from 'react';
+﻿import React, { useContext, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import emailjs from 'emailjs-com'; // Import EmailJS
-import '../css/receipt.css'
+import '../css/receipt.css';
 import { AppContext } from '../context/AppContext';
 
 export function ReceiptPage() {
@@ -9,6 +9,9 @@ export function ReceiptPage() {
     const navigate = useNavigate();
     const { purchase } = location.state || {};
     const { user, fetchGiftCards } = useContext(AppContext);
+
+    const [error, setError] = useState(null); // State for tracking the error
+    const [isTradeSuccessful, setIsTradeSuccessful] = useState(false); // Track success of trade request
 
     useEffect(() => {
         if (purchase && user) {
@@ -29,10 +32,16 @@ export function ReceiptPage() {
                 },
                 body: JSON.stringify(postData),
             })
-                .then(response => response.json())
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Trade request failed');
+                    }
+                    return response.json();
+                })
                 .then(data => {
                     console.log('POST request successful:', data);
                     fetchGiftCards(); // Update the context after successful post
+                    setIsTradeSuccessful(true); // Mark the trade as successful
 
                     // Prepare HTML for email using table-based layout and inline styles
                     const receiptHtml = `
@@ -66,9 +75,17 @@ export function ReceiptPage() {
                 })
                 .catch(error => {
                     console.error('Error making POST request:', error);
+                    setError('Error'); // Set the error message
+                    setIsTradeSuccessful(false); // Ensure trade is marked as failed
                 });
         }
-    }, [purchase, user]); // Dependency array: re-run effect when purchase or user changes
+    }, [purchase, user, fetchGiftCards]); // Dependency array
+
+    // Close the error modal
+    const handleCloseError = () => {
+        setError(null);
+        navigate('/'); // Optionally redirect to the home page after closing the error
+    };
 
     if (!purchase) return <p>No receipt available</p>;
 
@@ -77,30 +94,46 @@ export function ReceiptPage() {
     return (
         <div className="receipt-container">
             <p className="thank-you-message">Tack för ditt köp!</p> {/* Correct Swedish characters */}
-            <div className="receipt-content">
-                <h1>Kvitto</h1> {/* "Kvitto" in Swedish */}
-                <p><strong>Datum:</strong> {date}</p>
-                <ul className="receipt-list">
-                    {items.map(item => (
-                        <li key={item.id} className="list-group-item d-flex justify-content-between align-items-center">
-                            <div>
-                                <img src={item.imgSrc} alt={item.title} style={{ width: '50px', height: 'auto' }} />
-                                <strong>{item.title}</strong><br />
-                                
-                                <span>userId: {item.userId}</span><br />
-                                <span style={{ textDecoration: 'line-through', color: 'red' }}>{item.originalPrice} Kr</span><br />
-                                <span style={{ color: 'green' }}>{item.discountedPrice} Kr</span>
-                            </div>
-                        </li>
-                    ))}
-                </ul>
-                <div className="mt-3">
-                    <strong>Total: {totalPrice} Kr</strong>
+
+            {isTradeSuccessful ? ( // Only show receipt if the trade was successful
+                <div className="receipt-content">
+                    <h1>Kvitto</h1> {/* "Kvitto" in Swedish */}
+                    <p><strong>Datum:</strong> {date}</p>
+                    <ul className="receipt-list">
+                        {items.map(item => (
+                            <li key={item.id} className="list-group-item d-flex justify-content-between align-items-center">
+                                <div>
+                                    <img src={item.imgSrc} alt={item.title} style={{ width: '50px', height: 'auto' }} />
+                                    <strong>{item.title}</strong><br />
+                                    <span>userId: {item.userId}</span><br />
+                                    <span style={{ textDecoration: 'line-through', color: 'red' }}>{item.originalPrice} Kr</span><br />
+                                    <span style={{ color: 'green' }}>{item.discountedPrice} Kr</span>
+                                </div>
+                            </li>
+                        ))}
+                    </ul>
+                    <div className="mt-3">
+                        <strong>Total: {totalPrice} Kr</strong>
+                    </div>
+                    <button className="home-button" onClick={() => navigate('/')}>Gå hem</button>
                 </div>
-                <button className="home-button" onClick={() => navigate('/')}>Gå hem</button>
-            </div>
+            ) : (
+                <p> Något gick fel, kortet kan vara sålt.</p>
+            )}
+
+            {/* Error Modal */}
+            {error && (
+                <div className="error-modal">
+                    <div className="error-modal-content">
+                        <p>{error}</p>
+                        <button onClick={handleCloseError}>Stäng</button>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }
+
+
 
 
