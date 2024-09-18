@@ -1,76 +1,102 @@
 .card-container {
     display: flex;
-    flex-wrap: wrap; /* Allow cards to wrap to the next row */
-    justify-content: center; /* Center cards horizontally */
-    gap: 20px; /* Space between cards */
-    max-width: 1600px; /* Increase max width of the container */
-    margin: 0 auto; /* Center the container */
-    padding: 0 20px; /* Add some horizontal padding */
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
 .card {
-    position: relative; /* Ensure relative positioning for the scaling effect */
+    position: relative;
     cursor: pointer;
     text-align: center;
-    flex: 1 1 calc(20% - 20px); /* Adjust to show 5 cards per row */
-    max-width: calc(20% - 20px); /* Ensure cards fit evenly in the row */
-    min-width: 300px; /* Ensure cards don't get too small */
+    flex: 1 1 calc(20% - 20px);
+    max-width: calc(20% - 20px);
+    min-width: 300px;
     padding: 10px;
     border-radius: 10px;
-    overflow: hidden; /* Hide any overflow from scaling */
-    transition: transform 0.3s ease; /* Smooth hover effect */
+    overflow: hidden;
+    transition: transform 0.3s ease;
     background-color: transparent;
     border: none;
+    min-height: 320px;
+    height: auto; /* Let height adapt to content */
+    display: flex;
+    flex-direction: column; /* Ensure content stacks vertically */
+    justify-content: flex-start; /* Align content to top */
 }
 
 .card-image-wrapper {
-    position: relative; /* Position relative to ensure correct scaling */
-    overflow: visible; /* Allow image to scale outside */
-    height: 200px; /* Ensure the wrapper is the same height as the image */
+    position: relative;
+    overflow:visible; /* Ensure scaling doesn't cause overflow */
+    height: 200px;
+    width: 100%; /* Make sure the image wrapper takes full width */
 }
 
 .card img {
-    width: 97%;
-    height: 93%; /* Full height of the wrapper */
-    object-fit: fill; /* Ensure the image covers the space */
+    width: 100%; /* Ensure image covers the card width */
+    height: 100%; /* Ensure image fills the wrapper */
+    object-fit:fill; /* Prevent image distortion */
     border-radius: 10px;
-    transition: transform 0.3s ease; /* Smooth scaling effect */
+    transition: transform 0.3s ease;
 }
 
 .card:hover .card-image-wrapper img {
-    transform: scale(1.1); /* Scale the image slightly on hover */
+    transform: scale(1.1);
 }
 
+/* Adjustments for tablet screens */
 @media (max-width: 1024px) {
     .card {
-        flex: 1 1 23%; /* Adjust for smaller screens */
+        flex: 1 1 23%;
+        min-height: 280px; /* Reduce card height */
+        height: auto; /* Ensure card adjusts based on content */
+    }
+
+    .card-image-wrapper {
+        height: 180px; /* Adjust image wrapper height */
     }
 }
 
+/* Adjustments for small screens */
 @media (max-width: 768px) {
     .card {
-        flex: 1 1 48%; /* Two cards per row */
+        flex: 1 1 48%;
         min-width: 210px;
+        min-height: 250px; /* Reduce card height */
+        height: auto;
+    }
+
+    .card-image-wrapper {
+        height: 150px; /* Further reduce image wrapper height */
     }
 }
 
+/* Adjustments for mobile devices */
 @media (max-width: 480px) {
     .card {
-        flex: 1 1 100%; /* One card per row */
+        flex: 1 1 100%;
         min-width: 160px;
+        min-height: 230px; /* Adjust card height for mobile */
+    }
+
+    .card-image-wrapper {
+        height: 130px; /* Reduce image height */
     }
 }
 
-/* Samsung Galaxy S22  */
+/* Samsung Galaxy S22 (extra small screens) */
 @media (max-width: 360px) {
     .card {
-        flex: 1 1 48%; /* Two cards per row */
-        min-width: 160px; /* Adjust to fit smaller screen */
-        padding: 8px; /* Slightly reduce padding */
+        flex: 1 1 48%;
         min-width: 140px;
+        min-height: 200px; /* Further reduce card height */
+        padding: 8px;
     }
 
-        .card img {
-            height: 85%; /* Slightly reduce image height */
-        }
+    .card-image-wrapper {
+        height: 110px; /* Reduce image height */
+    }
 }
