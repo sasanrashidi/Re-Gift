@@ -118,7 +118,7 @@ public class GiftCardService : IGiftCardService
             
             throw new ArgumentException("Gift card not found.");
         }
-        return !giftCard.Sold;
+        return giftCard.Sold;
     }
 
 
