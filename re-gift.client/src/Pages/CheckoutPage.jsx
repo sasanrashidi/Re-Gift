@@ -23,6 +23,20 @@ export function CheckoutPage() {
     const { cart, setCart, user } = useContext(AppContext);
     const navigate = useNavigate();
 
+    const checkIfSold = async (id) => {
+        try {
+            const response = await fetch(`https://re-gift-aeesgygqhsbaf8eh.eastus-01.azurewebsites.net/api/GiftCard/SoldCard${id}`);
+            if (!response.ok) throw new Error('Network response was not ok.');
+            const isSold = await response.json();
+            console.log(`Gift card ${id} sold status:`, isSold);
+            return isSold;
+        } catch (error) {
+            console.error('Error checking sold status:', error);
+            return true; // Assume sold if there's an error
+        }
+    };
+
+
     const parsePrice = (priceStr) => {
         if (typeof priceStr === 'string') {
             const parsedPrice = priceStr.replace('Kr.', '').replace(',', '.').trim();
@@ -81,8 +95,30 @@ export function CheckoutPage() {
         return Object.keys(errors).length === 0;
     };
 
-    const simulatePayment = () => {
+    const simulatePayment = async () => {
         setIsProcessing(true);
+
+        // Log the cart items and their IDs
+        console.log('Cart items:', cart);
+
+        // Check if any gift card in the cart is sold
+        const soldStatusChecks = await Promise.all(
+            cart.map(item => {
+                console.log(`Checking if gift card ${item.id} is sold`);
+                return checkIfSold(item.id);
+            })
+        );
+
+        console.log('Sold status checks:', soldStatusChecks);
+
+        const hasSoldItems = soldStatusChecks.some(isSold => isSold);
+
+        if (hasSoldItems) {
+            setIsProcessing(false);
+            alert('Some gift cards in your cart have already been sold.');
+            return;
+        }
+
         setTimeout(() => {
             const isValid = validateCardDetails();
             if (isValid) {
@@ -102,6 +138,7 @@ export function CheckoutPage() {
             }
         }, 2000);
     };
+
 
     const handlePayment = () => {
         if (!user) {

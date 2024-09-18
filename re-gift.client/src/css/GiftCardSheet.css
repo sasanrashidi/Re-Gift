@@ -94,6 +94,11 @@
         min-width: 140px;
         min-height: 200px; /* Further reduce card height */
         padding: 8px;
+        
+    }
+
+    p {
+        font-size: 1rem;
     }
 
     .card-image-wrapper {
