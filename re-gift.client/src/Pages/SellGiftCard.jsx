@@ -142,12 +142,12 @@ export function SellGiftCard() {
                     />
                 </div>
 
-                <div className="mb-3">
+                <div className="mb-3 position-relative">
                     <label htmlFor="percentage" className="form-label">
                         Rabattprocent: &nbsp;
                         <i
                             className="bi bi-question-circle"
-                            style={{ cursor: 'pointer', position: 'relative' }}
+                            style={{ cursor: 'pointer' }}
                             onClick={() => toggleTooltip('percentage-tooltip')}
                         ></i>
                         {tooltipVisible === 'percentage-tooltip' && (
@@ -159,9 +159,11 @@ export function SellGiftCard() {
                                     borderRadius: '4px',
                                     fontSize: '12px',
                                     position: 'absolute',
-                                    top: '20px',
-                                    left: '10px',
-                                    zIndex: 10
+                                    top: '100%',
+                                    left: '0',
+                                    transform: 'translateY(5px)',
+                                    zIndex: 10,
+                                    whiteSpace: 'nowrap'
                                 }}
                             >
                                 Välj med hur många procent presentkortet skall vara rabatterat
@@ -185,12 +187,12 @@ export function SellGiftCard() {
                     </select>
                 </div>
 
-                <div className="mb-3">
+                <div className="mb-3 position-relative">
                     <label htmlFor="expireDate" className="form-label">
                         Utgångsdatum: &nbsp;
                         <i
                             className="bi bi-question-circle"
-                            style={{ cursor: 'pointer', position: 'relative' }}
+                            style={{ cursor: 'pointer' }}
                             onClick={() => toggleTooltip('expireDate-tooltip')}
                         ></i>
                         {tooltipVisible === 'expireDate-tooltip' && (
@@ -202,9 +204,11 @@ export function SellGiftCard() {
                                     borderRadius: '4px',
                                     fontSize: '12px',
                                     position: 'absolute',
-                                    top: '20px',
-                                    left: '10px',
-                                    zIndex: 10
+                                    top: '100%',
+                                    left: '0',
+                                    transform: 'translateY(5px)',
+                                    zIndex: 10,
+                                    whiteSpace: 'nowrap'
                                 }}
                             >
                                 Vi registrerar ej presentkort som utgår inom en veckas tid
@@ -246,3 +250,4 @@ export function SellGiftCard() {
         </div>
     );
 }
+
