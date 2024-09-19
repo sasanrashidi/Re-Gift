@@ -24,6 +24,7 @@ export function SellGiftCard() {
     const { user, fetchGiftCards } = useContext(AppContext);
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
+    const [tooltipVisible, setTooltipVisible] = useState(null);
 
     const today = new Date();
     today.setDate(today.getDate() + 7);
@@ -99,6 +100,10 @@ export function SellGiftCard() {
         }
     };
 
+    const toggleTooltip = (tooltipId) => {
+        setTooltipVisible(tooltipVisible === tooltipId ? null : tooltipId);
+    };
+
     return (
         <div className="container my-5">
             <h1 className="text-center mb-4">Sälj Presentkort</h1>
@@ -140,7 +145,28 @@ export function SellGiftCard() {
                 <div className="mb-3">
                     <label htmlFor="percentage" className="form-label">
                         Rabattprocent: &nbsp;
-                        <i className="bi bi-question-circle" data-toggle="tooltip" style={{ cursor: 'pointer' }} data-placement="right" title="Välj med hur många procent presentkortet skall vara rabatterat"></i>
+                        <i
+                            className="bi bi-question-circle"
+                            style={{ cursor: 'pointer', position: 'relative' }}
+                            onClick={() => toggleTooltip('percentage-tooltip')}
+                        ></i>
+                        {tooltipVisible === 'percentage-tooltip' && (
+                            <span
+                                style={{
+                                    backgroundColor: '#333',
+                                    color: 'white',
+                                    padding: '5px 10px',
+                                    borderRadius: '4px',
+                                    fontSize: '12px',
+                                    position: 'absolute',
+                                    top: '20px',
+                                    left: '10px',
+                                    zIndex: 10
+                                }}
+                            >
+                                Välj med hur många procent presentkortet skall vara rabatterat
+                            </span>
+                        )}
                     </label>
                     <select
                         id="percentage"
@@ -162,7 +188,28 @@ export function SellGiftCard() {
                 <div className="mb-3">
                     <label htmlFor="expireDate" className="form-label">
                         Utgångsdatum: &nbsp;
-                        <i className="bi bi-question-circle" data-toggle="tooltip" style={{ cursor: 'pointer' }} data-placement="right" title="Vi registrerar ej presentkort som utgår inom en veckas tid"></i>
+                        <i
+                            className="bi bi-question-circle"
+                            style={{ cursor: 'pointer', position: 'relative' }}
+                            onClick={() => toggleTooltip('expireDate-tooltip')}
+                        ></i>
+                        {tooltipVisible === 'expireDate-tooltip' && (
+                            <span
+                                style={{
+                                    backgroundColor: '#333',
+                                    color: 'white',
+                                    padding: '5px 10px',
+                                    borderRadius: '4px',
+                                    fontSize: '12px',
+                                    position: 'absolute',
+                                    top: '20px',
+                                    left: '10px',
+                                    zIndex: 10
+                                }}
+                            >
+                                Vi registrerar ej presentkort som utgår inom en veckas tid
+                            </span>
+                        )}
                     </label>
                     <input
                         type="date"
