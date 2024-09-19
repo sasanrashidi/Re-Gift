@@ -65,7 +65,7 @@ export default function Home() {
             </div>
 
             <Carousel className="custom-carousel mt-5" style={{ boxShadow: '8px 8px 8px rgba(0, 0, 0, 0.3)' }}>
-                {[Adidass, Nikee, Battlenett, BurgerKing, ICAA, IKEAA].map((imageSrc, index) => (
+                {[ICAA, Nikee, Battlenett, BurgerKing, Adidass, IKEAA].map((imageSrc, index) => (
                     <Carousel.Item key={index}>
                         <img
                             className="d-block w-100"
@@ -77,7 +77,7 @@ export default function Home() {
                     </Carousel.Item>
                 ))}
             </Carousel>
-
+            
         </div>
     );
 }
